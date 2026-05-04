@@ -1,0 +1,25 @@
+{
+    "name": "rixl/sdk",
+    "description": "PHP client for the RIXL API.",
+    "type": "library",
+    "license": "MIT",
+    "homepage": "https://github.com/rixlhq/rixl-php",
+    "support": {
+        "issues": "https://github.com/rixlhq/rixl-php/issues",
+        "source": "https://github.com/rixlhq/rixl-php"
+    },
+    "require": {
+        "php": ">=8.2",
+        "microsoft/kiota-abstractions": "^2.0",
+        "microsoft/kiota-http-guzzle": "^2.0",
+        "microsoft/kiota-serialization-json": "^2.0",
+        "microsoft/kiota-serialization-form": "^2.0",
+        "microsoft/kiota-serialization-text": "^2.0",
+        "microsoft/kiota-serialization-multipart": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Rixl\\Sdk\\": "."
+        }
+    }
+}
