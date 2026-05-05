@@ -10,7 +10,7 @@ PHP client for the [RIXL](https://rixl.com) API.
 composer require rixl/sdk
 ```
 
-Requires PHP 8.1+. The Kiota PHP runtime (HTTP, serializers) is pulled in transitively.
+Requires PHP 8.2+. The Kiota PHP runtime (HTTP, serializers) is pulled in transitively.
 
 ## Quick start
 
@@ -51,11 +51,11 @@ $videos = $client->videos()->get()->wait();
 $video  = $client->videos()->byVideoId('VI9VXQxWXQ')->get()->wait();
 ```
 
-Upload (init → PUT bytes to presigned URL → complete) and pagination follow the same pattern as the other RIXL SDKs — see the `examples/` directory or the project README at https://github.com/rixlhq/rixl-php.
+Upload (init → PUT bytes to presigned URL → complete) and pagination follow the same pattern as the other RIXL SDKs.
 
 ## Errors
 
-API errors (400/401/403/404/500) are thrown as `Rixl\Sdk\Models\GithubComRixlhqApiInternalErrors\ErrorResponse` exceptions; catch and inspect `getCode()` / `getError()`.
+API errors (400/401/403/404/500) are thrown as `Rixl\Sdk\Models\Github_com_rixlhq_api_internal_errors\ErrorResponse` exceptions; catch and inspect `getCode()` / `getError()`.
 
 ## Support
 
