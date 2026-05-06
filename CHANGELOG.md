@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.2.0](https://github.com/rixlhq/rixl-php/compare/v0.1.3...v0.2.0) (2026-05-06)
+
+
+### Features
+
+* **sdk:** regenerate based on latest spec ([b10c5c0](https://github.com/rixlhq/rixl-php/commit/b10c5c0849e2830647f07e59a4fffb8b43dddd93))
+
+
+### Bug Fixes
+
+* correct release type ([bd74bdd](https://github.com/rixlhq/rixl-php/commit/bd74bdd37c918d3dc699c7e20de9e61f12a4f5cd))
+* simpler release please workflow setup ([15fe21a](https://github.com/rixlhq/rixl-php/commit/15fe21acca4677052d897e032b804793e45f6db4))
+
+
+### Miscellaneous Chores
+
+* add gen.sh, generate workflow, dependabot; drop committed spec ([a2f38e8](https://github.com/rixlhq/rixl-php/commit/a2f38e8a0f678efa4bb68b90a57acb7d8b186f38))
+* improve gitignore and gitattributes ([8c3180e](https://github.com/rixlhq/rixl-php/commit/8c3180ea87488db43fb63404a666bb5a0bcdbae8))
+
 ## [0.1.3](https://github.com/rixlhq/rixl-php/compare/v0.1.2...v0.1.3) (2026-05-05)
 
 
