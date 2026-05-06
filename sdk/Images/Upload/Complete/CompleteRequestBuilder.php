@@ -33,7 +33,7 @@ class CompleteRequestBuilder extends BaseRequestBuilder
 
     /**
      * Complete the upload process and create the image record using API key authentication
-     * @param CompleteRequest $body The request body
+     * @param CompleteRequest $body Upload completion request
      * @param CompleteRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<Image|null>
      * @throws Exception
@@ -52,7 +52,7 @@ class CompleteRequestBuilder extends BaseRequestBuilder
 
     /**
      * Complete the upload process and create the image record using API key authentication
-     * @param CompleteRequest $body The request body
+     * @param CompleteRequest $body Upload completion request
      * @param CompleteRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */

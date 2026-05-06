@@ -55,6 +55,10 @@ class RixlClient extends BaseRequestBuilder
         ApiClientBuilder::registerDefaultDeserializer(JsonParseNodeFactory::class);
         ApiClientBuilder::registerDefaultDeserializer(TextParseNodeFactory::class);
         ApiClientBuilder::registerDefaultDeserializer(FormParseNodeFactory::class);
+        if (empty($this->requestAdapter->getBaseUrl())) {
+            $this->requestAdapter->setBaseUrl('https://raw.githubusercontent.com');
+        }
+        $this->pathParameters['baseurl'] = $this->requestAdapter->getBaseUrl();
     }
 
 }

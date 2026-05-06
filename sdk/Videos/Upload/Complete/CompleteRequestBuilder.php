@@ -33,7 +33,7 @@ class CompleteRequestBuilder extends BaseRequestBuilder
 
     /**
      * Mark a video upload as complete after successful upload to storage using API key authentication
-     * @param CompleteRequest $body The request body
+     * @param CompleteRequest $body Video upload completion request
      * @param CompleteRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<Video|null>
      * @throws Exception
@@ -52,7 +52,7 @@ class CompleteRequestBuilder extends BaseRequestBuilder
 
     /**
      * Mark a video upload as complete after successful upload to storage using API key authentication
-     * @param CompleteRequest $body The request body
+     * @param CompleteRequest $body Video upload completion request
      * @param CompleteRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */

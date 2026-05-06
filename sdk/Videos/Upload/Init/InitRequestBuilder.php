@@ -33,7 +33,7 @@ class InitRequestBuilder extends BaseRequestBuilder
 
     /**
      * Initialize a video upload and get presigned URLs for video and poster using API key authentication
-     * @param VideoUploadInitRequest $body The request body
+     * @param VideoUploadInitRequest $body Video upload initialization request
      * @param InitRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<InitResponse|null>
      * @throws Exception
@@ -51,7 +51,7 @@ class InitRequestBuilder extends BaseRequestBuilder
 
     /**
      * Initialize a video upload and get presigned URLs for video and poster using API key authentication
-     * @param VideoUploadInitRequest $body The request body
+     * @param VideoUploadInitRequest $body Video upload initialization request
      * @param InitRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */

@@ -6,11 +6,13 @@ use Exception;
 use Http\Promise\Promise;
 use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
+use Microsoft\Kiota\Abstractions\MultiPartBody;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Models\Subtitle;
 use Rixl\Sdk\Models\SubtitleDelete;
-use Rixl\Sdk\Videos\Item\Subtitles\Item\Lang_codeItemRequestBuilder;
+use Rixl\Sdk\Videos\Item\Subtitles\Item\WithSubtitleItemRequestBuilder;
+use Rixl\Sdk\Videos\Item\Subtitles\Language\LanguageRequestBuilder;
 
 /**
  * Builds and executes requests for operations under /videos/{videoId}/subtitles
@@ -18,14 +20,21 @@ use Rixl\Sdk\Videos\Item\Subtitles\Item\Lang_codeItemRequestBuilder;
 class SubtitlesRequestBuilder extends BaseRequestBuilder 
 {
     /**
-     * Gets an item from the Rixl/Sdk.videos.item.subtitles.item collection
-     * @param string $lang_codeId Language Code (BCP 47)
-     * @return Lang_codeItemRequestBuilder
+     * The language property
     */
-    public function byLang_codeId(string $lang_codeId): Lang_codeItemRequestBuilder {
+    public function language(): LanguageRequestBuilder {
+        return new LanguageRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
+     * Gets an item from the Rixl/Sdk.videos.item.subtitles.item collection
+     * @param string $subtitleId Subtitle ID
+     * @return WithSubtitleItemRequestBuilder
+    */
+    public function bySubtitleId(string $subtitleId): WithSubtitleItemRequestBuilder {
         $urlTplParams = $this->pathParameters;
-        $urlTplParams['lang_code%2Did'] = $lang_codeId;
-        return new Lang_codeItemRequestBuilder($urlTplParams, $this->requestAdapter);
+        $urlTplParams['subtitleId'] = $subtitleId;
+        return new WithSubtitleItemRequestBuilder($urlTplParams, $this->requestAdapter);
     }
 
     /**
@@ -55,12 +64,12 @@ class SubtitlesRequestBuilder extends BaseRequestBuilder
 
     /**
      * Replace all subtitles with the provided ones using API key authentication
-     * @param SubtitlesPostRequestBody $body The request body
+     * @param MultiPartBody $body The request body
      * @param SubtitlesRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<array<Subtitle>|null>
      * @throws Exception
     */
-    public function post(SubtitlesPostRequestBody $body, ?SubtitlesRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
+    public function post(MultiPartBody $body, ?SubtitlesRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
         return $this->requestAdapter->sendCollectionAsync($requestInfo, [Subtitle::class, 'createFromDiscriminatorValue'], null);
     }
@@ -85,11 +94,11 @@ class SubtitlesRequestBuilder extends BaseRequestBuilder
 
     /**
      * Replace all subtitles with the provided ones using API key authentication
-     * @param SubtitlesPostRequestBody $body The request body
+     * @param MultiPartBody $body The request body
      * @param SubtitlesRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
-    public function toPostRequestInformation(SubtitlesPostRequestBody $body, ?SubtitlesRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
+    public function toPostRequestInformation(MultiPartBody $body, ?SubtitlesRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
         $requestInfo = new RequestInformation();
         $requestInfo->urlTemplate = $this->urlTemplate;
         $requestInfo->pathParameters = $this->pathParameters;
@@ -99,7 +108,7 @@ class SubtitlesRequestBuilder extends BaseRequestBuilder
             $requestInfo->addRequestOptions(...$requestConfiguration->options);
         }
         $requestInfo->tryAddHeader('Accept', "application/json");
-        $requestInfo->setContentFromParsable($this->requestAdapter, "application/x-www-form-urlencoded", $body);
+        $requestInfo->setContentFromParsable($this->requestAdapter, "multipart/form-data", $body);
         return $requestInfo;
     }
 

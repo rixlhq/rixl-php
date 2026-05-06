@@ -6,11 +6,13 @@ use Exception;
 use Http\Promise\Promise;
 use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
+use Microsoft\Kiota\Abstractions\MultiPartBody;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Models\AudioTrack;
 use Rixl\Sdk\Models\AudioTrackDelete;
-use Rixl\Sdk\Videos\Item\AudioTracks\Item\Lang_codeItemRequestBuilder;
+use Rixl\Sdk\Videos\Item\AudioTracks\Item\WithTrackItemRequestBuilder;
+use Rixl\Sdk\Videos\Item\AudioTracks\Language\LanguageRequestBuilder;
 
 /**
  * Builds and executes requests for operations under /videos/{videoId}/audio-tracks
@@ -18,14 +20,21 @@ use Rixl\Sdk\Videos\Item\AudioTracks\Item\Lang_codeItemRequestBuilder;
 class AudioTracksRequestBuilder extends BaseRequestBuilder 
 {
     /**
-     * Gets an item from the Rixl/Sdk.videos.item.audioTracks.item collection
-     * @param string $lang_codeId Language Code (BCP 47)
-     * @return Lang_codeItemRequestBuilder
+     * The language property
     */
-    public function byLang_codeId(string $lang_codeId): Lang_codeItemRequestBuilder {
+    public function language(): LanguageRequestBuilder {
+        return new LanguageRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
+     * Gets an item from the Rixl/Sdk.videos.item.audioTracks.item collection
+     * @param string $trackId Audio Track ID
+     * @return WithTrackItemRequestBuilder
+    */
+    public function byTrackId(string $trackId): WithTrackItemRequestBuilder {
         $urlTplParams = $this->pathParameters;
-        $urlTplParams['lang_code%2Did'] = $lang_codeId;
-        return new Lang_codeItemRequestBuilder($urlTplParams, $this->requestAdapter);
+        $urlTplParams['trackId'] = $trackId;
+        return new WithTrackItemRequestBuilder($urlTplParams, $this->requestAdapter);
     }
 
     /**
@@ -55,12 +64,12 @@ class AudioTracksRequestBuilder extends BaseRequestBuilder
 
     /**
      * Replace all audio tracks with the provided ones using API key authentication
-     * @param AudioTracksPostRequestBody $body The request body
+     * @param MultiPartBody $body The request body
      * @param AudioTracksRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<array<AudioTrack>|null>
      * @throws Exception
     */
-    public function post(AudioTracksPostRequestBody $body, ?AudioTracksRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
+    public function post(MultiPartBody $body, ?AudioTracksRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
         return $this->requestAdapter->sendCollectionAsync($requestInfo, [AudioTrack::class, 'createFromDiscriminatorValue'], null);
     }
@@ -85,11 +94,11 @@ class AudioTracksRequestBuilder extends BaseRequestBuilder
 
     /**
      * Replace all audio tracks with the provided ones using API key authentication
-     * @param AudioTracksPostRequestBody $body The request body
+     * @param MultiPartBody $body The request body
      * @param AudioTracksRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
-    public function toPostRequestInformation(AudioTracksPostRequestBody $body, ?AudioTracksRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
+    public function toPostRequestInformation(MultiPartBody $body, ?AudioTracksRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
         $requestInfo = new RequestInformation();
         $requestInfo->urlTemplate = $this->urlTemplate;
         $requestInfo->pathParameters = $this->pathParameters;
@@ -99,7 +108,7 @@ class AudioTracksRequestBuilder extends BaseRequestBuilder
             $requestInfo->addRequestOptions(...$requestConfiguration->options);
         }
         $requestInfo->tryAddHeader('Accept', "application/json");
-        $requestInfo->setContentFromParsable($this->requestAdapter, "application/x-www-form-urlencoded", $body);
+        $requestInfo->setContentFromParsable($this->requestAdapter, "multipart/form-data", $body);
         return $requestInfo;
     }
 

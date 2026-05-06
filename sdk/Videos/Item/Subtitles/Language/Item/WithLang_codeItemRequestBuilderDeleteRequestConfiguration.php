@@ -1,6 +1,6 @@
 <?php
 
-namespace Rixl\Sdk\Videos\Item\AudioTracks\Item;
+namespace Rixl\Sdk\Videos\Item\Subtitles\Language\Item;
 
 use Microsoft\Kiota\Abstractions\BaseRequestConfiguration;
 use Microsoft\Kiota\Abstractions\RequestOption;
@@ -8,10 +8,10 @@ use Microsoft\Kiota\Abstractions\RequestOption;
 /**
  * Configuration for the request such as headers, query parameters, and middleware options.
 */
-class Lang_codeItemRequestBuilderPutRequestConfiguration extends BaseRequestConfiguration 
+class WithLang_codeItemRequestBuilderDeleteRequestConfiguration extends BaseRequestConfiguration 
 {
     /**
-     * Instantiates a new Lang_codeItemRequestBuilderPutRequestConfiguration and sets the default values.
+     * Instantiates a new WithLang_codeItemRequestBuilderDeleteRequestConfiguration and sets the default values.
      * @param array<string, array<string>|string>|null $headers Request headers
      * @param array<RequestOption>|null $options Request options
     */

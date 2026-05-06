@@ -33,7 +33,7 @@ class InitRequestBuilder extends BaseRequestBuilder
 
     /**
      * Initialize a presigned URL upload for an image file using API key authentication
-     * @param UploadInitRequest $body The request body
+     * @param UploadInitRequest $body Upload initialization request
      * @param InitRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<InitResponse|null>
      * @throws Exception
@@ -51,7 +51,7 @@ class InitRequestBuilder extends BaseRequestBuilder
 
     /**
      * Initialize a presigned URL upload for an image file using API key authentication
-     * @param UploadInitRequest $body The request body
+     * @param UploadInitRequest $body Upload initialization request
      * @param InitRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */

@@ -50,7 +50,7 @@ class ChaptersRequestBuilder extends BaseRequestBuilder
 
     /**
      * Replace all chapters for a video (atomic PUT operation) using API key authentication
-     * @param UpdateChaptersRequest $body The request body
+     * @param UpdateChaptersRequest $body Chapters array
      * @param ChaptersRequestBuilderPutRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<UpdateChaptersResponse|null>
      * @throws Exception
@@ -87,7 +87,7 @@ class ChaptersRequestBuilder extends BaseRequestBuilder
 
     /**
      * Replace all chapters for a video (atomic PUT operation) using API key authentication
-     * @param UpdateChaptersRequest $body The request body
+     * @param UpdateChaptersRequest $body Chapters array
      * @param ChaptersRequestBuilderPutRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
