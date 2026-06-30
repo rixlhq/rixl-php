@@ -4,9 +4,7 @@ namespace Rixl\Sdk\Media;
 
 use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
-use Rixl\Sdk\Media\Feeds\FeedsRequestBuilder;
-use Rixl\Sdk\Media\Images\ImagesRequestBuilder;
-use Rixl\Sdk\Media\Videos\VideosRequestBuilder;
+use Rixl\Sdk\Media\V1\V1RequestBuilder;
 
 /**
  * Builds and executes requests for operations under /media
@@ -14,24 +12,10 @@ use Rixl\Sdk\Media\Videos\VideosRequestBuilder;
 class MediaRequestBuilder extends BaseRequestBuilder 
 {
     /**
-     * The feeds property
+     * The v1 property
     */
-    public function feeds(): FeedsRequestBuilder {
-        return new FeedsRequestBuilder($this->pathParameters, $this->requestAdapter);
-    }
-    
-    /**
-     * The images property
-    */
-    public function images(): ImagesRequestBuilder {
-        return new ImagesRequestBuilder($this->pathParameters, $this->requestAdapter);
-    }
-    
-    /**
-     * The videos property
-    */
-    public function videos(): VideosRequestBuilder {
-        return new VideosRequestBuilder($this->pathParameters, $this->requestAdapter);
+    public function v1(): V1RequestBuilder {
+        return new V1RequestBuilder($this->pathParameters, $this->requestAdapter);
     }
     
     /**

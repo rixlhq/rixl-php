@@ -1,0 +1,70 @@
+<?php
+
+namespace Rixl\Sdk\Analytics\V1\Realtime;
+
+use Exception;
+use Http\Promise\Promise;
+use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
+use Microsoft\Kiota\Abstractions\HttpMethod;
+use Microsoft\Kiota\Abstractions\RequestAdapter;
+use Microsoft\Kiota\Abstractions\RequestInformation;
+use Rixl\Sdk\Models\Analyticsv1\RealtimeStats;
+
+/**
+ * Builds and executes requests for operations under /analytics/v1/realtime
+*/
+class RealtimeRequestBuilder extends BaseRequestBuilder 
+{
+    /**
+     * Instantiates a new RealtimeRequestBuilder and sets the default values.
+     * @param array<string, mixed>|string $pathParametersOrRawUrl Path parameters for the request or a String representing the raw URL.
+     * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
+    */
+    public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
+        parent::__construct($requestAdapter, [], '{+baseurl}/analytics/v1/realtime');
+        if (is_array($pathParametersOrRawUrl)) {
+            $this->pathParameters = $pathParametersOrRawUrl;
+        } else {
+            $this->pathParameters = ['request-raw-url' => $pathParametersOrRawUrl];
+        }
+    }
+
+    /**
+     * Returns real-time analytics snapshot
+     * @param RealtimeRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * @return Promise<RealtimeStats|null>
+     * @throws Exception
+    */
+    public function get(?RealtimeRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
+        $requestInfo = $this->toGetRequestInformation($requestConfiguration);
+        return $this->requestAdapter->sendAsync($requestInfo, [RealtimeStats::class, 'createFromDiscriminatorValue'], null);
+    }
+
+    /**
+     * Returns real-time analytics snapshot
+     * @param RealtimeRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * @return RequestInformation
+    */
+    public function toGetRequestInformation(?RealtimeRequestBuilderGetRequestConfiguration $requestConfiguration = null): RequestInformation {
+        $requestInfo = new RequestInformation();
+        $requestInfo->urlTemplate = $this->urlTemplate;
+        $requestInfo->pathParameters = $this->pathParameters;
+        $requestInfo->httpMethod = HttpMethod::GET;
+        if ($requestConfiguration !== null) {
+            $requestInfo->addHeaders($requestConfiguration->headers);
+            $requestInfo->addRequestOptions(...$requestConfiguration->options);
+        }
+        $requestInfo->tryAddHeader('Accept', "application/json");
+        return $requestInfo;
+    }
+
+    /**
+     * Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
+     * @param string $rawUrl The raw URL to use for the request builder.
+     * @return RealtimeRequestBuilder
+    */
+    public function withUrl(string $rawUrl): RealtimeRequestBuilder {
+        return new RealtimeRequestBuilder($rawUrl, $this->requestAdapter);
+    }
+
+}
