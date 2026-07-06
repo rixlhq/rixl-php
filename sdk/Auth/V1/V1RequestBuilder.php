@@ -18,6 +18,7 @@ use Rixl\Sdk\Auth\V1\Register\RegisterRequestBuilder;
 use Rixl\Sdk\Auth\V1\Token\TokenRequestBuilder;
 use Rixl\Sdk\Auth\V1\Userinfo\UserinfoRequestBuilder;
 use Rixl\Sdk\Auth\V1\Users\UsersRequestBuilder;
+use Rixl\Sdk\Auth\V1\VerifyPasskey\VerifyPasskeyRequestBuilder;
 use Rixl\Sdk\Auth\V1\VerifyTotp\VerifyTotpRequestBuilder;
 
 /**
@@ -121,6 +122,13 @@ class V1RequestBuilder extends BaseRequestBuilder
     */
     public function users(): UsersRequestBuilder {
         return new UsersRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
+     * The verifyPasskey property
+    */
+    public function verifyPasskey(): VerifyPasskeyRequestBuilder {
+        return new VerifyPasskeyRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
     
     /**

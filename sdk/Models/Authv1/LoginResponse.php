@@ -6,6 +6,7 @@ use Microsoft\Kiota\Abstractions\Serialization\AdditionalDataHolder;
 use Microsoft\Kiota\Abstractions\Serialization\Parsable;
 use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
 use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
+use Microsoft\Kiota\Abstractions\Types\TypeUtils;
 
 class LoginResponse implements AdditionalDataHolder, Parsable 
 {
@@ -20,6 +21,11 @@ class LoginResponse implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
+     * @var array<int>|null $authentication authentication lists the 2FA methods the user has configured whenstatus is "2fa_required". The public API renders these as lowercasestrings: "passkey", "totp".
+    */
+    private ?array $authentication = null;
+    
+    /**
      * @var string|null $email The email property
     */
     private ?string $email = null;
@@ -28,6 +34,11 @@ class LoginResponse implements AdditionalDataHolder, Parsable
      * @var int|null $expires_in The expires_in property
     */
     private ?int $expires_in = null;
+    
+    /**
+     * @var array<int>|null $passkey_options passkey_options is the WebAuthn PublicKeyCredentialRequestOptions as JSON,present only when "passkey" is one of the authentication methods.
+    */
+    private ?array $passkey_options = null;
     
     /**
      * @var string|null $refresh_token The refresh_token property
@@ -45,7 +56,7 @@ class LoginResponse implements AdditionalDataHolder, Parsable
     private ?string $session_id = null;
     
     /**
-     * @var string|null $status "ok" | "otp_required" | "email_not_verified"
+     * @var string|null $status "ok" | "2fa_required" | "email_not_verified"
     */
     private ?string $status = null;
     
@@ -87,6 +98,14 @@ class LoginResponse implements AdditionalDataHolder, Parsable
     }
 
     /**
+     * Gets the authentication property value. authentication lists the 2FA methods the user has configured whenstatus is "2fa_required". The public API renders these as lowercasestrings: "passkey", "totp".
+     * @return array<int>|null
+    */
+    public function getAuthentication(): ?array {
+        return $this->authentication;
+    }
+
+    /**
      * Gets the email property value. The email property
      * @return string|null
     */
@@ -110,14 +129,38 @@ class LoginResponse implements AdditionalDataHolder, Parsable
         $o = $this;
         return  [
             'access_token' => fn(ParseNode $n) => $o->setAccessToken($n->getStringValue()),
+            'authentication' => function (ParseNode $n) {
+                $val = $n->getCollectionOfPrimitiveValues();
+                if (is_array($val)) {
+                    TypeUtils::validateCollectionValues($val, 'int');
+                }
+                /** @var array<int>|null $val */
+                $this->setAuthentication($val);
+            },
             'email' => fn(ParseNode $n) => $o->setEmail($n->getStringValue()),
             'expires_in' => fn(ParseNode $n) => $o->setExpiresIn($n->getIntegerValue()),
+            'passkey_options' => function (ParseNode $n) {
+                $val = $n->getCollectionOfPrimitiveValues();
+                if (is_array($val)) {
+                    TypeUtils::validateCollectionValues($val, 'int');
+                }
+                /** @var array<int>|null $val */
+                $this->setPasskeyOptions($val);
+            },
             'refresh_token' => fn(ParseNode $n) => $o->setRefreshToken($n->getStringValue()),
             'requires_action' => fn(ParseNode $n) => $o->setRequiresAction($n->getStringValue()),
             'session_id' => fn(ParseNode $n) => $o->setSessionId($n->getStringValue()),
             'status' => fn(ParseNode $n) => $o->setStatus($n->getStringValue()),
             'token_type' => fn(ParseNode $n) => $o->setTokenType($n->getStringValue()),
         ];
+    }
+
+    /**
+     * Gets the passkey_options property value. passkey_options is the WebAuthn PublicKeyCredentialRequestOptions as JSON,present only when "passkey" is one of the authentication methods.
+     * @return array<int>|null
+    */
+    public function getPasskeyOptions(): ?array {
+        return $this->passkey_options;
     }
 
     /**
@@ -145,7 +188,7 @@ class LoginResponse implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the status property value. "ok" | "otp_required" | "email_not_verified"
+     * Gets the status property value. "ok" | "2fa_required" | "email_not_verified"
      * @return string|null
     */
     public function getStatus(): ?string {
@@ -166,8 +209,10 @@ class LoginResponse implements AdditionalDataHolder, Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeStringValue('access_token', $this->getAccessToken());
+        $writer->writeCollectionOfPrimitiveValues('authentication', $this->getAuthentication());
         $writer->writeStringValue('email', $this->getEmail());
         $writer->writeIntegerValue('expires_in', $this->getExpiresIn());
+        $writer->writeCollectionOfPrimitiveValues('passkey_options', $this->getPasskeyOptions());
         $writer->writeStringValue('refresh_token', $this->getRefreshToken());
         $writer->writeStringValue('requires_action', $this->getRequiresAction());
         $writer->writeStringValue('session_id', $this->getSessionId());
@@ -193,6 +238,14 @@ class LoginResponse implements AdditionalDataHolder, Parsable
     }
 
     /**
+     * Sets the authentication property value. authentication lists the 2FA methods the user has configured whenstatus is "2fa_required". The public API renders these as lowercasestrings: "passkey", "totp".
+     * @param array<int>|null $value Value to set for the authentication property.
+    */
+    public function setAuthentication(?array $value): void {
+        $this->authentication = $value;
+    }
+
+    /**
      * Sets the email property value. The email property
      * @param string|null $value Value to set for the email property.
     */
@@ -206,6 +259,14 @@ class LoginResponse implements AdditionalDataHolder, Parsable
     */
     public function setExpiresIn(?int $value): void {
         $this->expires_in = $value;
+    }
+
+    /**
+     * Sets the passkey_options property value. passkey_options is the WebAuthn PublicKeyCredentialRequestOptions as JSON,present only when "passkey" is one of the authentication methods.
+     * @param array<int>|null $value Value to set for the passkey_options property.
+    */
+    public function setPasskeyOptions(?array $value): void {
+        $this->passkey_options = $value;
     }
 
     /**
@@ -233,7 +294,7 @@ class LoginResponse implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the status property value. "ok" | "otp_required" | "email_not_verified"
+     * Sets the status property value. "ok" | "2fa_required" | "email_not_verified"
      * @param string|null $value Value to set for the status property.
     */
     public function setStatus(?string $value): void {
