@@ -8,8 +8,8 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Authv1\PasskeyRegisterFinishResponse;
-use Rixl\Sdk\Models\Gateway\PasskeyRegisterFinishBody;
+use Rixl\Sdk\Models\Auth\V1\PasskeyRegisterFinishRequest;
+use Rixl\Sdk\Models\Auth\V1\PasskeyRegisterFinishResponse;
 
 /**
  * Builds and executes requests for operations under /auth/v1/users/current/passkeys/register/finish
@@ -31,24 +31,24 @@ class FinishRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Completes passkey registration by verifying the signed WebAuthn credential and storing it under the given name for the authenticated user.
-     * @param PasskeyRegisterFinishBody $body session_id, name and WebAuthn credential
+     * PasskeyRegisterFinish
+     * @param PasskeyRegisterFinishRequest $body The request body
      * @param FinishRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<PasskeyRegisterFinishResponse|null>
      * @throws Exception
     */
-    public function post(PasskeyRegisterFinishBody $body, ?FinishRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
+    public function post(PasskeyRegisterFinishRequest $body, ?FinishRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
         return $this->requestAdapter->sendAsync($requestInfo, [PasskeyRegisterFinishResponse::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * Completes passkey registration by verifying the signed WebAuthn credential and storing it under the given name for the authenticated user.
-     * @param PasskeyRegisterFinishBody $body session_id, name and WebAuthn credential
+     * PasskeyRegisterFinish
+     * @param PasskeyRegisterFinishRequest $body The request body
      * @param FinishRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
-    public function toPostRequestInformation(PasskeyRegisterFinishBody $body, ?FinishRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
+    public function toPostRequestInformation(PasskeyRegisterFinishRequest $body, ?FinishRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
         $requestInfo = new RequestInformation();
         $requestInfo->urlTemplate = $this->urlTemplate;
         $requestInfo->pathParameters = $this->pathParameters;

@@ -8,11 +8,10 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Gateway\InitUploadBody;
-use Rixl\Sdk\Models\Postsv1\PostUploadInit;
+use Rixl\Sdk\Models\Posts\V1\PostUploadInit;
 
 /**
- * Builds and executes requests for operations under /posts/v1/projects/{projectId}/feeds/{feedId}/posts/upload/init
+ * Builds and executes requests for operations under /posts/v1/projects/{project_id}/feeds/{feed_id}/posts/upload/init
 */
 class InitRequestBuilder extends BaseRequestBuilder 
 {
@@ -22,7 +21,7 @@ class InitRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/posts/v1/projects/{projectId}/feeds/{feedId}/posts/upload/init');
+        parent::__construct($requestAdapter, [], '{+baseurl}/posts/v1/projects/{project_id}/feeds/{feed_id}/posts/upload/init');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
@@ -31,24 +30,24 @@ class InitRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Begin a media upload and create a draft post
-     * @param InitUploadBody $body Upload initialization request
+     * InitPostUpload
+     * @param InitPostRequestBody $body The request body
      * @param InitRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<PostUploadInit|null>
      * @throws Exception
     */
-    public function post(InitUploadBody $body, ?InitRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
+    public function post(InitPostRequestBody $body, ?InitRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
         return $this->requestAdapter->sendAsync($requestInfo, [PostUploadInit::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * Begin a media upload and create a draft post
-     * @param InitUploadBody $body Upload initialization request
+     * InitPostUpload
+     * @param InitPostRequestBody $body The request body
      * @param InitRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
-    public function toPostRequestInformation(InitUploadBody $body, ?InitRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
+    public function toPostRequestInformation(InitPostRequestBody $body, ?InitRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
         $requestInfo = new RequestInformation();
         $requestInfo->urlTemplate = $this->urlTemplate;
         $requestInfo->pathParameters = $this->pathParameters;

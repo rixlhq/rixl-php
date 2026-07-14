@@ -8,7 +8,7 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Videosv1\ListLanguagesResponse;
+use Rixl\Sdk\Models\Videos\V1\ListLanguagesResponse;
 
 /**
  * Builds and executes requests for operations under /media/v1/languages
@@ -30,7 +30,7 @@ class LanguagesRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns the language codes supported for audio tracks and subtitles.
+     * ListLanguages
      * @param LanguagesRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<ListLanguagesResponse|null>
      * @throws Exception
@@ -41,7 +41,7 @@ class LanguagesRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns the language codes supported for audio tracks and subtitles.
+     * ListLanguages
      * @param LanguagesRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */

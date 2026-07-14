@@ -8,7 +8,8 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Authv1\PasskeyBeginResponse;
+use Rixl\Sdk\Models\Auth\V1\PasskeyBeginResponse;
+use Rixl\Sdk\Models\Auth\V1\PasskeyRegisterBeginRequest;
 
 /**
  * Builds and executes requests for operations under /auth/v1/users/current/passkeys/register/begin
@@ -30,22 +31,24 @@ class BeginRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Begins registering a new passkey for the authenticated user by returning a session_id and WebAuthn creation options.
+     * PasskeyRegisterBegin
+     * @param PasskeyRegisterBeginRequest $body The request body
      * @param BeginRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<PasskeyBeginResponse|null>
      * @throws Exception
     */
-    public function post(?BeginRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
-        $requestInfo = $this->toPostRequestInformation($requestConfiguration);
+    public function post(PasskeyRegisterBeginRequest $body, ?BeginRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
+        $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
         return $this->requestAdapter->sendAsync($requestInfo, [PasskeyBeginResponse::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * Begins registering a new passkey for the authenticated user by returning a session_id and WebAuthn creation options.
+     * PasskeyRegisterBegin
+     * @param PasskeyRegisterBeginRequest $body The request body
      * @param BeginRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
-    public function toPostRequestInformation(?BeginRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
+    public function toPostRequestInformation(PasskeyRegisterBeginRequest $body, ?BeginRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
         $requestInfo = new RequestInformation();
         $requestInfo->urlTemplate = $this->urlTemplate;
         $requestInfo->pathParameters = $this->pathParameters;
@@ -55,6 +58,7 @@ class BeginRequestBuilder extends BaseRequestBuilder
             $requestInfo->addRequestOptions(...$requestConfiguration->options);
         }
         $requestInfo->tryAddHeader('Accept', "application/json");
+        $requestInfo->setContentFromParsable($this->requestAdapter, "application/json", $body);
         return $requestInfo;
     }
 

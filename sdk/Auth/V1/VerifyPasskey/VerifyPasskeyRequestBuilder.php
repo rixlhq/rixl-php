@@ -8,8 +8,8 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Authv1\TokenResponse;
-use Rixl\Sdk\Models\Gateway\PasskeyVerifyBody;
+use Rixl\Sdk\Models\Auth\V1\TokenResponse;
+use Rixl\Sdk\Models\Auth\V1\VerifyPasskeyForLoginRequest;
 
 /**
  * Builds and executes requests for operations under /auth/v1/verify-passkey
@@ -31,24 +31,24 @@ class VerifyPasskeyRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Completes the passkey step of a password login's 2FA challenge. Verifies the signed WebAuthn assertion against the challenge stored in the login session (from POST /auth/v1/login with status "2fa_required") and returns authentication tokens.
-     * @param PasskeyVerifyBody $body session_id and WebAuthn credential
+     * VerifyPasskeyForLogin
+     * @param VerifyPasskeyForLoginRequest $body The request body
      * @param VerifyPasskeyRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<TokenResponse|null>
      * @throws Exception
     */
-    public function post(PasskeyVerifyBody $body, ?VerifyPasskeyRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
+    public function post(VerifyPasskeyForLoginRequest $body, ?VerifyPasskeyRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
         return $this->requestAdapter->sendAsync($requestInfo, [TokenResponse::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * Completes the passkey step of a password login's 2FA challenge. Verifies the signed WebAuthn assertion against the challenge stored in the login session (from POST /auth/v1/login with status "2fa_required") and returns authentication tokens.
-     * @param PasskeyVerifyBody $body session_id and WebAuthn credential
+     * VerifyPasskeyForLogin
+     * @param VerifyPasskeyForLoginRequest $body The request body
      * @param VerifyPasskeyRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
-    public function toPostRequestInformation(PasskeyVerifyBody $body, ?VerifyPasskeyRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
+    public function toPostRequestInformation(VerifyPasskeyForLoginRequest $body, ?VerifyPasskeyRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
         $requestInfo = new RequestInformation();
         $requestInfo->urlTemplate = $this->urlTemplate;
         $requestInfo->pathParameters = $this->pathParameters;

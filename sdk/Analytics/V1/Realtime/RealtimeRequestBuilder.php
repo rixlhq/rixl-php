@@ -8,7 +8,7 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Analyticsv1\RealtimeStats;
+use Rixl\Sdk\Models\Analytics\V1\RealtimeStats;
 
 /**
  * Builds and executes requests for operations under /analytics/v1/realtime
@@ -30,7 +30,7 @@ class RealtimeRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns real-time analytics snapshot
+     * GetRealtimeStats
      * @param RealtimeRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<RealtimeStats|null>
      * @throws Exception
@@ -41,7 +41,7 @@ class RealtimeRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns real-time analytics snapshot
+     * GetRealtimeStats
      * @param RealtimeRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */

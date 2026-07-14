@@ -4,7 +4,7 @@ namespace Rixl\Sdk\Analytics\V1\Videos;
 
 use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
-use Rixl\Sdk\Analytics\V1\Videos\Item\WithVideoItemRequestBuilder;
+use Rixl\Sdk\Analytics\V1\Videos\Item\WithVideo_ItemRequestBuilder;
 
 /**
  * Builds and executes requests for operations under /analytics/v1/videos
@@ -13,13 +13,13 @@ class VideosRequestBuilder extends BaseRequestBuilder
 {
     /**
      * Gets an item from the Rixl/Sdk.analytics.v1.videos.item collection
-     * @param string $videoId Video ID
-     * @return WithVideoItemRequestBuilder
+     * @param string $video_id Unique identifier of the item
+     * @return WithVideo_ItemRequestBuilder
     */
-    public function byVideoId(string $videoId): WithVideoItemRequestBuilder {
+    public function byVideo_id(string $video_id): WithVideo_ItemRequestBuilder {
         $urlTplParams = $this->pathParameters;
-        $urlTplParams['videoId'] = $videoId;
-        return new WithVideoItemRequestBuilder($urlTplParams, $this->requestAdapter);
+        $urlTplParams['video_id'] = $video_id;
+        return new WithVideo_ItemRequestBuilder($urlTplParams, $this->requestAdapter);
     }
 
     /**

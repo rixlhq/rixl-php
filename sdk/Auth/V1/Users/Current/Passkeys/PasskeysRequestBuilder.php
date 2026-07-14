@@ -10,7 +10,7 @@ use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Auth\V1\Users\Current\Passkeys\Item\PasskeysItemRequestBuilder;
 use Rixl\Sdk\Auth\V1\Users\Current\Passkeys\Register\RegisterRequestBuilder;
-use Rixl\Sdk\Models\Authv1\ListPasskeysResponse;
+use Rixl\Sdk\Models\Auth\V1\ListPasskeysResponse;
 
 /**
  * Builds and executes requests for operations under /auth/v1/users/current/passkeys
@@ -26,7 +26,7 @@ class PasskeysRequestBuilder extends BaseRequestBuilder
     
     /**
      * Gets an item from the Rixl/Sdk.auth.v1.users.current.passkeys.item collection
-     * @param string $id Passkey ID
+     * @param string $id Unique identifier of the item
      * @return PasskeysItemRequestBuilder
     */
     public function byId(string $id): PasskeysItemRequestBuilder {
@@ -41,7 +41,7 @@ class PasskeysRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/users/current/passkeys');
+        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/users/current/passkeys{?userId*}');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
@@ -50,7 +50,7 @@ class PasskeysRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns all passkeys registered to the authenticated user.
+     * ListPasskeys
      * @param PasskeysRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<ListPasskeysResponse|null>
      * @throws Exception
@@ -61,7 +61,7 @@ class PasskeysRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns all passkeys registered to the authenticated user.
+     * ListPasskeys
      * @param PasskeysRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
@@ -72,6 +72,9 @@ class PasskeysRequestBuilder extends BaseRequestBuilder
         $requestInfo->httpMethod = HttpMethod::GET;
         if ($requestConfiguration !== null) {
             $requestInfo->addHeaders($requestConfiguration->headers);
+            if ($requestConfiguration->queryParameters !== null) {
+                $requestInfo->setQueryParameters($requestConfiguration->queryParameters);
+            }
             $requestInfo->addRequestOptions(...$requestConfiguration->options);
         }
         $requestInfo->tryAddHeader('Accept', "application/json");

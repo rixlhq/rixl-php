@@ -4,7 +4,7 @@ namespace Rixl\Sdk\Analytics\V1\Posts;
 
 use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
-use Rixl\Sdk\Analytics\V1\Posts\Item\WithPostItemRequestBuilder;
+use Rixl\Sdk\Analytics\V1\Posts\Item\WithPost_ItemRequestBuilder;
 
 /**
  * Builds and executes requests for operations under /analytics/v1/posts
@@ -13,13 +13,13 @@ class PostsRequestBuilder extends BaseRequestBuilder
 {
     /**
      * Gets an item from the Rixl/Sdk.analytics.v1.posts.item collection
-     * @param string $postId Post ID
-     * @return WithPostItemRequestBuilder
+     * @param string $post_id Unique identifier of the item
+     * @return WithPost_ItemRequestBuilder
     */
-    public function byPostId(string $postId): WithPostItemRequestBuilder {
+    public function byPost_id(string $post_id): WithPost_ItemRequestBuilder {
         $urlTplParams = $this->pathParameters;
-        $urlTplParams['postId'] = $postId;
-        return new WithPostItemRequestBuilder($urlTplParams, $this->requestAdapter);
+        $urlTplParams['post_id'] = $post_id;
+        return new WithPost_ItemRequestBuilder($urlTplParams, $this->requestAdapter);
     }
 
     /**

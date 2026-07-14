@@ -8,8 +8,8 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Billing\V1\Invoices\Item\WithInvoiceItemRequestBuilder;
-use Rixl\Sdk\Models\Billingv1\ListInvoicesResponse;
+use Rixl\Sdk\Billing\V1\Invoices\Item\WithInvoice_ItemRequestBuilder;
+use Rixl\Sdk\Models\Billing\V1\ListInvoicesResponse;
 
 /**
  * Builds and executes requests for operations under /billing/v1/invoices
@@ -18,13 +18,13 @@ class InvoicesRequestBuilder extends BaseRequestBuilder
 {
     /**
      * Gets an item from the Rixl/Sdk.billing.v1.invoices.item collection
-     * @param string $invoiceId Invoice ID
-     * @return WithInvoiceItemRequestBuilder
+     * @param string $invoice_id Unique identifier of the item
+     * @return WithInvoice_ItemRequestBuilder
     */
-    public function byInvoiceId(string $invoiceId): WithInvoiceItemRequestBuilder {
+    public function byInvoice_id(string $invoice_id): WithInvoice_ItemRequestBuilder {
         $urlTplParams = $this->pathParameters;
-        $urlTplParams['invoiceId'] = $invoiceId;
-        return new WithInvoiceItemRequestBuilder($urlTplParams, $this->requestAdapter);
+        $urlTplParams['invoice_id'] = $invoice_id;
+        return new WithInvoice_ItemRequestBuilder($urlTplParams, $this->requestAdapter);
     }
 
     /**
@@ -33,7 +33,7 @@ class InvoicesRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/billing/v1/invoices');
+        parent::__construct($requestAdapter, [], '{+baseurl}/billing/v1/invoices{?orgId*,pagination%2Elimit*,pagination%2Eoffset*}');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
@@ -42,7 +42,7 @@ class InvoicesRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns the organization's invoices.
+     * ListInvoices
      * @param InvoicesRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<ListInvoicesResponse|null>
      * @throws Exception
@@ -53,7 +53,7 @@ class InvoicesRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns the organization's invoices.
+     * ListInvoices
      * @param InvoicesRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
@@ -64,6 +64,9 @@ class InvoicesRequestBuilder extends BaseRequestBuilder
         $requestInfo->httpMethod = HttpMethod::GET;
         if ($requestConfiguration !== null) {
             $requestInfo->addHeaders($requestConfiguration->headers);
+            if ($requestConfiguration->queryParameters !== null) {
+                $requestInfo->setQueryParameters($requestConfiguration->queryParameters);
+            }
             $requestInfo->addRequestOptions(...$requestConfiguration->options);
         }
         $requestInfo->tryAddHeader('Accept', "application/json");

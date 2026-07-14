@@ -8,7 +8,7 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Gateway\RenamePasskeyBody;
+use Rixl\Sdk\Models\Google\Protobuf\EscapedEmpty;
 
 /**
  * Builds and executes requests for operations under /auth/v1/users/current/passkeys/{id}
@@ -21,7 +21,7 @@ class PasskeysItemRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/users/current/passkeys/{id}');
+        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/users/current/passkeys/{id}{?userId*}');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
@@ -30,30 +30,30 @@ class PasskeysItemRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Deletes the authenticated user's passkey identified by the path ID.
+     * DeletePasskey
      * @param PasskeysItemRequestBuilderDeleteRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
-     * @return Promise<void|null>
+     * @return Promise<EscapedEmpty|null>
      * @throws Exception
     */
     public function delete(?PasskeysItemRequestBuilderDeleteRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toDeleteRequestInformation($requestConfiguration);
-        return $this->requestAdapter->sendNoContentAsync($requestInfo, null);
+        return $this->requestAdapter->sendAsync($requestInfo, [EscapedEmpty::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * Renames the authenticated user's passkey identified by the path ID to the supplied name.
-     * @param RenamePasskeyBody $body New name
+     * RenamePasskey
+     * @param PasskeysPatchRequestBody $body The request body
      * @param PasskeysItemRequestBuilderPatchRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
-     * @return Promise<void|null>
+     * @return Promise<EscapedEmpty|null>
      * @throws Exception
     */
-    public function patch(RenamePasskeyBody $body, ?PasskeysItemRequestBuilderPatchRequestConfiguration $requestConfiguration = null): Promise {
+    public function patch(PasskeysPatchRequestBody $body, ?PasskeysItemRequestBuilderPatchRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPatchRequestInformation($body, $requestConfiguration);
-        return $this->requestAdapter->sendNoContentAsync($requestInfo, null);
+        return $this->requestAdapter->sendAsync($requestInfo, [EscapedEmpty::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * Deletes the authenticated user's passkey identified by the path ID.
+     * DeletePasskey
      * @param PasskeysItemRequestBuilderDeleteRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
@@ -64,18 +64,22 @@ class PasskeysItemRequestBuilder extends BaseRequestBuilder
         $requestInfo->httpMethod = HttpMethod::DELETE;
         if ($requestConfiguration !== null) {
             $requestInfo->addHeaders($requestConfiguration->headers);
+            if ($requestConfiguration->queryParameters !== null) {
+                $requestInfo->setQueryParameters($requestConfiguration->queryParameters);
+            }
             $requestInfo->addRequestOptions(...$requestConfiguration->options);
         }
+        $requestInfo->tryAddHeader('Accept', "application/json");
         return $requestInfo;
     }
 
     /**
-     * Renames the authenticated user's passkey identified by the path ID to the supplied name.
-     * @param RenamePasskeyBody $body New name
+     * RenamePasskey
+     * @param PasskeysPatchRequestBody $body The request body
      * @param PasskeysItemRequestBuilderPatchRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
-    public function toPatchRequestInformation(RenamePasskeyBody $body, ?PasskeysItemRequestBuilderPatchRequestConfiguration $requestConfiguration = null): RequestInformation {
+    public function toPatchRequestInformation(PasskeysPatchRequestBody $body, ?PasskeysItemRequestBuilderPatchRequestConfiguration $requestConfiguration = null): RequestInformation {
         $requestInfo = new RequestInformation();
         $requestInfo->urlTemplate = $this->urlTemplate;
         $requestInfo->pathParameters = $this->pathParameters;
@@ -84,6 +88,7 @@ class PasskeysItemRequestBuilder extends BaseRequestBuilder
             $requestInfo->addHeaders($requestConfiguration->headers);
             $requestInfo->addRequestOptions(...$requestConfiguration->options);
         }
+        $requestInfo->tryAddHeader('Accept', "application/json");
         $requestInfo->setContentFromParsable($this->requestAdapter, "application/json", $body);
         return $requestInfo;
     }

@@ -8,11 +8,10 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Gateway\CreateVideoUploadBody;
-use Rixl\Sdk\Models\Videosv1\VideoUploadInit;
+use Rixl\Sdk\Models\Videos\V1\VideoUploadInit;
 
 /**
- * Builds and executes requests for operations under /media/v1/projects/{projectId}/videos/upload
+ * Builds and executes requests for operations under /media/v1/projects/{project_id}/videos/upload
 */
 class UploadRequestBuilder extends BaseRequestBuilder 
 {
@@ -22,7 +21,7 @@ class UploadRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/media/v1/projects/{projectId}/videos/upload');
+        parent::__construct($requestAdapter, [], '{+baseurl}/media/v1/projects/{project_id}/videos/upload');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
@@ -31,24 +30,24 @@ class UploadRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Initiates a video upload and returns upload details.
-     * @param CreateVideoUploadBody $body Video upload details
+     * CreateVideoUpload
+     * @param UploadPostRequestBody $body The request body
      * @param UploadRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<VideoUploadInit|null>
      * @throws Exception
     */
-    public function post(CreateVideoUploadBody $body, ?UploadRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
+    public function post(UploadPostRequestBody $body, ?UploadRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
         return $this->requestAdapter->sendAsync($requestInfo, [VideoUploadInit::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * Initiates a video upload and returns upload details.
-     * @param CreateVideoUploadBody $body Video upload details
+     * CreateVideoUpload
+     * @param UploadPostRequestBody $body The request body
      * @param UploadRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
-    public function toPostRequestInformation(CreateVideoUploadBody $body, ?UploadRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
+    public function toPostRequestInformation(UploadPostRequestBody $body, ?UploadRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
         $requestInfo = new RequestInformation();
         $requestInfo->urlTemplate = $this->urlTemplate;
         $requestInfo->pathParameters = $this->pathParameters;

@@ -8,8 +8,8 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Authv1\UpdateNameResponse;
-use Rixl\Sdk\Models\Gateway\UpdateNameBody;
+use Rixl\Sdk\Models\Auth\V1\UpdateNameRequest;
+use Rixl\Sdk\Models\Auth\V1\UpdateNameResponse;
 
 /**
  * Builds and executes requests for operations under /auth/v1/users/current/name
@@ -31,24 +31,24 @@ class NameRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Updates the authenticated user's full name to the provided value.
-     * @param UpdateNameBody $body New name
+     * UpdateName
+     * @param UpdateNameRequest $body The request body
      * @param NameRequestBuilderPatchRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<UpdateNameResponse|null>
      * @throws Exception
     */
-    public function patch(UpdateNameBody $body, ?NameRequestBuilderPatchRequestConfiguration $requestConfiguration = null): Promise {
+    public function patch(UpdateNameRequest $body, ?NameRequestBuilderPatchRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPatchRequestInformation($body, $requestConfiguration);
         return $this->requestAdapter->sendAsync($requestInfo, [UpdateNameResponse::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * Updates the authenticated user's full name to the provided value.
-     * @param UpdateNameBody $body New name
+     * UpdateName
+     * @param UpdateNameRequest $body The request body
      * @param NameRequestBuilderPatchRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
-    public function toPatchRequestInformation(UpdateNameBody $body, ?NameRequestBuilderPatchRequestConfiguration $requestConfiguration = null): RequestInformation {
+    public function toPatchRequestInformation(UpdateNameRequest $body, ?NameRequestBuilderPatchRequestConfiguration $requestConfiguration = null): RequestInformation {
         $requestInfo = new RequestInformation();
         $requestInfo->urlTemplate = $this->urlTemplate;
         $requestInfo->pathParameters = $this->pathParameters;

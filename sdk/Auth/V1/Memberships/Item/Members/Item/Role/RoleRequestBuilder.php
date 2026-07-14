@@ -8,11 +8,10 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Authv1\MembershipMutation;
-use Rixl\Sdk\Models\Gateway\UpdateRoleBody;
+use Rixl\Sdk\Models\Auth\V1\MembershipMutation;
 
 /**
- * Builds and executes requests for operations under /auth/v1/memberships/{orgId}/members/{userId}/role
+ * Builds and executes requests for operations under /auth/v1/memberships/{org_-id}/members/{member_-id}/role
 */
 class RoleRequestBuilder extends BaseRequestBuilder 
 {
@@ -22,7 +21,7 @@ class RoleRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/memberships/{orgId}/members/{userId}/role');
+        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/memberships/{org_%2Did}/members/{member_%2Did}/role');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
@@ -31,28 +30,28 @@ class RoleRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Updates the specified member's role within the organization.
-     * @param UpdateRoleBody $body Role
-     * @param RoleRequestBuilderPutRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * UpdateMemberRole
+     * @param RolePatchRequestBody $body The request body
+     * @param RoleRequestBuilderPatchRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<MembershipMutation|null>
      * @throws Exception
     */
-    public function put(UpdateRoleBody $body, ?RoleRequestBuilderPutRequestConfiguration $requestConfiguration = null): Promise {
-        $requestInfo = $this->toPutRequestInformation($body, $requestConfiguration);
+    public function patch(RolePatchRequestBody $body, ?RoleRequestBuilderPatchRequestConfiguration $requestConfiguration = null): Promise {
+        $requestInfo = $this->toPatchRequestInformation($body, $requestConfiguration);
         return $this->requestAdapter->sendAsync($requestInfo, [MembershipMutation::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * Updates the specified member's role within the organization.
-     * @param UpdateRoleBody $body Role
-     * @param RoleRequestBuilderPutRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * UpdateMemberRole
+     * @param RolePatchRequestBody $body The request body
+     * @param RoleRequestBuilderPatchRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
-    public function toPutRequestInformation(UpdateRoleBody $body, ?RoleRequestBuilderPutRequestConfiguration $requestConfiguration = null): RequestInformation {
+    public function toPatchRequestInformation(RolePatchRequestBody $body, ?RoleRequestBuilderPatchRequestConfiguration $requestConfiguration = null): RequestInformation {
         $requestInfo = new RequestInformation();
         $requestInfo->urlTemplate = $this->urlTemplate;
         $requestInfo->pathParameters = $this->pathParameters;
-        $requestInfo->httpMethod = HttpMethod::PUT;
+        $requestInfo->httpMethod = HttpMethod::PATCH;
         if ($requestConfiguration !== null) {
             $requestInfo->addHeaders($requestConfiguration->headers);
             $requestInfo->addRequestOptions(...$requestConfiguration->options);

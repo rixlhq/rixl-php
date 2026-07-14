@@ -8,7 +8,7 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Analyticsv1\TopVideosResponse;
+use Rixl\Sdk\Models\Analytics\V1\TopVideosResponse;
 
 /**
  * Builds and executes requests for operations under /analytics/v1/top/videos
@@ -21,7 +21,7 @@ class VideosRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/analytics/v1/top/videos{?end*,limit*,start*}');
+        parent::__construct($requestAdapter, [], '{+baseurl}/analytics/v1/top/videos{?limit*,range%2Eend*,range%2Estart*}');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
@@ -30,7 +30,7 @@ class VideosRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns the top videos over a date range
+     * GetTopVideos
      * @param VideosRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<TopVideosResponse|null>
      * @throws Exception
@@ -41,7 +41,7 @@ class VideosRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns the top videos over a date range
+     * GetTopVideos
      * @param VideosRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */

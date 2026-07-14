@@ -28,12 +28,12 @@ class StatsRequestBuilderGetRequestConfiguration extends BaseRequestConfiguratio
 
     /**
      * Instantiates a new StatsRequestBuilderGetQueryParameters.
-     * @param string|null $end End date (inclusive)
-     * @param string|null $start Start date (inclusive)
+     * @param string|null $rangeEnd 
+     * @param string|null $rangeStart 
      * @return StatsRequestBuilderGetQueryParameters
     */
-    public static function createQueryParameters(?string $end = null, ?string $start = null): StatsRequestBuilderGetQueryParameters {
-        return new StatsRequestBuilderGetQueryParameters($end, $start);
+    public static function createQueryParameters(?string $rangeEnd = null, ?string $rangeStart = null): StatsRequestBuilderGetQueryParameters {
+        return new StatsRequestBuilderGetQueryParameters($rangeEnd, $rangeStart);
     }
 
 }

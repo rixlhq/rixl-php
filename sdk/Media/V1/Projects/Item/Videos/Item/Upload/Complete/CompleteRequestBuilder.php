@@ -8,10 +8,10 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Videosv1\GetVideoResponse;
+use Rixl\Sdk\Models\Videos\V1\GetVideoResponse;
 
 /**
- * Builds and executes requests for operations under /media/v1/projects/{projectId}/videos/{videoId}/upload/complete
+ * Builds and executes requests for operations under /media/v1/projects/{project_id}/videos/{video_id}/upload/complete
 */
 class CompleteRequestBuilder extends BaseRequestBuilder 
 {
@@ -21,7 +21,7 @@ class CompleteRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/media/v1/projects/{projectId}/videos/{videoId}/upload/complete');
+        parent::__construct($requestAdapter, [], '{+baseurl}/media/v1/projects/{project_id}/videos/{video_id}/upload/complete');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
@@ -30,22 +30,24 @@ class CompleteRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Finalizes a previously initiated video upload.
+     * CompleteVideoUpload
+     * @param CompletePostRequestBody $body The request body
      * @param CompleteRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<GetVideoResponse|null>
      * @throws Exception
     */
-    public function post(?CompleteRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
-        $requestInfo = $this->toPostRequestInformation($requestConfiguration);
+    public function post(CompletePostRequestBody $body, ?CompleteRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
+        $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
         return $this->requestAdapter->sendAsync($requestInfo, [GetVideoResponse::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * Finalizes a previously initiated video upload.
+     * CompleteVideoUpload
+     * @param CompletePostRequestBody $body The request body
      * @param CompleteRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
-    public function toPostRequestInformation(?CompleteRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
+    public function toPostRequestInformation(CompletePostRequestBody $body, ?CompleteRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
         $requestInfo = new RequestInformation();
         $requestInfo->urlTemplate = $this->urlTemplate;
         $requestInfo->pathParameters = $this->pathParameters;
@@ -55,6 +57,7 @@ class CompleteRequestBuilder extends BaseRequestBuilder
             $requestInfo->addRequestOptions(...$requestConfiguration->options);
         }
         $requestInfo->tryAddHeader('Accept', "application/json");
+        $requestInfo->setContentFromParsable($this->requestAdapter, "application/json", $body);
         return $requestInfo;
     }
 

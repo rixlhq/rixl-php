@@ -8,8 +8,8 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Authv1\UpdateUsernameResponse;
-use Rixl\Sdk\Models\Gateway\UpdateUsernameBody;
+use Rixl\Sdk\Models\Auth\V1\UpdateUsernameRequest;
+use Rixl\Sdk\Models\Auth\V1\UpdateUsernameResponse;
 
 /**
  * Builds and executes requests for operations under /auth/v1/users/current/username
@@ -31,24 +31,24 @@ class UsernameRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Updates the authenticated user's username to the provided value.
-     * @param UpdateUsernameBody $body New username
+     * UpdateUsername
+     * @param UpdateUsernameRequest $body The request body
      * @param UsernameRequestBuilderPatchRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<UpdateUsernameResponse|null>
      * @throws Exception
     */
-    public function patch(UpdateUsernameBody $body, ?UsernameRequestBuilderPatchRequestConfiguration $requestConfiguration = null): Promise {
+    public function patch(UpdateUsernameRequest $body, ?UsernameRequestBuilderPatchRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPatchRequestInformation($body, $requestConfiguration);
         return $this->requestAdapter->sendAsync($requestInfo, [UpdateUsernameResponse::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * Updates the authenticated user's username to the provided value.
-     * @param UpdateUsernameBody $body New username
+     * UpdateUsername
+     * @param UpdateUsernameRequest $body The request body
      * @param UsernameRequestBuilderPatchRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
-    public function toPatchRequestInformation(UpdateUsernameBody $body, ?UsernameRequestBuilderPatchRequestConfiguration $requestConfiguration = null): RequestInformation {
+    public function toPatchRequestInformation(UpdateUsernameRequest $body, ?UsernameRequestBuilderPatchRequestConfiguration $requestConfiguration = null): RequestInformation {
         $requestInfo = new RequestInformation();
         $requestInfo->urlTemplate = $this->urlTemplate;
         $requestInfo->pathParameters = $this->pathParameters;

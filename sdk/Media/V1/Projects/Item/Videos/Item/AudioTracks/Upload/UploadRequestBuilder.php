@@ -9,11 +9,10 @@ use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Media\V1\Projects\Item\Videos\Item\AudioTracks\Upload\Complete\CompleteRequestBuilder;
-use Rixl\Sdk\Models\Gateway\InitTrackUploadBody;
-use Rixl\Sdk\Models\Videosv1\TrackUploadInit;
+use Rixl\Sdk\Models\Videos\V1\TrackUploadInit;
 
 /**
- * Builds and executes requests for operations under /media/v1/projects/{projectId}/videos/{videoId}/audio-tracks/upload
+ * Builds and executes requests for operations under /media/v1/projects/{project_id}/videos/{video_id}/audio-tracks/upload
 */
 class UploadRequestBuilder extends BaseRequestBuilder 
 {
@@ -30,7 +29,7 @@ class UploadRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/media/v1/projects/{projectId}/videos/{videoId}/audio-tracks/upload');
+        parent::__construct($requestAdapter, [], '{+baseurl}/media/v1/projects/{project_id}/videos/{video_id}/audio-tracks/upload');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
@@ -39,24 +38,24 @@ class UploadRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Initiates one or more audio track uploads for a video.
-     * @param InitTrackUploadBody $body Audio tracks to upload
+     * InitAudioTrackUpload
+     * @param UploadPostRequestBody $body The request body
      * @param UploadRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<TrackUploadInit|null>
      * @throws Exception
     */
-    public function post(InitTrackUploadBody $body, ?UploadRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
+    public function post(UploadPostRequestBody $body, ?UploadRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
         return $this->requestAdapter->sendAsync($requestInfo, [TrackUploadInit::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * Initiates one or more audio track uploads for a video.
-     * @param InitTrackUploadBody $body Audio tracks to upload
+     * InitAudioTrackUpload
+     * @param UploadPostRequestBody $body The request body
      * @param UploadRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
-    public function toPostRequestInformation(InitTrackUploadBody $body, ?UploadRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
+    public function toPostRequestInformation(UploadPostRequestBody $body, ?UploadRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
         $requestInfo = new RequestInformation();
         $requestInfo->urlTemplate = $this->urlTemplate;
         $requestInfo->pathParameters = $this->pathParameters;

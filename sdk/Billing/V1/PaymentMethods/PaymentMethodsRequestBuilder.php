@@ -10,10 +10,10 @@ use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Billing\V1\PaymentMethods\FromPaymentIntent\FromPaymentIntentRequestBuilder;
 use Rixl\Sdk\Billing\V1\PaymentMethods\FromSetupIntent\FromSetupIntentRequestBuilder;
-use Rixl\Sdk\Billing\V1\PaymentMethods\Item\WithPaymentMethodItemRequestBuilder;
-use Rixl\Sdk\Models\Billingv1\ListPaymentMethodsResponse;
-use Rixl\Sdk\Models\Billingv1\PaymentMethodDetails;
-use Rixl\Sdk\Models\Gateway\UpsertPaymentMethodBody;
+use Rixl\Sdk\Billing\V1\PaymentMethods\Item\WithPayment_method_ItemRequestBuilder;
+use Rixl\Sdk\Models\Billing\V1\ListPaymentMethodsResponse;
+use Rixl\Sdk\Models\Billing\V1\PaymentMethodDetails;
+use Rixl\Sdk\Models\Billing\V1\UpsertPaymentMethodRequest;
 
 /**
  * Builds and executes requests for operations under /billing/v1/payment-methods
@@ -36,13 +36,13 @@ class PaymentMethodsRequestBuilder extends BaseRequestBuilder
     
     /**
      * Gets an item from the Rixl/Sdk.billing.v1.paymentMethods.item collection
-     * @param string $paymentMethodId Payment method ID
-     * @return WithPaymentMethodItemRequestBuilder
+     * @param string $payment_method_id Unique identifier of the item
+     * @return WithPayment_method_ItemRequestBuilder
     */
-    public function byPaymentMethodId(string $paymentMethodId): WithPaymentMethodItemRequestBuilder {
+    public function byPayment_method_id(string $payment_method_id): WithPayment_method_ItemRequestBuilder {
         $urlTplParams = $this->pathParameters;
-        $urlTplParams['paymentMethodId'] = $paymentMethodId;
-        return new WithPaymentMethodItemRequestBuilder($urlTplParams, $this->requestAdapter);
+        $urlTplParams['payment_method_id'] = $payment_method_id;
+        return new WithPayment_method_ItemRequestBuilder($urlTplParams, $this->requestAdapter);
     }
 
     /**
@@ -51,7 +51,7 @@ class PaymentMethodsRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/billing/v1/payment-methods');
+        parent::__construct($requestAdapter, [], '{+baseurl}/billing/v1/payment-methods{?orgId*,refresh*}');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
@@ -60,7 +60,7 @@ class PaymentMethodsRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns the organization's payment methods.
+     * ListPaymentMethods
      * @param PaymentMethodsRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<ListPaymentMethodsResponse|null>
      * @throws Exception
@@ -71,19 +71,19 @@ class PaymentMethodsRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Attach a payment method to the organization
-     * @param UpsertPaymentMethodBody $body Payment method request
-     * @param PaymentMethodsRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * UpsertPaymentMethod
+     * @param UpsertPaymentMethodRequest $body The request body
+     * @param PaymentMethodsRequestBuilderPutRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<PaymentMethodDetails|null>
      * @throws Exception
     */
-    public function post(UpsertPaymentMethodBody $body, ?PaymentMethodsRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
-        $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
+    public function put(UpsertPaymentMethodRequest $body, ?PaymentMethodsRequestBuilderPutRequestConfiguration $requestConfiguration = null): Promise {
+        $requestInfo = $this->toPutRequestInformation($body, $requestConfiguration);
         return $this->requestAdapter->sendAsync($requestInfo, [PaymentMethodDetails::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * Returns the organization's payment methods.
+     * ListPaymentMethods
      * @param PaymentMethodsRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
@@ -94,6 +94,9 @@ class PaymentMethodsRequestBuilder extends BaseRequestBuilder
         $requestInfo->httpMethod = HttpMethod::GET;
         if ($requestConfiguration !== null) {
             $requestInfo->addHeaders($requestConfiguration->headers);
+            if ($requestConfiguration->queryParameters !== null) {
+                $requestInfo->setQueryParameters($requestConfiguration->queryParameters);
+            }
             $requestInfo->addRequestOptions(...$requestConfiguration->options);
         }
         $requestInfo->tryAddHeader('Accept', "application/json");
@@ -101,16 +104,16 @@ class PaymentMethodsRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Attach a payment method to the organization
-     * @param UpsertPaymentMethodBody $body Payment method request
-     * @param PaymentMethodsRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * UpsertPaymentMethod
+     * @param UpsertPaymentMethodRequest $body The request body
+     * @param PaymentMethodsRequestBuilderPutRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
-    public function toPostRequestInformation(UpsertPaymentMethodBody $body, ?PaymentMethodsRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
+    public function toPutRequestInformation(UpsertPaymentMethodRequest $body, ?PaymentMethodsRequestBuilderPutRequestConfiguration $requestConfiguration = null): RequestInformation {
         $requestInfo = new RequestInformation();
         $requestInfo->urlTemplate = $this->urlTemplate;
         $requestInfo->pathParameters = $this->pathParameters;
-        $requestInfo->httpMethod = HttpMethod::POST;
+        $requestInfo->httpMethod = HttpMethod::PUT;
         if ($requestConfiguration !== null) {
             $requestInfo->addHeaders($requestConfiguration->headers);
             $requestInfo->addRequestOptions(...$requestConfiguration->options);

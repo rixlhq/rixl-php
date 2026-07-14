@@ -8,10 +8,10 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Authv1\GetInternalMembershipInfoResponse;
+use Rixl\Sdk\Models\Auth\V1\GetInternalMembershipInfoResponse;
 
 /**
- * Builds and executes requests for operations under /auth/v1/memberships/{orgId}/info
+ * Builds and executes requests for operations under /auth/v1/memberships/{org_-id}/info
 */
 class InfoRequestBuilder extends BaseRequestBuilder 
 {
@@ -21,7 +21,7 @@ class InfoRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/memberships/{orgId}/info');
+        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/memberships/{org_%2Did}/info{?userId*}');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
@@ -30,7 +30,7 @@ class InfoRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns the authenticated user's membership info (email) for an organization, with permission-denied when not a member.
+     * GetInternalMembershipInfo
      * @param InfoRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<GetInternalMembershipInfoResponse|null>
      * @throws Exception
@@ -41,7 +41,7 @@ class InfoRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns the authenticated user's membership info (email) for an organization, with permission-denied when not a member.
+     * GetInternalMembershipInfo
      * @param InfoRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
@@ -52,6 +52,9 @@ class InfoRequestBuilder extends BaseRequestBuilder
         $requestInfo->httpMethod = HttpMethod::GET;
         if ($requestConfiguration !== null) {
             $requestInfo->addHeaders($requestConfiguration->headers);
+            if ($requestConfiguration->queryParameters !== null) {
+                $requestInfo->setQueryParameters($requestConfiguration->queryParameters);
+            }
             $requestInfo->addRequestOptions(...$requestConfiguration->options);
         }
         $requestInfo->tryAddHeader('Accept', "application/json");

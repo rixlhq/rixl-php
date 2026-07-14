@@ -4,7 +4,7 @@ namespace Rixl\Sdk\Analytics\V1\Feeds;
 
 use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
-use Rixl\Sdk\Analytics\V1\Feeds\Item\WithFeedItemRequestBuilder;
+use Rixl\Sdk\Analytics\V1\Feeds\Item\WithFeed_ItemRequestBuilder;
 
 /**
  * Builds and executes requests for operations under /analytics/v1/feeds
@@ -13,13 +13,13 @@ class FeedsRequestBuilder extends BaseRequestBuilder
 {
     /**
      * Gets an item from the Rixl/Sdk.analytics.v1.feeds.item collection
-     * @param string $feedId Feed ID
-     * @return WithFeedItemRequestBuilder
+     * @param string $feed_id Unique identifier of the item
+     * @return WithFeed_ItemRequestBuilder
     */
-    public function byFeedId(string $feedId): WithFeedItemRequestBuilder {
+    public function byFeed_id(string $feed_id): WithFeed_ItemRequestBuilder {
         $urlTplParams = $this->pathParameters;
-        $urlTplParams['feedId'] = $feedId;
-        return new WithFeedItemRequestBuilder($urlTplParams, $this->requestAdapter);
+        $urlTplParams['feed_id'] = $feed_id;
+        return new WithFeed_ItemRequestBuilder($urlTplParams, $this->requestAdapter);
     }
 
     /**

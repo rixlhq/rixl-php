@@ -8,14 +8,13 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Media\V1\Projects\Item\Videos\Item\AudioTracks\Item\WithTrackItemRequestBuilder;
+use Rixl\Sdk\Media\V1\Projects\Item\Videos\Item\AudioTracks\Item\WithTrack_ItemRequestBuilder;
 use Rixl\Sdk\Media\V1\Projects\Item\Videos\Item\AudioTracks\Language\LanguageRequestBuilder;
 use Rixl\Sdk\Media\V1\Projects\Item\Videos\Item\AudioTracks\Upload\UploadRequestBuilder;
-use Rixl\Sdk\Models\Videosv1\DeleteResult;
-use Rixl\Sdk\Models\Videosv1\ListAudioTracksResponse;
+use Rixl\Sdk\Models\Google\Protobuf\EscapedEmpty;
 
 /**
- * Builds and executes requests for operations under /media/v1/projects/{projectId}/videos/{videoId}/audio-tracks
+ * Builds and executes requests for operations under /media/v1/projects/{project_id}/videos/{video_id}/audio-tracks
 */
 class AudioTracksRequestBuilder extends BaseRequestBuilder 
 {
@@ -35,13 +34,13 @@ class AudioTracksRequestBuilder extends BaseRequestBuilder
     
     /**
      * Gets an item from the Rixl/Sdk.media.v1.projects.item.videos.item.audioTracks.item collection
-     * @param string $trackId Audio track ID
-     * @return WithTrackItemRequestBuilder
+     * @param string $track_id Unique identifier of the item
+     * @return WithTrack_ItemRequestBuilder
     */
-    public function byTrackId(string $trackId): WithTrackItemRequestBuilder {
+    public function byTrack_id(string $track_id): WithTrack_ItemRequestBuilder {
         $urlTplParams = $this->pathParameters;
-        $urlTplParams['trackId'] = $trackId;
-        return new WithTrackItemRequestBuilder($urlTplParams, $this->requestAdapter);
+        $urlTplParams['track_id'] = $track_id;
+        return new WithTrack_ItemRequestBuilder($urlTplParams, $this->requestAdapter);
     }
 
     /**
@@ -50,7 +49,7 @@ class AudioTracksRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/media/v1/projects/{projectId}/videos/{videoId}/audio-tracks');
+        parent::__construct($requestAdapter, [], '{+baseurl}/media/v1/projects/{project_id}/videos/{video_id}/audio-tracks');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
@@ -59,29 +58,18 @@ class AudioTracksRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Deletes all audio tracks for a video.
+     * DeleteAllAudioTracks
      * @param AudioTracksRequestBuilderDeleteRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
-     * @return Promise<DeleteResult|null>
+     * @return Promise<EscapedEmpty|null>
      * @throws Exception
     */
     public function delete(?AudioTracksRequestBuilderDeleteRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toDeleteRequestInformation($requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [DeleteResult::class, 'createFromDiscriminatorValue'], null);
+        return $this->requestAdapter->sendAsync($requestInfo, [EscapedEmpty::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * Returns a video's audio tracks within a project, including for private media. Requires project access.
-     * @param AudioTracksRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
-     * @return Promise<ListAudioTracksResponse|null>
-     * @throws Exception
-    */
-    public function get(?AudioTracksRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
-        $requestInfo = $this->toGetRequestInformation($requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [ListAudioTracksResponse::class, 'createFromDiscriminatorValue'], null);
-    }
-
-    /**
-     * Deletes all audio tracks for a video.
+     * DeleteAllAudioTracks
      * @param AudioTracksRequestBuilderDeleteRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
@@ -90,24 +78,6 @@ class AudioTracksRequestBuilder extends BaseRequestBuilder
         $requestInfo->urlTemplate = $this->urlTemplate;
         $requestInfo->pathParameters = $this->pathParameters;
         $requestInfo->httpMethod = HttpMethod::DELETE;
-        if ($requestConfiguration !== null) {
-            $requestInfo->addHeaders($requestConfiguration->headers);
-            $requestInfo->addRequestOptions(...$requestConfiguration->options);
-        }
-        $requestInfo->tryAddHeader('Accept', "application/json");
-        return $requestInfo;
-    }
-
-    /**
-     * Returns a video's audio tracks within a project, including for private media. Requires project access.
-     * @param AudioTracksRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
-     * @return RequestInformation
-    */
-    public function toGetRequestInformation(?AudioTracksRequestBuilderGetRequestConfiguration $requestConfiguration = null): RequestInformation {
-        $requestInfo = new RequestInformation();
-        $requestInfo->urlTemplate = $this->urlTemplate;
-        $requestInfo->pathParameters = $this->pathParameters;
-        $requestInfo->httpMethod = HttpMethod::GET;
         if ($requestConfiguration !== null) {
             $requestInfo->addHeaders($requestConfiguration->headers);
             $requestInfo->addRequestOptions(...$requestConfiguration->options);

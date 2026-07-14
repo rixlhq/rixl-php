@@ -8,7 +8,7 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Authv1\BlogSubscriptionResponse;
+use Rixl\Sdk\Models\Auth\V1\BlogSubscriptionResponse;
 
 /**
  * Builds and executes requests for operations under /auth/v1/blog/subscription
@@ -21,7 +21,7 @@ class SubscriptionRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/blog/subscription');
+        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/blog/subscription{?userId*}');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
@@ -30,7 +30,7 @@ class SubscriptionRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns whether the authenticated user is subscribed to the blog newsletter.
+     * GetBlogSubscription
      * @param SubscriptionRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<BlogSubscriptionResponse|null>
      * @throws Exception
@@ -41,7 +41,7 @@ class SubscriptionRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns whether the authenticated user is subscribed to the blog newsletter.
+     * GetBlogSubscription
      * @param SubscriptionRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
@@ -52,6 +52,9 @@ class SubscriptionRequestBuilder extends BaseRequestBuilder
         $requestInfo->httpMethod = HttpMethod::GET;
         if ($requestConfiguration !== null) {
             $requestInfo->addHeaders($requestConfiguration->headers);
+            if ($requestConfiguration->queryParameters !== null) {
+                $requestInfo->setQueryParameters($requestConfiguration->queryParameters);
+            }
             $requestInfo->addRequestOptions(...$requestConfiguration->options);
         }
         $requestInfo->tryAddHeader('Accept', "application/json");

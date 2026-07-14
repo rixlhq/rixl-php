@@ -8,7 +8,8 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Analyticsv1\RetentionAnalytics;
+use Rixl\Sdk\Models\Analytics\V1\GetRetentionRequest;
+use Rixl\Sdk\Models\Analytics\V1\RetentionAnalytics;
 
 /**
  * Builds and executes requests for operations under /analytics/v1/retention
@@ -21,7 +22,7 @@ class RetentionRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/analytics/v1/retention{?end*,period*,start*}');
+        parent::__construct($requestAdapter, [], '{+baseurl}/analytics/v1/retention');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
@@ -30,34 +31,34 @@ class RetentionRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns retention cohorts over a date range
-     * @param RetentionRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * GetRetentionAnalytics
+     * @param GetRetentionRequest $body The request body
+     * @param RetentionRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<RetentionAnalytics|null>
      * @throws Exception
     */
-    public function get(?RetentionRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
-        $requestInfo = $this->toGetRequestInformation($requestConfiguration);
+    public function post(GetRetentionRequest $body, ?RetentionRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
+        $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
         return $this->requestAdapter->sendAsync($requestInfo, [RetentionAnalytics::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * Returns retention cohorts over a date range
-     * @param RetentionRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * GetRetentionAnalytics
+     * @param GetRetentionRequest $body The request body
+     * @param RetentionRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
-    public function toGetRequestInformation(?RetentionRequestBuilderGetRequestConfiguration $requestConfiguration = null): RequestInformation {
+    public function toPostRequestInformation(GetRetentionRequest $body, ?RetentionRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
         $requestInfo = new RequestInformation();
         $requestInfo->urlTemplate = $this->urlTemplate;
         $requestInfo->pathParameters = $this->pathParameters;
-        $requestInfo->httpMethod = HttpMethod::GET;
+        $requestInfo->httpMethod = HttpMethod::POST;
         if ($requestConfiguration !== null) {
             $requestInfo->addHeaders($requestConfiguration->headers);
-            if ($requestConfiguration->queryParameters !== null) {
-                $requestInfo->setQueryParameters($requestConfiguration->queryParameters);
-            }
             $requestInfo->addRequestOptions(...$requestConfiguration->options);
         }
         $requestInfo->tryAddHeader('Accept', "application/json");
+        $requestInfo->setContentFromParsable($this->requestAdapter, "application/json", $body);
         return $requestInfo;
     }
 

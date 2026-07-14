@@ -8,25 +8,32 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Auth\V1\Memberships\Item\Policies\Item\WithPolicyItemRequestBuilder;
-use Rixl\Sdk\Models\Authv1\ListPoliciesResponse;
-use Rixl\Sdk\Models\Authv1\Policy;
-use Rixl\Sdk\Models\Gateway\PolicyBody;
+use Rixl\Sdk\Auth\V1\Memberships\Item\Policies\Attachments\AttachmentsRequestBuilder;
+use Rixl\Sdk\Auth\V1\Memberships\Item\Policies\Item\WithPolicy_ItemRequestBuilder;
+use Rixl\Sdk\Models\Auth\V1\ListPoliciesResponse;
+use Rixl\Sdk\Models\Auth\V1\Policy;
 
 /**
- * Builds and executes requests for operations under /auth/v1/memberships/{orgId}/policies
+ * Builds and executes requests for operations under /auth/v1/memberships/{org_-id}/policies
 */
 class PoliciesRequestBuilder extends BaseRequestBuilder 
 {
     /**
-     * Gets an item from the Rixl/Sdk.auth.v1.memberships.item.policies.item collection
-     * @param string $policyId Policy ID
-     * @return WithPolicyItemRequestBuilder
+     * The attachments property
     */
-    public function byPolicyId(string $policyId): WithPolicyItemRequestBuilder {
+    public function attachments(): AttachmentsRequestBuilder {
+        return new AttachmentsRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
+     * Gets an item from the Rixl/Sdk.auth.v1.memberships.item.policies.item collection
+     * @param string $policy_id Unique identifier of the item
+     * @return WithPolicy_ItemRequestBuilder
+    */
+    public function byPolicy_id(string $policy_id): WithPolicy_ItemRequestBuilder {
         $urlTplParams = $this->pathParameters;
-        $urlTplParams['policyId'] = $policyId;
-        return new WithPolicyItemRequestBuilder($urlTplParams, $this->requestAdapter);
+        $urlTplParams['policy_id'] = $policy_id;
+        return new WithPolicy_ItemRequestBuilder($urlTplParams, $this->requestAdapter);
     }
 
     /**
@@ -35,7 +42,7 @@ class PoliciesRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/memberships/{orgId}/policies');
+        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/memberships/{org_%2Did}/policies{?userId*}');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
@@ -44,7 +51,7 @@ class PoliciesRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns all authorization policies defined in the organization.
+     * ListPolicies
      * @param PoliciesRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<ListPoliciesResponse|null>
      * @throws Exception
@@ -55,19 +62,19 @@ class PoliciesRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Creates a new authorization policy in the organization with the given name, description, and permissions.
-     * @param PolicyBody $body Policy
+     * CreatePolicy
+     * @param PoliciesPostRequestBody $body The request body
      * @param PoliciesRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<Policy|null>
      * @throws Exception
     */
-    public function post(PolicyBody $body, ?PoliciesRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
+    public function post(PoliciesPostRequestBody $body, ?PoliciesRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
         return $this->requestAdapter->sendAsync($requestInfo, [Policy::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * Returns all authorization policies defined in the organization.
+     * ListPolicies
      * @param PoliciesRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
@@ -78,6 +85,9 @@ class PoliciesRequestBuilder extends BaseRequestBuilder
         $requestInfo->httpMethod = HttpMethod::GET;
         if ($requestConfiguration !== null) {
             $requestInfo->addHeaders($requestConfiguration->headers);
+            if ($requestConfiguration->queryParameters !== null) {
+                $requestInfo->setQueryParameters($requestConfiguration->queryParameters);
+            }
             $requestInfo->addRequestOptions(...$requestConfiguration->options);
         }
         $requestInfo->tryAddHeader('Accept', "application/json");
@@ -85,12 +95,12 @@ class PoliciesRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Creates a new authorization policy in the organization with the given name, description, and permissions.
-     * @param PolicyBody $body Policy
+     * CreatePolicy
+     * @param PoliciesPostRequestBody $body The request body
      * @param PoliciesRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
-    public function toPostRequestInformation(PolicyBody $body, ?PoliciesRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
+    public function toPostRequestInformation(PoliciesPostRequestBody $body, ?PoliciesRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
         $requestInfo = new RequestInformation();
         $requestInfo->urlTemplate = $this->urlTemplate;
         $requestInfo->pathParameters = $this->pathParameters;

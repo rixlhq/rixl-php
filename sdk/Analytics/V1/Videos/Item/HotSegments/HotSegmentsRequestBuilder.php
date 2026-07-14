@@ -8,10 +8,10 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Analyticsv1\HotSegmentsResponse;
+use Rixl\Sdk\Models\Analytics\V1\HotSegmentsResponse;
 
 /**
- * Builds and executes requests for operations under /analytics/v1/videos/{videoId}/hot-segments
+ * Builds and executes requests for operations under /analytics/v1/videos/{video_id}/hot-segments
 */
 class HotSegmentsRequestBuilder extends BaseRequestBuilder 
 {
@@ -21,7 +21,7 @@ class HotSegmentsRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/analytics/v1/videos/{videoId}/hot-segments{?end*,start*}');
+        parent::__construct($requestAdapter, [], '{+baseurl}/analytics/v1/videos/{video_id}/hot-segments{?range%2Eend*,range%2Estart*}');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
@@ -30,7 +30,7 @@ class HotSegmentsRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns the most engaging segments of a video
+     * GetHotSegments
      * @param HotSegmentsRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<HotSegmentsResponse|null>
      * @throws Exception
@@ -41,7 +41,7 @@ class HotSegmentsRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns the most engaging segments of a video
+     * GetHotSegments
      * @param HotSegmentsRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */

@@ -2,44 +2,47 @@
 
 namespace Rixl\Sdk\Analytics\V1\Top\Posts;
 
+use Microsoft\Kiota\Abstractions\QueryParameter;
+
 /**
- * Returns the top posts over a date range
+ * GetTopPosts
 */
 class PostsRequestBuilderGetQueryParameters 
 {
     /**
-     * @var string|null $end End date (inclusive)
-    */
-    public ?string $end = null;
-    
-    /**
-     * @QueryParameter("feed_id")
-     * @var string|null $feedId Filter by feed
+     * @var string|null $feedId 
     */
     public ?string $feedId = null;
     
     /**
-     * @var string|null $limit Maximum number of results
+     * @var int|null $limit 
     */
-    public ?string $limit = null;
+    public ?int $limit = null;
     
     /**
-     * @var string|null $start Start date (inclusive)
+     * @QueryParameter("range%2Eend")
+     * @var string|null $rangeEnd 
     */
-    public ?string $start = null;
+    public ?string $rangeEnd = null;
+    
+    /**
+     * @QueryParameter("range%2Estart")
+     * @var string|null $rangeStart 
+    */
+    public ?string $rangeStart = null;
     
     /**
      * Instantiates a new PostsRequestBuilderGetQueryParameters and sets the default values.
-     * @param string|null $end End date (inclusive)
-     * @param string|null $feed_id Filter by feed
-     * @param string|null $limit Maximum number of results
-     * @param string|null $start Start date (inclusive)
+     * @param string|null $feedId 
+     * @param int|null $limit 
+     * @param string|null $rangeEnd 
+     * @param string|null $rangeStart 
     */
-    public function __construct(?string $end = null, ?string $feed_id = null, ?string $limit = null, ?string $start = null) {
-        $this->end = $end;
-        $this->feedId = $feed_id;
+    public function __construct(?string $feedId = null, ?int $limit = null, ?string $rangeEnd = null, ?string $rangeStart = null) {
+        $this->feedId = $feedId;
         $this->limit = $limit;
-        $this->start = $start;
+        $this->rangeEnd = $rangeEnd;
+        $this->rangeStart = $rangeStart;
     }
 
 }

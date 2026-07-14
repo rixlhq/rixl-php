@@ -5,7 +5,6 @@ namespace Rixl\Sdk\Billing;
 use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Rixl\Sdk\Billing\V1\V1RequestBuilder;
-use Rixl\Sdk\Billing\Webhooks\WebhooksRequestBuilder;
 
 /**
  * Builds and executes requests for operations under /billing
@@ -17,13 +16,6 @@ class BillingRequestBuilder extends BaseRequestBuilder
     */
     public function v1(): V1RequestBuilder {
         return new V1RequestBuilder($this->pathParameters, $this->requestAdapter);
-    }
-    
-    /**
-     * The webhooks property
-    */
-    public function webhooks(): WebhooksRequestBuilder {
-        return new WebhooksRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
     
     /**

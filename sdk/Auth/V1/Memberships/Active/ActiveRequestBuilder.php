@@ -8,7 +8,8 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Authv1\ListMembershipsResponse;
+use Rixl\Sdk\Models\Auth\V1\MembershipMutation;
+use Rixl\Sdk\Models\Auth\V1\UpdateActiveMembershipRequest;
 
 /**
  * Builds and executes requests for operations under /auth/v1/memberships/active
@@ -21,7 +22,7 @@ class ActiveRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/memberships/active{?limit*,offset*}');
+        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/memberships/active');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
@@ -30,34 +31,34 @@ class ActiveRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns a paginated list of the organizations in which the authenticated user holds an active membership.
-     * @param ActiveRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
-     * @return Promise<ListMembershipsResponse|null>
+     * UpdateActiveMembership
+     * @param UpdateActiveMembershipRequest $body The request body
+     * @param ActiveRequestBuilderPatchRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * @return Promise<MembershipMutation|null>
      * @throws Exception
     */
-    public function get(?ActiveRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
-        $requestInfo = $this->toGetRequestInformation($requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [ListMembershipsResponse::class, 'createFromDiscriminatorValue'], null);
+    public function patch(UpdateActiveMembershipRequest $body, ?ActiveRequestBuilderPatchRequestConfiguration $requestConfiguration = null): Promise {
+        $requestInfo = $this->toPatchRequestInformation($body, $requestConfiguration);
+        return $this->requestAdapter->sendAsync($requestInfo, [MembershipMutation::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * Returns a paginated list of the organizations in which the authenticated user holds an active membership.
-     * @param ActiveRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * UpdateActiveMembership
+     * @param UpdateActiveMembershipRequest $body The request body
+     * @param ActiveRequestBuilderPatchRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
-    public function toGetRequestInformation(?ActiveRequestBuilderGetRequestConfiguration $requestConfiguration = null): RequestInformation {
+    public function toPatchRequestInformation(UpdateActiveMembershipRequest $body, ?ActiveRequestBuilderPatchRequestConfiguration $requestConfiguration = null): RequestInformation {
         $requestInfo = new RequestInformation();
         $requestInfo->urlTemplate = $this->urlTemplate;
         $requestInfo->pathParameters = $this->pathParameters;
-        $requestInfo->httpMethod = HttpMethod::GET;
+        $requestInfo->httpMethod = HttpMethod::PATCH;
         if ($requestConfiguration !== null) {
             $requestInfo->addHeaders($requestConfiguration->headers);
-            if ($requestConfiguration->queryParameters !== null) {
-                $requestInfo->setQueryParameters($requestConfiguration->queryParameters);
-            }
             $requestInfo->addRequestOptions(...$requestConfiguration->options);
         }
         $requestInfo->tryAddHeader('Accept', "application/json");
+        $requestInfo->setContentFromParsable($this->requestAdapter, "application/json", $body);
         return $requestInfo;
     }
 

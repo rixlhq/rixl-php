@@ -7,7 +7,7 @@ use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Rixl\Sdk\Media\V1\Projects\Item\Images\Item\Upload\Complete\CompleteRequestBuilder;
 
 /**
- * Builds and executes requests for operations under /media/v1/projects/{projectId}/images/{imageId}/upload
+ * Builds and executes requests for operations under /media/v1/projects/{project_id}/images/{image_id}/upload
 */
 class UploadRequestBuilder extends BaseRequestBuilder 
 {
@@ -24,7 +24,7 @@ class UploadRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/media/v1/projects/{projectId}/images/{imageId}/upload');
+        parent::__construct($requestAdapter, [], '{+baseurl}/media/v1/projects/{project_id}/images/{image_id}/upload');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {

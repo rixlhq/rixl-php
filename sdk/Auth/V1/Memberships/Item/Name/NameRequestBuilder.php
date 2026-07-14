@@ -8,11 +8,10 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Authv1\UpdateOrgNameResponse;
-use Rixl\Sdk\Models\Gateway\UpdateOrgNameBody;
+use Rixl\Sdk\Models\Auth\V1\UpdateOrgNameResponse;
 
 /**
- * Builds and executes requests for operations under /auth/v1/memberships/{orgId}/name
+ * Builds and executes requests for operations under /auth/v1/memberships/{org_-id}/name
 */
 class NameRequestBuilder extends BaseRequestBuilder 
 {
@@ -22,7 +21,7 @@ class NameRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/memberships/{orgId}/name');
+        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/memberships/{org_%2Did}/name');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
@@ -31,28 +30,28 @@ class NameRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Updates the display name of the specified organization.
-     * @param UpdateOrgNameBody $body New name
-     * @param NameRequestBuilderPutRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * UpdateOrgName
+     * @param NamePatchRequestBody $body The request body
+     * @param NameRequestBuilderPatchRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<UpdateOrgNameResponse|null>
      * @throws Exception
     */
-    public function put(UpdateOrgNameBody $body, ?NameRequestBuilderPutRequestConfiguration $requestConfiguration = null): Promise {
-        $requestInfo = $this->toPutRequestInformation($body, $requestConfiguration);
+    public function patch(NamePatchRequestBody $body, ?NameRequestBuilderPatchRequestConfiguration $requestConfiguration = null): Promise {
+        $requestInfo = $this->toPatchRequestInformation($body, $requestConfiguration);
         return $this->requestAdapter->sendAsync($requestInfo, [UpdateOrgNameResponse::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * Updates the display name of the specified organization.
-     * @param UpdateOrgNameBody $body New name
-     * @param NameRequestBuilderPutRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * UpdateOrgName
+     * @param NamePatchRequestBody $body The request body
+     * @param NameRequestBuilderPatchRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
-    public function toPutRequestInformation(UpdateOrgNameBody $body, ?NameRequestBuilderPutRequestConfiguration $requestConfiguration = null): RequestInformation {
+    public function toPatchRequestInformation(NamePatchRequestBody $body, ?NameRequestBuilderPatchRequestConfiguration $requestConfiguration = null): RequestInformation {
         $requestInfo = new RequestInformation();
         $requestInfo->urlTemplate = $this->urlTemplate;
         $requestInfo->pathParameters = $this->pathParameters;
-        $requestInfo->httpMethod = HttpMethod::PUT;
+        $requestInfo->httpMethod = HttpMethod::PATCH;
         if ($requestConfiguration !== null) {
             $requestInfo->addHeaders($requestConfiguration->headers);
             $requestInfo->addRequestOptions(...$requestConfiguration->options);

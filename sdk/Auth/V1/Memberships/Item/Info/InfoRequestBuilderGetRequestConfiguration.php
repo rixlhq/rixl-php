@@ -11,12 +11,28 @@ use Microsoft\Kiota\Abstractions\RequestOption;
 class InfoRequestBuilderGetRequestConfiguration extends BaseRequestConfiguration 
 {
     /**
+     * @var InfoRequestBuilderGetQueryParameters|null $queryParameters Request query parameters
+    */
+    public ?InfoRequestBuilderGetQueryParameters $queryParameters = null;
+    
+    /**
      * Instantiates a new InfoRequestBuilderGetRequestConfiguration and sets the default values.
      * @param array<string, array<string>|string>|null $headers Request headers
      * @param array<RequestOption>|null $options Request options
+     * @param InfoRequestBuilderGetQueryParameters|null $queryParameters Request query parameters
     */
-    public function __construct(?array $headers = null, ?array $options = null) {
+    public function __construct(?array $headers = null, ?array $options = null, ?InfoRequestBuilderGetQueryParameters $queryParameters = null) {
         parent::__construct($headers ?? [], $options ?? []);
+        $this->queryParameters = $queryParameters;
+    }
+
+    /**
+     * Instantiates a new InfoRequestBuilderGetQueryParameters.
+     * @param string|null $userId 
+     * @return InfoRequestBuilderGetQueryParameters
+    */
+    public static function createQueryParameters(?string $userId = null): InfoRequestBuilderGetQueryParameters {
+        return new InfoRequestBuilderGetQueryParameters($userId);
     }
 
 }

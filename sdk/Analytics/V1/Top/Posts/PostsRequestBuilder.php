@@ -8,7 +8,7 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Analyticsv1\TopPostsResponse;
+use Rixl\Sdk\Models\Analytics\V1\TopPostsResponse;
 
 /**
  * Builds and executes requests for operations under /analytics/v1/top/posts
@@ -21,7 +21,7 @@ class PostsRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/analytics/v1/top/posts{?end*,feed_id*,limit*,start*}');
+        parent::__construct($requestAdapter, [], '{+baseurl}/analytics/v1/top/posts{?feedId*,limit*,range%2Eend*,range%2Estart*}');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
@@ -30,7 +30,7 @@ class PostsRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns the top posts over a date range
+     * GetTopPosts
      * @param PostsRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<TopPostsResponse|null>
      * @throws Exception
@@ -41,7 +41,7 @@ class PostsRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns the top posts over a date range
+     * GetTopPosts
      * @param PostsRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */

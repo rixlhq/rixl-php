@@ -8,7 +8,7 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Authv1\EmailStatusResponse;
+use Rixl\Sdk\Models\Auth\V1\EmailStatusResponse;
 
 /**
  * Builds and executes requests for operations under /auth/v1/users/current/emails/status
@@ -21,7 +21,7 @@ class StatusRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/users/current/emails/status');
+        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/users/current/emails/status{?userId*}');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
@@ -30,7 +30,7 @@ class StatusRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns the authenticated account's current email address together withwhether an email is set and whether it has been verified.
+     * GetUserEmailStatus
      * @param StatusRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<EmailStatusResponse|null>
      * @throws Exception
@@ -41,7 +41,7 @@ class StatusRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns the authenticated account's current email address together withwhether an email is set and whether it has been verified.
+     * GetUserEmailStatus
      * @param StatusRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
@@ -52,6 +52,9 @@ class StatusRequestBuilder extends BaseRequestBuilder
         $requestInfo->httpMethod = HttpMethod::GET;
         if ($requestConfiguration !== null) {
             $requestInfo->addHeaders($requestConfiguration->headers);
+            if ($requestConfiguration->queryParameters !== null) {
+                $requestInfo->setQueryParameters($requestConfiguration->queryParameters);
+            }
             $requestInfo->addRequestOptions(...$requestConfiguration->options);
         }
         $requestInfo->tryAddHeader('Accept', "application/json");

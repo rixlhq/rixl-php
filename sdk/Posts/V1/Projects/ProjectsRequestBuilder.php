@@ -4,7 +4,7 @@ namespace Rixl\Sdk\Posts\V1\Projects;
 
 use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
-use Rixl\Sdk\Posts\V1\Projects\Item\WithProjectItemRequestBuilder;
+use Rixl\Sdk\Posts\V1\Projects\Item\WithProject_ItemRequestBuilder;
 
 /**
  * Builds and executes requests for operations under /posts/v1/projects
@@ -13,13 +13,13 @@ class ProjectsRequestBuilder extends BaseRequestBuilder
 {
     /**
      * Gets an item from the Rixl/Sdk.posts.v1.projects.item collection
-     * @param string $projectId Project ID
-     * @return WithProjectItemRequestBuilder
+     * @param string $project_id Unique identifier of the item
+     * @return WithProject_ItemRequestBuilder
     */
-    public function byProjectId(string $projectId): WithProjectItemRequestBuilder {
+    public function byProject_id(string $project_id): WithProject_ItemRequestBuilder {
         $urlTplParams = $this->pathParameters;
-        $urlTplParams['projectId'] = $projectId;
-        return new WithProjectItemRequestBuilder($urlTplParams, $this->requestAdapter);
+        $urlTplParams['project_id'] = $project_id;
+        return new WithProject_ItemRequestBuilder($urlTplParams, $this->requestAdapter);
     }
 
     /**

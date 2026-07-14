@@ -8,10 +8,10 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Videosv1\ListAudioTracksResponse;
+use Rixl\Sdk\Models\Videos\V1\ListAudioTracksResponse;
 
 /**
- * Builds and executes requests for operations under /media/v1/videos/{videoId}/audio-tracks
+ * Builds and executes requests for operations under /media/v1/videos/{video_id}/audio-tracks
 */
 class AudioTracksRequestBuilder extends BaseRequestBuilder 
 {
@@ -21,7 +21,7 @@ class AudioTracksRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/media/v1/videos/{videoId}/audio-tracks');
+        parent::__construct($requestAdapter, [], '{+baseurl}/media/v1/videos/{video_id}/audio-tracks');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
@@ -30,7 +30,7 @@ class AudioTracksRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns the audio tracks associated with a video.
+     * ListAudioTracks
      * @param AudioTracksRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<ListAudioTracksResponse|null>
      * @throws Exception
@@ -41,7 +41,7 @@ class AudioTracksRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns the audio tracks associated with a video.
+     * ListAudioTracks
      * @param AudioTracksRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */

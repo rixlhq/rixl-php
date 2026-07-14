@@ -2,29 +2,40 @@
 
 namespace Rixl\Sdk\Posts\V1\Projects\Item\Feeds\Item\Posts;
 
+use Microsoft\Kiota\Abstractions\QueryParameter;
+
 /**
- * List posts in a feed
+ * ListPosts
 */
 class PostsRequestBuilderGetQueryParameters 
 {
     /**
-     * @var int|null $limit Page size
+     * @var string|null $creatorId 
     */
-    public ?int $limit = null;
+    public ?string $creatorId = null;
     
     /**
-     * @var int|null $offset Page offset
+     * @QueryParameter("pagination%2Elimit")
+     * @var int|null $paginationLimit Maximum number of items to return.
     */
-    public ?int $offset = null;
+    public ?int $paginationLimit = null;
+    
+    /**
+     * @QueryParameter("pagination%2Eoffset")
+     * @var int|null $paginationOffset Number of items to skip before collecting the result set.
+    */
+    public ?int $paginationOffset = null;
     
     /**
      * Instantiates a new PostsRequestBuilderGetQueryParameters and sets the default values.
-     * @param int|null $limit Page size
-     * @param int|null $offset Page offset
+     * @param string|null $creatorId 
+     * @param int|null $paginationLimit Maximum number of items to return.
+     * @param int|null $paginationOffset Number of items to skip before collecting the result set.
     */
-    public function __construct(?int $limit = null, ?int $offset = null) {
-        $this->limit = $limit;
-        $this->offset = $offset;
+    public function __construct(?string $creatorId = null, ?int $paginationLimit = null, ?int $paginationOffset = null) {
+        $this->creatorId = $creatorId;
+        $this->paginationLimit = $paginationLimit;
+        $this->paginationOffset = $paginationOffset;
     }
 
 }

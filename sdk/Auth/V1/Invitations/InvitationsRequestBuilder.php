@@ -13,7 +13,7 @@ class InvitationsRequestBuilder extends BaseRequestBuilder
 {
     /**
      * Gets an item from the Rixl/Sdk.auth.v1.invitations.item collection
-     * @param string $token Invitation token
+     * @param string $token Unique identifier of the item
      * @return WithTokenItemRequestBuilder
     */
     public function byToken(string $token): WithTokenItemRequestBuilder {

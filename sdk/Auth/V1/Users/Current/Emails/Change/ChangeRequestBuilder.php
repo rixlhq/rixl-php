@@ -8,8 +8,8 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Authv1\VerificationSentResponse;
-use Rixl\Sdk\Models\Gateway\ChangeEmailBody;
+use Rixl\Sdk\Models\Auth\V1\InitiateEmailChangeRequest;
+use Rixl\Sdk\Models\Auth\V1\VerificationSentResponse;
 
 /**
  * Builds and executes requests for operations under /auth/v1/users/current/emails/change
@@ -31,24 +31,24 @@ class ChangeRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Starts changing the authenticated account's email address. A verificationcode is sent to the new address; the change is applied only after the codeis confirmed via `POST /auth/v1/email/verify`. Subject to rate limiting per account.
-     * @param ChangeEmailBody $body New email address
+     * InitiateEmailChange
+     * @param InitiateEmailChangeRequest $body The request body
      * @param ChangeRequestBuilderPutRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<VerificationSentResponse|null>
      * @throws Exception
     */
-    public function put(ChangeEmailBody $body, ?ChangeRequestBuilderPutRequestConfiguration $requestConfiguration = null): Promise {
+    public function put(InitiateEmailChangeRequest $body, ?ChangeRequestBuilderPutRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPutRequestInformation($body, $requestConfiguration);
         return $this->requestAdapter->sendAsync($requestInfo, [VerificationSentResponse::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * Starts changing the authenticated account's email address. A verificationcode is sent to the new address; the change is applied only after the codeis confirmed via `POST /auth/v1/email/verify`. Subject to rate limiting per account.
-     * @param ChangeEmailBody $body New email address
+     * InitiateEmailChange
+     * @param InitiateEmailChangeRequest $body The request body
      * @param ChangeRequestBuilderPutRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
-    public function toPutRequestInformation(ChangeEmailBody $body, ?ChangeRequestBuilderPutRequestConfiguration $requestConfiguration = null): RequestInformation {
+    public function toPutRequestInformation(InitiateEmailChangeRequest $body, ?ChangeRequestBuilderPutRequestConfiguration $requestConfiguration = null): RequestInformation {
         $requestInfo = new RequestInformation();
         $requestInfo->urlTemplate = $this->urlTemplate;
         $requestInfo->pathParameters = $this->pathParameters;

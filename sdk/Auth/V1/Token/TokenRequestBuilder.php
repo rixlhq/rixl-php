@@ -8,7 +8,8 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Authv1\TokenResponse;
+use Rixl\Sdk\Models\Auth\V1\RefreshTokenRequest;
+use Rixl\Sdk\Models\Auth\V1\TokenResponse;
 
 /**
  * Builds and executes requests for operations under /auth/v1/token
@@ -30,22 +31,24 @@ class TokenRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Exchanges a valid refresh token for a new access token.
+     * RefreshToken
+     * @param RefreshTokenRequest $body The request body
      * @param TokenRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<TokenResponse|null>
      * @throws Exception
     */
-    public function post(?TokenRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
-        $requestInfo = $this->toPostRequestInformation($requestConfiguration);
+    public function post(RefreshTokenRequest $body, ?TokenRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
+        $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
         return $this->requestAdapter->sendAsync($requestInfo, [TokenResponse::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * Exchanges a valid refresh token for a new access token.
+     * RefreshToken
+     * @param RefreshTokenRequest $body The request body
      * @param TokenRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
-    public function toPostRequestInformation(?TokenRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
+    public function toPostRequestInformation(RefreshTokenRequest $body, ?TokenRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
         $requestInfo = new RequestInformation();
         $requestInfo->urlTemplate = $this->urlTemplate;
         $requestInfo->pathParameters = $this->pathParameters;
@@ -55,6 +58,7 @@ class TokenRequestBuilder extends BaseRequestBuilder
             $requestInfo->addRequestOptions(...$requestConfiguration->options);
         }
         $requestInfo->tryAddHeader('Accept', "application/json");
+        $requestInfo->setContentFromParsable($this->requestAdapter, "application/json", $body);
         return $requestInfo;
     }
 

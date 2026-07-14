@@ -8,7 +8,8 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Authv1\PasskeyBeginResponse;
+use Rixl\Sdk\Models\Auth\V1\PasskeyBeginResponse;
+use Rixl\Sdk\Models\Auth\V1\PasskeyLoginBeginRequest;
 
 /**
  * Builds and executes requests for operations under /auth/v1/passkey/login/begin
@@ -30,22 +31,24 @@ class BeginRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Begins a passkey login by returning a session_id and WebAuthn challenge options for the client to sign.
+     * PasskeyLoginBegin
+     * @param PasskeyLoginBeginRequest $body options and credential carry the WebAuthn ceremony payloads verbatim as JSON (the browser credential API consumes them as-is), so they are opaque bytes.
      * @param BeginRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<PasskeyBeginResponse|null>
      * @throws Exception
     */
-    public function post(?BeginRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
-        $requestInfo = $this->toPostRequestInformation($requestConfiguration);
+    public function post(PasskeyLoginBeginRequest $body, ?BeginRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
+        $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
         return $this->requestAdapter->sendAsync($requestInfo, [PasskeyBeginResponse::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * Begins a passkey login by returning a session_id and WebAuthn challenge options for the client to sign.
+     * PasskeyLoginBegin
+     * @param PasskeyLoginBeginRequest $body options and credential carry the WebAuthn ceremony payloads verbatim as JSON (the browser credential API consumes them as-is), so they are opaque bytes.
      * @param BeginRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
-    public function toPostRequestInformation(?BeginRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
+    public function toPostRequestInformation(PasskeyLoginBeginRequest $body, ?BeginRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
         $requestInfo = new RequestInformation();
         $requestInfo->urlTemplate = $this->urlTemplate;
         $requestInfo->pathParameters = $this->pathParameters;
@@ -55,6 +58,7 @@ class BeginRequestBuilder extends BaseRequestBuilder
             $requestInfo->addRequestOptions(...$requestConfiguration->options);
         }
         $requestInfo->tryAddHeader('Accept', "application/json");
+        $requestInfo->setContentFromParsable($this->requestAdapter, "application/json", $body);
         return $requestInfo;
     }
 

@@ -4,6 +4,7 @@ namespace Rixl\Sdk\Auth\V1\Blog;
 
 use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
+use Rixl\Sdk\Auth\V1\Blog\Broadcast\BroadcastRequestBuilder;
 use Rixl\Sdk\Auth\V1\Blog\Subscribe\SubscribeRequestBuilder;
 use Rixl\Sdk\Auth\V1\Blog\Subscription\SubscriptionRequestBuilder;
 use Rixl\Sdk\Auth\V1\Blog\Unsubscribe\UnsubscribeRequestBuilder;
@@ -13,6 +14,13 @@ use Rixl\Sdk\Auth\V1\Blog\Unsubscribe\UnsubscribeRequestBuilder;
 */
 class BlogRequestBuilder extends BaseRequestBuilder 
 {
+    /**
+     * The broadcast property
+    */
+    public function broadcast(): BroadcastRequestBuilder {
+        return new BroadcastRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
     /**
      * The subscribe property
     */

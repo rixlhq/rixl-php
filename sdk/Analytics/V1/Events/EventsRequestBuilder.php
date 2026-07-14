@@ -8,7 +8,8 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Analyticsv1\TrackEventsRequest;
+use Rixl\Sdk\Models\Analytics\V1\TrackEventsRequest;
+use Rixl\Sdk\Models\Google\Protobuf\EscapedEmpty;
 
 /**
  * Builds and executes requests for operations under /analytics/v1/events
@@ -30,20 +31,20 @@ class EventsRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Ingest a batch of analytics events for the authenticated organization
-     * @param TrackEventsRequest $body Analytics events
+     * TrackEvents
+     * @param TrackEventsRequest $body The request body
      * @param EventsRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
-     * @return Promise<void|null>
+     * @return Promise<EscapedEmpty|null>
      * @throws Exception
     */
     public function post(TrackEventsRequest $body, ?EventsRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
-        return $this->requestAdapter->sendNoContentAsync($requestInfo, null);
+        return $this->requestAdapter->sendAsync($requestInfo, [EscapedEmpty::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * Ingest a batch of analytics events for the authenticated organization
-     * @param TrackEventsRequest $body Analytics events
+     * TrackEvents
+     * @param TrackEventsRequest $body The request body
      * @param EventsRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
@@ -56,6 +57,7 @@ class EventsRequestBuilder extends BaseRequestBuilder
             $requestInfo->addHeaders($requestConfiguration->headers);
             $requestInfo->addRequestOptions(...$requestConfiguration->options);
         }
+        $requestInfo->tryAddHeader('Accept', "application/json");
         $requestInfo->setContentFromParsable($this->requestAdapter, "application/json", $body);
         return $requestInfo;
     }

@@ -8,8 +8,8 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Billing\V1\Plans\Item\WithPlanItemRequestBuilder;
-use Rixl\Sdk\Models\Billingv1\ListPlansResponse;
+use Rixl\Sdk\Billing\V1\Plans\Item\WithPlan_ItemRequestBuilder;
+use Rixl\Sdk\Models\Billing\V1\ListPlansResponse;
 
 /**
  * Builds and executes requests for operations under /billing/v1/plans
@@ -18,13 +18,13 @@ class PlansRequestBuilder extends BaseRequestBuilder
 {
     /**
      * Gets an item from the Rixl/Sdk.billing.v1.plans.item collection
-     * @param string $planId Plan ID
-     * @return WithPlanItemRequestBuilder
+     * @param string $plan_id string.prefix = "price_"
+     * @return WithPlan_ItemRequestBuilder
     */
-    public function byPlanId(string $planId): WithPlanItemRequestBuilder {
+    public function byPlan_id(string $plan_id): WithPlan_ItemRequestBuilder {
         $urlTplParams = $this->pathParameters;
-        $urlTplParams['planId'] = $planId;
-        return new WithPlanItemRequestBuilder($urlTplParams, $this->requestAdapter);
+        $urlTplParams['plan_id'] = $plan_id;
+        return new WithPlan_ItemRequestBuilder($urlTplParams, $this->requestAdapter);
     }
 
     /**
@@ -33,7 +33,7 @@ class PlansRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/billing/v1/plans');
+        parent::__construct($requestAdapter, [], '{+baseurl}/billing/v1/plans{?currency*,free*,interval*}');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
@@ -42,7 +42,7 @@ class PlansRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns the available billing plans.
+     * ListPlans
      * @param PlansRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<ListPlansResponse|null>
      * @throws Exception
@@ -53,7 +53,7 @@ class PlansRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns the available billing plans.
+     * ListPlans
      * @param PlansRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
@@ -64,6 +64,9 @@ class PlansRequestBuilder extends BaseRequestBuilder
         $requestInfo->httpMethod = HttpMethod::GET;
         if ($requestConfiguration !== null) {
             $requestInfo->addHeaders($requestConfiguration->headers);
+            if ($requestConfiguration->queryParameters !== null) {
+                $requestInfo->setQueryParameters($requestConfiguration->queryParameters);
+            }
             $requestInfo->addRequestOptions(...$requestConfiguration->options);
         }
         $requestInfo->tryAddHeader('Accept', "application/json");

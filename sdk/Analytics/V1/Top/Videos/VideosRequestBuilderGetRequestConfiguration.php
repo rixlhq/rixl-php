@@ -28,13 +28,13 @@ class VideosRequestBuilderGetRequestConfiguration extends BaseRequestConfigurati
 
     /**
      * Instantiates a new VideosRequestBuilderGetQueryParameters.
-     * @param string|null $end End date (inclusive)
-     * @param string|null $limit Maximum number of results
-     * @param string|null $start Start date (inclusive)
+     * @param int|null $limit 
+     * @param string|null $rangeEnd 
+     * @param string|null $rangeStart 
      * @return VideosRequestBuilderGetQueryParameters
     */
-    public static function createQueryParameters(?string $end = null, ?string $limit = null, ?string $start = null): VideosRequestBuilderGetQueryParameters {
-        return new VideosRequestBuilderGetQueryParameters($end, $limit, $start);
+    public static function createQueryParameters(?int $limit = null, ?string $rangeEnd = null, ?string $rangeStart = null): VideosRequestBuilderGetQueryParameters {
+        return new VideosRequestBuilderGetQueryParameters($limit, $rangeEnd, $rangeStart);
     }
 
 }

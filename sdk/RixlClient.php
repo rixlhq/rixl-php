@@ -15,11 +15,12 @@ use Microsoft\Kiota\Serialization\Text\TextSerializationWriterFactory;
 use Rixl\Sdk\Analytics\AnalyticsRequestBuilder;
 use Rixl\Sdk\Auth\AuthRequestBuilder;
 use Rixl\Sdk\Billing\BillingRequestBuilder;
+use Rixl\Sdk\Feeds\FeedsRequestBuilder;
+use Rixl\Sdk\Internal\InternalRequestBuilder;
 use Rixl\Sdk\Media\MediaRequestBuilder;
-use Rixl\Sdk\Organization\OrganizationRequestBuilder;
+use Rixl\Sdk\Organizations\OrganizationsRequestBuilder;
 use Rixl\Sdk\Platform\PlatformRequestBuilder;
 use Rixl\Sdk\Posts\PostsRequestBuilder;
-use Rixl\Sdk\Projects\ProjectsRequestBuilder;
 
 /**
  * The main entry point of the SDK, exposes the configuration and the fluent API.
@@ -48,6 +49,20 @@ class RixlClient extends BaseRequestBuilder
     }
     
     /**
+     * The feeds property
+    */
+    public function feeds(): FeedsRequestBuilder {
+        return new FeedsRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
+     * The internal property
+    */
+    public function internal(): InternalRequestBuilder {
+        return new InternalRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
      * The media property
     */
     public function media(): MediaRequestBuilder {
@@ -55,10 +70,10 @@ class RixlClient extends BaseRequestBuilder
     }
     
     /**
-     * The organization property
+     * The organizations property
     */
-    public function organization(): OrganizationRequestBuilder {
-        return new OrganizationRequestBuilder($this->pathParameters, $this->requestAdapter);
+    public function organizations(): OrganizationsRequestBuilder {
+        return new OrganizationsRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
     
     /**
@@ -76,13 +91,6 @@ class RixlClient extends BaseRequestBuilder
     }
     
     /**
-     * The projects property
-    */
-    public function projects(): ProjectsRequestBuilder {
-        return new ProjectsRequestBuilder($this->pathParameters, $this->requestAdapter);
-    }
-    
-    /**
      * Instantiates a new RixlClient and sets the default values.
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
@@ -95,10 +103,6 @@ class RixlClient extends BaseRequestBuilder
         ApiClientBuilder::registerDefaultDeserializer(JsonParseNodeFactory::class);
         ApiClientBuilder::registerDefaultDeserializer(TextParseNodeFactory::class);
         ApiClientBuilder::registerDefaultDeserializer(FormParseNodeFactory::class);
-        if (empty($this->requestAdapter->getBaseUrl())) {
-            $this->requestAdapter->setBaseUrl('https://raw.githubusercontent.com');
-        }
-        $this->pathParameters['baseurl'] = $this->requestAdapter->getBaseUrl();
     }
 
 }

@@ -8,14 +8,13 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Media\V1\Projects\Item\Videos\Item\Subtitles\Item\WithSubtitleItemRequestBuilder;
+use Rixl\Sdk\Media\V1\Projects\Item\Videos\Item\Subtitles\Item\WithSubtitle_ItemRequestBuilder;
 use Rixl\Sdk\Media\V1\Projects\Item\Videos\Item\Subtitles\Language\LanguageRequestBuilder;
 use Rixl\Sdk\Media\V1\Projects\Item\Videos\Item\Subtitles\Upload\UploadRequestBuilder;
-use Rixl\Sdk\Models\Videosv1\DeleteResult;
-use Rixl\Sdk\Models\Videosv1\ListSubtitlesResponse;
+use Rixl\Sdk\Models\Google\Protobuf\EscapedEmpty;
 
 /**
- * Builds and executes requests for operations under /media/v1/projects/{projectId}/videos/{videoId}/subtitles
+ * Builds and executes requests for operations under /media/v1/projects/{project_id}/videos/{video_id}/subtitles
 */
 class SubtitlesRequestBuilder extends BaseRequestBuilder 
 {
@@ -35,13 +34,13 @@ class SubtitlesRequestBuilder extends BaseRequestBuilder
     
     /**
      * Gets an item from the Rixl/Sdk.media.v1.projects.item.videos.item.subtitles.item collection
-     * @param string $subtitleId Subtitle ID
-     * @return WithSubtitleItemRequestBuilder
+     * @param string $subtitle_id Unique identifier of the item
+     * @return WithSubtitle_ItemRequestBuilder
     */
-    public function bySubtitleId(string $subtitleId): WithSubtitleItemRequestBuilder {
+    public function bySubtitle_id(string $subtitle_id): WithSubtitle_ItemRequestBuilder {
         $urlTplParams = $this->pathParameters;
-        $urlTplParams['subtitleId'] = $subtitleId;
-        return new WithSubtitleItemRequestBuilder($urlTplParams, $this->requestAdapter);
+        $urlTplParams['subtitle_id'] = $subtitle_id;
+        return new WithSubtitle_ItemRequestBuilder($urlTplParams, $this->requestAdapter);
     }
 
     /**
@@ -50,7 +49,7 @@ class SubtitlesRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/media/v1/projects/{projectId}/videos/{videoId}/subtitles');
+        parent::__construct($requestAdapter, [], '{+baseurl}/media/v1/projects/{project_id}/videos/{video_id}/subtitles');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
@@ -59,29 +58,18 @@ class SubtitlesRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Deletes all subtitles for a video.
+     * DeleteAllSubtitles
      * @param SubtitlesRequestBuilderDeleteRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
-     * @return Promise<DeleteResult|null>
+     * @return Promise<EscapedEmpty|null>
      * @throws Exception
     */
     public function delete(?SubtitlesRequestBuilderDeleteRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toDeleteRequestInformation($requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [DeleteResult::class, 'createFromDiscriminatorValue'], null);
+        return $this->requestAdapter->sendAsync($requestInfo, [EscapedEmpty::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * Returns a video's subtitles within a project, including for private media. Requires project access.
-     * @param SubtitlesRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
-     * @return Promise<ListSubtitlesResponse|null>
-     * @throws Exception
-    */
-    public function get(?SubtitlesRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
-        $requestInfo = $this->toGetRequestInformation($requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [ListSubtitlesResponse::class, 'createFromDiscriminatorValue'], null);
-    }
-
-    /**
-     * Deletes all subtitles for a video.
+     * DeleteAllSubtitles
      * @param SubtitlesRequestBuilderDeleteRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
@@ -90,24 +78,6 @@ class SubtitlesRequestBuilder extends BaseRequestBuilder
         $requestInfo->urlTemplate = $this->urlTemplate;
         $requestInfo->pathParameters = $this->pathParameters;
         $requestInfo->httpMethod = HttpMethod::DELETE;
-        if ($requestConfiguration !== null) {
-            $requestInfo->addHeaders($requestConfiguration->headers);
-            $requestInfo->addRequestOptions(...$requestConfiguration->options);
-        }
-        $requestInfo->tryAddHeader('Accept', "application/json");
-        return $requestInfo;
-    }
-
-    /**
-     * Returns a video's subtitles within a project, including for private media. Requires project access.
-     * @param SubtitlesRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
-     * @return RequestInformation
-    */
-    public function toGetRequestInformation(?SubtitlesRequestBuilderGetRequestConfiguration $requestConfiguration = null): RequestInformation {
-        $requestInfo = new RequestInformation();
-        $requestInfo->urlTemplate = $this->urlTemplate;
-        $requestInfo->pathParameters = $this->pathParameters;
-        $requestInfo->httpMethod = HttpMethod::GET;
         if ($requestConfiguration !== null) {
             $requestInfo->addHeaders($requestConfiguration->headers);
             $requestInfo->addRequestOptions(...$requestConfiguration->options);

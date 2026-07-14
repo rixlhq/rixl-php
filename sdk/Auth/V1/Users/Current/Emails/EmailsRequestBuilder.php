@@ -10,8 +10,8 @@ use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Auth\V1\Users\Current\Emails\Change\ChangeRequestBuilder;
 use Rixl\Sdk\Auth\V1\Users\Current\Emails\Status\StatusRequestBuilder;
-use Rixl\Sdk\Models\Authv1\VerificationSentResponse;
-use Rixl\Sdk\Models\Gateway\AddEmailBody;
+use Rixl\Sdk\Models\Auth\V1\AddEmailRequest;
+use Rixl\Sdk\Models\Auth\V1\VerificationSentResponse;
 
 /**
  * Builds and executes requests for operations under /auth/v1/users/current/emails
@@ -47,24 +47,24 @@ class EmailsRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Adds an email address to the authenticated account and sends a verificationcode to it. The address becomes active only once it has been verified via`POST /auth/v1/email/verify`. Subject to rate limiting per account.
-     * @param AddEmailBody $body Email address to add
+     * AddEmail
+     * @param AddEmailRequest $body The request body
      * @param EmailsRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<VerificationSentResponse|null>
      * @throws Exception
     */
-    public function post(AddEmailBody $body, ?EmailsRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
+    public function post(AddEmailRequest $body, ?EmailsRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
         return $this->requestAdapter->sendAsync($requestInfo, [VerificationSentResponse::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * Adds an email address to the authenticated account and sends a verificationcode to it. The address becomes active only once it has been verified via`POST /auth/v1/email/verify`. Subject to rate limiting per account.
-     * @param AddEmailBody $body Email address to add
+     * AddEmail
+     * @param AddEmailRequest $body The request body
      * @param EmailsRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
-    public function toPostRequestInformation(AddEmailBody $body, ?EmailsRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
+    public function toPostRequestInformation(AddEmailRequest $body, ?EmailsRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
         $requestInfo = new RequestInformation();
         $requestInfo->urlTemplate = $this->urlTemplate;
         $requestInfo->pathParameters = $this->pathParameters;

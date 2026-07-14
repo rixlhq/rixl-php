@@ -2,36 +2,40 @@
 
 namespace Rixl\Sdk\Analytics\V1\Videos\Item\Heatmap;
 
+use Microsoft\Kiota\Abstractions\QueryParameter;
+
 /**
- * Returns the engagement heatmap for a video
+ * GetVideoHeatmap
 */
 class HeatmapRequestBuilderGetQueryParameters 
 {
     /**
-     * @var string|null $buckets Number of buckets
+     * @var int|null $buckets 
     */
-    public ?string $buckets = null;
+    public ?int $buckets = null;
     
     /**
-     * @var string|null $end End date (inclusive)
+     * @QueryParameter("range%2Eend")
+     * @var string|null $rangeEnd 
     */
-    public ?string $end = null;
+    public ?string $rangeEnd = null;
     
     /**
-     * @var string|null $start Start date (inclusive)
+     * @QueryParameter("range%2Estart")
+     * @var string|null $rangeStart 
     */
-    public ?string $start = null;
+    public ?string $rangeStart = null;
     
     /**
      * Instantiates a new HeatmapRequestBuilderGetQueryParameters and sets the default values.
-     * @param string|null $buckets Number of buckets
-     * @param string|null $end End date (inclusive)
-     * @param string|null $start Start date (inclusive)
+     * @param int|null $buckets 
+     * @param string|null $rangeEnd 
+     * @param string|null $rangeStart 
     */
-    public function __construct(?string $buckets = null, ?string $end = null, ?string $start = null) {
+    public function __construct(?int $buckets = null, ?string $rangeEnd = null, ?string $rangeStart = null) {
         $this->buckets = $buckets;
-        $this->end = $end;
-        $this->start = $start;
+        $this->rangeEnd = $rangeEnd;
+        $this->rangeStart = $rangeStart;
     }
 
 }

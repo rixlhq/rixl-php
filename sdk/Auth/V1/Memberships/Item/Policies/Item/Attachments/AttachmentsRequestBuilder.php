@@ -8,34 +8,21 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Auth\V1\Memberships\Item\Policies\Item\Attachments\Item\WithAttachmentItemRequestBuilder;
-use Rixl\Sdk\Models\Authv1\ListAttachmentsResponse;
-use Rixl\Sdk\Models\Authv1\PolicyAttachment;
-use Rixl\Sdk\Models\Gateway\AttachPolicyBody;
+use Rixl\Sdk\Models\Auth\V1\ListAttachmentsResponse;
+use Rixl\Sdk\Models\Auth\V1\PolicyAttachment;
 
 /**
- * Builds and executes requests for operations under /auth/v1/memberships/{orgId}/policies/{policyId}/attachments
+ * Builds and executes requests for operations under /auth/v1/memberships/{org_-id}/policies/{policy_id}/attachments
 */
 class AttachmentsRequestBuilder extends BaseRequestBuilder 
 {
-    /**
-     * Gets an item from the Rixl/Sdk.auth.v1.memberships.item.policies.item.attachments.item collection
-     * @param string $attachmentId Attachment ID
-     * @return WithAttachmentItemRequestBuilder
-    */
-    public function byAttachmentId(string $attachmentId): WithAttachmentItemRequestBuilder {
-        $urlTplParams = $this->pathParameters;
-        $urlTplParams['attachmentId'] = $attachmentId;
-        return new WithAttachmentItemRequestBuilder($urlTplParams, $this->requestAdapter);
-    }
-
     /**
      * Instantiates a new AttachmentsRequestBuilder and sets the default values.
      * @param array<string, mixed>|string $pathParametersOrRawUrl Path parameters for the request or a String representing the raw URL.
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/memberships/{orgId}/policies/{policyId}/attachments');
+        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/memberships/{org_%2Did}/policies/{policy_id}/attachments{?user%2EuserId*}');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
@@ -44,7 +31,7 @@ class AttachmentsRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns all identities that the given policy is attached to within the organization.
+     * ListPolicyAttachments
      * @param AttachmentsRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<ListAttachmentsResponse|null>
      * @throws Exception
@@ -55,19 +42,19 @@ class AttachmentsRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Attaches the given policy to an identity so the policy's permissions apply to that identity.
-     * @param AttachPolicyBody $body Identity
+     * AttachPolicy
+     * @param AttachmentsPostRequestBody $body The request body
      * @param AttachmentsRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<PolicyAttachment|null>
      * @throws Exception
     */
-    public function post(AttachPolicyBody $body, ?AttachmentsRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
+    public function post(AttachmentsPostRequestBody $body, ?AttachmentsRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
         return $this->requestAdapter->sendAsync($requestInfo, [PolicyAttachment::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * Returns all identities that the given policy is attached to within the organization.
+     * ListPolicyAttachments
      * @param AttachmentsRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
@@ -78,6 +65,9 @@ class AttachmentsRequestBuilder extends BaseRequestBuilder
         $requestInfo->httpMethod = HttpMethod::GET;
         if ($requestConfiguration !== null) {
             $requestInfo->addHeaders($requestConfiguration->headers);
+            if ($requestConfiguration->queryParameters !== null) {
+                $requestInfo->setQueryParameters($requestConfiguration->queryParameters);
+            }
             $requestInfo->addRequestOptions(...$requestConfiguration->options);
         }
         $requestInfo->tryAddHeader('Accept', "application/json");
@@ -85,12 +75,12 @@ class AttachmentsRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Attaches the given policy to an identity so the policy's permissions apply to that identity.
-     * @param AttachPolicyBody $body Identity
+     * AttachPolicy
+     * @param AttachmentsPostRequestBody $body The request body
      * @param AttachmentsRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
-    public function toPostRequestInformation(AttachPolicyBody $body, ?AttachmentsRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
+    public function toPostRequestInformation(AttachmentsPostRequestBody $body, ?AttachmentsRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
         $requestInfo = new RequestInformation();
         $requestInfo->urlTemplate = $this->urlTemplate;
         $requestInfo->pathParameters = $this->pathParameters;

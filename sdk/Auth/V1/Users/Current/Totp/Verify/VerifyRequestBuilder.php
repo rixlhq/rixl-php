@@ -8,8 +8,8 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Authv1\TokenResponse;
-use Rixl\Sdk\Models\Gateway\VerifyOTPBody;
+use Rixl\Sdk\Models\Auth\V1\TokenResponse;
+use Rixl\Sdk\Models\Auth\V1\VerifyOTPRequest;
 
 /**
  * Builds and executes requests for operations under /auth/v1/users/current/totp/verify
@@ -31,24 +31,24 @@ class VerifyRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Verifies the submitted TOTP code against the user's pending setup secret and, if valid, enables TOTP two-factor authentication and returns refreshed tokens.
-     * @param VerifyOTPBody $body TOTP code
+     * VerifyOTP
+     * @param VerifyOTPRequest $body The request body
      * @param VerifyRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<TokenResponse|null>
      * @throws Exception
     */
-    public function post(VerifyOTPBody $body, ?VerifyRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
+    public function post(VerifyOTPRequest $body, ?VerifyRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
         return $this->requestAdapter->sendAsync($requestInfo, [TokenResponse::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * Verifies the submitted TOTP code against the user's pending setup secret and, if valid, enables TOTP two-factor authentication and returns refreshed tokens.
-     * @param VerifyOTPBody $body TOTP code
+     * VerifyOTP
+     * @param VerifyOTPRequest $body The request body
      * @param VerifyRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
-    public function toPostRequestInformation(VerifyOTPBody $body, ?VerifyRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
+    public function toPostRequestInformation(VerifyOTPRequest $body, ?VerifyRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
         $requestInfo = new RequestInformation();
         $requestInfo->urlTemplate = $this->urlTemplate;
         $requestInfo->pathParameters = $this->pathParameters;

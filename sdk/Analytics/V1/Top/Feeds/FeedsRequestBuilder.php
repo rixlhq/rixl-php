@@ -8,7 +8,7 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Analyticsv1\TopFeedsResponse;
+use Rixl\Sdk\Models\Analytics\V1\TopFeedsResponse;
 
 /**
  * Builds and executes requests for operations under /analytics/v1/top/feeds
@@ -21,7 +21,7 @@ class FeedsRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/analytics/v1/top/feeds{?end*,limit*,start*}');
+        parent::__construct($requestAdapter, [], '{+baseurl}/analytics/v1/top/feeds{?limit*,range%2Eend*,range%2Estart*}');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
@@ -30,7 +30,7 @@ class FeedsRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns the top feeds over a date range
+     * GetTopFeeds
      * @param FeedsRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<TopFeedsResponse|null>
      * @throws Exception
@@ -41,7 +41,7 @@ class FeedsRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns the top feeds over a date range
+     * GetTopFeeds
      * @param FeedsRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */

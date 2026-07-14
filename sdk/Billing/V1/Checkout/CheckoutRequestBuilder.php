@@ -8,8 +8,8 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Billingv1\HostedCheckoutSessionResponse;
-use Rixl\Sdk\Models\Gateway\CheckoutBody;
+use Rixl\Sdk\Models\Billing\V1\CreateCheckoutSessionRequest;
+use Rixl\Sdk\Models\Billing\V1\HostedCheckoutSessionResponse;
 
 /**
  * Builds and executes requests for operations under /billing/v1/checkout
@@ -31,24 +31,24 @@ class CheckoutRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Create a Stripe hosted checkout session
-     * @param CheckoutBody $body Checkout request
+     * CreateCheckoutSession
+     * @param CreateCheckoutSessionRequest $body The request body
      * @param CheckoutRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<HostedCheckoutSessionResponse|null>
      * @throws Exception
     */
-    public function post(CheckoutBody $body, ?CheckoutRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
+    public function post(CreateCheckoutSessionRequest $body, ?CheckoutRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
         return $this->requestAdapter->sendAsync($requestInfo, [HostedCheckoutSessionResponse::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * Create a Stripe hosted checkout session
-     * @param CheckoutBody $body Checkout request
+     * CreateCheckoutSession
+     * @param CreateCheckoutSessionRequest $body The request body
      * @param CheckoutRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
-    public function toPostRequestInformation(CheckoutBody $body, ?CheckoutRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
+    public function toPostRequestInformation(CreateCheckoutSessionRequest $body, ?CheckoutRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
         $requestInfo = new RequestInformation();
         $requestInfo->urlTemplate = $this->urlTemplate;
         $requestInfo->pathParameters = $this->pathParameters;

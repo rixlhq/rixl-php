@@ -8,8 +8,8 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Analyticsv1\FunnelAnalytics;
-use Rixl\Sdk\Models\Analyticsv1\FunnelRequest;
+use Rixl\Sdk\Models\Analytics\V1\FunnelAnalytics;
+use Rixl\Sdk\Models\Analytics\V1\FunnelRequest;
 
 /**
  * Builds and executes requests for operations under /analytics/v1/funnels
@@ -22,7 +22,7 @@ class FunnelsRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/analytics/v1/funnels{?end*,start*}');
+        parent::__construct($requestAdapter, [], '{+baseurl}/analytics/v1/funnels');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
@@ -31,8 +31,8 @@ class FunnelsRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Calculate funnel conversion across a sequence of steps
-     * @param FunnelRequest $body Funnel definition
+     * GetFunnelAnalytics
+     * @param FunnelRequest $body The request body
      * @param FunnelsRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<FunnelAnalytics|null>
      * @throws Exception
@@ -43,8 +43,8 @@ class FunnelsRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Calculate funnel conversion across a sequence of steps
-     * @param FunnelRequest $body Funnel definition
+     * GetFunnelAnalytics
+     * @param FunnelRequest $body The request body
      * @param FunnelsRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
@@ -55,9 +55,6 @@ class FunnelsRequestBuilder extends BaseRequestBuilder
         $requestInfo->httpMethod = HttpMethod::POST;
         if ($requestConfiguration !== null) {
             $requestInfo->addHeaders($requestConfiguration->headers);
-            if ($requestConfiguration->queryParameters !== null) {
-                $requestInfo->setQueryParameters($requestConfiguration->queryParameters);
-            }
             $requestInfo->addRequestOptions(...$requestConfiguration->options);
         }
         $requestInfo->tryAddHeader('Accept', "application/json");

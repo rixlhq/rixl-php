@@ -8,8 +8,8 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Billingv1\SalesLead;
-use Rixl\Sdk\Models\Gateway\ContactSalesBody;
+use Rixl\Sdk\Models\Billing\V1\ContactSalesRequest;
+use Rixl\Sdk\Models\Billing\V1\SalesLead;
 
 /**
  * Builds and executes requests for operations under /billing/v1/contact-sales
@@ -31,24 +31,24 @@ class ContactSalesRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Submits a sales contact request for the organization.
-     * @param ContactSalesBody $body Contact sales request
+     * ContactSales
+     * @param ContactSalesRequest $body The request body
      * @param ContactSalesRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<SalesLead|null>
      * @throws Exception
     */
-    public function post(ContactSalesBody $body, ?ContactSalesRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
+    public function post(ContactSalesRequest $body, ?ContactSalesRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
         return $this->requestAdapter->sendAsync($requestInfo, [SalesLead::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * Submits a sales contact request for the organization.
-     * @param ContactSalesBody $body Contact sales request
+     * ContactSales
+     * @param ContactSalesRequest $body The request body
      * @param ContactSalesRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
-    public function toPostRequestInformation(ContactSalesBody $body, ?ContactSalesRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
+    public function toPostRequestInformation(ContactSalesRequest $body, ?ContactSalesRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
         $requestInfo = new RequestInformation();
         $requestInfo->urlTemplate = $this->urlTemplate;
         $requestInfo->pathParameters = $this->pathParameters;

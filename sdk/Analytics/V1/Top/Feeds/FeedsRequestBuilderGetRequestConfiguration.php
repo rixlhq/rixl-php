@@ -28,13 +28,13 @@ class FeedsRequestBuilderGetRequestConfiguration extends BaseRequestConfiguratio
 
     /**
      * Instantiates a new FeedsRequestBuilderGetQueryParameters.
-     * @param string|null $end End date (inclusive)
-     * @param string|null $limit Maximum number of results
-     * @param string|null $start Start date (inclusive)
+     * @param int|null $limit 
+     * @param string|null $rangeEnd 
+     * @param string|null $rangeStart 
      * @return FeedsRequestBuilderGetQueryParameters
     */
-    public static function createQueryParameters(?string $end = null, ?string $limit = null, ?string $start = null): FeedsRequestBuilderGetQueryParameters {
-        return new FeedsRequestBuilderGetQueryParameters($end, $limit, $start);
+    public static function createQueryParameters(?int $limit = null, ?string $rangeEnd = null, ?string $rangeStart = null): FeedsRequestBuilderGetQueryParameters {
+        return new FeedsRequestBuilderGetQueryParameters($limit, $rangeEnd, $rangeStart);
     }
 
 }

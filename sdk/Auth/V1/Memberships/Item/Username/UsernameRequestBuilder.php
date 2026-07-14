@@ -8,11 +8,10 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Authv1\UpdateOrgUsernameResponse;
-use Rixl\Sdk\Models\Gateway\UpdateOrgUsernameBody;
+use Rixl\Sdk\Models\Auth\V1\UpdateOrgUsernameResponse;
 
 /**
- * Builds and executes requests for operations under /auth/v1/memberships/{orgId}/username
+ * Builds and executes requests for operations under /auth/v1/memberships/{org_-id}/username
 */
 class UsernameRequestBuilder extends BaseRequestBuilder 
 {
@@ -22,7 +21,7 @@ class UsernameRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/memberships/{orgId}/username');
+        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/memberships/{org_%2Did}/username');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
@@ -31,28 +30,28 @@ class UsernameRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Updates the unique username handle of the specified organization.
-     * @param UpdateOrgUsernameBody $body New username
-     * @param UsernameRequestBuilderPutRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * UpdateOrgUsername
+     * @param UsernamePatchRequestBody $body The request body
+     * @param UsernameRequestBuilderPatchRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<UpdateOrgUsernameResponse|null>
      * @throws Exception
     */
-    public function put(UpdateOrgUsernameBody $body, ?UsernameRequestBuilderPutRequestConfiguration $requestConfiguration = null): Promise {
-        $requestInfo = $this->toPutRequestInformation($body, $requestConfiguration);
+    public function patch(UsernamePatchRequestBody $body, ?UsernameRequestBuilderPatchRequestConfiguration $requestConfiguration = null): Promise {
+        $requestInfo = $this->toPatchRequestInformation($body, $requestConfiguration);
         return $this->requestAdapter->sendAsync($requestInfo, [UpdateOrgUsernameResponse::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * Updates the unique username handle of the specified organization.
-     * @param UpdateOrgUsernameBody $body New username
-     * @param UsernameRequestBuilderPutRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * UpdateOrgUsername
+     * @param UsernamePatchRequestBody $body The request body
+     * @param UsernameRequestBuilderPatchRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
-    public function toPutRequestInformation(UpdateOrgUsernameBody $body, ?UsernameRequestBuilderPutRequestConfiguration $requestConfiguration = null): RequestInformation {
+    public function toPatchRequestInformation(UsernamePatchRequestBody $body, ?UsernameRequestBuilderPatchRequestConfiguration $requestConfiguration = null): RequestInformation {
         $requestInfo = new RequestInformation();
         $requestInfo->urlTemplate = $this->urlTemplate;
         $requestInfo->pathParameters = $this->pathParameters;
-        $requestInfo->httpMethod = HttpMethod::PUT;
+        $requestInfo->httpMethod = HttpMethod::PATCH;
         if ($requestConfiguration !== null) {
             $requestInfo->addHeaders($requestConfiguration->headers);
             $requestInfo->addRequestOptions(...$requestConfiguration->options);

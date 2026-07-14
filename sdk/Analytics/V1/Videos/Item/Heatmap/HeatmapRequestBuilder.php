@@ -8,10 +8,10 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Analyticsv1\VideoHeatmap;
+use Rixl\Sdk\Models\Analytics\V1\VideoHeatmap;
 
 /**
- * Builds and executes requests for operations under /analytics/v1/videos/{videoId}/heatmap
+ * Builds and executes requests for operations under /analytics/v1/videos/{video_id}/heatmap
 */
 class HeatmapRequestBuilder extends BaseRequestBuilder 
 {
@@ -21,7 +21,7 @@ class HeatmapRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/analytics/v1/videos/{videoId}/heatmap{?buckets*,end*,start*}');
+        parent::__construct($requestAdapter, [], '{+baseurl}/analytics/v1/videos/{video_id}/heatmap{?buckets*,range%2Eend*,range%2Estart*}');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
@@ -30,7 +30,7 @@ class HeatmapRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns the engagement heatmap for a video
+     * GetVideoHeatmap
      * @param HeatmapRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<VideoHeatmap|null>
      * @throws Exception
@@ -41,7 +41,7 @@ class HeatmapRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns the engagement heatmap for a video
+     * GetVideoHeatmap
      * @param HeatmapRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */

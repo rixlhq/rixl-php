@@ -4,7 +4,7 @@ namespace Rixl\Sdk\Media\V1\Images;
 
 use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
-use Rixl\Sdk\Media\V1\Images\Item\WithImageItemRequestBuilder;
+use Rixl\Sdk\Media\V1\Images\Item\WithImage_ItemRequestBuilder;
 
 /**
  * Builds and executes requests for operations under /media/v1/images
@@ -13,13 +13,13 @@ class ImagesRequestBuilder extends BaseRequestBuilder
 {
     /**
      * Gets an item from the Rixl/Sdk.media.v1.images.item collection
-     * @param string $imageId Image ID
-     * @return WithImageItemRequestBuilder
+     * @param string $image_id Unique identifier of the item
+     * @return WithImage_ItemRequestBuilder
     */
-    public function byImageId(string $imageId): WithImageItemRequestBuilder {
+    public function byImage_id(string $image_id): WithImage_ItemRequestBuilder {
         $urlTplParams = $this->pathParameters;
-        $urlTplParams['imageId'] = $imageId;
-        return new WithImageItemRequestBuilder($urlTplParams, $this->requestAdapter);
+        $urlTplParams['image_id'] = $image_id;
+        return new WithImage_ItemRequestBuilder($urlTplParams, $this->requestAdapter);
     }
 
     /**

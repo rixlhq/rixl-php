@@ -8,8 +8,8 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Billingv1\PlanTaxCalculationResponse;
-use Rixl\Sdk\Models\Gateway\CalculateTaxBody;
+use Rixl\Sdk\Models\Billing\V1\CalculateTaxRequest;
+use Rixl\Sdk\Models\Billing\V1\PlanTaxCalculationResponse;
 
 /**
  * Builds and executes requests for operations under /billing/v1/tax/calculate
@@ -31,24 +31,24 @@ class CalculateRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Calculate tax for a plan purchase
-     * @param CalculateTaxBody $body Tax calculation request
+     * CalculateTax
+     * @param CalculateTaxRequest $body The request body
      * @param CalculateRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<PlanTaxCalculationResponse|null>
      * @throws Exception
     */
-    public function post(CalculateTaxBody $body, ?CalculateRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
+    public function post(CalculateTaxRequest $body, ?CalculateRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
         return $this->requestAdapter->sendAsync($requestInfo, [PlanTaxCalculationResponse::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * Calculate tax for a plan purchase
-     * @param CalculateTaxBody $body Tax calculation request
+     * CalculateTax
+     * @param CalculateTaxRequest $body The request body
      * @param CalculateRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
-    public function toPostRequestInformation(CalculateTaxBody $body, ?CalculateRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
+    public function toPostRequestInformation(CalculateTaxRequest $body, ?CalculateRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
         $requestInfo = new RequestInformation();
         $requestInfo->urlTemplate = $this->urlTemplate;
         $requestInfo->pathParameters = $this->pathParameters;

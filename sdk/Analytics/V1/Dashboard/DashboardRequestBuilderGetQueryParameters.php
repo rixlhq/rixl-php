@@ -3,37 +3,35 @@
 namespace Rixl\Sdk\Analytics\V1\Dashboard;
 
 /**
- * Returns time-bucketed dashboard statistics
+ * GetDashboardStats
 */
 class DashboardRequestBuilderGetQueryParameters 
 {
     /**
-     * @QueryParameter("end_time")
-     * @var string|null $endTime End time (RFC3339)
-    */
-    public ?string $endTime = null;
-    
-    /**
-     * @var string|null $interval Bucket interval (1m, 1h, 1d)
+     * @var string|null $interval 
     */
     public ?string $interval = null;
     
     /**
-     * @QueryParameter("start_time")
-     * @var string|null $startTime Start time (RFC3339)
+     * @var string|null $timeEnd 
     */
-    public ?string $startTime = null;
+    public ?string $timeEnd = null;
+    
+    /**
+     * @var string|null $timeStart 
+    */
+    public ?string $timeStart = null;
     
     /**
      * Instantiates a new DashboardRequestBuilderGetQueryParameters and sets the default values.
-     * @param string|null $end_time End time (RFC3339)
-     * @param string|null $interval Bucket interval (1m, 1h, 1d)
-     * @param string|null $start_time Start time (RFC3339)
+     * @param string|null $interval 
+     * @param string|null $timeEnd 
+     * @param string|null $timeStart 
     */
-    public function __construct(?string $end_time = null, ?string $interval = null, ?string $start_time = null) {
-        $this->endTime = $end_time;
+    public function __construct(?string $interval = null, ?string $timeEnd = null, ?string $timeStart = null) {
         $this->interval = $interval;
-        $this->startTime = $start_time;
+        $this->timeEnd = $timeEnd;
+        $this->timeStart = $timeStart;
     }
 
 }

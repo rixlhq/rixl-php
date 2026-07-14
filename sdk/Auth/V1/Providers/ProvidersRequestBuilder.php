@@ -10,7 +10,7 @@ use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Auth\V1\Providers\Connect\ConnectRequestBuilder;
 use Rixl\Sdk\Auth\V1\Providers\Item\WithProviderItemRequestBuilder;
-use Rixl\Sdk\Models\Authv1\ListProvidersResponse;
+use Rixl\Sdk\Models\Auth\V1\ListProvidersResponse;
 
 /**
  * Builds and executes requests for operations under /auth/v1/providers
@@ -26,7 +26,7 @@ class ProvidersRequestBuilder extends BaseRequestBuilder
     
     /**
      * Gets an item from the Rixl/Sdk.auth.v1.providers.item collection
-     * @param string $provider Provider name
+     * @param string $provider Unique identifier of the item
      * @return WithProviderItemRequestBuilder
     */
     public function byProvider(string $provider): WithProviderItemRequestBuilder {
@@ -41,7 +41,7 @@ class ProvidersRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/providers');
+        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/providers{?userId*}');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
@@ -50,7 +50,7 @@ class ProvidersRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns the list of social providers connected to the authenticated user's account.
+     * ListProviders
      * @param ProvidersRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<ListProvidersResponse|null>
      * @throws Exception
@@ -61,7 +61,7 @@ class ProvidersRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns the list of social providers connected to the authenticated user's account.
+     * ListProviders
      * @param ProvidersRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
@@ -72,6 +72,9 @@ class ProvidersRequestBuilder extends BaseRequestBuilder
         $requestInfo->httpMethod = HttpMethod::GET;
         if ($requestConfiguration !== null) {
             $requestInfo->addHeaders($requestConfiguration->headers);
+            if ($requestConfiguration->queryParameters !== null) {
+                $requestInfo->setQueryParameters($requestConfiguration->queryParameters);
+            }
             $requestInfo->addRequestOptions(...$requestConfiguration->options);
         }
         $requestInfo->tryAddHeader('Accept', "application/json");

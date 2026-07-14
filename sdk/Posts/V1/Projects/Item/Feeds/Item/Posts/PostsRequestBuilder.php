@@ -8,15 +8,14 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Gateway\CreatePostBody;
-use Rixl\Sdk\Models\Postsv1\ListPostsResponse;
-use Rixl\Sdk\Models\Postsv1\Post;
+use Rixl\Sdk\Models\Posts\V1\ListPostsResponse;
+use Rixl\Sdk\Models\Posts\V1\Post;
 use Rixl\Sdk\Posts\V1\Projects\Item\Feeds\Item\Posts\Creators\CreatorsRequestBuilder;
-use Rixl\Sdk\Posts\V1\Projects\Item\Feeds\Item\Posts\Item\WithPostItemRequestBuilder;
+use Rixl\Sdk\Posts\V1\Projects\Item\Feeds\Item\Posts\Item\WithPost_ItemRequestBuilder;
 use Rixl\Sdk\Posts\V1\Projects\Item\Feeds\Item\Posts\Upload\UploadRequestBuilder;
 
 /**
- * Builds and executes requests for operations under /posts/v1/projects/{projectId}/feeds/{feedId}/posts
+ * Builds and executes requests for operations under /posts/v1/projects/{project_id}/feeds/{feed_id}/posts
 */
 class PostsRequestBuilder extends BaseRequestBuilder 
 {
@@ -36,13 +35,13 @@ class PostsRequestBuilder extends BaseRequestBuilder
     
     /**
      * Gets an item from the Rixl/Sdk.posts.v1.projects.item.feeds.item.posts.item collection
-     * @param string $postId Post ID
-     * @return WithPostItemRequestBuilder
+     * @param string $post_id Unique identifier of the item
+     * @return WithPost_ItemRequestBuilder
     */
-    public function byPostId(string $postId): WithPostItemRequestBuilder {
+    public function byPost_id(string $post_id): WithPost_ItemRequestBuilder {
         $urlTplParams = $this->pathParameters;
-        $urlTplParams['postId'] = $postId;
-        return new WithPostItemRequestBuilder($urlTplParams, $this->requestAdapter);
+        $urlTplParams['post_id'] = $post_id;
+        return new WithPost_ItemRequestBuilder($urlTplParams, $this->requestAdapter);
     }
 
     /**
@@ -51,7 +50,7 @@ class PostsRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/posts/v1/projects/{projectId}/feeds/{feedId}/posts{?limit*,offset*}');
+        parent::__construct($requestAdapter, [], '{+baseurl}/posts/v1/projects/{project_id}/feeds/{feed_id}/posts{?creatorId*,pagination%2Elimit*,pagination%2Eoffset*}');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
@@ -60,7 +59,7 @@ class PostsRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * List posts in a feed
+     * ListPosts
      * @param PostsRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<ListPostsResponse|null>
      * @throws Exception
@@ -71,19 +70,19 @@ class PostsRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Create a new post in a feed
-     * @param CreatePostBody $body Post to create
+     * CreatePost
+     * @param PostsPostRequestBody $body The request body
      * @param PostsRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<Post|null>
      * @throws Exception
     */
-    public function post(CreatePostBody $body, ?PostsRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
+    public function post(PostsPostRequestBody $body, ?PostsRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
         return $this->requestAdapter->sendAsync($requestInfo, [Post::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * List posts in a feed
+     * ListPosts
      * @param PostsRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
@@ -104,12 +103,12 @@ class PostsRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Create a new post in a feed
-     * @param CreatePostBody $body Post to create
+     * CreatePost
+     * @param PostsPostRequestBody $body The request body
      * @param PostsRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
-    public function toPostRequestInformation(CreatePostBody $body, ?PostsRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
+    public function toPostRequestInformation(PostsPostRequestBody $body, ?PostsRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
         $requestInfo = new RequestInformation();
         $requestInfo->urlTemplate = $this->urlTemplate;
         $requestInfo->pathParameters = $this->pathParameters;

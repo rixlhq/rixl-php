@@ -4,8 +4,7 @@ namespace Rixl\Sdk\Platform\Clientauth;
 
 use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
-use Rixl\Sdk\Platform\Clientauth\Credentials\CredentialsRequestBuilder;
-use Rixl\Sdk\Platform\Clientauth\Token\TokenRequestBuilder;
+use Rixl\Sdk\Platform\Clientauth\V1\V1RequestBuilder;
 
 /**
  * Builds and executes requests for operations under /platform/clientauth
@@ -13,17 +12,10 @@ use Rixl\Sdk\Platform\Clientauth\Token\TokenRequestBuilder;
 class ClientauthRequestBuilder extends BaseRequestBuilder 
 {
     /**
-     * The credentials property
+     * The v1 property
     */
-    public function credentials(): CredentialsRequestBuilder {
-        return new CredentialsRequestBuilder($this->pathParameters, $this->requestAdapter);
-    }
-    
-    /**
-     * The token property
-    */
-    public function token(): TokenRequestBuilder {
-        return new TokenRequestBuilder($this->pathParameters, $this->requestAdapter);
+    public function v1(): V1RequestBuilder {
+        return new V1RequestBuilder($this->pathParameters, $this->requestAdapter);
     }
     
     /**

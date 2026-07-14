@@ -8,8 +8,8 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Authv1\TokenResponse;
-use Rixl\Sdk\Models\Gateway\ConnectProviderBody;
+use Rixl\Sdk\Models\Auth\V1\ConnectProviderRequest;
+use Rixl\Sdk\Models\Auth\V1\TokenResponse;
 
 /**
  * Builds and executes requests for operations under /auth/v1/providers/connect
@@ -31,24 +31,24 @@ class ConnectRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Connects a social provider to the authenticated user's account using the supplied provider token.
-     * @param ConnectProviderBody $body Provider token
+     * ConnectProvider
+     * @param ConnectProviderRequest $body The request body
      * @param ConnectRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<TokenResponse|null>
      * @throws Exception
     */
-    public function post(ConnectProviderBody $body, ?ConnectRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
+    public function post(ConnectProviderRequest $body, ?ConnectRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
         return $this->requestAdapter->sendAsync($requestInfo, [TokenResponse::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * Connects a social provider to the authenticated user's account using the supplied provider token.
-     * @param ConnectProviderBody $body Provider token
+     * ConnectProvider
+     * @param ConnectProviderRequest $body The request body
      * @param ConnectRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
-    public function toPostRequestInformation(ConnectProviderBody $body, ?ConnectRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
+    public function toPostRequestInformation(ConnectProviderRequest $body, ?ConnectRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
         $requestInfo = new RequestInformation();
         $requestInfo->urlTemplate = $this->urlTemplate;
         $requestInfo->pathParameters = $this->pathParameters;

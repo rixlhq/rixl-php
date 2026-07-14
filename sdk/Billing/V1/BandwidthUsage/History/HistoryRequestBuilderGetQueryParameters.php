@@ -3,21 +3,28 @@
 namespace Rixl\Sdk\Billing\V1\BandwidthUsage\History;
 
 /**
- * Returns the organization's bandwidth usage history
+ * GetBandwidthUsageHistory
 */
 class HistoryRequestBuilderGetQueryParameters 
 {
     /**
-     * @var int|null $days Number of days of history
+     * @var int|null $days 
     */
     public ?int $days = null;
     
     /**
-     * Instantiates a new HistoryRequestBuilderGetQueryParameters and sets the default values.
-     * @param int|null $days Number of days of history
+     * @var string|null $orgId 
     */
-    public function __construct(?int $days = null) {
+    public ?string $orgId = null;
+    
+    /**
+     * Instantiates a new HistoryRequestBuilderGetQueryParameters and sets the default values.
+     * @param int|null $days 
+     * @param string|null $orgId 
+    */
+    public function __construct(?int $days = null, ?string $orgId = null) {
         $this->days = $days;
+        $this->orgId = $orgId;
     }
 
 }

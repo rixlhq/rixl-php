@@ -28,12 +28,13 @@ class PostsRequestBuilderGetRequestConfiguration extends BaseRequestConfiguratio
 
     /**
      * Instantiates a new PostsRequestBuilderGetQueryParameters.
-     * @param int|null $limit Page size
-     * @param int|null $offset Page offset
+     * @param string|null $creatorId 
+     * @param int|null $paginationLimit Maximum number of items to return.
+     * @param int|null $paginationOffset Number of items to skip before collecting the result set.
      * @return PostsRequestBuilderGetQueryParameters
     */
-    public static function createQueryParameters(?int $limit = null, ?int $offset = null): PostsRequestBuilderGetQueryParameters {
-        return new PostsRequestBuilderGetQueryParameters($limit, $offset);
+    public static function createQueryParameters(?string $creatorId = null, ?int $paginationLimit = null, ?int $paginationOffset = null): PostsRequestBuilderGetQueryParameters {
+        return new PostsRequestBuilderGetQueryParameters($creatorId, $paginationLimit, $paginationOffset);
     }
 
 }

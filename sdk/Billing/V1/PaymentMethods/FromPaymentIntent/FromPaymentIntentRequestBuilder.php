@@ -8,7 +8,7 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Billingv1\PaymentMethodIdResponse;
+use Rixl\Sdk\Models\Billing\V1\PaymentMethodIdResponse;
 
 /**
  * Builds and executes requests for operations under /billing/v1/payment-methods/from-payment-intent
@@ -21,7 +21,7 @@ class FromPaymentIntentRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/billing/v1/payment-methods/from-payment-intent?payment_intent_id={payment_intent_id}');
+        parent::__construct($requestAdapter, [], '{+baseurl}/billing/v1/payment-methods/from-payment-intent{?paymentIntentId*}');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
@@ -30,7 +30,7 @@ class FromPaymentIntentRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns the payment method ID associated with a payment intent
+     * GetPaymentMethodFromPaymentIntent
      * @param FromPaymentIntentRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<PaymentMethodIdResponse|null>
      * @throws Exception
@@ -41,7 +41,7 @@ class FromPaymentIntentRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns the payment method ID associated with a payment intent
+     * GetPaymentMethodFromPaymentIntent
      * @param FromPaymentIntentRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */

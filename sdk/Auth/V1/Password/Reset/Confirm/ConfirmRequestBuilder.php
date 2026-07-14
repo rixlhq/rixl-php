@@ -8,7 +8,8 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Gateway\ResetPasswordBody;
+use Rixl\Sdk\Models\Auth\V1\ResetPasswordRequest;
+use Rixl\Sdk\Models\Google\Protobuf\EscapedEmpty;
 
 /**
  * Builds and executes requests for operations under /auth/v1/password/reset/confirm
@@ -30,24 +31,24 @@ class ConfirmRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Resets the user's password using a valid reset token and the supplied new password.
-     * @param ResetPasswordBody $body Reset token and new password
+     * ResetPassword
+     * @param ResetPasswordRequest $body The request body
      * @param ConfirmRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
-     * @return Promise<void|null>
+     * @return Promise<EscapedEmpty|null>
      * @throws Exception
     */
-    public function post(ResetPasswordBody $body, ?ConfirmRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
+    public function post(ResetPasswordRequest $body, ?ConfirmRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
-        return $this->requestAdapter->sendNoContentAsync($requestInfo, null);
+        return $this->requestAdapter->sendAsync($requestInfo, [EscapedEmpty::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * Resets the user's password using a valid reset token and the supplied new password.
-     * @param ResetPasswordBody $body Reset token and new password
+     * ResetPassword
+     * @param ResetPasswordRequest $body The request body
      * @param ConfirmRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
-    public function toPostRequestInformation(ResetPasswordBody $body, ?ConfirmRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
+    public function toPostRequestInformation(ResetPasswordRequest $body, ?ConfirmRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
         $requestInfo = new RequestInformation();
         $requestInfo->urlTemplate = $this->urlTemplate;
         $requestInfo->pathParameters = $this->pathParameters;
@@ -56,6 +57,7 @@ class ConfirmRequestBuilder extends BaseRequestBuilder
             $requestInfo->addHeaders($requestConfiguration->headers);
             $requestInfo->addRequestOptions(...$requestConfiguration->options);
         }
+        $requestInfo->tryAddHeader('Accept', "application/json");
         $requestInfo->setContentFromParsable($this->requestAdapter, "application/json", $body);
         return $requestInfo;
     }

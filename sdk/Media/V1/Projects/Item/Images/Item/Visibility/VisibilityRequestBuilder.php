@@ -8,11 +8,10 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Gateway\UpdateVisibilityBody;
-use Rixl\Sdk\Models\Imagesv1\GetImageResponse;
+use Rixl\Sdk\Models\Images\V1\GetImageResponse;
 
 /**
- * Builds and executes requests for operations under /media/v1/projects/{projectId}/images/{imageId}/visibility
+ * Builds and executes requests for operations under /media/v1/projects/{project_id}/images/{image_id}/visibility
 */
 class VisibilityRequestBuilder extends BaseRequestBuilder 
 {
@@ -22,7 +21,7 @@ class VisibilityRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/media/v1/projects/{projectId}/images/{imageId}/visibility');
+        parent::__construct($requestAdapter, [], '{+baseurl}/media/v1/projects/{project_id}/images/{image_id}/visibility');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
@@ -31,28 +30,28 @@ class VisibilityRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Updates an image's visibility (public, unlisted, or private). Requires project access.
-     * @param UpdateVisibilityBody $body Visibility
-     * @param VisibilityRequestBuilderPutRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * UpdateImageVisibility
+     * @param VisibilityPatchRequestBody $body The request body
+     * @param VisibilityRequestBuilderPatchRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<GetImageResponse|null>
      * @throws Exception
     */
-    public function put(UpdateVisibilityBody $body, ?VisibilityRequestBuilderPutRequestConfiguration $requestConfiguration = null): Promise {
-        $requestInfo = $this->toPutRequestInformation($body, $requestConfiguration);
+    public function patch(VisibilityPatchRequestBody $body, ?VisibilityRequestBuilderPatchRequestConfiguration $requestConfiguration = null): Promise {
+        $requestInfo = $this->toPatchRequestInformation($body, $requestConfiguration);
         return $this->requestAdapter->sendAsync($requestInfo, [GetImageResponse::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * Updates an image's visibility (public, unlisted, or private). Requires project access.
-     * @param UpdateVisibilityBody $body Visibility
-     * @param VisibilityRequestBuilderPutRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * UpdateImageVisibility
+     * @param VisibilityPatchRequestBody $body The request body
+     * @param VisibilityRequestBuilderPatchRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
-    public function toPutRequestInformation(UpdateVisibilityBody $body, ?VisibilityRequestBuilderPutRequestConfiguration $requestConfiguration = null): RequestInformation {
+    public function toPatchRequestInformation(VisibilityPatchRequestBody $body, ?VisibilityRequestBuilderPatchRequestConfiguration $requestConfiguration = null): RequestInformation {
         $requestInfo = new RequestInformation();
         $requestInfo->urlTemplate = $this->urlTemplate;
         $requestInfo->pathParameters = $this->pathParameters;
-        $requestInfo->httpMethod = HttpMethod::PUT;
+        $requestInfo->httpMethod = HttpMethod::PATCH;
         if ($requestConfiguration !== null) {
             $requestInfo->addHeaders($requestConfiguration->headers);
             $requestInfo->addRequestOptions(...$requestConfiguration->options);

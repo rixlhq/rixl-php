@@ -8,8 +8,8 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Authv1\TokenResponse;
-use Rixl\Sdk\Models\Gateway\PasskeyLoginFinishBody;
+use Rixl\Sdk\Models\Auth\V1\PasskeyLoginFinishRequest;
+use Rixl\Sdk\Models\Auth\V1\TokenResponse;
 
 /**
  * Builds and executes requests for operations under /auth/v1/passkey/login/finish
@@ -31,24 +31,24 @@ class FinishRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Completes a passkey login by verifying the signed WebAuthn credential against the session and returning authentication tokens.
-     * @param PasskeyLoginFinishBody $body session_id and WebAuthn credential
+     * PasskeyLoginFinish
+     * @param PasskeyLoginFinishRequest $body The request body
      * @param FinishRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<TokenResponse|null>
      * @throws Exception
     */
-    public function post(PasskeyLoginFinishBody $body, ?FinishRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
+    public function post(PasskeyLoginFinishRequest $body, ?FinishRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
         return $this->requestAdapter->sendAsync($requestInfo, [TokenResponse::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * Completes a passkey login by verifying the signed WebAuthn credential against the session and returning authentication tokens.
-     * @param PasskeyLoginFinishBody $body session_id and WebAuthn credential
+     * PasskeyLoginFinish
+     * @param PasskeyLoginFinishRequest $body The request body
      * @param FinishRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
-    public function toPostRequestInformation(PasskeyLoginFinishBody $body, ?FinishRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
+    public function toPostRequestInformation(PasskeyLoginFinishRequest $body, ?FinishRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
         $requestInfo = new RequestInformation();
         $requestInfo->urlTemplate = $this->urlTemplate;
         $requestInfo->pathParameters = $this->pathParameters;

@@ -8,31 +8,23 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Auth\V1\Memberships\Item\Members\Invite\InviteRequestBuilder;
-use Rixl\Sdk\Auth\V1\Memberships\Item\Members\Item\WithUserItemRequestBuilder;
-use Rixl\Sdk\Models\Authv1\ListOrgMembersResponse;
+use Rixl\Sdk\Auth\V1\Memberships\Item\Members\Item\Member_ItemRequestBuilder;
+use Rixl\Sdk\Models\Auth\V1\ListOrgMembersResponse;
 
 /**
- * Builds and executes requests for operations under /auth/v1/memberships/{orgId}/members
+ * Builds and executes requests for operations under /auth/v1/memberships/{org_-id}/members
 */
 class MembersRequestBuilder extends BaseRequestBuilder 
 {
     /**
-     * The invite property
-    */
-    public function invite(): InviteRequestBuilder {
-        return new InviteRequestBuilder($this->pathParameters, $this->requestAdapter);
-    }
-    
-    /**
      * Gets an item from the Rixl/Sdk.auth.v1.memberships.item.members.item collection
-     * @param string $userId Member user ID
-     * @return WithUserItemRequestBuilder
+     * @param string $member_Id Unique identifier of the item
+     * @return Member_ItemRequestBuilder
     */
-    public function byUserId(string $userId): WithUserItemRequestBuilder {
+    public function byMember_Id(string $member_Id): Member_ItemRequestBuilder {
         $urlTplParams = $this->pathParameters;
-        $urlTplParams['userId'] = $userId;
-        return new WithUserItemRequestBuilder($urlTplParams, $this->requestAdapter);
+        $urlTplParams['member_%2Did'] = $member_Id;
+        return new Member_ItemRequestBuilder($urlTplParams, $this->requestAdapter);
     }
 
     /**
@@ -41,7 +33,7 @@ class MembersRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/memberships/{orgId}/members{?limit*,offset*}');
+        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/memberships/{org_%2Did}/members{?limit*,offset*,user%2EuserId*}');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
@@ -50,7 +42,7 @@ class MembersRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns a paginated list of the members belonging to the specified organization.
+     * ListOrganizationMembers
      * @param MembersRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<ListOrgMembersResponse|null>
      * @throws Exception
@@ -61,7 +53,7 @@ class MembersRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns a paginated list of the members belonging to the specified organization.
+     * ListOrganizationMembers
      * @param MembersRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */

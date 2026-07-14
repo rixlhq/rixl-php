@@ -8,8 +8,8 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Authv1\RegisterResponse;
-use Rixl\Sdk\Models\Gateway\RegisterBody;
+use Rixl\Sdk\Models\Auth\V1\RegisterRequest;
+use Rixl\Sdk\Models\Auth\V1\RegisterResponse;
 
 /**
  * Builds and executes requests for operations under /auth/v1/register
@@ -31,24 +31,24 @@ class RegisterRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Registers a new user account from an email and password and starts email verification.
-     * @param RegisterBody $body Credentials
+     * Register
+     * @param RegisterRequest $body The request body
      * @param RegisterRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<RegisterResponse|null>
      * @throws Exception
     */
-    public function post(RegisterBody $body, ?RegisterRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
+    public function post(RegisterRequest $body, ?RegisterRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
         return $this->requestAdapter->sendAsync($requestInfo, [RegisterResponse::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * Registers a new user account from an email and password and starts email verification.
-     * @param RegisterBody $body Credentials
+     * Register
+     * @param RegisterRequest $body The request body
      * @param RegisterRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
-    public function toPostRequestInformation(RegisterBody $body, ?RegisterRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
+    public function toPostRequestInformation(RegisterRequest $body, ?RegisterRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
         $requestInfo = new RequestInformation();
         $requestInfo->urlTemplate = $this->urlTemplate;
         $requestInfo->pathParameters = $this->pathParameters;

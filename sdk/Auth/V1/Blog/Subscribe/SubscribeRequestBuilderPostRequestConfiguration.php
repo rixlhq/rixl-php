@@ -11,12 +11,28 @@ use Microsoft\Kiota\Abstractions\RequestOption;
 class SubscribeRequestBuilderPostRequestConfiguration extends BaseRequestConfiguration 
 {
     /**
+     * @var SubscribeRequestBuilderPostQueryParameters|null $queryParameters Request query parameters
+    */
+    public ?SubscribeRequestBuilderPostQueryParameters $queryParameters = null;
+    
+    /**
      * Instantiates a new SubscribeRequestBuilderPostRequestConfiguration and sets the default values.
      * @param array<string, array<string>|string>|null $headers Request headers
      * @param array<RequestOption>|null $options Request options
+     * @param SubscribeRequestBuilderPostQueryParameters|null $queryParameters Request query parameters
     */
-    public function __construct(?array $headers = null, ?array $options = null) {
+    public function __construct(?array $headers = null, ?array $options = null, ?SubscribeRequestBuilderPostQueryParameters $queryParameters = null) {
         parent::__construct($headers ?? [], $options ?? []);
+        $this->queryParameters = $queryParameters;
+    }
+
+    /**
+     * Instantiates a new SubscribeRequestBuilderPostQueryParameters.
+     * @param string|null $userId 
+     * @return SubscribeRequestBuilderPostQueryParameters
+    */
+    public static function createQueryParameters(?string $userId = null): SubscribeRequestBuilderPostQueryParameters {
+        return new SubscribeRequestBuilderPostQueryParameters($userId);
     }
 
 }

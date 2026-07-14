@@ -2,29 +2,33 @@
 
 namespace Rixl\Sdk\Analytics\V1\Videos\Item\Stats;
 
+use Microsoft\Kiota\Abstractions\QueryParameter;
+
 /**
- * Returns aggregated statistics for a video over a date range
+ * GetVideoStats
 */
 class StatsRequestBuilderGetQueryParameters 
 {
     /**
-     * @var string|null $end End date (inclusive)
+     * @QueryParameter("range%2Eend")
+     * @var string|null $rangeEnd 
     */
-    public ?string $end = null;
+    public ?string $rangeEnd = null;
     
     /**
-     * @var string|null $start Start date (inclusive)
+     * @QueryParameter("range%2Estart")
+     * @var string|null $rangeStart 
     */
-    public ?string $start = null;
+    public ?string $rangeStart = null;
     
     /**
      * Instantiates a new StatsRequestBuilderGetQueryParameters and sets the default values.
-     * @param string|null $end End date (inclusive)
-     * @param string|null $start Start date (inclusive)
+     * @param string|null $rangeEnd 
+     * @param string|null $rangeStart 
     */
-    public function __construct(?string $end = null, ?string $start = null) {
-        $this->end = $end;
-        $this->start = $start;
+    public function __construct(?string $rangeEnd = null, ?string $rangeStart = null) {
+        $this->rangeEnd = $rangeEnd;
+        $this->rangeStart = $rangeStart;
     }
 
 }

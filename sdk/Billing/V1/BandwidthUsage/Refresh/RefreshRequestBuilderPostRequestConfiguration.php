@@ -11,12 +11,28 @@ use Microsoft\Kiota\Abstractions\RequestOption;
 class RefreshRequestBuilderPostRequestConfiguration extends BaseRequestConfiguration 
 {
     /**
+     * @var RefreshRequestBuilderPostQueryParameters|null $queryParameters Request query parameters
+    */
+    public ?RefreshRequestBuilderPostQueryParameters $queryParameters = null;
+    
+    /**
      * Instantiates a new RefreshRequestBuilderPostRequestConfiguration and sets the default values.
      * @param array<string, array<string>|string>|null $headers Request headers
      * @param array<RequestOption>|null $options Request options
+     * @param RefreshRequestBuilderPostQueryParameters|null $queryParameters Request query parameters
     */
-    public function __construct(?array $headers = null, ?array $options = null) {
+    public function __construct(?array $headers = null, ?array $options = null, ?RefreshRequestBuilderPostQueryParameters $queryParameters = null) {
         parent::__construct($headers ?? [], $options ?? []);
+        $this->queryParameters = $queryParameters;
+    }
+
+    /**
+     * Instantiates a new RefreshRequestBuilderPostQueryParameters.
+     * @param string|null $orgId 
+     * @return RefreshRequestBuilderPostQueryParameters
+    */
+    public static function createQueryParameters(?string $orgId = null): RefreshRequestBuilderPostQueryParameters {
+        return new RefreshRequestBuilderPostQueryParameters($orgId);
     }
 
 }

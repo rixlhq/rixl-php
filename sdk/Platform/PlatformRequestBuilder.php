@@ -4,7 +4,6 @@ namespace Rixl\Sdk\Platform;
 
 use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
-use Rixl\Sdk\Platform\ApiKeys\ApiKeysRequestBuilder;
 use Rixl\Sdk\Platform\Auth\AuthRequestBuilder;
 use Rixl\Sdk\Platform\Clientauth\ClientauthRequestBuilder;
 
@@ -13,13 +12,6 @@ use Rixl\Sdk\Platform\Clientauth\ClientauthRequestBuilder;
 */
 class PlatformRequestBuilder extends BaseRequestBuilder 
 {
-    /**
-     * The apiKeys property
-    */
-    public function apiKeys(): ApiKeysRequestBuilder {
-        return new ApiKeysRequestBuilder($this->pathParameters, $this->requestAdapter);
-    }
-    
     /**
      * The auth property
     */

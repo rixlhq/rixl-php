@@ -8,8 +8,8 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Billingv1\BillingAddress;
-use Rixl\Sdk\Models\Gateway\BillingAddressBody;
+use Rixl\Sdk\Models\Billing\V1\BillingAddress;
+use Rixl\Sdk\Models\Billing\V1\UpsertBillingAddressRequest;
 
 /**
  * Builds and executes requests for operations under /billing/v1/address
@@ -22,7 +22,7 @@ class AddressRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/billing/v1/address');
+        parent::__construct($requestAdapter, [], '{+baseurl}/billing/v1/address{?orgId*}');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
@@ -31,7 +31,7 @@ class AddressRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns the organization's billing address
+     * GetBillingAddress
      * @param AddressRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<BillingAddress|null>
      * @throws Exception
@@ -42,19 +42,19 @@ class AddressRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Create or update the organization's billing address
-     * @param BillingAddressBody $body Billing address
-     * @param AddressRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * UpsertBillingAddress
+     * @param UpsertBillingAddressRequest $body The request body
+     * @param AddressRequestBuilderPutRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<BillingAddress|null>
      * @throws Exception
     */
-    public function post(BillingAddressBody $body, ?AddressRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
-        $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
+    public function put(UpsertBillingAddressRequest $body, ?AddressRequestBuilderPutRequestConfiguration $requestConfiguration = null): Promise {
+        $requestInfo = $this->toPutRequestInformation($body, $requestConfiguration);
         return $this->requestAdapter->sendAsync($requestInfo, [BillingAddress::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * Returns the organization's billing address
+     * GetBillingAddress
      * @param AddressRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
@@ -65,6 +65,9 @@ class AddressRequestBuilder extends BaseRequestBuilder
         $requestInfo->httpMethod = HttpMethod::GET;
         if ($requestConfiguration !== null) {
             $requestInfo->addHeaders($requestConfiguration->headers);
+            if ($requestConfiguration->queryParameters !== null) {
+                $requestInfo->setQueryParameters($requestConfiguration->queryParameters);
+            }
             $requestInfo->addRequestOptions(...$requestConfiguration->options);
         }
         $requestInfo->tryAddHeader('Accept', "application/json");
@@ -72,16 +75,16 @@ class AddressRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Create or update the organization's billing address
-     * @param BillingAddressBody $body Billing address
-     * @param AddressRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * UpsertBillingAddress
+     * @param UpsertBillingAddressRequest $body The request body
+     * @param AddressRequestBuilderPutRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
-    public function toPostRequestInformation(BillingAddressBody $body, ?AddressRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
+    public function toPutRequestInformation(UpsertBillingAddressRequest $body, ?AddressRequestBuilderPutRequestConfiguration $requestConfiguration = null): RequestInformation {
         $requestInfo = new RequestInformation();
         $requestInfo->urlTemplate = $this->urlTemplate;
         $requestInfo->pathParameters = $this->pathParameters;
-        $requestInfo->httpMethod = HttpMethod::POST;
+        $requestInfo->httpMethod = HttpMethod::PUT;
         if ($requestConfiguration !== null) {
             $requestInfo->addHeaders($requestConfiguration->headers);
             $requestInfo->addRequestOptions(...$requestConfiguration->options);

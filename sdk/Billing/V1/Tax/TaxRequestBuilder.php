@@ -5,6 +5,7 @@ namespace Rixl\Sdk\Billing\V1\Tax;
 use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Rixl\Sdk\Billing\V1\Tax\Calculate\CalculateRequestBuilder;
+use Rixl\Sdk\Billing\V1\Tax\CalculateGeneric\CalculateGenericRequestBuilder;
 
 /**
  * Builds and executes requests for operations under /billing/v1/tax
@@ -16,6 +17,13 @@ class TaxRequestBuilder extends BaseRequestBuilder
     */
     public function calculate(): CalculateRequestBuilder {
         return new CalculateRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
+     * The calculateGeneric property
+    */
+    public function calculateGeneric(): CalculateGenericRequestBuilder {
+        return new CalculateGenericRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
     
     /**

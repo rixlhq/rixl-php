@@ -8,11 +8,10 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Gateway\CompleteUploadBody;
-use Rixl\Sdk\Models\Postsv1\Post;
+use Rixl\Sdk\Models\Posts\V1\Post;
 
 /**
- * Builds and executes requests for operations under /posts/v1/projects/{projectId}/feeds/{feedId}/posts/upload/complete
+ * Builds and executes requests for operations under /posts/v1/projects/{project_id}/feeds/{feed_id}/posts/upload/complete
 */
 class CompleteRequestBuilder extends BaseRequestBuilder 
 {
@@ -22,7 +21,7 @@ class CompleteRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/posts/v1/projects/{projectId}/feeds/{feedId}/posts/upload/complete');
+        parent::__construct($requestAdapter, [], '{+baseurl}/posts/v1/projects/{project_id}/feeds/{feed_id}/posts/upload/complete');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
@@ -31,24 +30,24 @@ class CompleteRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Finalize a media upload and publish the post
-     * @param CompleteUploadBody $body Upload completion request
+     * CompletePostUpload
+     * @param CompletePostRequestBody $body The request body
      * @param CompleteRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<Post|null>
      * @throws Exception
     */
-    public function post(CompleteUploadBody $body, ?CompleteRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
+    public function post(CompletePostRequestBody $body, ?CompleteRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
         return $this->requestAdapter->sendAsync($requestInfo, [Post::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * Finalize a media upload and publish the post
-     * @param CompleteUploadBody $body Upload completion request
+     * CompletePostUpload
+     * @param CompletePostRequestBody $body The request body
      * @param CompleteRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
-    public function toPostRequestInformation(CompleteUploadBody $body, ?CompleteRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
+    public function toPostRequestInformation(CompletePostRequestBody $body, ?CompleteRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
         $requestInfo = new RequestInformation();
         $requestInfo->urlTemplate = $this->urlTemplate;
         $requestInfo->pathParameters = $this->pathParameters;

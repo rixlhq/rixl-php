@@ -8,8 +8,8 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Authv1\ResendVerificationResponse;
-use Rixl\Sdk\Models\Gateway\EmailBody;
+use Rixl\Sdk\Models\Auth\V1\ResendVerificationRequest;
+use Rixl\Sdk\Models\Auth\V1\ResendVerificationResponse;
 
 /**
  * Builds and executes requests for operations under /auth/v1/email/verify/resend
@@ -31,24 +31,24 @@ class ResendRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Resends the email verification message to the given email address.
-     * @param EmailBody $body Email address
+     * ResendVerification
+     * @param ResendVerificationRequest $body The request body
      * @param ResendRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<ResendVerificationResponse|null>
      * @throws Exception
     */
-    public function post(EmailBody $body, ?ResendRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
+    public function post(ResendVerificationRequest $body, ?ResendRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
         return $this->requestAdapter->sendAsync($requestInfo, [ResendVerificationResponse::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * Resends the email verification message to the given email address.
-     * @param EmailBody $body Email address
+     * ResendVerification
+     * @param ResendVerificationRequest $body The request body
      * @param ResendRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
-    public function toPostRequestInformation(EmailBody $body, ?ResendRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
+    public function toPostRequestInformation(ResendVerificationRequest $body, ?ResendRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
         $requestInfo = new RequestInformation();
         $requestInfo->urlTemplate = $this->urlTemplate;
         $requestInfo->pathParameters = $this->pathParameters;

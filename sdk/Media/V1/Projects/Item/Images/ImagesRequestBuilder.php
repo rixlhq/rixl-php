@@ -8,12 +8,12 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Media\V1\Projects\Item\Images\Item\WithImageItemRequestBuilder;
+use Rixl\Sdk\Media\V1\Projects\Item\Images\Item\WithImage_ItemRequestBuilder;
 use Rixl\Sdk\Media\V1\Projects\Item\Images\Upload\UploadRequestBuilder;
-use Rixl\Sdk\Models\Imagesv1\ListImagesResponse;
+use Rixl\Sdk\Models\Images\V1\ListImagesResponse;
 
 /**
- * Builds and executes requests for operations under /media/v1/projects/{projectId}/images
+ * Builds and executes requests for operations under /media/v1/projects/{project_id}/images
 */
 class ImagesRequestBuilder extends BaseRequestBuilder 
 {
@@ -26,13 +26,13 @@ class ImagesRequestBuilder extends BaseRequestBuilder
     
     /**
      * Gets an item from the Rixl/Sdk.media.v1.projects.item.images.item collection
-     * @param string $imageId Image ID
-     * @return WithImageItemRequestBuilder
+     * @param string $image_id Unique identifier of the item
+     * @return WithImage_ItemRequestBuilder
     */
-    public function byImageId(string $imageId): WithImageItemRequestBuilder {
+    public function byImage_id(string $image_id): WithImage_ItemRequestBuilder {
         $urlTplParams = $this->pathParameters;
-        $urlTplParams['imageId'] = $imageId;
-        return new WithImageItemRequestBuilder($urlTplParams, $this->requestAdapter);
+        $urlTplParams['image_id'] = $image_id;
+        return new WithImage_ItemRequestBuilder($urlTplParams, $this->requestAdapter);
     }
 
     /**
@@ -41,7 +41,7 @@ class ImagesRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/media/v1/projects/{projectId}/images');
+        parent::__construct($requestAdapter, [], '{+baseurl}/media/v1/projects/{project_id}/images{?pagination%2Elimit*,pagination%2Eoffset*,sortDirection*,sortField*}');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
@@ -50,7 +50,7 @@ class ImagesRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns the images in a project.
+     * ListImages
      * @param ImagesRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<ListImagesResponse|null>
      * @throws Exception
@@ -61,7 +61,7 @@ class ImagesRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns the images in a project.
+     * ListImages
      * @param ImagesRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
@@ -72,6 +72,9 @@ class ImagesRequestBuilder extends BaseRequestBuilder
         $requestInfo->httpMethod = HttpMethod::GET;
         if ($requestConfiguration !== null) {
             $requestInfo->addHeaders($requestConfiguration->headers);
+            if ($requestConfiguration->queryParameters !== null) {
+                $requestInfo->setQueryParameters($requestConfiguration->queryParameters);
+            }
             $requestInfo->addRequestOptions(...$requestConfiguration->options);
         }
         $requestInfo->tryAddHeader('Accept', "application/json");

@@ -13,7 +13,7 @@ use Rixl\Sdk\Auth\V1\Users\Current\Name\NameRequestBuilder;
 use Rixl\Sdk\Auth\V1\Users\Current\Passkeys\PasskeysRequestBuilder;
 use Rixl\Sdk\Auth\V1\Users\Current\Totp\TotpRequestBuilder;
 use Rixl\Sdk\Auth\V1\Users\Current\Username\UsernameRequestBuilder;
-use Rixl\Sdk\Models\Authv1\UserInfo;
+use Rixl\Sdk\Models\Auth\V1\GetUserResponse;
 
 /**
  * Builds and executes requests for operations under /auth/v1/users/current
@@ -61,7 +61,7 @@ class CurrentRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/users/current');
+        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/users/current{?userId*}');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
@@ -70,18 +70,18 @@ class CurrentRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns the profile information of the authenticated user.
+     * GetUser
      * @param CurrentRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
-     * @return Promise<UserInfo|null>
+     * @return Promise<GetUserResponse|null>
      * @throws Exception
     */
     public function get(?CurrentRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [UserInfo::class, 'createFromDiscriminatorValue'], null);
+        return $this->requestAdapter->sendAsync($requestInfo, [GetUserResponse::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * Returns the profile information of the authenticated user.
+     * GetUser
      * @param CurrentRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
@@ -92,6 +92,9 @@ class CurrentRequestBuilder extends BaseRequestBuilder
         $requestInfo->httpMethod = HttpMethod::GET;
         if ($requestConfiguration !== null) {
             $requestInfo->addHeaders($requestConfiguration->headers);
+            if ($requestConfiguration->queryParameters !== null) {
+                $requestInfo->setQueryParameters($requestConfiguration->queryParameters);
+            }
             $requestInfo->addRequestOptions(...$requestConfiguration->options);
         }
         $requestInfo->tryAddHeader('Accept', "application/json");

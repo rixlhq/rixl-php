@@ -2,29 +2,39 @@
 
 namespace Rixl\Sdk\Auth\V1\Memberships\Item\Members;
 
+use Microsoft\Kiota\Abstractions\QueryParameter;
+
 /**
- * Returns a paginated list of the members belonging to the specified organization.
+ * ListOrganizationMembers
 */
 class MembersRequestBuilderGetQueryParameters 
 {
     /**
-     * @var int|null $limit Limit
+     * @var int|null $limit 
     */
     public ?int $limit = null;
     
     /**
-     * @var int|null $offset Offset
+     * @var int|null $offset 
     */
     public ?int $offset = null;
     
     /**
-     * Instantiates a new MembersRequestBuilderGetQueryParameters and sets the default values.
-     * @param int|null $limit Limit
-     * @param int|null $offset Offset
+     * @QueryParameter("user%2EuserId")
+     * @var string|null $userUserId 
     */
-    public function __construct(?int $limit = null, ?int $offset = null) {
+    public ?string $userUserId = null;
+    
+    /**
+     * Instantiates a new MembersRequestBuilderGetQueryParameters and sets the default values.
+     * @param int|null $limit 
+     * @param int|null $offset 
+     * @param string|null $userUserId 
+    */
+    public function __construct(?int $limit = null, ?int $offset = null, ?string $userUserId = null) {
         $this->limit = $limit;
         $this->offset = $offset;
+        $this->userUserId = $userUserId;
     }
 
 }

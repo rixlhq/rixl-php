@@ -8,7 +8,7 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Analyticsv1\DashboardStatsResponse;
+use Rixl\Sdk\Models\Analytics\V1\DashboardStatsResponse;
 
 /**
  * Builds and executes requests for operations under /analytics/v1/dashboard
@@ -21,7 +21,7 @@ class DashboardRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/analytics/v1/dashboard?end_time={end_time}&interval={interval}&start_time={start_time}');
+        parent::__construct($requestAdapter, [], '{+baseurl}/analytics/v1/dashboard?timeEnd={timeEnd}&timeStart={timeStart}{&interval*}');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
@@ -30,7 +30,7 @@ class DashboardRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns time-bucketed dashboard statistics
+     * GetDashboardStats
      * @param DashboardRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<DashboardStatsResponse|null>
      * @throws Exception
@@ -41,7 +41,7 @@ class DashboardRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns time-bucketed dashboard statistics
+     * GetDashboardStats
      * @param DashboardRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */

@@ -8,7 +8,8 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Gateway\UnsubscribeBlogByEmailBody;
+use Rixl\Sdk\Models\Auth\V1\UnsubscribeBlogByEmailRequest;
+use Rixl\Sdk\Models\Google\Protobuf\EscapedEmpty;
 
 /**
  * Builds and executes requests for operations under /auth/v1/blog/unsubscribe/email
@@ -30,24 +31,24 @@ class EmailRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Unsubscribes a recipient using the user id and email from an email-footer link. No authentication required.
-     * @param UnsubscribeBlogByEmailBody $body Unsubscribe request
+     * UnsubscribeBlogByEmail
+     * @param UnsubscribeBlogByEmailRequest $body The request body
      * @param EmailRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
-     * @return Promise<void|null>
+     * @return Promise<EscapedEmpty|null>
      * @throws Exception
     */
-    public function post(UnsubscribeBlogByEmailBody $body, ?EmailRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
+    public function post(UnsubscribeBlogByEmailRequest $body, ?EmailRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
-        return $this->requestAdapter->sendNoContentAsync($requestInfo, null);
+        return $this->requestAdapter->sendAsync($requestInfo, [EscapedEmpty::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * Unsubscribes a recipient using the user id and email from an email-footer link. No authentication required.
-     * @param UnsubscribeBlogByEmailBody $body Unsubscribe request
+     * UnsubscribeBlogByEmail
+     * @param UnsubscribeBlogByEmailRequest $body The request body
      * @param EmailRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
-    public function toPostRequestInformation(UnsubscribeBlogByEmailBody $body, ?EmailRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
+    public function toPostRequestInformation(UnsubscribeBlogByEmailRequest $body, ?EmailRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
         $requestInfo = new RequestInformation();
         $requestInfo->urlTemplate = $this->urlTemplate;
         $requestInfo->pathParameters = $this->pathParameters;
@@ -56,6 +57,7 @@ class EmailRequestBuilder extends BaseRequestBuilder
             $requestInfo->addHeaders($requestConfiguration->headers);
             $requestInfo->addRequestOptions(...$requestConfiguration->options);
         }
+        $requestInfo->tryAddHeader('Accept', "application/json");
         $requestInfo->setContentFromParsable($this->requestAdapter, "application/json", $body);
         return $requestInfo;
     }

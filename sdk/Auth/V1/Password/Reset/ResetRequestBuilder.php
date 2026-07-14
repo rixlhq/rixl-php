@@ -9,7 +9,8 @@ use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Auth\V1\Password\Reset\Confirm\ConfirmRequestBuilder;
-use Rixl\Sdk\Models\Gateway\EmailBody;
+use Rixl\Sdk\Models\Auth\V1\SendPasswordResetRequest;
+use Rixl\Sdk\Models\Google\Protobuf\EscapedEmpty;
 
 /**
  * Builds and executes requests for operations under /auth/v1/password/reset
@@ -38,24 +39,24 @@ class ResetRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Sends a password reset email containing a reset token to the given email address.
-     * @param EmailBody $body Email address
+     * SendPasswordReset
+     * @param SendPasswordResetRequest $body The request body
      * @param ResetRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
-     * @return Promise<void|null>
+     * @return Promise<EscapedEmpty|null>
      * @throws Exception
     */
-    public function post(EmailBody $body, ?ResetRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
+    public function post(SendPasswordResetRequest $body, ?ResetRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
-        return $this->requestAdapter->sendNoContentAsync($requestInfo, null);
+        return $this->requestAdapter->sendAsync($requestInfo, [EscapedEmpty::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * Sends a password reset email containing a reset token to the given email address.
-     * @param EmailBody $body Email address
+     * SendPasswordReset
+     * @param SendPasswordResetRequest $body The request body
      * @param ResetRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
-    public function toPostRequestInformation(EmailBody $body, ?ResetRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
+    public function toPostRequestInformation(SendPasswordResetRequest $body, ?ResetRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
         $requestInfo = new RequestInformation();
         $requestInfo->urlTemplate = $this->urlTemplate;
         $requestInfo->pathParameters = $this->pathParameters;
@@ -64,6 +65,7 @@ class ResetRequestBuilder extends BaseRequestBuilder
             $requestInfo->addHeaders($requestConfiguration->headers);
             $requestInfo->addRequestOptions(...$requestConfiguration->options);
         }
+        $requestInfo->tryAddHeader('Accept', "application/json");
         $requestInfo->setContentFromParsable($this->requestAdapter, "application/json", $body);
         return $requestInfo;
     }

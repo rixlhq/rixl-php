@@ -9,12 +9,12 @@ use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Auth\V1\Memberships\Item\Domain\AutoJoin\AutoJoinRequestBuilder;
-use Rixl\Sdk\Auth\V1\Memberships\Item\Domain\Verification\VerificationRequestBuilder;
-use Rixl\Sdk\Models\Authv1\DomainResponse;
-use Rixl\Sdk\Models\Gateway\CreateDomainBody;
+use Rixl\Sdk\Auth\V1\Memberships\Item\Domain\Verify\VerifyRequestBuilder;
+use Rixl\Sdk\Models\Auth\V1\DomainResponse;
+use Rixl\Sdk\Models\Google\Protobuf\EscapedEmpty;
 
 /**
- * Builds and executes requests for operations under /auth/v1/memberships/{orgId}/domain
+ * Builds and executes requests for operations under /auth/v1/memberships/{org_-id}/domain
 */
 class DomainRequestBuilder extends BaseRequestBuilder 
 {
@@ -26,10 +26,10 @@ class DomainRequestBuilder extends BaseRequestBuilder
     }
     
     /**
-     * The verification property
+     * The verify property
     */
-    public function verification(): VerificationRequestBuilder {
-        return new VerificationRequestBuilder($this->pathParameters, $this->requestAdapter);
+    public function verify(): VerifyRequestBuilder {
+        return new VerifyRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
     
     /**
@@ -38,7 +38,7 @@ class DomainRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/memberships/{orgId}/domain');
+        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/memberships/{org_%2Did}/domain{?userId*}');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
@@ -47,18 +47,18 @@ class DomainRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Removes the custom domain from the organization and clears its verification.
+     * RemoveDomain
      * @param DomainRequestBuilderDeleteRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
-     * @return Promise<void|null>
+     * @return Promise<EscapedEmpty|null>
      * @throws Exception
     */
     public function delete(?DomainRequestBuilderDeleteRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toDeleteRequestInformation($requestConfiguration);
-        return $this->requestAdapter->sendNoContentAsync($requestInfo, null);
+        return $this->requestAdapter->sendAsync($requestInfo, [EscapedEmpty::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * Returns the current custom domain and its verification status for the organization.
+     * GetDomainStatus
      * @param DomainRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<DomainResponse|null>
      * @throws Exception
@@ -69,19 +69,19 @@ class DomainRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Registers a custom domain for the organization and issues verification details to prove ownership.
-     * @param CreateDomainBody $body Domain
+     * CreateDomainVerification
+     * @param DomainPostRequestBody $body The request body
      * @param DomainRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<DomainResponse|null>
      * @throws Exception
     */
-    public function post(CreateDomainBody $body, ?DomainRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
+    public function post(DomainPostRequestBody $body, ?DomainRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
         return $this->requestAdapter->sendAsync($requestInfo, [DomainResponse::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * Removes the custom domain from the organization and clears its verification.
+     * RemoveDomain
      * @param DomainRequestBuilderDeleteRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
@@ -92,13 +92,17 @@ class DomainRequestBuilder extends BaseRequestBuilder
         $requestInfo->httpMethod = HttpMethod::DELETE;
         if ($requestConfiguration !== null) {
             $requestInfo->addHeaders($requestConfiguration->headers);
+            if ($requestConfiguration->queryParameters !== null) {
+                $requestInfo->setQueryParameters($requestConfiguration->queryParameters);
+            }
             $requestInfo->addRequestOptions(...$requestConfiguration->options);
         }
+        $requestInfo->tryAddHeader('Accept', "application/json");
         return $requestInfo;
     }
 
     /**
-     * Returns the current custom domain and its verification status for the organization.
+     * GetDomainStatus
      * @param DomainRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
@@ -109,6 +113,9 @@ class DomainRequestBuilder extends BaseRequestBuilder
         $requestInfo->httpMethod = HttpMethod::GET;
         if ($requestConfiguration !== null) {
             $requestInfo->addHeaders($requestConfiguration->headers);
+            if ($requestConfiguration->queryParameters !== null) {
+                $requestInfo->setQueryParameters($requestConfiguration->queryParameters);
+            }
             $requestInfo->addRequestOptions(...$requestConfiguration->options);
         }
         $requestInfo->tryAddHeader('Accept', "application/json");
@@ -116,12 +123,12 @@ class DomainRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Registers a custom domain for the organization and issues verification details to prove ownership.
-     * @param CreateDomainBody $body Domain
+     * CreateDomainVerification
+     * @param DomainPostRequestBody $body The request body
      * @param DomainRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
-    public function toPostRequestInformation(CreateDomainBody $body, ?DomainRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
+    public function toPostRequestInformation(DomainPostRequestBody $body, ?DomainRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
         $requestInfo = new RequestInformation();
         $requestInfo->urlTemplate = $this->urlTemplate;
         $requestInfo->pathParameters = $this->pathParameters;

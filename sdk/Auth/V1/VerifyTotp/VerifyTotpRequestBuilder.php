@@ -8,8 +8,8 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Authv1\TokenResponse;
-use Rixl\Sdk\Models\Gateway\VerifyTOTPLoginBody;
+use Rixl\Sdk\Models\Auth\V1\TokenResponse;
+use Rixl\Sdk\Models\Auth\V1\VerifyTOTPForLoginRequest;
 
 /**
  * Builds and executes requests for operations under /auth/v1/verify-totp
@@ -31,24 +31,24 @@ class VerifyTotpRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Verifies the submitted TOTP code for a pending login session and, if valid, completes authentication and returns access tokens.
-     * @param VerifyTOTPLoginBody $body TOTP code and login session id
+     * VerifyTOTPForLogin
+     * @param VerifyTOTPForLoginRequest $body The request body
      * @param VerifyTotpRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<TokenResponse|null>
      * @throws Exception
     */
-    public function post(VerifyTOTPLoginBody $body, ?VerifyTotpRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
+    public function post(VerifyTOTPForLoginRequest $body, ?VerifyTotpRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
         return $this->requestAdapter->sendAsync($requestInfo, [TokenResponse::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * Verifies the submitted TOTP code for a pending login session and, if valid, completes authentication and returns access tokens.
-     * @param VerifyTOTPLoginBody $body TOTP code and login session id
+     * VerifyTOTPForLogin
+     * @param VerifyTOTPForLoginRequest $body The request body
      * @param VerifyTotpRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
-    public function toPostRequestInformation(VerifyTOTPLoginBody $body, ?VerifyTotpRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
+    public function toPostRequestInformation(VerifyTOTPForLoginRequest $body, ?VerifyTotpRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
         $requestInfo = new RequestInformation();
         $requestInfo->urlTemplate = $this->urlTemplate;
         $requestInfo->pathParameters = $this->pathParameters;

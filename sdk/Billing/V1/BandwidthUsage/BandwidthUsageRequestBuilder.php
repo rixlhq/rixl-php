@@ -10,7 +10,7 @@ use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Billing\V1\BandwidthUsage\History\HistoryRequestBuilder;
 use Rixl\Sdk\Billing\V1\BandwidthUsage\Refresh\RefreshRequestBuilder;
-use Rixl\Sdk\Models\Billingv1\BandwidthUsage;
+use Rixl\Sdk\Models\Billing\V1\BandwidthUsage;
 
 /**
  * Builds and executes requests for operations under /billing/v1/bandwidth-usage
@@ -37,7 +37,7 @@ class BandwidthUsageRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/billing/v1/bandwidth-usage');
+        parent::__construct($requestAdapter, [], '{+baseurl}/billing/v1/bandwidth-usage{?orgId*}');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
@@ -46,7 +46,7 @@ class BandwidthUsageRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns the organization's bandwidth usage.
+     * GetBandwidthUsage
      * @param BandwidthUsageRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<BandwidthUsage|null>
      * @throws Exception
@@ -57,7 +57,7 @@ class BandwidthUsageRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns the organization's bandwidth usage.
+     * GetBandwidthUsage
      * @param BandwidthUsageRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
@@ -68,6 +68,9 @@ class BandwidthUsageRequestBuilder extends BaseRequestBuilder
         $requestInfo->httpMethod = HttpMethod::GET;
         if ($requestConfiguration !== null) {
             $requestInfo->addHeaders($requestConfiguration->headers);
+            if ($requestConfiguration->queryParameters !== null) {
+                $requestInfo->setQueryParameters($requestConfiguration->queryParameters);
+            }
             $requestInfo->addRequestOptions(...$requestConfiguration->options);
         }
         $requestInfo->tryAddHeader('Accept', "application/json");

@@ -8,8 +8,8 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Billingv1\UpgradeSubscriptionResponse;
-use Rixl\Sdk\Models\Gateway\UpgradeSubscriptionBody;
+use Rixl\Sdk\Models\Billing\V1\UpgradeSubscriptionRequest;
+use Rixl\Sdk\Models\Billing\V1\UpgradeSubscriptionResponse;
 
 /**
  * Builds and executes requests for operations under /billing/v1/subscription/upgrade
@@ -31,24 +31,24 @@ class UpgradeRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Upgrade the organization's subscription to a new plan
-     * @param UpgradeSubscriptionBody $body Upgrade request
+     * UpgradeSubscription
+     * @param UpgradeSubscriptionRequest $body The request body
      * @param UpgradeRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<UpgradeSubscriptionResponse|null>
      * @throws Exception
     */
-    public function post(UpgradeSubscriptionBody $body, ?UpgradeRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
+    public function post(UpgradeSubscriptionRequest $body, ?UpgradeRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
         return $this->requestAdapter->sendAsync($requestInfo, [UpgradeSubscriptionResponse::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * Upgrade the organization's subscription to a new plan
-     * @param UpgradeSubscriptionBody $body Upgrade request
+     * UpgradeSubscription
+     * @param UpgradeSubscriptionRequest $body The request body
      * @param UpgradeRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
-    public function toPostRequestInformation(UpgradeSubscriptionBody $body, ?UpgradeRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
+    public function toPostRequestInformation(UpgradeSubscriptionRequest $body, ?UpgradeRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
         $requestInfo = new RequestInformation();
         $requestInfo->urlTemplate = $this->urlTemplate;
         $requestInfo->pathParameters = $this->pathParameters;

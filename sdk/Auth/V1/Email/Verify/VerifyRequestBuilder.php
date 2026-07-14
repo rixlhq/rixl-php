@@ -9,8 +9,8 @@ use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Auth\V1\Email\Verify\Resend\ResendRequestBuilder;
-use Rixl\Sdk\Models\Authv1\VerifyEmailResponse;
-use Rixl\Sdk\Models\Gateway\VerifyEmailBody;
+use Rixl\Sdk\Models\Auth\V1\VerifyEmailRequest;
+use Rixl\Sdk\Models\Auth\V1\VerifyEmailResponse;
 
 /**
  * Builds and executes requests for operations under /auth/v1/email/verify
@@ -39,24 +39,24 @@ class VerifyRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Verifies a user's email address using a verification id and the code sent to them.
-     * @param VerifyEmailBody $body Verification id and code
+     * VerifyEmail
+     * @param VerifyEmailRequest $body The request body
      * @param VerifyRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<VerifyEmailResponse|null>
      * @throws Exception
     */
-    public function post(VerifyEmailBody $body, ?VerifyRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
+    public function post(VerifyEmailRequest $body, ?VerifyRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
         return $this->requestAdapter->sendAsync($requestInfo, [VerifyEmailResponse::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * Verifies a user's email address using a verification id and the code sent to them.
-     * @param VerifyEmailBody $body Verification id and code
+     * VerifyEmail
+     * @param VerifyEmailRequest $body The request body
      * @param VerifyRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
-    public function toPostRequestInformation(VerifyEmailBody $body, ?VerifyRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
+    public function toPostRequestInformation(VerifyEmailRequest $body, ?VerifyRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
         $requestInfo = new RequestInformation();
         $requestInfo->urlTemplate = $this->urlTemplate;
         $requestInfo->pathParameters = $this->pathParameters;

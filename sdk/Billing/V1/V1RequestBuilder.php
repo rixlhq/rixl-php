@@ -9,7 +9,6 @@ use Rixl\Sdk\Billing\V1\BandwidthUsage\BandwidthUsageRequestBuilder;
 use Rixl\Sdk\Billing\V1\Checkout\CheckoutRequestBuilder;
 use Rixl\Sdk\Billing\V1\ContactSales\ContactSalesRequestBuilder;
 use Rixl\Sdk\Billing\V1\Invoices\InvoicesRequestBuilder;
-use Rixl\Sdk\Billing\V1\Jobs\JobsRequestBuilder;
 use Rixl\Sdk\Billing\V1\PaymentMethods\PaymentMethodsRequestBuilder;
 use Rixl\Sdk\Billing\V1\Plans\PlansRequestBuilder;
 use Rixl\Sdk\Billing\V1\SetupIntent\SetupIntentRequestBuilder;
@@ -55,13 +54,6 @@ class V1RequestBuilder extends BaseRequestBuilder
     */
     public function invoices(): InvoicesRequestBuilder {
         return new InvoicesRequestBuilder($this->pathParameters, $this->requestAdapter);
-    }
-    
-    /**
-     * The jobs property
-    */
-    public function jobs(): JobsRequestBuilder {
-        return new JobsRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
     
     /**

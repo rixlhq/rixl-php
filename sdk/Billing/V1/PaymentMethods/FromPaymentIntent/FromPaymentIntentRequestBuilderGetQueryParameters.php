@@ -3,22 +3,21 @@
 namespace Rixl\Sdk\Billing\V1\PaymentMethods\FromPaymentIntent;
 
 /**
- * Returns the payment method ID associated with a payment intent
+ * GetPaymentMethodFromPaymentIntent
 */
 class FromPaymentIntentRequestBuilderGetQueryParameters 
 {
     /**
-     * @QueryParameter("payment_intent_id")
-     * @var string|null $paymentIntentId Payment intent ID
+     * @var string|null $paymentIntentId 
     */
     public ?string $paymentIntentId = null;
     
     /**
      * Instantiates a new FromPaymentIntentRequestBuilderGetQueryParameters and sets the default values.
-     * @param string|null $payment_intent_id Payment intent ID
+     * @param string|null $paymentIntentId 
     */
-    public function __construct(?string $payment_intent_id = null) {
-        $this->paymentIntentId = $payment_intent_id;
+    public function __construct(?string $paymentIntentId = null) {
+        $this->paymentIntentId = $paymentIntentId;
     }
 
 }

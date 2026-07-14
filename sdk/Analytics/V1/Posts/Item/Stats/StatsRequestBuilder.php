@@ -8,10 +8,10 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Analyticsv1\GetPostStatsResponse;
+use Rixl\Sdk\Models\Analytics\V1\GetPostStatsResponse;
 
 /**
- * Builds and executes requests for operations under /analytics/v1/posts/{postId}/stats
+ * Builds and executes requests for operations under /analytics/v1/posts/{post_id}/stats
 */
 class StatsRequestBuilder extends BaseRequestBuilder 
 {
@@ -21,7 +21,7 @@ class StatsRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/analytics/v1/posts/{postId}/stats{?end*,start*}');
+        parent::__construct($requestAdapter, [], '{+baseurl}/analytics/v1/posts/{post_id}/stats{?range%2Eend*,range%2Estart*}');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
@@ -30,7 +30,7 @@ class StatsRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns aggregated statistics for a post
+     * GetPostStats
      * @param StatsRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<GetPostStatsResponse|null>
      * @throws Exception
@@ -41,7 +41,7 @@ class StatsRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns aggregated statistics for a post
+     * GetPostStats
      * @param StatsRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */

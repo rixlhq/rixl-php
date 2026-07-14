@@ -8,8 +8,8 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Authv1\LoginResponse;
-use Rixl\Sdk\Models\Gateway\RegisterOrLoginBody;
+use Rixl\Sdk\Models\Auth\V1\LoginRequest;
+use Rixl\Sdk\Models\Auth\V1\LoginResponse;
 
 /**
  * Builds and executes requests for operations under /auth/v1/login
@@ -31,24 +31,24 @@ class LoginRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Authenticates a user by email and password and issues access and refresh tokens.
-     * @param RegisterOrLoginBody $body Credentials
+     * Login
+     * @param LoginRequest $body The request body
      * @param LoginRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<LoginResponse|null>
      * @throws Exception
     */
-    public function post(RegisterOrLoginBody $body, ?LoginRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
+    public function post(LoginRequest $body, ?LoginRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
         return $this->requestAdapter->sendAsync($requestInfo, [LoginResponse::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * Authenticates a user by email and password and issues access and refresh tokens.
-     * @param RegisterOrLoginBody $body Credentials
+     * Login
+     * @param LoginRequest $body The request body
      * @param LoginRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
-    public function toPostRequestInformation(RegisterOrLoginBody $body, ?LoginRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
+    public function toPostRequestInformation(LoginRequest $body, ?LoginRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
         $requestInfo = new RequestInformation();
         $requestInfo->urlTemplate = $this->urlTemplate;
         $requestInfo->pathParameters = $this->pathParameters;

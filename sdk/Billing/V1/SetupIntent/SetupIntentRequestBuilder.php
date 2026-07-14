@@ -8,7 +8,8 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Billingv1\SetupIntentResponse;
+use Rixl\Sdk\Models\Billing\V1\CreateSetupIntentRequest;
+use Rixl\Sdk\Models\Billing\V1\SetupIntentResponse;
 
 /**
  * Builds and executes requests for operations under /billing/v1/setup-intent
@@ -30,22 +31,24 @@ class SetupIntentRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Create a Stripe setup intent for adding a payment method
+     * CreateSetupIntent
+     * @param CreateSetupIntentRequest $body The request body
      * @param SetupIntentRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<SetupIntentResponse|null>
      * @throws Exception
     */
-    public function post(?SetupIntentRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
-        $requestInfo = $this->toPostRequestInformation($requestConfiguration);
+    public function post(CreateSetupIntentRequest $body, ?SetupIntentRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
+        $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
         return $this->requestAdapter->sendAsync($requestInfo, [SetupIntentResponse::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * Create a Stripe setup intent for adding a payment method
+     * CreateSetupIntent
+     * @param CreateSetupIntentRequest $body The request body
      * @param SetupIntentRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
-    public function toPostRequestInformation(?SetupIntentRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
+    public function toPostRequestInformation(CreateSetupIntentRequest $body, ?SetupIntentRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
         $requestInfo = new RequestInformation();
         $requestInfo->urlTemplate = $this->urlTemplate;
         $requestInfo->pathParameters = $this->pathParameters;
@@ -55,6 +58,7 @@ class SetupIntentRequestBuilder extends BaseRequestBuilder
             $requestInfo->addRequestOptions(...$requestConfiguration->options);
         }
         $requestInfo->tryAddHeader('Accept', "application/json");
+        $requestInfo->setContentFromParsable($this->requestAdapter, "application/json", $body);
         return $requestInfo;
     }
 

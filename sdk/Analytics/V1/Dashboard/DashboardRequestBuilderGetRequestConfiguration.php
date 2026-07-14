@@ -28,13 +28,13 @@ class DashboardRequestBuilderGetRequestConfiguration extends BaseRequestConfigur
 
     /**
      * Instantiates a new DashboardRequestBuilderGetQueryParameters.
-     * @param string|null $end_time End time (RFC3339)
-     * @param string|null $interval Bucket interval (1m, 1h, 1d)
-     * @param string|null $start_time Start time (RFC3339)
+     * @param string|null $interval 
+     * @param string|null $timeEnd 
+     * @param string|null $timeStart 
      * @return DashboardRequestBuilderGetQueryParameters
     */
-    public static function createQueryParameters(?string $end_time = null, ?string $interval = null, ?string $start_time = null): DashboardRequestBuilderGetQueryParameters {
-        return new DashboardRequestBuilderGetQueryParameters($end_time, $interval, $start_time);
+    public static function createQueryParameters(?string $interval = null, ?string $timeEnd = null, ?string $timeStart = null): DashboardRequestBuilderGetQueryParameters {
+        return new DashboardRequestBuilderGetQueryParameters($interval, $timeEnd, $timeStart);
     }
 
 }

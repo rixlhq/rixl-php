@@ -8,7 +8,7 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Authv1\PermissionRegistryResponse;
+use Rixl\Sdk\Models\Auth\V1\PermissionRegistryResponse;
 
 /**
  * Builds and executes requests for operations under /auth/v1/policies/permissions
@@ -30,7 +30,7 @@ class PermissionsRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns the registered permission names and their bit offsets.
+     * ListPermissionRegistry
      * @param PermissionsRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<PermissionRegistryResponse|null>
      * @throws Exception
@@ -41,7 +41,7 @@ class PermissionsRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns the registered permission names and their bit offsets.
+     * ListPermissionRegistry
      * @param PermissionsRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */

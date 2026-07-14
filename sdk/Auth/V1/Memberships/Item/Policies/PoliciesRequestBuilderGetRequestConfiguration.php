@@ -11,12 +11,28 @@ use Microsoft\Kiota\Abstractions\RequestOption;
 class PoliciesRequestBuilderGetRequestConfiguration extends BaseRequestConfiguration 
 {
     /**
+     * @var PoliciesRequestBuilderGetQueryParameters|null $queryParameters Request query parameters
+    */
+    public ?PoliciesRequestBuilderGetQueryParameters $queryParameters = null;
+    
+    /**
      * Instantiates a new PoliciesRequestBuilderGetRequestConfiguration and sets the default values.
      * @param array<string, array<string>|string>|null $headers Request headers
      * @param array<RequestOption>|null $options Request options
+     * @param PoliciesRequestBuilderGetQueryParameters|null $queryParameters Request query parameters
     */
-    public function __construct(?array $headers = null, ?array $options = null) {
+    public function __construct(?array $headers = null, ?array $options = null, ?PoliciesRequestBuilderGetQueryParameters $queryParameters = null) {
         parent::__construct($headers ?? [], $options ?? []);
+        $this->queryParameters = $queryParameters;
+    }
+
+    /**
+     * Instantiates a new PoliciesRequestBuilderGetQueryParameters.
+     * @param string|null $userId 
+     * @return PoliciesRequestBuilderGetQueryParameters
+    */
+    public static function createQueryParameters(?string $userId = null): PoliciesRequestBuilderGetQueryParameters {
+        return new PoliciesRequestBuilderGetQueryParameters($userId);
     }
 
 }

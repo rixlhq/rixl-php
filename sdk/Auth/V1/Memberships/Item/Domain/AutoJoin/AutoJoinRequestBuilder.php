@@ -8,11 +8,10 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Authv1\AutoJoinSetting;
-use Rixl\Sdk\Models\Gateway\AutoJoinBody;
+use Rixl\Sdk\Models\Auth\V1\AutoJoinSetting;
 
 /**
- * Builds and executes requests for operations under /auth/v1/memberships/{orgId}/domain/auto-join
+ * Builds and executes requests for operations under /auth/v1/memberships/{org_-id}/domain/auto-join
 */
 class AutoJoinRequestBuilder extends BaseRequestBuilder 
 {
@@ -22,7 +21,7 @@ class AutoJoinRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/memberships/{orgId}/domain/auto-join');
+        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/memberships/{org_%2Did}/domain/auto-join{?userId*}');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
@@ -31,7 +30,7 @@ class AutoJoinRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns whether users with a matching verified domain email are automatically added to the organization.
+     * GetDomainAutoJoin
      * @param AutoJoinRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<AutoJoinSetting|null>
      * @throws Exception
@@ -42,19 +41,19 @@ class AutoJoinRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Enables or disables automatically adding users with a matching verified domain email to the organization.
-     * @param AutoJoinBody $body Auto-join enabled
+     * SetDomainAutoJoin
+     * @param AutoJoinPutRequestBody $body The request body
      * @param AutoJoinRequestBuilderPutRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<AutoJoinSetting|null>
      * @throws Exception
     */
-    public function put(AutoJoinBody $body, ?AutoJoinRequestBuilderPutRequestConfiguration $requestConfiguration = null): Promise {
+    public function put(AutoJoinPutRequestBody $body, ?AutoJoinRequestBuilderPutRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPutRequestInformation($body, $requestConfiguration);
         return $this->requestAdapter->sendAsync($requestInfo, [AutoJoinSetting::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * Returns whether users with a matching verified domain email are automatically added to the organization.
+     * GetDomainAutoJoin
      * @param AutoJoinRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
@@ -65,6 +64,9 @@ class AutoJoinRequestBuilder extends BaseRequestBuilder
         $requestInfo->httpMethod = HttpMethod::GET;
         if ($requestConfiguration !== null) {
             $requestInfo->addHeaders($requestConfiguration->headers);
+            if ($requestConfiguration->queryParameters !== null) {
+                $requestInfo->setQueryParameters($requestConfiguration->queryParameters);
+            }
             $requestInfo->addRequestOptions(...$requestConfiguration->options);
         }
         $requestInfo->tryAddHeader('Accept', "application/json");
@@ -72,12 +74,12 @@ class AutoJoinRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Enables or disables automatically adding users with a matching verified domain email to the organization.
-     * @param AutoJoinBody $body Auto-join enabled
+     * SetDomainAutoJoin
+     * @param AutoJoinPutRequestBody $body The request body
      * @param AutoJoinRequestBuilderPutRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
-    public function toPutRequestInformation(AutoJoinBody $body, ?AutoJoinRequestBuilderPutRequestConfiguration $requestConfiguration = null): RequestInformation {
+    public function toPutRequestInformation(AutoJoinPutRequestBody $body, ?AutoJoinRequestBuilderPutRequestConfiguration $requestConfiguration = null): RequestInformation {
         $requestInfo = new RequestInformation();
         $requestInfo->urlTemplate = $this->urlTemplate;
         $requestInfo->pathParameters = $this->pathParameters;

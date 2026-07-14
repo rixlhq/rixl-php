@@ -8,12 +8,12 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Media\V1\Projects\Item\Videos\Item\WithVideoItemRequestBuilder;
+use Rixl\Sdk\Media\V1\Projects\Item\Videos\Item\WithVideo_ItemRequestBuilder;
 use Rixl\Sdk\Media\V1\Projects\Item\Videos\Upload\UploadRequestBuilder;
-use Rixl\Sdk\Models\Videosv1\ListVideosResponse;
+use Rixl\Sdk\Models\Videos\V1\ListVideosResponse;
 
 /**
- * Builds and executes requests for operations under /media/v1/projects/{projectId}/videos
+ * Builds and executes requests for operations under /media/v1/projects/{project_id}/videos
 */
 class VideosRequestBuilder extends BaseRequestBuilder 
 {
@@ -26,13 +26,13 @@ class VideosRequestBuilder extends BaseRequestBuilder
     
     /**
      * Gets an item from the Rixl/Sdk.media.v1.projects.item.videos.item collection
-     * @param string $videoId Video ID
-     * @return WithVideoItemRequestBuilder
+     * @param string $video_id Unique identifier of the item
+     * @return WithVideo_ItemRequestBuilder
     */
-    public function byVideoId(string $videoId): WithVideoItemRequestBuilder {
+    public function byVideo_id(string $video_id): WithVideo_ItemRequestBuilder {
         $urlTplParams = $this->pathParameters;
-        $urlTplParams['videoId'] = $videoId;
-        return new WithVideoItemRequestBuilder($urlTplParams, $this->requestAdapter);
+        $urlTplParams['video_id'] = $video_id;
+        return new WithVideo_ItemRequestBuilder($urlTplParams, $this->requestAdapter);
     }
 
     /**
@@ -41,7 +41,7 @@ class VideosRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/media/v1/projects/{projectId}/videos');
+        parent::__construct($requestAdapter, [], '{+baseurl}/media/v1/projects/{project_id}/videos{?pagination%2Elimit*,pagination%2Eoffset*,sortDirection*,sortField*}');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
@@ -50,7 +50,7 @@ class VideosRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns the videos belonging to a project.
+     * ListVideos
      * @param VideosRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<ListVideosResponse|null>
      * @throws Exception
@@ -61,7 +61,7 @@ class VideosRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns the videos belonging to a project.
+     * ListVideos
      * @param VideosRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
@@ -72,6 +72,9 @@ class VideosRequestBuilder extends BaseRequestBuilder
         $requestInfo->httpMethod = HttpMethod::GET;
         if ($requestConfiguration !== null) {
             $requestInfo->addHeaders($requestConfiguration->headers);
+            if ($requestConfiguration->queryParameters !== null) {
+                $requestInfo->setQueryParameters($requestConfiguration->queryParameters);
+            }
             $requestInfo->addRequestOptions(...$requestConfiguration->options);
         }
         $requestInfo->tryAddHeader('Accept', "application/json");

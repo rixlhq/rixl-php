@@ -2,36 +2,40 @@
 
 namespace Rixl\Sdk\Analytics\V1\Top\Videos;
 
+use Microsoft\Kiota\Abstractions\QueryParameter;
+
 /**
- * Returns the top videos over a date range
+ * GetTopVideos
 */
 class VideosRequestBuilderGetQueryParameters 
 {
     /**
-     * @var string|null $end End date (inclusive)
+     * @var int|null $limit 
     */
-    public ?string $end = null;
+    public ?int $limit = null;
     
     /**
-     * @var string|null $limit Maximum number of results
+     * @QueryParameter("range%2Eend")
+     * @var string|null $rangeEnd 
     */
-    public ?string $limit = null;
+    public ?string $rangeEnd = null;
     
     /**
-     * @var string|null $start Start date (inclusive)
+     * @QueryParameter("range%2Estart")
+     * @var string|null $rangeStart 
     */
-    public ?string $start = null;
+    public ?string $rangeStart = null;
     
     /**
      * Instantiates a new VideosRequestBuilderGetQueryParameters and sets the default values.
-     * @param string|null $end End date (inclusive)
-     * @param string|null $limit Maximum number of results
-     * @param string|null $start Start date (inclusive)
+     * @param int|null $limit 
+     * @param string|null $rangeEnd 
+     * @param string|null $rangeStart 
     */
-    public function __construct(?string $end = null, ?string $limit = null, ?string $start = null) {
-        $this->end = $end;
+    public function __construct(?int $limit = null, ?string $rangeEnd = null, ?string $rangeStart = null) {
         $this->limit = $limit;
-        $this->start = $start;
+        $this->rangeEnd = $rangeEnd;
+        $this->rangeStart = $rangeStart;
     }
 
 }

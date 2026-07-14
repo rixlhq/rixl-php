@@ -8,11 +8,10 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Gateway\CompleteTrackUploadBody;
-use Rixl\Sdk\Models\Videosv1\UploadAck;
+use Rixl\Sdk\Models\Google\Protobuf\EscapedEmpty;
 
 /**
- * Builds and executes requests for operations under /media/v1/projects/{projectId}/videos/{videoId}/audio-tracks/upload/complete
+ * Builds and executes requests for operations under /media/v1/projects/{project_id}/videos/{video_id}/audio-tracks/upload/complete
 */
 class CompleteRequestBuilder extends BaseRequestBuilder 
 {
@@ -22,7 +21,7 @@ class CompleteRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/media/v1/projects/{projectId}/videos/{videoId}/audio-tracks/upload/complete');
+        parent::__construct($requestAdapter, [], '{+baseurl}/media/v1/projects/{project_id}/videos/{video_id}/audio-tracks/upload/complete');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
@@ -31,24 +30,24 @@ class CompleteRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Finalizes previously initiated audio track uploads.
-     * @param CompleteTrackUploadBody $body Uploaded audio tracks
+     * CompleteAudioTrackUpload
+     * @param CompletePostRequestBody $body The request body
      * @param CompleteRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
-     * @return Promise<UploadAck|null>
+     * @return Promise<EscapedEmpty|null>
      * @throws Exception
     */
-    public function post(CompleteTrackUploadBody $body, ?CompleteRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
+    public function post(CompletePostRequestBody $body, ?CompleteRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [UploadAck::class, 'createFromDiscriminatorValue'], null);
+        return $this->requestAdapter->sendAsync($requestInfo, [EscapedEmpty::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * Finalizes previously initiated audio track uploads.
-     * @param CompleteTrackUploadBody $body Uploaded audio tracks
+     * CompleteAudioTrackUpload
+     * @param CompletePostRequestBody $body The request body
      * @param CompleteRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
-    public function toPostRequestInformation(CompleteTrackUploadBody $body, ?CompleteRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
+    public function toPostRequestInformation(CompletePostRequestBody $body, ?CompleteRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
         $requestInfo = new RequestInformation();
         $requestInfo->urlTemplate = $this->urlTemplate;
         $requestInfo->pathParameters = $this->pathParameters;

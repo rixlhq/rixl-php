@@ -8,11 +8,10 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Billingv1\Invoice;
-use Rixl\Sdk\Models\Gateway\UpdateInvoiceStatusBody;
+use Rixl\Sdk\Models\Billing\V1\Invoice;
 
 /**
- * Builds and executes requests for operations under /billing/v1/invoices/{invoiceId}/status
+ * Builds and executes requests for operations under /billing/v1/invoices/{invoice_id}/status
 */
 class StatusRequestBuilder extends BaseRequestBuilder 
 {
@@ -22,7 +21,7 @@ class StatusRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/billing/v1/invoices/{invoiceId}/status');
+        parent::__construct($requestAdapter, [], '{+baseurl}/billing/v1/invoices/{invoice_id}/status');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
@@ -31,28 +30,28 @@ class StatusRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Updates the status of an invoice (admin).
-     * @param UpdateInvoiceStatusBody $body New status
-     * @param StatusRequestBuilderPutRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * UpdateInvoiceStatus
+     * @param StatusPatchRequestBody $body The request body
+     * @param StatusRequestBuilderPatchRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<Invoice|null>
      * @throws Exception
     */
-    public function put(UpdateInvoiceStatusBody $body, ?StatusRequestBuilderPutRequestConfiguration $requestConfiguration = null): Promise {
-        $requestInfo = $this->toPutRequestInformation($body, $requestConfiguration);
+    public function patch(StatusPatchRequestBody $body, ?StatusRequestBuilderPatchRequestConfiguration $requestConfiguration = null): Promise {
+        $requestInfo = $this->toPatchRequestInformation($body, $requestConfiguration);
         return $this->requestAdapter->sendAsync($requestInfo, [Invoice::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * Updates the status of an invoice (admin).
-     * @param UpdateInvoiceStatusBody $body New status
-     * @param StatusRequestBuilderPutRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * UpdateInvoiceStatus
+     * @param StatusPatchRequestBody $body The request body
+     * @param StatusRequestBuilderPatchRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
-    public function toPutRequestInformation(UpdateInvoiceStatusBody $body, ?StatusRequestBuilderPutRequestConfiguration $requestConfiguration = null): RequestInformation {
+    public function toPatchRequestInformation(StatusPatchRequestBody $body, ?StatusRequestBuilderPatchRequestConfiguration $requestConfiguration = null): RequestInformation {
         $requestInfo = new RequestInformation();
         $requestInfo->urlTemplate = $this->urlTemplate;
         $requestInfo->pathParameters = $this->pathParameters;
-        $requestInfo->httpMethod = HttpMethod::PUT;
+        $requestInfo->httpMethod = HttpMethod::PATCH;
         if ($requestConfiguration !== null) {
             $requestInfo->addHeaders($requestConfiguration->headers);
             $requestInfo->addRequestOptions(...$requestConfiguration->options);

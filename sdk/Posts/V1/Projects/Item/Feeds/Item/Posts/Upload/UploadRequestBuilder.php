@@ -8,7 +8,7 @@ use Rixl\Sdk\Posts\V1\Projects\Item\Feeds\Item\Posts\Upload\Complete\CompleteReq
 use Rixl\Sdk\Posts\V1\Projects\Item\Feeds\Item\Posts\Upload\Init\InitRequestBuilder;
 
 /**
- * Builds and executes requests for operations under /posts/v1/projects/{projectId}/feeds/{feedId}/posts/upload
+ * Builds and executes requests for operations under /posts/v1/projects/{project_id}/feeds/{feed_id}/posts/upload
 */
 class UploadRequestBuilder extends BaseRequestBuilder 
 {
@@ -32,7 +32,7 @@ class UploadRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/posts/v1/projects/{projectId}/feeds/{feedId}/posts/upload');
+        parent::__construct($requestAdapter, [], '{+baseurl}/posts/v1/projects/{project_id}/feeds/{feed_id}/posts/upload');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {

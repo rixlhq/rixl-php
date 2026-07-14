@@ -12,9 +12,9 @@ use Rixl\Sdk\Billing\V1\Subscription\Cancel\CancelRequestBuilder;
 use Rixl\Sdk\Billing\V1\Subscription\History\HistoryRequestBuilder;
 use Rixl\Sdk\Billing\V1\Subscription\Reactivate\ReactivateRequestBuilder;
 use Rixl\Sdk\Billing\V1\Subscription\Upgrade\UpgradeRequestBuilder;
-use Rixl\Sdk\Models\Billingv1\CreateSubscriptionResponse;
-use Rixl\Sdk\Models\Billingv1\Subscription;
-use Rixl\Sdk\Models\Gateway\CreateSubscriptionBody;
+use Rixl\Sdk\Models\Billing\V1\CreateSubscriptionRequest;
+use Rixl\Sdk\Models\Billing\V1\CreateSubscriptionResponse;
+use Rixl\Sdk\Models\Billing\V1\Subscription;
 
 /**
  * Builds and executes requests for operations under /billing/v1/subscription
@@ -55,7 +55,7 @@ class SubscriptionRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/billing/v1/subscription');
+        parent::__construct($requestAdapter, [], '{+baseurl}/billing/v1/subscription{?orgId*}');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
@@ -64,7 +64,7 @@ class SubscriptionRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns the current organization subscription.
+     * GetSubscription
      * @param SubscriptionRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<Subscription|null>
      * @throws Exception
@@ -75,19 +75,19 @@ class SubscriptionRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Create a subscription for the authenticated organization
-     * @param CreateSubscriptionBody $body Subscription request
+     * CreateSubscription
+     * @param CreateSubscriptionRequest $body The request body
      * @param SubscriptionRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<CreateSubscriptionResponse|null>
      * @throws Exception
     */
-    public function post(CreateSubscriptionBody $body, ?SubscriptionRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
+    public function post(CreateSubscriptionRequest $body, ?SubscriptionRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
         return $this->requestAdapter->sendAsync($requestInfo, [CreateSubscriptionResponse::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * Returns the current organization subscription.
+     * GetSubscription
      * @param SubscriptionRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
@@ -98,6 +98,9 @@ class SubscriptionRequestBuilder extends BaseRequestBuilder
         $requestInfo->httpMethod = HttpMethod::GET;
         if ($requestConfiguration !== null) {
             $requestInfo->addHeaders($requestConfiguration->headers);
+            if ($requestConfiguration->queryParameters !== null) {
+                $requestInfo->setQueryParameters($requestConfiguration->queryParameters);
+            }
             $requestInfo->addRequestOptions(...$requestConfiguration->options);
         }
         $requestInfo->tryAddHeader('Accept', "application/json");
@@ -105,12 +108,12 @@ class SubscriptionRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Create a subscription for the authenticated organization
-     * @param CreateSubscriptionBody $body Subscription request
+     * CreateSubscription
+     * @param CreateSubscriptionRequest $body The request body
      * @param SubscriptionRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
-    public function toPostRequestInformation(CreateSubscriptionBody $body, ?SubscriptionRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
+    public function toPostRequestInformation(CreateSubscriptionRequest $body, ?SubscriptionRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
         $requestInfo = new RequestInformation();
         $requestInfo->urlTemplate = $this->urlTemplate;
         $requestInfo->pathParameters = $this->pathParameters;
