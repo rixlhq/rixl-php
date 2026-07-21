@@ -5,7 +5,7 @@ namespace Rixl\Sdk\Models\Analytics\V1;
 use Microsoft\Kiota\Abstractions\Serialization\Parsable;
 use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
 use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
-use Rixl\Sdk\Models\Common\V1\MediaType;
+use Rixl\Sdk\Models\Analyticscommon\V1\MediaType;
 
 class PostStats implements Parsable 
 {
