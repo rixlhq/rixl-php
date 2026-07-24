@@ -10,9 +10,9 @@ use Rixl\Sdk\Models\Auth\V1\ActorOrgRequest;
 class NamePatchRequestBody implements Parsable 
 {
     /**
-     * @var string|null $fullName The fullName property
+     * @var string|null $full_name The full_name property
     */
-    private ?string $fullName = null;
+    private ?string $full_name = null;
     
     /**
      * @var ActorOrgRequest|null $user The user property
@@ -35,17 +35,17 @@ class NamePatchRequestBody implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'fullName' => fn(ParseNode $n) => $o->setFullName($n->getStringValue()),
+            'full_name' => fn(ParseNode $n) => $o->setFullName($n->getStringValue()),
             'user' => fn(ParseNode $n) => $o->setUser($n->getObjectValue([ActorOrgRequest::class, 'createFromDiscriminatorValue'])),
         ];
     }
 
     /**
-     * Gets the fullName property value. The fullName property
+     * Gets the full_name property value. The full_name property
      * @return string|null
     */
     public function getFullName(): ?string {
-        return $this->fullName;
+        return $this->full_name;
     }
 
     /**
@@ -61,16 +61,16 @@ class NamePatchRequestBody implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('fullName', $this->getFullName());
+        $writer->writeStringValue('full_name', $this->getFullName());
         $writer->writeObjectValue('user', $this->getUser());
     }
 
     /**
-     * Sets the fullName property value. The fullName property
-     * @param string|null $value Value to set for the fullName property.
+     * Sets the full_name property value. The full_name property
+     * @param string|null $value Value to set for the full_name property.
     */
     public function setFullName(?string $value): void {
-        $this->fullName = $value;
+        $this->full_name = $value;
     }
 
     /**

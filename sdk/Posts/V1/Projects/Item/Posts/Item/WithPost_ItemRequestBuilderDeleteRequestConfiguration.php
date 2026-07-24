@@ -28,11 +28,11 @@ class WithPost_ItemRequestBuilderDeleteRequestConfiguration extends BaseRequestC
 
     /**
      * Instantiates a new WithPost_ItemRequestBuilderDeleteQueryParameters.
-     * @param string|null $feedId feed_id is accepted from the feed-scoped delete path but not used by the backend (deletion is keyed by post_id).
+     * @param string|null $feed_id feed_id is accepted from the feed-scoped delete path but not used by the backend (deletion is keyed by post_id).
      * @return WithPost_ItemRequestBuilderDeleteQueryParameters
     */
-    public static function createQueryParameters(?string $feedId = null): WithPost_ItemRequestBuilderDeleteQueryParameters {
-        return new WithPost_ItemRequestBuilderDeleteQueryParameters($feedId);
+    public static function createQueryParameters(?string $feed_id = null): WithPost_ItemRequestBuilderDeleteQueryParameters {
+        return new WithPost_ItemRequestBuilderDeleteQueryParameters($feed_id);
     }
 
 }

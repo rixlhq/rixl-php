@@ -9,24 +9,24 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class CreateSubscriptionRequest implements Parsable 
 {
     /**
-     * @var BillingAddress|null $billingAddress The billingAddress property
+     * @var BillingAddress|null $billing_address The billing_address property
     */
-    private ?BillingAddress $billingAddress = null;
+    private ?BillingAddress $billing_address = null;
     
     /**
-     * @var string|null $orgId The orgId property
+     * @var string|null $org_id The org_id property
     */
-    private ?string $orgId = null;
+    private ?string $org_id = null;
     
     /**
-     * @var string|null $paymentMethodId The paymentMethodId property
+     * @var string|null $payment_method_id The payment_method_id property
     */
-    private ?string $paymentMethodId = null;
+    private ?string $payment_method_id = null;
     
     /**
-     * @var string|null $stripePriceId The stripePriceId property
+     * @var string|null $stripe_price_id The stripe_price_id property
     */
-    private ?string $stripePriceId = null;
+    private ?string $stripe_price_id = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -38,11 +38,11 @@ class CreateSubscriptionRequest implements Parsable
     }
 
     /**
-     * Gets the billingAddress property value. The billingAddress property
+     * Gets the billing_address property value. The billing_address property
      * @return BillingAddress|null
     */
     public function getBillingAddress(): ?BillingAddress {
-        return $this->billingAddress;
+        return $this->billing_address;
     }
 
     /**
@@ -52,35 +52,35 @@ class CreateSubscriptionRequest implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'billingAddress' => fn(ParseNode $n) => $o->setBillingAddress($n->getObjectValue([BillingAddress::class, 'createFromDiscriminatorValue'])),
-            'orgId' => fn(ParseNode $n) => $o->setOrgId($n->getStringValue()),
-            'paymentMethodId' => fn(ParseNode $n) => $o->setPaymentMethodId($n->getStringValue()),
-            'stripePriceId' => fn(ParseNode $n) => $o->setStripePriceId($n->getStringValue()),
+            'billing_address' => fn(ParseNode $n) => $o->setBillingAddress($n->getObjectValue([BillingAddress::class, 'createFromDiscriminatorValue'])),
+            'org_id' => fn(ParseNode $n) => $o->setOrgId($n->getStringValue()),
+            'payment_method_id' => fn(ParseNode $n) => $o->setPaymentMethodId($n->getStringValue()),
+            'stripe_price_id' => fn(ParseNode $n) => $o->setStripePriceId($n->getStringValue()),
         ];
     }
 
     /**
-     * Gets the orgId property value. The orgId property
+     * Gets the org_id property value. The org_id property
      * @return string|null
     */
     public function getOrgId(): ?string {
-        return $this->orgId;
+        return $this->org_id;
     }
 
     /**
-     * Gets the paymentMethodId property value. The paymentMethodId property
+     * Gets the payment_method_id property value. The payment_method_id property
      * @return string|null
     */
     public function getPaymentMethodId(): ?string {
-        return $this->paymentMethodId;
+        return $this->payment_method_id;
     }
 
     /**
-     * Gets the stripePriceId property value. The stripePriceId property
+     * Gets the stripe_price_id property value. The stripe_price_id property
      * @return string|null
     */
     public function getStripePriceId(): ?string {
-        return $this->stripePriceId;
+        return $this->stripe_price_id;
     }
 
     /**
@@ -88,42 +88,42 @@ class CreateSubscriptionRequest implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeObjectValue('billingAddress', $this->getBillingAddress());
-        $writer->writeStringValue('orgId', $this->getOrgId());
-        $writer->writeStringValue('paymentMethodId', $this->getPaymentMethodId());
-        $writer->writeStringValue('stripePriceId', $this->getStripePriceId());
+        $writer->writeObjectValue('billing_address', $this->getBillingAddress());
+        $writer->writeStringValue('org_id', $this->getOrgId());
+        $writer->writeStringValue('payment_method_id', $this->getPaymentMethodId());
+        $writer->writeStringValue('stripe_price_id', $this->getStripePriceId());
     }
 
     /**
-     * Sets the billingAddress property value. The billingAddress property
-     * @param BillingAddress|null $value Value to set for the billingAddress property.
+     * Sets the billing_address property value. The billing_address property
+     * @param BillingAddress|null $value Value to set for the billing_address property.
     */
     public function setBillingAddress(?BillingAddress $value): void {
-        $this->billingAddress = $value;
+        $this->billing_address = $value;
     }
 
     /**
-     * Sets the orgId property value. The orgId property
-     * @param string|null $value Value to set for the orgId property.
+     * Sets the org_id property value. The org_id property
+     * @param string|null $value Value to set for the org_id property.
     */
     public function setOrgId(?string $value): void {
-        $this->orgId = $value;
+        $this->org_id = $value;
     }
 
     /**
-     * Sets the paymentMethodId property value. The paymentMethodId property
-     * @param string|null $value Value to set for the paymentMethodId property.
+     * Sets the payment_method_id property value. The payment_method_id property
+     * @param string|null $value Value to set for the payment_method_id property.
     */
     public function setPaymentMethodId(?string $value): void {
-        $this->paymentMethodId = $value;
+        $this->payment_method_id = $value;
     }
 
     /**
-     * Sets the stripePriceId property value. The stripePriceId property
-     * @param string|null $value Value to set for the stripePriceId property.
+     * Sets the stripe_price_id property value. The stripe_price_id property
+     * @param string|null $value Value to set for the stripe_price_id property.
     */
     public function setStripePriceId(?string $value): void {
-        $this->stripePriceId = $value;
+        $this->stripe_price_id = $value;
     }
 
 }

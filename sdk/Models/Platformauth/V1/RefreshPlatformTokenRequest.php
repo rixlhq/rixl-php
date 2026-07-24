@@ -9,9 +9,9 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class RefreshPlatformTokenRequest implements Parsable 
 {
     /**
-     * @var string|null $refreshToken The refreshToken property
+     * @var string|null $refresh_token The refresh_token property
     */
-    private ?string $refreshToken = null;
+    private ?string $refresh_token = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -29,16 +29,16 @@ class RefreshPlatformTokenRequest implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'refreshToken' => fn(ParseNode $n) => $o->setRefreshToken($n->getStringValue()),
+            'refresh_token' => fn(ParseNode $n) => $o->setRefreshToken($n->getStringValue()),
         ];
     }
 
     /**
-     * Gets the refreshToken property value. The refreshToken property
+     * Gets the refresh_token property value. The refresh_token property
      * @return string|null
     */
     public function getRefreshToken(): ?string {
-        return $this->refreshToken;
+        return $this->refresh_token;
     }
 
     /**
@@ -46,15 +46,15 @@ class RefreshPlatformTokenRequest implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('refreshToken', $this->getRefreshToken());
+        $writer->writeStringValue('refresh_token', $this->getRefreshToken());
     }
 
     /**
-     * Sets the refreshToken property value. The refreshToken property
-     * @param string|null $value Value to set for the refreshToken property.
+     * Sets the refresh_token property value. The refresh_token property
+     * @param string|null $value Value to set for the refresh_token property.
     */
     public function setRefreshToken(?string $value): void {
-        $this->refreshToken = $value;
+        $this->refresh_token = $value;
     }
 
 }

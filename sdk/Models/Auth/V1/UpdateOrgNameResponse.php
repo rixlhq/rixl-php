@@ -9,14 +9,14 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class UpdateOrgNameResponse implements Parsable 
 {
     /**
-     * @var string|null $firstName The firstName property
+     * @var string|null $first_name The first_name property
     */
-    private ?string $firstName = null;
+    private ?string $first_name = null;
     
     /**
-     * @var string|null $lastName The lastName property
+     * @var string|null $last_name The last_name property
     */
-    private ?string $lastName = null;
+    private ?string $last_name = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -34,25 +34,25 @@ class UpdateOrgNameResponse implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'firstName' => fn(ParseNode $n) => $o->setFirstName($n->getStringValue()),
-            'lastName' => fn(ParseNode $n) => $o->setLastName($n->getStringValue()),
+            'first_name' => fn(ParseNode $n) => $o->setFirstName($n->getStringValue()),
+            'last_name' => fn(ParseNode $n) => $o->setLastName($n->getStringValue()),
         ];
     }
 
     /**
-     * Gets the firstName property value. The firstName property
+     * Gets the first_name property value. The first_name property
      * @return string|null
     */
     public function getFirstName(): ?string {
-        return $this->firstName;
+        return $this->first_name;
     }
 
     /**
-     * Gets the lastName property value. The lastName property
+     * Gets the last_name property value. The last_name property
      * @return string|null
     */
     public function getLastName(): ?string {
-        return $this->lastName;
+        return $this->last_name;
     }
 
     /**
@@ -60,24 +60,24 @@ class UpdateOrgNameResponse implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('firstName', $this->getFirstName());
-        $writer->writeStringValue('lastName', $this->getLastName());
+        $writer->writeStringValue('first_name', $this->getFirstName());
+        $writer->writeStringValue('last_name', $this->getLastName());
     }
 
     /**
-     * Sets the firstName property value. The firstName property
-     * @param string|null $value Value to set for the firstName property.
+     * Sets the first_name property value. The first_name property
+     * @param string|null $value Value to set for the first_name property.
     */
     public function setFirstName(?string $value): void {
-        $this->firstName = $value;
+        $this->first_name = $value;
     }
 
     /**
-     * Sets the lastName property value. The lastName property
-     * @param string|null $value Value to set for the lastName property.
+     * Sets the last_name property value. The last_name property
+     * @param string|null $value Value to set for the last_name property.
     */
     public function setLastName(?string $value): void {
-        $this->lastName = $value;
+        $this->last_name = $value;
     }
 
 }

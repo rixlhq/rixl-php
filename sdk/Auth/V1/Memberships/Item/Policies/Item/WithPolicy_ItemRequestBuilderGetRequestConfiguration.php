@@ -28,11 +28,11 @@ class WithPolicy_ItemRequestBuilderGetRequestConfiguration extends BaseRequestCo
 
     /**
      * Instantiates a new WithPolicy_ItemRequestBuilderGetQueryParameters.
-     * @param string|null $userUserId 
+     * @param string|null $userUser_id 
      * @return WithPolicy_ItemRequestBuilderGetQueryParameters
     */
-    public static function createQueryParameters(?string $userUserId = null): WithPolicy_ItemRequestBuilderGetQueryParameters {
-        return new WithPolicy_ItemRequestBuilderGetQueryParameters($userUserId);
+    public static function createQueryParameters(?string $userUser_id = null): WithPolicy_ItemRequestBuilderGetQueryParameters {
+        return new WithPolicy_ItemRequestBuilderGetQueryParameters($userUser_id);
     }
 
 }

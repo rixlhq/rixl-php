@@ -9,9 +9,9 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class ResetPasswordRequest implements Parsable 
 {
     /**
-     * @var string|null $newPassword The newPassword property
+     * @var string|null $new_password The new_password property
     */
-    private ?string $newPassword = null;
+    private ?string $new_password = null;
     
     /**
      * @var string|null $token The token property
@@ -34,17 +34,17 @@ class ResetPasswordRequest implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'newPassword' => fn(ParseNode $n) => $o->setNewPassword($n->getStringValue()),
+            'new_password' => fn(ParseNode $n) => $o->setNewPassword($n->getStringValue()),
             'token' => fn(ParseNode $n) => $o->setToken($n->getStringValue()),
         ];
     }
 
     /**
-     * Gets the newPassword property value. The newPassword property
+     * Gets the new_password property value. The new_password property
      * @return string|null
     */
     public function getNewPassword(): ?string {
-        return $this->newPassword;
+        return $this->new_password;
     }
 
     /**
@@ -60,16 +60,16 @@ class ResetPasswordRequest implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('newPassword', $this->getNewPassword());
+        $writer->writeStringValue('new_password', $this->getNewPassword());
         $writer->writeStringValue('token', $this->getToken());
     }
 
     /**
-     * Sets the newPassword property value. The newPassword property
-     * @param string|null $value Value to set for the newPassword property.
+     * Sets the new_password property value. The new_password property
+     * @param string|null $value Value to set for the new_password property.
     */
     public function setNewPassword(?string $value): void {
-        $this->newPassword = $value;
+        $this->new_password = $value;
     }
 
     /**

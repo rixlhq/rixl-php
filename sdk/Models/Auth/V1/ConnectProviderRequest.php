@@ -9,9 +9,9 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class ConnectProviderRequest implements Parsable 
 {
     /**
-     * @var string|null $countryCode The countryCode property
+     * @var string|null $country_code The country_code property
     */
-    private ?string $countryCode = null;
+    private ?string $country_code = null;
     
     /**
      * @var string|null $origin The origin property
@@ -43,11 +43,11 @@ class ConnectProviderRequest implements Parsable
     }
 
     /**
-     * Gets the countryCode property value. The countryCode property
+     * Gets the country_code property value. The country_code property
      * @return string|null
     */
     public function getCountryCode(): ?string {
-        return $this->countryCode;
+        return $this->country_code;
     }
 
     /**
@@ -57,7 +57,7 @@ class ConnectProviderRequest implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'countryCode' => fn(ParseNode $n) => $o->setCountryCode($n->getStringValue()),
+            'country_code' => fn(ParseNode $n) => $o->setCountryCode($n->getStringValue()),
             'origin' => fn(ParseNode $n) => $o->setOrigin($n->getStringValue()),
             'provider' => fn(ParseNode $n) => $o->setProvider($n->getEnumValue(ExternalAccountProvider::class)),
             'token' => fn(ParseNode $n) => $o->setToken($n->getStringValue()),
@@ -102,7 +102,7 @@ class ConnectProviderRequest implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('countryCode', $this->getCountryCode());
+        $writer->writeStringValue('country_code', $this->getCountryCode());
         $writer->writeStringValue('origin', $this->getOrigin());
         $writer->writeEnumValue('provider', $this->getProvider());
         $writer->writeStringValue('token', $this->getToken());
@@ -110,11 +110,11 @@ class ConnectProviderRequest implements Parsable
     }
 
     /**
-     * Sets the countryCode property value. The countryCode property
-     * @param string|null $value Value to set for the countryCode property.
+     * Sets the country_code property value. The country_code property
+     * @param string|null $value Value to set for the country_code property.
     */
     public function setCountryCode(?string $value): void {
-        $this->countryCode = $value;
+        $this->country_code = $value;
     }
 
     /**

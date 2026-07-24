@@ -29,11 +29,11 @@ class HistoryRequestBuilderGetRequestConfiguration extends BaseRequestConfigurat
     /**
      * Instantiates a new HistoryRequestBuilderGetQueryParameters.
      * @param int|null $days 
-     * @param string|null $orgId 
+     * @param string|null $org_id 
      * @return HistoryRequestBuilderGetQueryParameters
     */
-    public static function createQueryParameters(?int $days = null, ?string $orgId = null): HistoryRequestBuilderGetQueryParameters {
-        return new HistoryRequestBuilderGetQueryParameters($days, $orgId);
+    public static function createQueryParameters(?int $days = null, ?string $org_id = null): HistoryRequestBuilderGetQueryParameters {
+        return new HistoryRequestBuilderGetQueryParameters($days, $org_id);
     }
 
 }

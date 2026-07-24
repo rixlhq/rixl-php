@@ -28,11 +28,11 @@ class WithPost_ItemRequestBuilderGetRequestConfiguration extends BaseRequestConf
 
     /**
      * Instantiates a new WithPost_ItemRequestBuilderGetQueryParameters.
-     * @param string|null $feedId Populated from feed-scoped routes; the handler resolves by post_id, so this is used only for path binding / optional validation.
+     * @param string|null $feed_id Populated from feed-scoped routes; the handler resolves by post_id, so this is used only for path binding / optional validation.
      * @return WithPost_ItemRequestBuilderGetQueryParameters
     */
-    public static function createQueryParameters(?string $feedId = null): WithPost_ItemRequestBuilderGetQueryParameters {
-        return new WithPost_ItemRequestBuilderGetQueryParameters($feedId);
+    public static function createQueryParameters(?string $feed_id = null): WithPost_ItemRequestBuilderGetQueryParameters {
+        return new WithPost_ItemRequestBuilderGetQueryParameters($feed_id);
     }
 
 }

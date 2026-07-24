@@ -28,11 +28,11 @@ class VerifyRequestBuilderPostRequestConfiguration extends BaseRequestConfigurat
 
     /**
      * Instantiates a new VerifyRequestBuilderPostQueryParameters.
-     * @param string|null $userId 
+     * @param string|null $user_id 
      * @return VerifyRequestBuilderPostQueryParameters
     */
-    public static function createQueryParameters(?string $userId = null): VerifyRequestBuilderPostQueryParameters {
-        return new VerifyRequestBuilderPostQueryParameters($userId);
+    public static function createQueryParameters(?string $user_id = null): VerifyRequestBuilderPostQueryParameters {
+        return new VerifyRequestBuilderPostQueryParameters($user_id);
     }
 
 }

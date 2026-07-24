@@ -28,11 +28,11 @@ class AddressRequestBuilderGetRequestConfiguration extends BaseRequestConfigurat
 
     /**
      * Instantiates a new AddressRequestBuilderGetQueryParameters.
-     * @param string|null $orgId 
+     * @param string|null $org_id 
      * @return AddressRequestBuilderGetQueryParameters
     */
-    public static function createQueryParameters(?string $orgId = null): AddressRequestBuilderGetQueryParameters {
-        return new AddressRequestBuilderGetQueryParameters($orgId);
+    public static function createQueryParameters(?string $org_id = null): AddressRequestBuilderGetQueryParameters {
+        return new AddressRequestBuilderGetQueryParameters($org_id);
     }
 
 }

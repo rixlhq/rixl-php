@@ -10,34 +10,34 @@ use Rixl\Sdk\Models\Analyticscommon\V1\MediaType;
 class PostStats implements Parsable 
 {
     /**
-     * @var float|null $avgWatchTimeMs The avgWatchTimeMs property
+     * @var float|null $avg_watch_time_ms The avg_watch_time_ms property
     */
-    private ?float $avgWatchTimeMs = null;
+    private ?float $avg_watch_time_ms = null;
     
     /**
-     * @var float|null $completionRate The completionRate property
+     * @var float|null $completion_rate The completion_rate property
     */
-    private ?float $completionRate = null;
+    private ?float $completion_rate = null;
     
     /**
-     * @var MediaType|null $contentType The contentType property
+     * @var MediaType|null $content_type The content_type property
     */
-    private ?MediaType $contentType = null;
+    private ?MediaType $content_type = null;
     
     /**
-     * @var string|null $feedId The feedId property
+     * @var string|null $feed_id The feed_id property
     */
-    private ?string $feedId = null;
+    private ?string $feed_id = null;
     
     /**
-     * @var string|null $postId The postId property
+     * @var string|null $post_id The post_id property
     */
-    private ?string $postId = null;
+    private ?string $post_id = null;
     
     /**
-     * @var PostStats_viewsByPage|null $viewsByPage The viewsByPage property
+     * @var PostStats_views_by_page|null $views_by_page The views_by_page property
     */
-    private ?PostStats_viewsByPage $viewsByPage = null;
+    private ?PostStats_views_by_page $views_by_page = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -49,35 +49,35 @@ class PostStats implements Parsable
     }
 
     /**
-     * Gets the avgWatchTimeMs property value. The avgWatchTimeMs property
+     * Gets the avg_watch_time_ms property value. The avg_watch_time_ms property
      * @return float|null
     */
     public function getAvgWatchTimeMs(): ?float {
-        return $this->avgWatchTimeMs;
+        return $this->avg_watch_time_ms;
     }
 
     /**
-     * Gets the completionRate property value. The completionRate property
+     * Gets the completion_rate property value. The completion_rate property
      * @return float|null
     */
     public function getCompletionRate(): ?float {
-        return $this->completionRate;
+        return $this->completion_rate;
     }
 
     /**
-     * Gets the contentType property value. The contentType property
+     * Gets the content_type property value. The content_type property
      * @return MediaType|null
     */
     public function getContentType(): ?MediaType {
-        return $this->contentType;
+        return $this->content_type;
     }
 
     /**
-     * Gets the feedId property value. The feedId property
+     * Gets the feed_id property value. The feed_id property
      * @return string|null
     */
     public function getFeedId(): ?string {
-        return $this->feedId;
+        return $this->feed_id;
     }
 
     /**
@@ -87,29 +87,29 @@ class PostStats implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'avgWatchTimeMs' => fn(ParseNode $n) => $o->setAvgWatchTimeMs($n->getFloatValue()),
-            'completionRate' => fn(ParseNode $n) => $o->setCompletionRate($n->getFloatValue()),
-            'contentType' => fn(ParseNode $n) => $o->setContentType($n->getEnumValue(MediaType::class)),
-            'feedId' => fn(ParseNode $n) => $o->setFeedId($n->getStringValue()),
-            'postId' => fn(ParseNode $n) => $o->setPostId($n->getStringValue()),
-            'viewsByPage' => fn(ParseNode $n) => $o->setViewsByPage($n->getObjectValue([PostStats_viewsByPage::class, 'createFromDiscriminatorValue'])),
+            'avg_watch_time_ms' => fn(ParseNode $n) => $o->setAvgWatchTimeMs($n->getFloatValue()),
+            'completion_rate' => fn(ParseNode $n) => $o->setCompletionRate($n->getFloatValue()),
+            'content_type' => fn(ParseNode $n) => $o->setContentType($n->getEnumValue(MediaType::class)),
+            'feed_id' => fn(ParseNode $n) => $o->setFeedId($n->getStringValue()),
+            'post_id' => fn(ParseNode $n) => $o->setPostId($n->getStringValue()),
+            'views_by_page' => fn(ParseNode $n) => $o->setViewsByPage($n->getObjectValue([PostStats_views_by_page::class, 'createFromDiscriminatorValue'])),
         ];
     }
 
     /**
-     * Gets the postId property value. The postId property
+     * Gets the post_id property value. The post_id property
      * @return string|null
     */
     public function getPostId(): ?string {
-        return $this->postId;
+        return $this->post_id;
     }
 
     /**
-     * Gets the viewsByPage property value. The viewsByPage property
-     * @return PostStats_viewsByPage|null
+     * Gets the views_by_page property value. The views_by_page property
+     * @return PostStats_views_by_page|null
     */
-    public function getViewsByPage(): ?PostStats_viewsByPage {
-        return $this->viewsByPage;
+    public function getViewsByPage(): ?PostStats_views_by_page {
+        return $this->views_by_page;
     }
 
     /**
@@ -117,60 +117,60 @@ class PostStats implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeFloatValue('avgWatchTimeMs', $this->getAvgWatchTimeMs());
-        $writer->writeFloatValue('completionRate', $this->getCompletionRate());
-        $writer->writeEnumValue('contentType', $this->getContentType());
-        $writer->writeStringValue('feedId', $this->getFeedId());
-        $writer->writeStringValue('postId', $this->getPostId());
-        $writer->writeObjectValue('viewsByPage', $this->getViewsByPage());
+        $writer->writeFloatValue('avg_watch_time_ms', $this->getAvgWatchTimeMs());
+        $writer->writeFloatValue('completion_rate', $this->getCompletionRate());
+        $writer->writeEnumValue('content_type', $this->getContentType());
+        $writer->writeStringValue('feed_id', $this->getFeedId());
+        $writer->writeStringValue('post_id', $this->getPostId());
+        $writer->writeObjectValue('views_by_page', $this->getViewsByPage());
     }
 
     /**
-     * Sets the avgWatchTimeMs property value. The avgWatchTimeMs property
-     * @param float|null $value Value to set for the avgWatchTimeMs property.
+     * Sets the avg_watch_time_ms property value. The avg_watch_time_ms property
+     * @param float|null $value Value to set for the avg_watch_time_ms property.
     */
     public function setAvgWatchTimeMs(?float $value): void {
-        $this->avgWatchTimeMs = $value;
+        $this->avg_watch_time_ms = $value;
     }
 
     /**
-     * Sets the completionRate property value. The completionRate property
-     * @param float|null $value Value to set for the completionRate property.
+     * Sets the completion_rate property value. The completion_rate property
+     * @param float|null $value Value to set for the completion_rate property.
     */
     public function setCompletionRate(?float $value): void {
-        $this->completionRate = $value;
+        $this->completion_rate = $value;
     }
 
     /**
-     * Sets the contentType property value. The contentType property
-     * @param MediaType|null $value Value to set for the contentType property.
+     * Sets the content_type property value. The content_type property
+     * @param MediaType|null $value Value to set for the content_type property.
     */
     public function setContentType(?MediaType $value): void {
-        $this->contentType = $value;
+        $this->content_type = $value;
     }
 
     /**
-     * Sets the feedId property value. The feedId property
-     * @param string|null $value Value to set for the feedId property.
+     * Sets the feed_id property value. The feed_id property
+     * @param string|null $value Value to set for the feed_id property.
     */
     public function setFeedId(?string $value): void {
-        $this->feedId = $value;
+        $this->feed_id = $value;
     }
 
     /**
-     * Sets the postId property value. The postId property
-     * @param string|null $value Value to set for the postId property.
+     * Sets the post_id property value. The post_id property
+     * @param string|null $value Value to set for the post_id property.
     */
     public function setPostId(?string $value): void {
-        $this->postId = $value;
+        $this->post_id = $value;
     }
 
     /**
-     * Sets the viewsByPage property value. The viewsByPage property
-     * @param PostStats_viewsByPage|null $value Value to set for the viewsByPage property.
+     * Sets the views_by_page property value. The views_by_page property
+     * @param PostStats_views_by_page|null $value Value to set for the views_by_page property.
     */
-    public function setViewsByPage(?PostStats_viewsByPage $value): void {
-        $this->viewsByPage = $value;
+    public function setViewsByPage(?PostStats_views_by_page $value): void {
+        $this->views_by_page = $value;
     }
 
 }

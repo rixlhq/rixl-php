@@ -9,14 +9,14 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class SetupIntentResponse implements Parsable 
 {
     /**
-     * @var string|null $clientSecret The clientSecret property
+     * @var string|null $client_secret The client_secret property
     */
-    private ?string $clientSecret = null;
+    private ?string $client_secret = null;
     
     /**
-     * @var string|null $setupIntentId The setupIntentId property
+     * @var string|null $setup_intent_id The setup_intent_id property
     */
-    private ?string $setupIntentId = null;
+    private ?string $setup_intent_id = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -28,11 +28,11 @@ class SetupIntentResponse implements Parsable
     }
 
     /**
-     * Gets the clientSecret property value. The clientSecret property
+     * Gets the client_secret property value. The client_secret property
      * @return string|null
     */
     public function getClientSecret(): ?string {
-        return $this->clientSecret;
+        return $this->client_secret;
     }
 
     /**
@@ -42,17 +42,17 @@ class SetupIntentResponse implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'clientSecret' => fn(ParseNode $n) => $o->setClientSecret($n->getStringValue()),
-            'setupIntentId' => fn(ParseNode $n) => $o->setSetupIntentId($n->getStringValue()),
+            'client_secret' => fn(ParseNode $n) => $o->setClientSecret($n->getStringValue()),
+            'setup_intent_id' => fn(ParseNode $n) => $o->setSetupIntentId($n->getStringValue()),
         ];
     }
 
     /**
-     * Gets the setupIntentId property value. The setupIntentId property
+     * Gets the setup_intent_id property value. The setup_intent_id property
      * @return string|null
     */
     public function getSetupIntentId(): ?string {
-        return $this->setupIntentId;
+        return $this->setup_intent_id;
     }
 
     /**
@@ -60,24 +60,24 @@ class SetupIntentResponse implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('clientSecret', $this->getClientSecret());
-        $writer->writeStringValue('setupIntentId', $this->getSetupIntentId());
+        $writer->writeStringValue('client_secret', $this->getClientSecret());
+        $writer->writeStringValue('setup_intent_id', $this->getSetupIntentId());
     }
 
     /**
-     * Sets the clientSecret property value. The clientSecret property
-     * @param string|null $value Value to set for the clientSecret property.
+     * Sets the client_secret property value. The client_secret property
+     * @param string|null $value Value to set for the client_secret property.
     */
     public function setClientSecret(?string $value): void {
-        $this->clientSecret = $value;
+        $this->client_secret = $value;
     }
 
     /**
-     * Sets the setupIntentId property value. The setupIntentId property
-     * @param string|null $value Value to set for the setupIntentId property.
+     * Sets the setup_intent_id property value. The setup_intent_id property
+     * @param string|null $value Value to set for the setup_intent_id property.
     */
     public function setSetupIntentId(?string $value): void {
-        $this->setupIntentId = $value;
+        $this->setup_intent_id = $value;
     }
 
 }

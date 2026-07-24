@@ -9,9 +9,9 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class TaxCalculationResponse implements Parsable 
 {
     /**
-     * @var string|null $calculationId The calculationId property
+     * @var string|null $calculation_id The calculation_id property
     */
-    private ?string $calculationId = null;
+    private ?string $calculation_id = null;
     
     /**
      * @var string|null $currency The currency property
@@ -28,11 +28,11 @@ class TaxCalculationResponse implements Parsable
     }
 
     /**
-     * Gets the calculationId property value. The calculationId property
+     * Gets the calculation_id property value. The calculation_id property
      * @return string|null
     */
     public function getCalculationId(): ?string {
-        return $this->calculationId;
+        return $this->calculation_id;
     }
 
     /**
@@ -50,7 +50,7 @@ class TaxCalculationResponse implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'calculationId' => fn(ParseNode $n) => $o->setCalculationId($n->getStringValue()),
+            'calculation_id' => fn(ParseNode $n) => $o->setCalculationId($n->getStringValue()),
             'currency' => fn(ParseNode $n) => $o->setCurrency($n->getStringValue()),
         ];
     }
@@ -60,16 +60,16 @@ class TaxCalculationResponse implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('calculationId', $this->getCalculationId());
+        $writer->writeStringValue('calculation_id', $this->getCalculationId());
         $writer->writeStringValue('currency', $this->getCurrency());
     }
 
     /**
-     * Sets the calculationId property value. The calculationId property
-     * @param string|null $value Value to set for the calculationId property.
+     * Sets the calculation_id property value. The calculation_id property
+     * @param string|null $value Value to set for the calculation_id property.
     */
     public function setCalculationId(?string $value): void {
-        $this->calculationId = $value;
+        $this->calculation_id = $value;
     }
 
     /**

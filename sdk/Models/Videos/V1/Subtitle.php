@@ -25,19 +25,19 @@ class Subtitle implements Parsable
     private ?string $label = null;
     
     /**
-     * @var string|null $languageCode The languageCode property
+     * @var string|null $language_code The language_code property
     */
-    private ?string $languageCode = null;
+    private ?string $language_code = null;
     
     /**
-     * @var string|null $videoId The videoId property
+     * @var string|null $video_id The video_id property
     */
-    private ?string $videoId = null;
+    private ?string $video_id = null;
     
     /**
-     * @var string|null $vttPath The vttPath property
+     * @var string|null $vtt_path The vtt_path property
     */
-    private ?string $vttPath = null;
+    private ?string $vtt_path = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -58,9 +58,9 @@ class Subtitle implements Parsable
             'format' => fn(ParseNode $n) => $o->setFormat($n->getEnumValue(SubtitleFormat::class)),
             'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
             'label' => fn(ParseNode $n) => $o->setLabel($n->getStringValue()),
-            'languageCode' => fn(ParseNode $n) => $o->setLanguageCode($n->getStringValue()),
-            'videoId' => fn(ParseNode $n) => $o->setVideoId($n->getStringValue()),
-            'vttPath' => fn(ParseNode $n) => $o->setVttPath($n->getStringValue()),
+            'language_code' => fn(ParseNode $n) => $o->setLanguageCode($n->getStringValue()),
+            'video_id' => fn(ParseNode $n) => $o->setVideoId($n->getStringValue()),
+            'vtt_path' => fn(ParseNode $n) => $o->setVttPath($n->getStringValue()),
         ];
     }
 
@@ -89,27 +89,27 @@ class Subtitle implements Parsable
     }
 
     /**
-     * Gets the languageCode property value. The languageCode property
+     * Gets the language_code property value. The language_code property
      * @return string|null
     */
     public function getLanguageCode(): ?string {
-        return $this->languageCode;
+        return $this->language_code;
     }
 
     /**
-     * Gets the videoId property value. The videoId property
+     * Gets the video_id property value. The video_id property
      * @return string|null
     */
     public function getVideoId(): ?string {
-        return $this->videoId;
+        return $this->video_id;
     }
 
     /**
-     * Gets the vttPath property value. The vttPath property
+     * Gets the vtt_path property value. The vtt_path property
      * @return string|null
     */
     public function getVttPath(): ?string {
-        return $this->vttPath;
+        return $this->vtt_path;
     }
 
     /**
@@ -120,9 +120,9 @@ class Subtitle implements Parsable
         $writer->writeEnumValue('format', $this->getFormat());
         $writer->writeStringValue('id', $this->getId());
         $writer->writeStringValue('label', $this->getLabel());
-        $writer->writeStringValue('languageCode', $this->getLanguageCode());
-        $writer->writeStringValue('videoId', $this->getVideoId());
-        $writer->writeStringValue('vttPath', $this->getVttPath());
+        $writer->writeStringValue('language_code', $this->getLanguageCode());
+        $writer->writeStringValue('video_id', $this->getVideoId());
+        $writer->writeStringValue('vtt_path', $this->getVttPath());
     }
 
     /**
@@ -150,27 +150,27 @@ class Subtitle implements Parsable
     }
 
     /**
-     * Sets the languageCode property value. The languageCode property
-     * @param string|null $value Value to set for the languageCode property.
+     * Sets the language_code property value. The language_code property
+     * @param string|null $value Value to set for the language_code property.
     */
     public function setLanguageCode(?string $value): void {
-        $this->languageCode = $value;
+        $this->language_code = $value;
     }
 
     /**
-     * Sets the videoId property value. The videoId property
-     * @param string|null $value Value to set for the videoId property.
+     * Sets the video_id property value. The video_id property
+     * @param string|null $value Value to set for the video_id property.
     */
     public function setVideoId(?string $value): void {
-        $this->videoId = $value;
+        $this->video_id = $value;
     }
 
     /**
-     * Sets the vttPath property value. The vttPath property
-     * @param string|null $value Value to set for the vttPath property.
+     * Sets the vtt_path property value. The vtt_path property
+     * @param string|null $value Value to set for the vtt_path property.
     */
     public function setVttPath(?string $value): void {
-        $this->vttPath = $value;
+        $this->vtt_path = $value;
     }
 
 }

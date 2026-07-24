@@ -20,7 +20,7 @@ class MembersRequestBuilderGetQueryParameters
     public ?int $offset = null;
     
     /**
-     * @QueryParameter("user%2EuserId")
+     * @QueryParameter("user%2Euser_id")
      * @var string|null $userUserId 
     */
     public ?string $userUserId = null;
@@ -29,12 +29,12 @@ class MembersRequestBuilderGetQueryParameters
      * Instantiates a new MembersRequestBuilderGetQueryParameters and sets the default values.
      * @param int|null $limit 
      * @param int|null $offset 
-     * @param string|null $userUserId 
+     * @param string|null $userUser_id 
     */
-    public function __construct(?int $limit = null, ?int $offset = null, ?string $userUserId = null) {
+    public function __construct(?int $limit = null, ?int $offset = null, ?string $userUser_id = null) {
         $this->limit = $limit;
         $this->offset = $offset;
-        $this->userUserId = $userUserId;
+        $this->userUserId = $userUser_id;
     }
 
 }

@@ -14,9 +14,9 @@ class PasskeysPatchRequestBody implements Parsable
     private ?string $name = null;
     
     /**
-     * @var string|null $userId The userId property
+     * @var string|null $user_id The user_id property
     */
-    private ?string $userId = null;
+    private ?string $user_id = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -35,7 +35,7 @@ class PasskeysPatchRequestBody implements Parsable
         $o = $this;
         return  [
             'name' => fn(ParseNode $n) => $o->setName($n->getStringValue()),
-            'userId' => fn(ParseNode $n) => $o->setUserId($n->getStringValue()),
+            'user_id' => fn(ParseNode $n) => $o->setUserId($n->getStringValue()),
         ];
     }
 
@@ -48,11 +48,11 @@ class PasskeysPatchRequestBody implements Parsable
     }
 
     /**
-     * Gets the userId property value. The userId property
+     * Gets the user_id property value. The user_id property
      * @return string|null
     */
     public function getUserId(): ?string {
-        return $this->userId;
+        return $this->user_id;
     }
 
     /**
@@ -61,7 +61,7 @@ class PasskeysPatchRequestBody implements Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeStringValue('name', $this->getName());
-        $writer->writeStringValue('userId', $this->getUserId());
+        $writer->writeStringValue('user_id', $this->getUserId());
     }
 
     /**
@@ -73,11 +73,11 @@ class PasskeysPatchRequestBody implements Parsable
     }
 
     /**
-     * Sets the userId property value. The userId property
-     * @param string|null $value Value to set for the userId property.
+     * Sets the user_id property value. The user_id property
+     * @param string|null $value Value to set for the user_id property.
     */
     public function setUserId(?string $value): void {
-        $this->userId = $value;
+        $this->user_id = $value;
     }
 
 }

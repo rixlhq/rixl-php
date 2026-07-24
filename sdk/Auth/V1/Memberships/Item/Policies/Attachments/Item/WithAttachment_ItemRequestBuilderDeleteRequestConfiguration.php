@@ -28,11 +28,11 @@ class WithAttachment_ItemRequestBuilderDeleteRequestConfiguration extends BaseRe
 
     /**
      * Instantiates a new WithAttachment_ItemRequestBuilderDeleteQueryParameters.
-     * @param string|null $userUserId 
+     * @param string|null $userUser_id 
      * @return WithAttachment_ItemRequestBuilderDeleteQueryParameters
     */
-    public static function createQueryParameters(?string $userUserId = null): WithAttachment_ItemRequestBuilderDeleteQueryParameters {
-        return new WithAttachment_ItemRequestBuilderDeleteQueryParameters($userUserId);
+    public static function createQueryParameters(?string $userUser_id = null): WithAttachment_ItemRequestBuilderDeleteQueryParameters {
+        return new WithAttachment_ItemRequestBuilderDeleteQueryParameters($userUser_id);
     }
 
 }

@@ -13,11 +13,13 @@ class DashboardRequestBuilderGetQueryParameters
     public ?string $interval = null;
     
     /**
+     * @QueryParameter("time_end")
      * @var string|null $timeEnd 
     */
     public ?string $timeEnd = null;
     
     /**
+     * @QueryParameter("time_start")
      * @var string|null $timeStart 
     */
     public ?string $timeStart = null;
@@ -25,13 +27,13 @@ class DashboardRequestBuilderGetQueryParameters
     /**
      * Instantiates a new DashboardRequestBuilderGetQueryParameters and sets the default values.
      * @param string|null $interval 
-     * @param string|null $timeEnd 
-     * @param string|null $timeStart 
+     * @param string|null $time_end 
+     * @param string|null $time_start 
     */
-    public function __construct(?string $interval = null, ?string $timeEnd = null, ?string $timeStart = null) {
+    public function __construct(?string $interval = null, ?string $time_end = null, ?string $time_start = null) {
         $this->interval = $interval;
-        $this->timeEnd = $timeEnd;
-        $this->timeStart = $timeStart;
+        $this->timeEnd = $time_end;
+        $this->timeStart = $time_start;
     }
 
 }

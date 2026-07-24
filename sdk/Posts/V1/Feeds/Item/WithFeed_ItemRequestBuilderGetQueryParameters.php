@@ -10,6 +10,7 @@ use Microsoft\Kiota\Abstractions\QueryParameter;
 class WithFeed_ItemRequestBuilderGetQueryParameters 
 {
     /**
+     * @QueryParameter("creator_id")
      * @var string|null $creatorId 
     */
     public ?string $creatorId = null;
@@ -27,22 +28,23 @@ class WithFeed_ItemRequestBuilderGetQueryParameters
     public ?int $paginationOffset = null;
     
     /**
+     * @QueryParameter("project_id")
      * @var string|null $projectId 
     */
     public ?string $projectId = null;
     
     /**
      * Instantiates a new WithFeed_ItemRequestBuilderGetQueryParameters and sets the default values.
-     * @param string|null $creatorId 
+     * @param string|null $creator_id 
      * @param int|null $paginationLimit Maximum number of items to return.
      * @param int|null $paginationOffset Number of items to skip before collecting the result set.
-     * @param string|null $projectId 
+     * @param string|null $project_id 
     */
-    public function __construct(?string $creatorId = null, ?int $paginationLimit = null, ?int $paginationOffset = null, ?string $projectId = null) {
-        $this->creatorId = $creatorId;
+    public function __construct(?string $creator_id = null, ?int $paginationLimit = null, ?int $paginationOffset = null, ?string $project_id = null) {
+        $this->creatorId = $creator_id;
         $this->paginationLimit = $paginationLimit;
         $this->paginationOffset = $paginationOffset;
-        $this->projectId = $projectId;
+        $this->projectId = $project_id;
     }
 
 }

@@ -14,9 +14,9 @@ class TaxLineItem implements Parsable
     private ?string $reference = null;
     
     /**
-     * @var string|null $taxCode The taxCode property
+     * @var string|null $tax_code The tax_code property
     */
-    private ?string $taxCode = null;
+    private ?string $tax_code = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -35,7 +35,7 @@ class TaxLineItem implements Parsable
         $o = $this;
         return  [
             'reference' => fn(ParseNode $n) => $o->setReference($n->getStringValue()),
-            'taxCode' => fn(ParseNode $n) => $o->setTaxCode($n->getStringValue()),
+            'tax_code' => fn(ParseNode $n) => $o->setTaxCode($n->getStringValue()),
         ];
     }
 
@@ -48,11 +48,11 @@ class TaxLineItem implements Parsable
     }
 
     /**
-     * Gets the taxCode property value. The taxCode property
+     * Gets the tax_code property value. The tax_code property
      * @return string|null
     */
     public function getTaxCode(): ?string {
-        return $this->taxCode;
+        return $this->tax_code;
     }
 
     /**
@@ -61,7 +61,7 @@ class TaxLineItem implements Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeStringValue('reference', $this->getReference());
-        $writer->writeStringValue('taxCode', $this->getTaxCode());
+        $writer->writeStringValue('tax_code', $this->getTaxCode());
     }
 
     /**
@@ -73,11 +73,11 @@ class TaxLineItem implements Parsable
     }
 
     /**
-     * Sets the taxCode property value. The taxCode property
-     * @param string|null $value Value to set for the taxCode property.
+     * Sets the tax_code property value. The tax_code property
+     * @param string|null $value Value to set for the tax_code property.
     */
     public function setTaxCode(?string $value): void {
-        $this->taxCode = $value;
+        $this->tax_code = $value;
     }
 
 }

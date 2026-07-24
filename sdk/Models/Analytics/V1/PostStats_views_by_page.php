@@ -7,7 +7,7 @@ use Microsoft\Kiota\Abstractions\Serialization\Parsable;
 use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
 use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 
-class PostStats_viewsByPage implements AdditionalDataHolder, Parsable 
+class PostStats_views_by_page implements AdditionalDataHolder, Parsable 
 {
     /**
      * @var array<string, mixed>|null $additionalData Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
@@ -15,7 +15,7 @@ class PostStats_viewsByPage implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * Instantiates a new PostStats_viewsByPage and sets the default values.
+     * Instantiates a new PostStats_views_by_page and sets the default values.
     */
     public function __construct() {
         $this->setAdditionalData([]);
@@ -24,10 +24,10 @@ class PostStats_viewsByPage implements AdditionalDataHolder, Parsable
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object
-     * @return PostStats_viewsByPage
+     * @return PostStats_views_by_page
     */
-    public static function createFromDiscriminatorValue(ParseNode $parseNode): PostStats_viewsByPage {
-        return new PostStats_viewsByPage();
+    public static function createFromDiscriminatorValue(ParseNode $parseNode): PostStats_views_by_page {
+        return new PostStats_views_by_page();
     }
 
     /**

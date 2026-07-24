@@ -32,11 +32,11 @@ class MembershipsRequestBuilderGetRequestConfiguration extends BaseRequestConfig
      * @param int|null $limit 
      * @param int|null $offset 
      * @param MembershipState|null $state 
-     * @param string|null $userUserId 
+     * @param string|null $userUser_id 
      * @return MembershipsRequestBuilderGetQueryParameters
     */
-    public static function createQueryParameters(?int $limit = null, ?int $offset = null, ?MembershipState $state = null, ?string $userUserId = null): MembershipsRequestBuilderGetQueryParameters {
-        return new MembershipsRequestBuilderGetQueryParameters($limit, $offset, $state, $userUserId);
+    public static function createQueryParameters(?int $limit = null, ?int $offset = null, ?MembershipState $state = null, ?string $userUser_id = null): MembershipsRequestBuilderGetQueryParameters {
+        return new MembershipsRequestBuilderGetQueryParameters($limit, $offset, $state, $userUser_id);
     }
 
 }

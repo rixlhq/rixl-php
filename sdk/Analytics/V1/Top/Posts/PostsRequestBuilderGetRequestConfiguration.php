@@ -28,14 +28,14 @@ class PostsRequestBuilderGetRequestConfiguration extends BaseRequestConfiguratio
 
     /**
      * Instantiates a new PostsRequestBuilderGetQueryParameters.
-     * @param string|null $feedId 
+     * @param string|null $feed_id 
      * @param int|null $limit 
      * @param string|null $rangeEnd 
      * @param string|null $rangeStart 
      * @return PostsRequestBuilderGetQueryParameters
     */
-    public static function createQueryParameters(?string $feedId = null, ?int $limit = null, ?string $rangeEnd = null, ?string $rangeStart = null): PostsRequestBuilderGetQueryParameters {
-        return new PostsRequestBuilderGetQueryParameters($feedId, $limit, $rangeEnd, $rangeStart);
+    public static function createQueryParameters(?string $feed_id = null, ?int $limit = null, ?string $rangeEnd = null, ?string $rangeStart = null): PostsRequestBuilderGetQueryParameters {
+        return new PostsRequestBuilderGetQueryParameters($feed_id, $limit, $rangeEnd, $rangeStart);
     }
 
 }

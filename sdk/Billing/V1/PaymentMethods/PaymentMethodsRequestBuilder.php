@@ -51,7 +51,7 @@ class PaymentMethodsRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/billing/v1/payment-methods{?orgId*,refresh*}');
+        parent::__construct($requestAdapter, [], '{+baseurl}/billing/v1/payment-methods{?org_id*,refresh*}');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {

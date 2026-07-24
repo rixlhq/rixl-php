@@ -9,9 +9,9 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class FunnelStep implements Parsable 
 {
     /**
-     * @var string|null $eventType The eventType property
+     * @var string|null $event_type The event_type property
     */
-    private ?string $eventType = null;
+    private ?string $event_type = null;
     
     /**
      * @var FunnelStep_filters|null $filters The filters property
@@ -24,9 +24,9 @@ class FunnelStep implements Parsable
     private ?string $name = null;
     
     /**
-     * @var string|null $pageType The pageType property
+     * @var string|null $page_type The page_type property
     */
-    private ?string $pageType = null;
+    private ?string $page_type = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -38,11 +38,11 @@ class FunnelStep implements Parsable
     }
 
     /**
-     * Gets the eventType property value. The eventType property
+     * Gets the event_type property value. The event_type property
      * @return string|null
     */
     public function getEventType(): ?string {
-        return $this->eventType;
+        return $this->event_type;
     }
 
     /**
@@ -52,10 +52,10 @@ class FunnelStep implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'eventType' => fn(ParseNode $n) => $o->setEventType($n->getStringValue()),
+            'event_type' => fn(ParseNode $n) => $o->setEventType($n->getStringValue()),
             'filters' => fn(ParseNode $n) => $o->setFilters($n->getObjectValue([FunnelStep_filters::class, 'createFromDiscriminatorValue'])),
             'name' => fn(ParseNode $n) => $o->setName($n->getStringValue()),
-            'pageType' => fn(ParseNode $n) => $o->setPageType($n->getStringValue()),
+            'page_type' => fn(ParseNode $n) => $o->setPageType($n->getStringValue()),
         ];
     }
 
@@ -76,11 +76,11 @@ class FunnelStep implements Parsable
     }
 
     /**
-     * Gets the pageType property value. The pageType property
+     * Gets the page_type property value. The page_type property
      * @return string|null
     */
     public function getPageType(): ?string {
-        return $this->pageType;
+        return $this->page_type;
     }
 
     /**
@@ -88,18 +88,18 @@ class FunnelStep implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('eventType', $this->getEventType());
+        $writer->writeStringValue('event_type', $this->getEventType());
         $writer->writeObjectValue('filters', $this->getFilters());
         $writer->writeStringValue('name', $this->getName());
-        $writer->writeStringValue('pageType', $this->getPageType());
+        $writer->writeStringValue('page_type', $this->getPageType());
     }
 
     /**
-     * Sets the eventType property value. The eventType property
-     * @param string|null $value Value to set for the eventType property.
+     * Sets the event_type property value. The event_type property
+     * @param string|null $value Value to set for the event_type property.
     */
     public function setEventType(?string $value): void {
-        $this->eventType = $value;
+        $this->event_type = $value;
     }
 
     /**
@@ -119,11 +119,11 @@ class FunnelStep implements Parsable
     }
 
     /**
-     * Sets the pageType property value. The pageType property
-     * @param string|null $value Value to set for the pageType property.
+     * Sets the page_type property value. The page_type property
+     * @param string|null $value Value to set for the page_type property.
     */
     public function setPageType(?string $value): void {
-        $this->pageType = $value;
+        $this->page_type = $value;
     }
 
 }

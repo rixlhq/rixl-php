@@ -9,9 +9,9 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class TrackUploadItem implements Parsable 
 {
     /**
-     * @var string|null $fileName The fileName property
+     * @var string|null $file_name The file_name property
     */
-    private ?string $fileName = null;
+    private ?string $file_name = null;
     
     /**
      * @var string|null $format The format property
@@ -24,9 +24,9 @@ class TrackUploadItem implements Parsable
     private ?string $label = null;
     
     /**
-     * @var string|null $languageCode The languageCode property
+     * @var string|null $language_code The language_code property
     */
-    private ?string $languageCode = null;
+    private ?string $language_code = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -44,19 +44,19 @@ class TrackUploadItem implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'fileName' => fn(ParseNode $n) => $o->setFileName($n->getStringValue()),
+            'file_name' => fn(ParseNode $n) => $o->setFileName($n->getStringValue()),
             'format' => fn(ParseNode $n) => $o->setFormat($n->getStringValue()),
             'label' => fn(ParseNode $n) => $o->setLabel($n->getStringValue()),
-            'languageCode' => fn(ParseNode $n) => $o->setLanguageCode($n->getStringValue()),
+            'language_code' => fn(ParseNode $n) => $o->setLanguageCode($n->getStringValue()),
         ];
     }
 
     /**
-     * Gets the fileName property value. The fileName property
+     * Gets the file_name property value. The file_name property
      * @return string|null
     */
     public function getFileName(): ?string {
-        return $this->fileName;
+        return $this->file_name;
     }
 
     /**
@@ -76,11 +76,11 @@ class TrackUploadItem implements Parsable
     }
 
     /**
-     * Gets the languageCode property value. The languageCode property
+     * Gets the language_code property value. The language_code property
      * @return string|null
     */
     public function getLanguageCode(): ?string {
-        return $this->languageCode;
+        return $this->language_code;
     }
 
     /**
@@ -88,18 +88,18 @@ class TrackUploadItem implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('fileName', $this->getFileName());
+        $writer->writeStringValue('file_name', $this->getFileName());
         $writer->writeStringValue('format', $this->getFormat());
         $writer->writeStringValue('label', $this->getLabel());
-        $writer->writeStringValue('languageCode', $this->getLanguageCode());
+        $writer->writeStringValue('language_code', $this->getLanguageCode());
     }
 
     /**
-     * Sets the fileName property value. The fileName property
-     * @param string|null $value Value to set for the fileName property.
+     * Sets the file_name property value. The file_name property
+     * @param string|null $value Value to set for the file_name property.
     */
     public function setFileName(?string $value): void {
-        $this->fileName = $value;
+        $this->file_name = $value;
     }
 
     /**
@@ -119,11 +119,11 @@ class TrackUploadItem implements Parsable
     }
 
     /**
-     * Sets the languageCode property value. The languageCode property
-     * @param string|null $value Value to set for the languageCode property.
+     * Sets the language_code property value. The language_code property
+     * @param string|null $value Value to set for the language_code property.
     */
     public function setLanguageCode(?string $value): void {
-        $this->languageCode = $value;
+        $this->language_code = $value;
     }
 
 }

@@ -14,9 +14,9 @@ class CompleteTrackUploadItem implements Parsable
     private ?string $id = null;
     
     /**
-     * @var string|null $objectKey The objectKey property
+     * @var string|null $object_key The object_key property
     */
-    private ?string $objectKey = null;
+    private ?string $object_key = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -35,7 +35,7 @@ class CompleteTrackUploadItem implements Parsable
         $o = $this;
         return  [
             'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
-            'objectKey' => fn(ParseNode $n) => $o->setObjectKey($n->getStringValue()),
+            'object_key' => fn(ParseNode $n) => $o->setObjectKey($n->getStringValue()),
         ];
     }
 
@@ -48,11 +48,11 @@ class CompleteTrackUploadItem implements Parsable
     }
 
     /**
-     * Gets the objectKey property value. The objectKey property
+     * Gets the object_key property value. The object_key property
      * @return string|null
     */
     public function getObjectKey(): ?string {
-        return $this->objectKey;
+        return $this->object_key;
     }
 
     /**
@@ -61,7 +61,7 @@ class CompleteTrackUploadItem implements Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeStringValue('id', $this->getId());
-        $writer->writeStringValue('objectKey', $this->getObjectKey());
+        $writer->writeStringValue('object_key', $this->getObjectKey());
     }
 
     /**
@@ -73,11 +73,11 @@ class CompleteTrackUploadItem implements Parsable
     }
 
     /**
-     * Sets the objectKey property value. The objectKey property
-     * @param string|null $value Value to set for the objectKey property.
+     * Sets the object_key property value. The object_key property
+     * @param string|null $value Value to set for the object_key property.
     */
     public function setObjectKey(?string $value): void {
-        $this->objectKey = $value;
+        $this->object_key = $value;
     }
 
 }

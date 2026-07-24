@@ -10,19 +10,19 @@ use Microsoft\Kiota\Abstractions\Types\TypeUtils;
 class RetentionCohort implements Parsable 
 {
     /**
-     * @var string|null $cohortDate The cohortDate property
+     * @var string|null $cohort_date The cohort_date property
     */
-    private ?string $cohortDate = null;
+    private ?string $cohort_date = null;
     
     /**
-     * @var int|null $cohortSize The cohortSize property
+     * @var int|null $cohort_size The cohort_size property
     */
-    private ?int $cohortSize = null;
+    private ?int $cohort_size = null;
     
     /**
-     * @var array<float>|null $retentionData The retentionData property
+     * @var array<float>|null $retention_data The retention_data property
     */
-    private ?array $retentionData = null;
+    private ?array $retention_data = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -34,19 +34,19 @@ class RetentionCohort implements Parsable
     }
 
     /**
-     * Gets the cohortDate property value. The cohortDate property
+     * Gets the cohort_date property value. The cohort_date property
      * @return string|null
     */
     public function getCohortDate(): ?string {
-        return $this->cohortDate;
+        return $this->cohort_date;
     }
 
     /**
-     * Gets the cohortSize property value. The cohortSize property
+     * Gets the cohort_size property value. The cohort_size property
      * @return int|null
     */
     public function getCohortSize(): ?int {
-        return $this->cohortSize;
+        return $this->cohort_size;
     }
 
     /**
@@ -56,9 +56,9 @@ class RetentionCohort implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'cohortDate' => fn(ParseNode $n) => $o->setCohortDate($n->getStringValue()),
-            'cohortSize' => fn(ParseNode $n) => $o->setCohortSize($n->getIntegerValue()),
-            'retentionData' => function (ParseNode $n) {
+            'cohort_date' => fn(ParseNode $n) => $o->setCohortDate($n->getStringValue()),
+            'cohort_size' => fn(ParseNode $n) => $o->setCohortSize($n->getIntegerValue()),
+            'retention_data' => function (ParseNode $n) {
                 $val = $n->getCollectionOfPrimitiveValues();
                 if (is_array($val)) {
                     TypeUtils::validateCollectionValues($val, 'float');
@@ -70,11 +70,11 @@ class RetentionCohort implements Parsable
     }
 
     /**
-     * Gets the retentionData property value. The retentionData property
+     * Gets the retention_data property value. The retention_data property
      * @return array<float>|null
     */
     public function getRetentionData(): ?array {
-        return $this->retentionData;
+        return $this->retention_data;
     }
 
     /**
@@ -82,33 +82,33 @@ class RetentionCohort implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('cohortDate', $this->getCohortDate());
-        $writer->writeIntegerValue('cohortSize', $this->getCohortSize());
-        $writer->writeCollectionOfPrimitiveValues('retentionData', $this->getRetentionData());
+        $writer->writeStringValue('cohort_date', $this->getCohortDate());
+        $writer->writeIntegerValue('cohort_size', $this->getCohortSize());
+        $writer->writeCollectionOfPrimitiveValues('retention_data', $this->getRetentionData());
     }
 
     /**
-     * Sets the cohortDate property value. The cohortDate property
-     * @param string|null $value Value to set for the cohortDate property.
+     * Sets the cohort_date property value. The cohort_date property
+     * @param string|null $value Value to set for the cohort_date property.
     */
     public function setCohortDate(?string $value): void {
-        $this->cohortDate = $value;
+        $this->cohort_date = $value;
     }
 
     /**
-     * Sets the cohortSize property value. The cohortSize property
-     * @param int|null $value Value to set for the cohortSize property.
+     * Sets the cohort_size property value. The cohort_size property
+     * @param int|null $value Value to set for the cohort_size property.
     */
     public function setCohortSize(?int $value): void {
-        $this->cohortSize = $value;
+        $this->cohort_size = $value;
     }
 
     /**
-     * Sets the retentionData property value. The retentionData property
-     * @param array<float>|null $value Value to set for the retentionData property.
+     * Sets the retention_data property value. The retention_data property
+     * @param array<float>|null $value Value to set for the retention_data property.
     */
     public function setRetentionData(?array $value): void {
-        $this->retentionData = $value;
+        $this->retention_data = $value;
     }
 
 }

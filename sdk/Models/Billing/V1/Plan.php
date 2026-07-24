@@ -29,9 +29,9 @@ class Plan implements Parsable
     private ?string $interval = null;
     
     /**
-     * @var int|null $intervalCount The intervalCount property
+     * @var int|null $interval_count The interval_count property
     */
-    private ?int $intervalCount = null;
+    private ?int $interval_count = null;
     
     /**
      * @var string|null $name The name property
@@ -39,9 +39,9 @@ class Plan implements Parsable
     private ?string $name = null;
     
     /**
-     * @var PlanType|null $planType The planType property
+     * @var PlanType|null $plan_type The plan_type property
     */
-    private ?PlanType $planType = null;
+    private ?PlanType $plan_type = null;
     
     /**
      * @var string|null $price The price property
@@ -49,9 +49,9 @@ class Plan implements Parsable
     private ?string $price = null;
     
     /**
-     * @var int|null $sortOrder The sortOrder property
+     * @var int|null $sort_order The sort_order property
     */
-    private ?int $sortOrder = null;
+    private ?int $sort_order = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -89,11 +89,11 @@ class Plan implements Parsable
             'description' => fn(ParseNode $n) => $o->setDescription($n->getStringValue()),
             'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
             'interval' => fn(ParseNode $n) => $o->setInterval($n->getStringValue()),
-            'intervalCount' => fn(ParseNode $n) => $o->setIntervalCount($n->getIntegerValue()),
+            'interval_count' => fn(ParseNode $n) => $o->setIntervalCount($n->getIntegerValue()),
             'name' => fn(ParseNode $n) => $o->setName($n->getStringValue()),
-            'planType' => fn(ParseNode $n) => $o->setPlanType($n->getEnumValue(PlanType::class)),
+            'plan_type' => fn(ParseNode $n) => $o->setPlanType($n->getEnumValue(PlanType::class)),
             'price' => fn(ParseNode $n) => $o->setPrice($n->getStringValue()),
-            'sortOrder' => fn(ParseNode $n) => $o->setSortOrder($n->getIntegerValue()),
+            'sort_order' => fn(ParseNode $n) => $o->setSortOrder($n->getIntegerValue()),
         ];
     }
 
@@ -114,11 +114,11 @@ class Plan implements Parsable
     }
 
     /**
-     * Gets the intervalCount property value. The intervalCount property
+     * Gets the interval_count property value. The interval_count property
      * @return int|null
     */
     public function getIntervalCount(): ?int {
-        return $this->intervalCount;
+        return $this->interval_count;
     }
 
     /**
@@ -130,11 +130,11 @@ class Plan implements Parsable
     }
 
     /**
-     * Gets the planType property value. The planType property
+     * Gets the plan_type property value. The plan_type property
      * @return PlanType|null
     */
     public function getPlanType(): ?PlanType {
-        return $this->planType;
+        return $this->plan_type;
     }
 
     /**
@@ -146,11 +146,11 @@ class Plan implements Parsable
     }
 
     /**
-     * Gets the sortOrder property value. The sortOrder property
+     * Gets the sort_order property value. The sort_order property
      * @return int|null
     */
     public function getSortOrder(): ?int {
-        return $this->sortOrder;
+        return $this->sort_order;
     }
 
     /**
@@ -162,11 +162,11 @@ class Plan implements Parsable
         $writer->writeStringValue('description', $this->getDescription());
         $writer->writeStringValue('id', $this->getId());
         $writer->writeStringValue('interval', $this->getInterval());
-        $writer->writeIntegerValue('intervalCount', $this->getIntervalCount());
+        $writer->writeIntegerValue('interval_count', $this->getIntervalCount());
         $writer->writeStringValue('name', $this->getName());
-        $writer->writeEnumValue('planType', $this->getPlanType());
+        $writer->writeEnumValue('plan_type', $this->getPlanType());
         $writer->writeStringValue('price', $this->getPrice());
-        $writer->writeIntegerValue('sortOrder', $this->getSortOrder());
+        $writer->writeIntegerValue('sort_order', $this->getSortOrder());
     }
 
     /**
@@ -202,11 +202,11 @@ class Plan implements Parsable
     }
 
     /**
-     * Sets the intervalCount property value. The intervalCount property
-     * @param int|null $value Value to set for the intervalCount property.
+     * Sets the interval_count property value. The interval_count property
+     * @param int|null $value Value to set for the interval_count property.
     */
     public function setIntervalCount(?int $value): void {
-        $this->intervalCount = $value;
+        $this->interval_count = $value;
     }
 
     /**
@@ -218,11 +218,11 @@ class Plan implements Parsable
     }
 
     /**
-     * Sets the planType property value. The planType property
-     * @param PlanType|null $value Value to set for the planType property.
+     * Sets the plan_type property value. The plan_type property
+     * @param PlanType|null $value Value to set for the plan_type property.
     */
     public function setPlanType(?PlanType $value): void {
-        $this->planType = $value;
+        $this->plan_type = $value;
     }
 
     /**
@@ -234,11 +234,11 @@ class Plan implements Parsable
     }
 
     /**
-     * Sets the sortOrder property value. The sortOrder property
-     * @param int|null $value Value to set for the sortOrder property.
+     * Sets the sort_order property value. The sort_order property
+     * @param int|null $value Value to set for the sort_order property.
     */
     public function setSortOrder(?int $value): void {
-        $this->sortOrder = $value;
+        $this->sort_order = $value;
     }
 
 }

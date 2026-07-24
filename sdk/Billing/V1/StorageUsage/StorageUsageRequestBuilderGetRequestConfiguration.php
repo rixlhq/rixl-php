@@ -28,11 +28,11 @@ class StorageUsageRequestBuilderGetRequestConfiguration extends BaseRequestConfi
 
     /**
      * Instantiates a new StorageUsageRequestBuilderGetQueryParameters.
-     * @param string|null $orgId 
+     * @param string|null $org_id 
      * @return StorageUsageRequestBuilderGetQueryParameters
     */
-    public static function createQueryParameters(?string $orgId = null): StorageUsageRequestBuilderGetQueryParameters {
-        return new StorageUsageRequestBuilderGetQueryParameters($orgId);
+    public static function createQueryParameters(?string $org_id = null): StorageUsageRequestBuilderGetQueryParameters {
+        return new StorageUsageRequestBuilderGetQueryParameters($org_id);
     }
 
 }

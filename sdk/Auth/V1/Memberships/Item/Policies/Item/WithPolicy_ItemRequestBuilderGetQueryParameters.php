@@ -10,17 +10,17 @@ use Microsoft\Kiota\Abstractions\QueryParameter;
 class WithPolicy_ItemRequestBuilderGetQueryParameters 
 {
     /**
-     * @QueryParameter("user%2EuserId")
+     * @QueryParameter("user%2Euser_id")
      * @var string|null $userUserId 
     */
     public ?string $userUserId = null;
     
     /**
      * Instantiates a new WithPolicy_ItemRequestBuilderGetQueryParameters and sets the default values.
-     * @param string|null $userUserId 
+     * @param string|null $userUser_id 
     */
-    public function __construct(?string $userUserId = null) {
-        $this->userUserId = $userUserId;
+    public function __construct(?string $userUser_id = null) {
+        $this->userUserId = $userUser_id;
     }
 
 }

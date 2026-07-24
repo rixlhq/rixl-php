@@ -21,7 +21,7 @@ class WithCreator_ItemRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/posts/v1/feeds/{feed_id}/creators/{creator_id}{?pagination%2Elimit*,pagination%2Eoffset*,projectId*}');
+        parent::__construct($requestAdapter, [], '{+baseurl}/posts/v1/feeds/{feed_id}/creators/{creator_id}{?pagination%2Elimit*,pagination%2Eoffset*,project_id*}');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {

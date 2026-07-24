@@ -26,6 +26,11 @@ class WithPolicy_PutRequestBody implements Parsable
     private ?array $permissions = null;
     
     /**
+     * @var string|null $policy_id The policy_id property
+    */
+    private ?string $policy_id = null;
+    
+    /**
      * @var UserOrgRequest|null $user The user property
     */
     private ?UserOrgRequest $user = null;
@@ -64,6 +69,7 @@ class WithPolicy_PutRequestBody implements Parsable
                 /** @var array<string>|null $val */
                 $this->setPermissions($val);
             },
+            'policy_id' => fn(ParseNode $n) => $o->setPolicyId($n->getStringValue()),
             'user' => fn(ParseNode $n) => $o->setUser($n->getObjectValue([UserOrgRequest::class, 'createFromDiscriminatorValue'])),
         ];
     }
@@ -85,6 +91,14 @@ class WithPolicy_PutRequestBody implements Parsable
     }
 
     /**
+     * Gets the policy_id property value. The policy_id property
+     * @return string|null
+    */
+    public function getPolicyId(): ?string {
+        return $this->policy_id;
+    }
+
+    /**
      * Gets the user property value. The user property
      * @return UserOrgRequest|null
     */
@@ -100,6 +114,7 @@ class WithPolicy_PutRequestBody implements Parsable
         $writer->writeStringValue('description', $this->getDescription());
         $writer->writeStringValue('name', $this->getName());
         $writer->writeCollectionOfPrimitiveValues('permissions', $this->getPermissions());
+        $writer->writeStringValue('policy_id', $this->getPolicyId());
         $writer->writeObjectValue('user', $this->getUser());
     }
 
@@ -125,6 +140,14 @@ class WithPolicy_PutRequestBody implements Parsable
     */
     public function setPermissions(?array $value): void {
         $this->permissions = $value;
+    }
+
+    /**
+     * Sets the policy_id property value. The policy_id property
+     * @param string|null $value Value to set for the policy_id property.
+    */
+    public function setPolicyId(?string $value): void {
+        $this->policy_id = $value;
     }
 
     /**

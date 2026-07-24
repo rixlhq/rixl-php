@@ -9,14 +9,14 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class InitiateEmailChangeRequest implements Parsable 
 {
     /**
-     * @var string|null $newEmail The newEmail property
+     * @var string|null $new_email The new_email property
     */
-    private ?string $newEmail = null;
+    private ?string $new_email = null;
     
     /**
-     * @var string|null $userId The userId property
+     * @var string|null $user_id The user_id property
     */
-    private ?string $userId = null;
+    private ?string $user_id = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -34,25 +34,25 @@ class InitiateEmailChangeRequest implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'newEmail' => fn(ParseNode $n) => $o->setNewEmail($n->getStringValue()),
-            'userId' => fn(ParseNode $n) => $o->setUserId($n->getStringValue()),
+            'new_email' => fn(ParseNode $n) => $o->setNewEmail($n->getStringValue()),
+            'user_id' => fn(ParseNode $n) => $o->setUserId($n->getStringValue()),
         ];
     }
 
     /**
-     * Gets the newEmail property value. The newEmail property
+     * Gets the new_email property value. The new_email property
      * @return string|null
     */
     public function getNewEmail(): ?string {
-        return $this->newEmail;
+        return $this->new_email;
     }
 
     /**
-     * Gets the userId property value. The userId property
+     * Gets the user_id property value. The user_id property
      * @return string|null
     */
     public function getUserId(): ?string {
-        return $this->userId;
+        return $this->user_id;
     }
 
     /**
@@ -60,24 +60,24 @@ class InitiateEmailChangeRequest implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('newEmail', $this->getNewEmail());
-        $writer->writeStringValue('userId', $this->getUserId());
+        $writer->writeStringValue('new_email', $this->getNewEmail());
+        $writer->writeStringValue('user_id', $this->getUserId());
     }
 
     /**
-     * Sets the newEmail property value. The newEmail property
-     * @param string|null $value Value to set for the newEmail property.
+     * Sets the new_email property value. The new_email property
+     * @param string|null $value Value to set for the new_email property.
     */
     public function setNewEmail(?string $value): void {
-        $this->newEmail = $value;
+        $this->new_email = $value;
     }
 
     /**
-     * Sets the userId property value. The userId property
-     * @param string|null $value Value to set for the userId property.
+     * Sets the user_id property value. The user_id property
+     * @param string|null $value Value to set for the user_id property.
     */
     public function setUserId(?string $value): void {
-        $this->userId = $value;
+        $this->user_id = $value;
     }
 
 }

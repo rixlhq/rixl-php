@@ -10,9 +10,9 @@ use Rixl\Sdk\Models\Common\V1\Visibility;
 class GetImageResponse implements Parsable 
 {
     /**
-     * @var bool|null $attachedToVideo The attachedToVideo property
+     * @var bool|null $attached_to_video The attached_to_video property
     */
-    private ?bool $attachedToVideo = null;
+    private ?bool $attached_to_video = null;
     
     /**
      * @var ImageFile|null $file The file property
@@ -54,11 +54,11 @@ class GetImageResponse implements Parsable
     }
 
     /**
-     * Gets the attachedToVideo property value. The attachedToVideo property
+     * Gets the attached_to_video property value. The attached_to_video property
      * @return bool|null
     */
     public function getAttachedToVideo(): ?bool {
-        return $this->attachedToVideo;
+        return $this->attached_to_video;
     }
 
     /**
@@ -68,7 +68,7 @@ class GetImageResponse implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'attachedToVideo' => fn(ParseNode $n) => $o->setAttachedToVideo($n->getBooleanValue()),
+            'attached_to_video' => fn(ParseNode $n) => $o->setAttachedToVideo($n->getBooleanValue()),
             'file' => fn(ParseNode $n) => $o->setFile($n->getObjectValue([ImageFile::class, 'createFromDiscriminatorValue'])),
             'height' => fn(ParseNode $n) => $o->setHeight($n->getIntegerValue()),
             'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
@@ -131,7 +131,7 @@ class GetImageResponse implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeBooleanValue('attachedToVideo', $this->getAttachedToVideo());
+        $writer->writeBooleanValue('attached_to_video', $this->getAttachedToVideo());
         $writer->writeObjectValue('file', $this->getFile());
         $writer->writeIntegerValue('height', $this->getHeight());
         $writer->writeStringValue('id', $this->getId());
@@ -141,11 +141,11 @@ class GetImageResponse implements Parsable
     }
 
     /**
-     * Sets the attachedToVideo property value. The attachedToVideo property
-     * @param bool|null $value Value to set for the attachedToVideo property.
+     * Sets the attached_to_video property value. The attached_to_video property
+     * @param bool|null $value Value to set for the attached_to_video property.
     */
     public function setAttachedToVideo(?bool $value): void {
-        $this->attachedToVideo = $value;
+        $this->attached_to_video = $value;
     }
 
     /**

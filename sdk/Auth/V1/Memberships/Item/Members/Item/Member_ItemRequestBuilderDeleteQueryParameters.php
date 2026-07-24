@@ -10,17 +10,17 @@ use Microsoft\Kiota\Abstractions\QueryParameter;
 class Member_ItemRequestBuilderDeleteQueryParameters 
 {
     /**
-     * @QueryParameter("user%2EactorId")
+     * @QueryParameter("user%2Eactor_id")
      * @var string|null $userActorId 
     */
     public ?string $userActorId = null;
     
     /**
      * Instantiates a new Member_ItemRequestBuilderDeleteQueryParameters and sets the default values.
-     * @param string|null $userActorId 
+     * @param string|null $userActor_id 
     */
-    public function __construct(?string $userActorId = null) {
-        $this->userActorId = $userActorId;
+    public function __construct(?string $userActor_id = null) {
+        $this->userActorId = $userActor_id;
     }
 
 }

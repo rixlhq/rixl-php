@@ -9,9 +9,9 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class GetPostStatsResponse implements Parsable 
 {
     /**
-     * @var string|null $postId The postId property
+     * @var string|null $post_id The post_id property
     */
-    private ?string $postId = null;
+    private ?string $post_id = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -29,16 +29,16 @@ class GetPostStatsResponse implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'postId' => fn(ParseNode $n) => $o->setPostId($n->getStringValue()),
+            'post_id' => fn(ParseNode $n) => $o->setPostId($n->getStringValue()),
         ];
     }
 
     /**
-     * Gets the postId property value. The postId property
+     * Gets the post_id property value. The post_id property
      * @return string|null
     */
     public function getPostId(): ?string {
-        return $this->postId;
+        return $this->post_id;
     }
 
     /**
@@ -46,15 +46,15 @@ class GetPostStatsResponse implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('postId', $this->getPostId());
+        $writer->writeStringValue('post_id', $this->getPostId());
     }
 
     /**
-     * Sets the postId property value. The postId property
-     * @param string|null $value Value to set for the postId property.
+     * Sets the post_id property value. The post_id property
+     * @param string|null $value Value to set for the post_id property.
     */
     public function setPostId(?string $value): void {
-        $this->postId = $value;
+        $this->post_id = $value;
     }
 
 }

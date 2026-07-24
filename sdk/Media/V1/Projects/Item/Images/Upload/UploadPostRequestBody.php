@@ -20,9 +20,14 @@ class UploadPostRequestBody implements Parsable
     private ?string $name = null;
     
     /**
-     * @var string|null $orgId The orgId property
+     * @var string|null $org_id The org_id property
     */
-    private ?string $orgId = null;
+    private ?string $org_id = null;
+    
+    /**
+     * @var string|null $project_id The project_id property
+    */
+    private ?string $project_id = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -42,7 +47,8 @@ class UploadPostRequestBody implements Parsable
         return  [
             'format' => fn(ParseNode $n) => $o->setFormat($n->getEnumValue(ImageFormat::class)),
             'name' => fn(ParseNode $n) => $o->setName($n->getStringValue()),
-            'orgId' => fn(ParseNode $n) => $o->setOrgId($n->getStringValue()),
+            'org_id' => fn(ParseNode $n) => $o->setOrgId($n->getStringValue()),
+            'project_id' => fn(ParseNode $n) => $o->setProjectId($n->getStringValue()),
         ];
     }
 
@@ -63,11 +69,19 @@ class UploadPostRequestBody implements Parsable
     }
 
     /**
-     * Gets the orgId property value. The orgId property
+     * Gets the org_id property value. The org_id property
      * @return string|null
     */
     public function getOrgId(): ?string {
-        return $this->orgId;
+        return $this->org_id;
+    }
+
+    /**
+     * Gets the project_id property value. The project_id property
+     * @return string|null
+    */
+    public function getProjectId(): ?string {
+        return $this->project_id;
     }
 
     /**
@@ -77,7 +91,8 @@ class UploadPostRequestBody implements Parsable
     public function serialize(SerializationWriter $writer): void {
         $writer->writeEnumValue('format', $this->getFormat());
         $writer->writeStringValue('name', $this->getName());
-        $writer->writeStringValue('orgId', $this->getOrgId());
+        $writer->writeStringValue('org_id', $this->getOrgId());
+        $writer->writeStringValue('project_id', $this->getProjectId());
     }
 
     /**
@@ -97,11 +112,19 @@ class UploadPostRequestBody implements Parsable
     }
 
     /**
-     * Sets the orgId property value. The orgId property
-     * @param string|null $value Value to set for the orgId property.
+     * Sets the org_id property value. The org_id property
+     * @param string|null $value Value to set for the org_id property.
     */
     public function setOrgId(?string $value): void {
-        $this->orgId = $value;
+        $this->org_id = $value;
+    }
+
+    /**
+     * Sets the project_id property value. The project_id property
+     * @param string|null $value Value to set for the project_id property.
+    */
+    public function setProjectId(?string $value): void {
+        $this->project_id = $value;
     }
 
 }

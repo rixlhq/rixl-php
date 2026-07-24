@@ -9,9 +9,9 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class UpgradeSubscriptionResponse implements Parsable 
 {
     /**
-     * @var string|null $clientSecret The clientSecret property
+     * @var string|null $client_secret The client_secret property
     */
-    private ?string $clientSecret = null;
+    private ?string $client_secret = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -23,11 +23,11 @@ class UpgradeSubscriptionResponse implements Parsable
     }
 
     /**
-     * Gets the clientSecret property value. The clientSecret property
+     * Gets the client_secret property value. The client_secret property
      * @return string|null
     */
     public function getClientSecret(): ?string {
-        return $this->clientSecret;
+        return $this->client_secret;
     }
 
     /**
@@ -37,7 +37,7 @@ class UpgradeSubscriptionResponse implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'clientSecret' => fn(ParseNode $n) => $o->setClientSecret($n->getStringValue()),
+            'client_secret' => fn(ParseNode $n) => $o->setClientSecret($n->getStringValue()),
         ];
     }
 
@@ -46,15 +46,15 @@ class UpgradeSubscriptionResponse implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('clientSecret', $this->getClientSecret());
+        $writer->writeStringValue('client_secret', $this->getClientSecret());
     }
 
     /**
-     * Sets the clientSecret property value. The clientSecret property
-     * @param string|null $value Value to set for the clientSecret property.
+     * Sets the client_secret property value. The client_secret property
+     * @param string|null $value Value to set for the client_secret property.
     */
     public function setClientSecret(?string $value): void {
-        $this->clientSecret = $value;
+        $this->client_secret = $value;
     }
 
 }

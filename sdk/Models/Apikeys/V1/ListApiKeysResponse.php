@@ -9,9 +9,9 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class ListApiKeysResponse implements Parsable 
 {
     /**
-     * @var array<ApiKey>|null $apiKeys The apiKeys property
+     * @var array<ApiKey>|null $api_keys The api_keys property
     */
-    private ?array $apiKeys = null;
+    private ?array $api_keys = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -23,11 +23,11 @@ class ListApiKeysResponse implements Parsable
     }
 
     /**
-     * Gets the apiKeys property value. The apiKeys property
+     * Gets the api_keys property value. The api_keys property
      * @return array<ApiKey>|null
     */
     public function getApiKeys(): ?array {
-        return $this->apiKeys;
+        return $this->api_keys;
     }
 
     /**
@@ -37,7 +37,7 @@ class ListApiKeysResponse implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'apiKeys' => fn(ParseNode $n) => $o->setApiKeys($n->getCollectionOfObjectValues([ApiKey::class, 'createFromDiscriminatorValue'])),
+            'api_keys' => fn(ParseNode $n) => $o->setApiKeys($n->getCollectionOfObjectValues([ApiKey::class, 'createFromDiscriminatorValue'])),
         ];
     }
 
@@ -46,15 +46,15 @@ class ListApiKeysResponse implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeCollectionOfObjectValues('apiKeys', $this->getApiKeys());
+        $writer->writeCollectionOfObjectValues('api_keys', $this->getApiKeys());
     }
 
     /**
-     * Sets the apiKeys property value. The apiKeys property
-     * @param array<ApiKey>|null $value Value to set for the apiKeys property.
+     * Sets the api_keys property value. The api_keys property
+     * @param array<ApiKey>|null $value Value to set for the api_keys property.
     */
     public function setApiKeys(?array $value): void {
-        $this->apiKeys = $value;
+        $this->api_keys = $value;
     }
 
 }

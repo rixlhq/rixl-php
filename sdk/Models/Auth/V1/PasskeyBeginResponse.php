@@ -15,9 +15,9 @@ class PasskeyBeginResponse implements Parsable
     private ?StreamInterface $options = null;
     
     /**
-     * @var string|null $sessionId The sessionId property
+     * @var string|null $session_id The session_id property
     */
-    private ?string $sessionId = null;
+    private ?string $session_id = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -36,7 +36,7 @@ class PasskeyBeginResponse implements Parsable
         $o = $this;
         return  [
             'options' => fn(ParseNode $n) => $o->setOptions($n->getBinaryContent()),
-            'sessionId' => fn(ParseNode $n) => $o->setSessionId($n->getStringValue()),
+            'session_id' => fn(ParseNode $n) => $o->setSessionId($n->getStringValue()),
         ];
     }
 
@@ -49,11 +49,11 @@ class PasskeyBeginResponse implements Parsable
     }
 
     /**
-     * Gets the sessionId property value. The sessionId property
+     * Gets the session_id property value. The session_id property
      * @return string|null
     */
     public function getSessionId(): ?string {
-        return $this->sessionId;
+        return $this->session_id;
     }
 
     /**
@@ -62,7 +62,7 @@ class PasskeyBeginResponse implements Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeBinaryContent('options', $this->getOptions());
-        $writer->writeStringValue('sessionId', $this->getSessionId());
+        $writer->writeStringValue('session_id', $this->getSessionId());
     }
 
     /**
@@ -74,11 +74,11 @@ class PasskeyBeginResponse implements Parsable
     }
 
     /**
-     * Sets the sessionId property value. The sessionId property
-     * @param string|null $value Value to set for the sessionId property.
+     * Sets the session_id property value. The session_id property
+     * @param string|null $value Value to set for the session_id property.
     */
     public function setSessionId(?string $value): void {
-        $this->sessionId = $value;
+        $this->session_id = $value;
     }
 
 }

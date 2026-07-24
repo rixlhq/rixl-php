@@ -28,14 +28,14 @@ class WithFeed_ItemRequestBuilderGetRequestConfiguration extends BaseRequestConf
 
     /**
      * Instantiates a new WithFeed_ItemRequestBuilderGetQueryParameters.
-     * @param string|null $creatorId 
+     * @param string|null $creator_id 
      * @param int|null $paginationLimit Maximum number of items to return.
      * @param int|null $paginationOffset Number of items to skip before collecting the result set.
-     * @param string|null $projectId 
+     * @param string|null $project_id 
      * @return WithFeed_ItemRequestBuilderGetQueryParameters
     */
-    public static function createQueryParameters(?string $creatorId = null, ?int $paginationLimit = null, ?int $paginationOffset = null, ?string $projectId = null): WithFeed_ItemRequestBuilderGetQueryParameters {
-        return new WithFeed_ItemRequestBuilderGetQueryParameters($creatorId, $paginationLimit, $paginationOffset, $projectId);
+    public static function createQueryParameters(?string $creator_id = null, ?int $paginationLimit = null, ?int $paginationOffset = null, ?string $project_id = null): WithFeed_ItemRequestBuilderGetQueryParameters {
+        return new WithFeed_ItemRequestBuilderGetQueryParameters($creator_id, $paginationLimit, $paginationOffset, $project_id);
     }
 
 }

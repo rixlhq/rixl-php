@@ -14,9 +14,9 @@ class UpsertBillingAddressRequest implements Parsable
     private ?BillingAddress $address = null;
     
     /**
-     * @var string|null $orgId The orgId property
+     * @var string|null $org_id The org_id property
     */
-    private ?string $orgId = null;
+    private ?string $org_id = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -43,16 +43,16 @@ class UpsertBillingAddressRequest implements Parsable
         $o = $this;
         return  [
             'address' => fn(ParseNode $n) => $o->setAddress($n->getObjectValue([BillingAddress::class, 'createFromDiscriminatorValue'])),
-            'orgId' => fn(ParseNode $n) => $o->setOrgId($n->getStringValue()),
+            'org_id' => fn(ParseNode $n) => $o->setOrgId($n->getStringValue()),
         ];
     }
 
     /**
-     * Gets the orgId property value. The orgId property
+     * Gets the org_id property value. The org_id property
      * @return string|null
     */
     public function getOrgId(): ?string {
-        return $this->orgId;
+        return $this->org_id;
     }
 
     /**
@@ -61,7 +61,7 @@ class UpsertBillingAddressRequest implements Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeObjectValue('address', $this->getAddress());
-        $writer->writeStringValue('orgId', $this->getOrgId());
+        $writer->writeStringValue('org_id', $this->getOrgId());
     }
 
     /**
@@ -73,11 +73,11 @@ class UpsertBillingAddressRequest implements Parsable
     }
 
     /**
-     * Sets the orgId property value. The orgId property
-     * @param string|null $value Value to set for the orgId property.
+     * Sets the org_id property value. The org_id property
+     * @param string|null $value Value to set for the org_id property.
     */
     public function setOrgId(?string $value): void {
-        $this->orgId = $value;
+        $this->org_id = $value;
     }
 
 }

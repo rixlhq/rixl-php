@@ -28,11 +28,11 @@ class CheckRequestBuilderGetRequestConfiguration extends BaseRequestConfiguratio
 
     /**
      * Instantiates a new CheckRequestBuilderGetQueryParameters.
-     * @param string|null $userId 
+     * @param string|null $user_id 
      * @return CheckRequestBuilderGetQueryParameters
     */
-    public static function createQueryParameters(?string $userId = null): CheckRequestBuilderGetQueryParameters {
-        return new CheckRequestBuilderGetQueryParameters($userId);
+    public static function createQueryParameters(?string $user_id = null): CheckRequestBuilderGetQueryParameters {
+        return new CheckRequestBuilderGetQueryParameters($user_id);
     }
 
 }

@@ -15,19 +15,19 @@ class Passkey implements Parsable
     private ?string $aaguid = null;
     
     /**
-     * @var bool|null $backupState The backupState property
+     * @var bool|null $backup_state The backup_state property
     */
-    private ?bool $backupState = null;
+    private ?bool $backup_state = null;
     
     /**
-     * @var string|null $createdAt The createdAt property
+     * @var string|null $created_at The created_at property
     */
-    private ?string $createdAt = null;
+    private ?string $created_at = null;
     
     /**
-     * @var string|null $credentialId The credentialId property
+     * @var string|null $credential_id The credential_id property
     */
-    private ?string $credentialId = null;
+    private ?string $credential_id = null;
     
     /**
      * @var string|null $id The id property
@@ -35,9 +35,9 @@ class Passkey implements Parsable
     private ?string $id = null;
     
     /**
-     * @var string|null $lastUsedAt The lastUsedAt property
+     * @var string|null $last_used_at The last_used_at property
     */
-    private ?string $lastUsedAt = null;
+    private ?string $last_used_at = null;
     
     /**
      * @var string|null $name The name property
@@ -67,27 +67,27 @@ class Passkey implements Parsable
     }
 
     /**
-     * Gets the backupState property value. The backupState property
+     * Gets the backup_state property value. The backup_state property
      * @return bool|null
     */
     public function getBackupState(): ?bool {
-        return $this->backupState;
+        return $this->backup_state;
     }
 
     /**
-     * Gets the createdAt property value. The createdAt property
+     * Gets the created_at property value. The created_at property
      * @return string|null
     */
     public function getCreatedAt(): ?string {
-        return $this->createdAt;
+        return $this->created_at;
     }
 
     /**
-     * Gets the credentialId property value. The credentialId property
+     * Gets the credential_id property value. The credential_id property
      * @return string|null
     */
     public function getCredentialId(): ?string {
-        return $this->credentialId;
+        return $this->credential_id;
     }
 
     /**
@@ -98,11 +98,11 @@ class Passkey implements Parsable
         $o = $this;
         return  [
             'aaguid' => fn(ParseNode $n) => $o->setAaguid($n->getStringValue()),
-            'backupState' => fn(ParseNode $n) => $o->setBackupState($n->getBooleanValue()),
-            'createdAt' => fn(ParseNode $n) => $o->setCreatedAt($n->getStringValue()),
-            'credentialId' => fn(ParseNode $n) => $o->setCredentialId($n->getStringValue()),
+            'backup_state' => fn(ParseNode $n) => $o->setBackupState($n->getBooleanValue()),
+            'created_at' => fn(ParseNode $n) => $o->setCreatedAt($n->getStringValue()),
+            'credential_id' => fn(ParseNode $n) => $o->setCredentialId($n->getStringValue()),
             'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
-            'lastUsedAt' => fn(ParseNode $n) => $o->setLastUsedAt($n->getStringValue()),
+            'last_used_at' => fn(ParseNode $n) => $o->setLastUsedAt($n->getStringValue()),
             'name' => fn(ParseNode $n) => $o->setName($n->getStringValue()),
             'transports' => function (ParseNode $n) {
                 $val = $n->getCollectionOfPrimitiveValues();
@@ -124,11 +124,11 @@ class Passkey implements Parsable
     }
 
     /**
-     * Gets the lastUsedAt property value. The lastUsedAt property
+     * Gets the last_used_at property value. The last_used_at property
      * @return string|null
     */
     public function getLastUsedAt(): ?string {
-        return $this->lastUsedAt;
+        return $this->last_used_at;
     }
 
     /**
@@ -153,11 +153,11 @@ class Passkey implements Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeStringValue('aaguid', $this->getAaguid());
-        $writer->writeBooleanValue('backupState', $this->getBackupState());
-        $writer->writeStringValue('createdAt', $this->getCreatedAt());
-        $writer->writeStringValue('credentialId', $this->getCredentialId());
+        $writer->writeBooleanValue('backup_state', $this->getBackupState());
+        $writer->writeStringValue('created_at', $this->getCreatedAt());
+        $writer->writeStringValue('credential_id', $this->getCredentialId());
         $writer->writeStringValue('id', $this->getId());
-        $writer->writeStringValue('lastUsedAt', $this->getLastUsedAt());
+        $writer->writeStringValue('last_used_at', $this->getLastUsedAt());
         $writer->writeStringValue('name', $this->getName());
         $writer->writeCollectionOfPrimitiveValues('transports', $this->getTransports());
     }
@@ -171,27 +171,27 @@ class Passkey implements Parsable
     }
 
     /**
-     * Sets the backupState property value. The backupState property
-     * @param bool|null $value Value to set for the backupState property.
+     * Sets the backup_state property value. The backup_state property
+     * @param bool|null $value Value to set for the backup_state property.
     */
     public function setBackupState(?bool $value): void {
-        $this->backupState = $value;
+        $this->backup_state = $value;
     }
 
     /**
-     * Sets the createdAt property value. The createdAt property
-     * @param string|null $value Value to set for the createdAt property.
+     * Sets the created_at property value. The created_at property
+     * @param string|null $value Value to set for the created_at property.
     */
     public function setCreatedAt(?string $value): void {
-        $this->createdAt = $value;
+        $this->created_at = $value;
     }
 
     /**
-     * Sets the credentialId property value. The credentialId property
-     * @param string|null $value Value to set for the credentialId property.
+     * Sets the credential_id property value. The credential_id property
+     * @param string|null $value Value to set for the credential_id property.
     */
     public function setCredentialId(?string $value): void {
-        $this->credentialId = $value;
+        $this->credential_id = $value;
     }
 
     /**
@@ -203,11 +203,11 @@ class Passkey implements Parsable
     }
 
     /**
-     * Sets the lastUsedAt property value. The lastUsedAt property
-     * @param string|null $value Value to set for the lastUsedAt property.
+     * Sets the last_used_at property value. The last_used_at property
+     * @param string|null $value Value to set for the last_used_at property.
     */
     public function setLastUsedAt(?string $value): void {
-        $this->lastUsedAt = $value;
+        $this->last_used_at = $value;
     }
 
     /**

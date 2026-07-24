@@ -9,14 +9,14 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class RecentEvent implements Parsable 
 {
     /**
-     * @var string|null $contentId The contentId property
+     * @var string|null $content_id The content_id property
     */
-    private ?string $contentId = null;
+    private ?string $content_id = null;
     
     /**
-     * @var string|null $eventType The eventType property
+     * @var string|null $event_type The event_type property
     */
-    private ?string $eventType = null;
+    private ?string $event_type = null;
     
     /**
      * @var string|null $timestamp The timestamp property
@@ -24,9 +24,9 @@ class RecentEvent implements Parsable
     private ?string $timestamp = null;
     
     /**
-     * @var string|null $userId The userId property
+     * @var string|null $user_id The user_id property
     */
-    private ?string $userId = null;
+    private ?string $user_id = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -38,19 +38,19 @@ class RecentEvent implements Parsable
     }
 
     /**
-     * Gets the contentId property value. The contentId property
+     * Gets the content_id property value. The content_id property
      * @return string|null
     */
     public function getContentId(): ?string {
-        return $this->contentId;
+        return $this->content_id;
     }
 
     /**
-     * Gets the eventType property value. The eventType property
+     * Gets the event_type property value. The event_type property
      * @return string|null
     */
     public function getEventType(): ?string {
-        return $this->eventType;
+        return $this->event_type;
     }
 
     /**
@@ -60,10 +60,10 @@ class RecentEvent implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'contentId' => fn(ParseNode $n) => $o->setContentId($n->getStringValue()),
-            'eventType' => fn(ParseNode $n) => $o->setEventType($n->getStringValue()),
+            'content_id' => fn(ParseNode $n) => $o->setContentId($n->getStringValue()),
+            'event_type' => fn(ParseNode $n) => $o->setEventType($n->getStringValue()),
             'timestamp' => fn(ParseNode $n) => $o->setTimestamp($n->getStringValue()),
-            'userId' => fn(ParseNode $n) => $o->setUserId($n->getStringValue()),
+            'user_id' => fn(ParseNode $n) => $o->setUserId($n->getStringValue()),
         ];
     }
 
@@ -76,11 +76,11 @@ class RecentEvent implements Parsable
     }
 
     /**
-     * Gets the userId property value. The userId property
+     * Gets the user_id property value. The user_id property
      * @return string|null
     */
     public function getUserId(): ?string {
-        return $this->userId;
+        return $this->user_id;
     }
 
     /**
@@ -88,26 +88,26 @@ class RecentEvent implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('contentId', $this->getContentId());
-        $writer->writeStringValue('eventType', $this->getEventType());
+        $writer->writeStringValue('content_id', $this->getContentId());
+        $writer->writeStringValue('event_type', $this->getEventType());
         $writer->writeStringValue('timestamp', $this->getTimestamp());
-        $writer->writeStringValue('userId', $this->getUserId());
+        $writer->writeStringValue('user_id', $this->getUserId());
     }
 
     /**
-     * Sets the contentId property value. The contentId property
-     * @param string|null $value Value to set for the contentId property.
+     * Sets the content_id property value. The content_id property
+     * @param string|null $value Value to set for the content_id property.
     */
     public function setContentId(?string $value): void {
-        $this->contentId = $value;
+        $this->content_id = $value;
     }
 
     /**
-     * Sets the eventType property value. The eventType property
-     * @param string|null $value Value to set for the eventType property.
+     * Sets the event_type property value. The event_type property
+     * @param string|null $value Value to set for the event_type property.
     */
     public function setEventType(?string $value): void {
-        $this->eventType = $value;
+        $this->event_type = $value;
     }
 
     /**
@@ -119,11 +119,11 @@ class RecentEvent implements Parsable
     }
 
     /**
-     * Sets the userId property value. The userId property
-     * @param string|null $value Value to set for the userId property.
+     * Sets the user_id property value. The user_id property
+     * @param string|null $value Value to set for the user_id property.
     */
     public function setUserId(?string $value): void {
-        $this->userId = $value;
+        $this->user_id = $value;
     }
 
 }

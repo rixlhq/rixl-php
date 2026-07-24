@@ -9,14 +9,14 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class ActorOrgRequest implements Parsable 
 {
     /**
-     * @var string|null $actorId The actorId property
+     * @var string|null $actor_id The actor_id property
     */
-    private ?string $actorId = null;
+    private ?string $actor_id = null;
     
     /**
-     * @var string|null $orgId The orgId property
+     * @var string|null $org_id The org_id property
     */
-    private ?string $orgId = null;
+    private ?string $org_id = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -28,11 +28,11 @@ class ActorOrgRequest implements Parsable
     }
 
     /**
-     * Gets the actorId property value. The actorId property
+     * Gets the actor_id property value. The actor_id property
      * @return string|null
     */
     public function getActorId(): ?string {
-        return $this->actorId;
+        return $this->actor_id;
     }
 
     /**
@@ -42,17 +42,17 @@ class ActorOrgRequest implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'actorId' => fn(ParseNode $n) => $o->setActorId($n->getStringValue()),
-            'orgId' => fn(ParseNode $n) => $o->setOrgId($n->getStringValue()),
+            'actor_id' => fn(ParseNode $n) => $o->setActorId($n->getStringValue()),
+            'org_id' => fn(ParseNode $n) => $o->setOrgId($n->getStringValue()),
         ];
     }
 
     /**
-     * Gets the orgId property value. The orgId property
+     * Gets the org_id property value. The org_id property
      * @return string|null
     */
     public function getOrgId(): ?string {
-        return $this->orgId;
+        return $this->org_id;
     }
 
     /**
@@ -60,24 +60,24 @@ class ActorOrgRequest implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('actorId', $this->getActorId());
-        $writer->writeStringValue('orgId', $this->getOrgId());
+        $writer->writeStringValue('actor_id', $this->getActorId());
+        $writer->writeStringValue('org_id', $this->getOrgId());
     }
 
     /**
-     * Sets the actorId property value. The actorId property
-     * @param string|null $value Value to set for the actorId property.
+     * Sets the actor_id property value. The actor_id property
+     * @param string|null $value Value to set for the actor_id property.
     */
     public function setActorId(?string $value): void {
-        $this->actorId = $value;
+        $this->actor_id = $value;
     }
 
     /**
-     * Sets the orgId property value. The orgId property
-     * @param string|null $value Value to set for the orgId property.
+     * Sets the org_id property value. The org_id property
+     * @param string|null $value Value to set for the org_id property.
     */
     public function setOrgId(?string $value): void {
-        $this->orgId = $value;
+        $this->org_id = $value;
     }
 
 }

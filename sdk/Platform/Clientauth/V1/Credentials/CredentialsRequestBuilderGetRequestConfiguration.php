@@ -28,13 +28,13 @@ class CredentialsRequestBuilderGetRequestConfiguration extends BaseRequestConfig
 
     /**
      * Instantiates a new CredentialsRequestBuilderGetQueryParameters.
-     * @param string|null $orgId 
+     * @param string|null $org_id 
      * @param int|null $paginationLimit Maximum number of items to return.
      * @param int|null $paginationOffset Number of items to skip before collecting the result set.
      * @return CredentialsRequestBuilderGetQueryParameters
     */
-    public static function createQueryParameters(?string $orgId = null, ?int $paginationLimit = null, ?int $paginationOffset = null): CredentialsRequestBuilderGetQueryParameters {
-        return new CredentialsRequestBuilderGetQueryParameters($orgId, $paginationLimit, $paginationOffset);
+    public static function createQueryParameters(?string $org_id = null, ?int $paginationLimit = null, ?int $paginationOffset = null): CredentialsRequestBuilderGetQueryParameters {
+        return new CredentialsRequestBuilderGetQueryParameters($org_id, $paginationLimit, $paginationOffset);
     }
 
 }

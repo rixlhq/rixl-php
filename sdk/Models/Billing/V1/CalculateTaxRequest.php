@@ -14,14 +14,14 @@ class CalculateTaxRequest implements Parsable
     private ?float $amount = null;
     
     /**
-     * @var BillingAddress|null $billingAddress The billingAddress property
+     * @var BillingAddress|null $billing_address The billing_address property
     */
-    private ?BillingAddress $billingAddress = null;
+    private ?BillingAddress $billing_address = null;
     
     /**
-     * @var BillingCycle|null $billingCycle The billingCycle property
+     * @var BillingCycle|null $billing_cycle The billing_cycle property
     */
-    private ?BillingCycle $billingCycle = null;
+    private ?BillingCycle $billing_cycle = null;
     
     /**
      * @var string|null $currency The currency property
@@ -29,9 +29,9 @@ class CalculateTaxRequest implements Parsable
     private ?string $currency = null;
     
     /**
-     * @var array<TaxLineItem>|null $lineItems The lineItems property
+     * @var array<TaxLineItem>|null $line_items The line_items property
     */
-    private ?array $lineItems = null;
+    private ?array $line_items = null;
     
     /**
      * @var CalculateTaxRequest_metadata|null $metadata The metadata property
@@ -39,19 +39,19 @@ class CalculateTaxRequest implements Parsable
     private ?CalculateTaxRequest_metadata $metadata = null;
     
     /**
-     * @var string|null $orgId The orgId property
+     * @var string|null $org_id The org_id property
     */
-    private ?string $orgId = null;
+    private ?string $org_id = null;
     
     /**
-     * @var string|null $planId The planId property
+     * @var string|null $plan_id The plan_id property
     */
-    private ?string $planId = null;
+    private ?string $plan_id = null;
     
     /**
-     * @var string|null $planName The planName property
+     * @var string|null $plan_name The plan_name property
     */
-    private ?string $planName = null;
+    private ?string $plan_name = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -71,19 +71,19 @@ class CalculateTaxRequest implements Parsable
     }
 
     /**
-     * Gets the billingAddress property value. The billingAddress property
+     * Gets the billing_address property value. The billing_address property
      * @return BillingAddress|null
     */
     public function getBillingAddress(): ?BillingAddress {
-        return $this->billingAddress;
+        return $this->billing_address;
     }
 
     /**
-     * Gets the billingCycle property value. The billingCycle property
+     * Gets the billing_cycle property value. The billing_cycle property
      * @return BillingCycle|null
     */
     public function getBillingCycle(): ?BillingCycle {
-        return $this->billingCycle;
+        return $this->billing_cycle;
     }
 
     /**
@@ -102,23 +102,23 @@ class CalculateTaxRequest implements Parsable
         $o = $this;
         return  [
             'amount' => fn(ParseNode $n) => $o->setAmount($n->getFloatValue()),
-            'billingAddress' => fn(ParseNode $n) => $o->setBillingAddress($n->getObjectValue([BillingAddress::class, 'createFromDiscriminatorValue'])),
-            'billingCycle' => fn(ParseNode $n) => $o->setBillingCycle($n->getEnumValue(BillingCycle::class)),
+            'billing_address' => fn(ParseNode $n) => $o->setBillingAddress($n->getObjectValue([BillingAddress::class, 'createFromDiscriminatorValue'])),
+            'billing_cycle' => fn(ParseNode $n) => $o->setBillingCycle($n->getEnumValue(BillingCycle::class)),
             'currency' => fn(ParseNode $n) => $o->setCurrency($n->getStringValue()),
-            'lineItems' => fn(ParseNode $n) => $o->setLineItems($n->getCollectionOfObjectValues([TaxLineItem::class, 'createFromDiscriminatorValue'])),
+            'line_items' => fn(ParseNode $n) => $o->setLineItems($n->getCollectionOfObjectValues([TaxLineItem::class, 'createFromDiscriminatorValue'])),
             'metadata' => fn(ParseNode $n) => $o->setMetadata($n->getObjectValue([CalculateTaxRequest_metadata::class, 'createFromDiscriminatorValue'])),
-            'orgId' => fn(ParseNode $n) => $o->setOrgId($n->getStringValue()),
-            'planId' => fn(ParseNode $n) => $o->setPlanId($n->getStringValue()),
-            'planName' => fn(ParseNode $n) => $o->setPlanName($n->getStringValue()),
+            'org_id' => fn(ParseNode $n) => $o->setOrgId($n->getStringValue()),
+            'plan_id' => fn(ParseNode $n) => $o->setPlanId($n->getStringValue()),
+            'plan_name' => fn(ParseNode $n) => $o->setPlanName($n->getStringValue()),
         ];
     }
 
     /**
-     * Gets the lineItems property value. The lineItems property
+     * Gets the line_items property value. The line_items property
      * @return array<TaxLineItem>|null
     */
     public function getLineItems(): ?array {
-        return $this->lineItems;
+        return $this->line_items;
     }
 
     /**
@@ -130,27 +130,27 @@ class CalculateTaxRequest implements Parsable
     }
 
     /**
-     * Gets the orgId property value. The orgId property
+     * Gets the org_id property value. The org_id property
      * @return string|null
     */
     public function getOrgId(): ?string {
-        return $this->orgId;
+        return $this->org_id;
     }
 
     /**
-     * Gets the planId property value. The planId property
+     * Gets the plan_id property value. The plan_id property
      * @return string|null
     */
     public function getPlanId(): ?string {
-        return $this->planId;
+        return $this->plan_id;
     }
 
     /**
-     * Gets the planName property value. The planName property
+     * Gets the plan_name property value. The plan_name property
      * @return string|null
     */
     public function getPlanName(): ?string {
-        return $this->planName;
+        return $this->plan_name;
     }
 
     /**
@@ -159,14 +159,14 @@ class CalculateTaxRequest implements Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeFloatValue('amount', $this->getAmount());
-        $writer->writeObjectValue('billingAddress', $this->getBillingAddress());
-        $writer->writeEnumValue('billingCycle', $this->getBillingCycle());
+        $writer->writeObjectValue('billing_address', $this->getBillingAddress());
+        $writer->writeEnumValue('billing_cycle', $this->getBillingCycle());
         $writer->writeStringValue('currency', $this->getCurrency());
-        $writer->writeCollectionOfObjectValues('lineItems', $this->getLineItems());
+        $writer->writeCollectionOfObjectValues('line_items', $this->getLineItems());
         $writer->writeObjectValue('metadata', $this->getMetadata());
-        $writer->writeStringValue('orgId', $this->getOrgId());
-        $writer->writeStringValue('planId', $this->getPlanId());
-        $writer->writeStringValue('planName', $this->getPlanName());
+        $writer->writeStringValue('org_id', $this->getOrgId());
+        $writer->writeStringValue('plan_id', $this->getPlanId());
+        $writer->writeStringValue('plan_name', $this->getPlanName());
     }
 
     /**
@@ -178,19 +178,19 @@ class CalculateTaxRequest implements Parsable
     }
 
     /**
-     * Sets the billingAddress property value. The billingAddress property
-     * @param BillingAddress|null $value Value to set for the billingAddress property.
+     * Sets the billing_address property value. The billing_address property
+     * @param BillingAddress|null $value Value to set for the billing_address property.
     */
     public function setBillingAddress(?BillingAddress $value): void {
-        $this->billingAddress = $value;
+        $this->billing_address = $value;
     }
 
     /**
-     * Sets the billingCycle property value. The billingCycle property
-     * @param BillingCycle|null $value Value to set for the billingCycle property.
+     * Sets the billing_cycle property value. The billing_cycle property
+     * @param BillingCycle|null $value Value to set for the billing_cycle property.
     */
     public function setBillingCycle(?BillingCycle $value): void {
-        $this->billingCycle = $value;
+        $this->billing_cycle = $value;
     }
 
     /**
@@ -202,11 +202,11 @@ class CalculateTaxRequest implements Parsable
     }
 
     /**
-     * Sets the lineItems property value. The lineItems property
-     * @param array<TaxLineItem>|null $value Value to set for the lineItems property.
+     * Sets the line_items property value. The line_items property
+     * @param array<TaxLineItem>|null $value Value to set for the line_items property.
     */
     public function setLineItems(?array $value): void {
-        $this->lineItems = $value;
+        $this->line_items = $value;
     }
 
     /**
@@ -218,27 +218,27 @@ class CalculateTaxRequest implements Parsable
     }
 
     /**
-     * Sets the orgId property value. The orgId property
-     * @param string|null $value Value to set for the orgId property.
+     * Sets the org_id property value. The org_id property
+     * @param string|null $value Value to set for the org_id property.
     */
     public function setOrgId(?string $value): void {
-        $this->orgId = $value;
+        $this->org_id = $value;
     }
 
     /**
-     * Sets the planId property value. The planId property
-     * @param string|null $value Value to set for the planId property.
+     * Sets the plan_id property value. The plan_id property
+     * @param string|null $value Value to set for the plan_id property.
     */
     public function setPlanId(?string $value): void {
-        $this->planId = $value;
+        $this->plan_id = $value;
     }
 
     /**
-     * Sets the planName property value. The planName property
-     * @param string|null $value Value to set for the planName property.
+     * Sets the plan_name property value. The plan_name property
+     * @param string|null $value Value to set for the plan_name property.
     */
     public function setPlanName(?string $value): void {
-        $this->planName = $value;
+        $this->plan_name = $value;
     }
 
 }

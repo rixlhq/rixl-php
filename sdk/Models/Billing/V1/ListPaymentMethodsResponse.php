@@ -9,9 +9,9 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class ListPaymentMethodsResponse implements Parsable 
 {
     /**
-     * @var array<PaymentMethod>|null $paymentMethods The paymentMethods property
+     * @var array<PaymentMethod>|null $payment_methods The payment_methods property
     */
-    private ?array $paymentMethods = null;
+    private ?array $payment_methods = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -29,16 +29,16 @@ class ListPaymentMethodsResponse implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'paymentMethods' => fn(ParseNode $n) => $o->setPaymentMethods($n->getCollectionOfObjectValues([PaymentMethod::class, 'createFromDiscriminatorValue'])),
+            'payment_methods' => fn(ParseNode $n) => $o->setPaymentMethods($n->getCollectionOfObjectValues([PaymentMethod::class, 'createFromDiscriminatorValue'])),
         ];
     }
 
     /**
-     * Gets the paymentMethods property value. The paymentMethods property
+     * Gets the payment_methods property value. The payment_methods property
      * @return array<PaymentMethod>|null
     */
     public function getPaymentMethods(): ?array {
-        return $this->paymentMethods;
+        return $this->payment_methods;
     }
 
     /**
@@ -46,15 +46,15 @@ class ListPaymentMethodsResponse implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeCollectionOfObjectValues('paymentMethods', $this->getPaymentMethods());
+        $writer->writeCollectionOfObjectValues('payment_methods', $this->getPaymentMethods());
     }
 
     /**
-     * Sets the paymentMethods property value. The paymentMethods property
-     * @param array<PaymentMethod>|null $value Value to set for the paymentMethods property.
+     * Sets the payment_methods property value. The payment_methods property
+     * @param array<PaymentMethod>|null $value Value to set for the payment_methods property.
     */
     public function setPaymentMethods(?array $value): void {
-        $this->paymentMethods = $value;
+        $this->payment_methods = $value;
     }
 
 }

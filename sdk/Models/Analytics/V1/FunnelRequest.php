@@ -19,9 +19,9 @@ class FunnelRequest implements Parsable
     private ?array $steps = null;
     
     /**
-     * @var int|null $timeWindow The timeWindow property
+     * @var int|null $time_window The time_window property
     */
-    private ?int $timeWindow = null;
+    private ?int $time_window = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -41,7 +41,7 @@ class FunnelRequest implements Parsable
         return  [
             'range' => fn(ParseNode $n) => $o->setRange($n->getObjectValue([DateRange::class, 'createFromDiscriminatorValue'])),
             'steps' => fn(ParseNode $n) => $o->setSteps($n->getCollectionOfObjectValues([FunnelStep::class, 'createFromDiscriminatorValue'])),
-            'timeWindow' => fn(ParseNode $n) => $o->setTimeWindow($n->getIntegerValue()),
+            'time_window' => fn(ParseNode $n) => $o->setTimeWindow($n->getIntegerValue()),
         ];
     }
 
@@ -62,11 +62,11 @@ class FunnelRequest implements Parsable
     }
 
     /**
-     * Gets the timeWindow property value. The timeWindow property
+     * Gets the time_window property value. The time_window property
      * @return int|null
     */
     public function getTimeWindow(): ?int {
-        return $this->timeWindow;
+        return $this->time_window;
     }
 
     /**
@@ -76,7 +76,7 @@ class FunnelRequest implements Parsable
     public function serialize(SerializationWriter $writer): void {
         $writer->writeObjectValue('range', $this->getRange());
         $writer->writeCollectionOfObjectValues('steps', $this->getSteps());
-        $writer->writeIntegerValue('timeWindow', $this->getTimeWindow());
+        $writer->writeIntegerValue('time_window', $this->getTimeWindow());
     }
 
     /**
@@ -96,11 +96,11 @@ class FunnelRequest implements Parsable
     }
 
     /**
-     * Sets the timeWindow property value. The timeWindow property
-     * @param int|null $value Value to set for the timeWindow property.
+     * Sets the time_window property value. The time_window property
+     * @param int|null $value Value to set for the time_window property.
     */
     public function setTimeWindow(?int $value): void {
-        $this->timeWindow = $value;
+        $this->time_window = $value;
     }
 
 }

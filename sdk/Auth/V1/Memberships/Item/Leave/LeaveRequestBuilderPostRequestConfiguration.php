@@ -28,11 +28,11 @@ class LeaveRequestBuilderPostRequestConfiguration extends BaseRequestConfigurati
 
     /**
      * Instantiates a new LeaveRequestBuilderPostQueryParameters.
-     * @param string|null $userId 
+     * @param string|null $user_id 
      * @return LeaveRequestBuilderPostQueryParameters
     */
-    public static function createQueryParameters(?string $userId = null): LeaveRequestBuilderPostQueryParameters {
-        return new LeaveRequestBuilderPostQueryParameters($userId);
+    public static function createQueryParameters(?string $user_id = null): LeaveRequestBuilderPostQueryParameters {
+        return new LeaveRequestBuilderPostQueryParameters($user_id);
     }
 
 }

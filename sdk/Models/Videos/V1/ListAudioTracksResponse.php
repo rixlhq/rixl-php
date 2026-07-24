@@ -9,9 +9,9 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class ListAudioTracksResponse implements Parsable 
 {
     /**
-     * @var array<AudioTrack>|null $audioTracks The audioTracks property
+     * @var array<AudioTrack>|null $audio_tracks The audio_tracks property
     */
-    private ?array $audioTracks = null;
+    private ?array $audio_tracks = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -23,11 +23,11 @@ class ListAudioTracksResponse implements Parsable
     }
 
     /**
-     * Gets the audioTracks property value. The audioTracks property
+     * Gets the audio_tracks property value. The audio_tracks property
      * @return array<AudioTrack>|null
     */
     public function getAudioTracks(): ?array {
-        return $this->audioTracks;
+        return $this->audio_tracks;
     }
 
     /**
@@ -37,7 +37,7 @@ class ListAudioTracksResponse implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'audioTracks' => fn(ParseNode $n) => $o->setAudioTracks($n->getCollectionOfObjectValues([AudioTrack::class, 'createFromDiscriminatorValue'])),
+            'audio_tracks' => fn(ParseNode $n) => $o->setAudioTracks($n->getCollectionOfObjectValues([AudioTrack::class, 'createFromDiscriminatorValue'])),
         ];
     }
 
@@ -46,15 +46,15 @@ class ListAudioTracksResponse implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeCollectionOfObjectValues('audioTracks', $this->getAudioTracks());
+        $writer->writeCollectionOfObjectValues('audio_tracks', $this->getAudioTracks());
     }
 
     /**
-     * Sets the audioTracks property value. The audioTracks property
-     * @param array<AudioTrack>|null $value Value to set for the audioTracks property.
+     * Sets the audio_tracks property value. The audio_tracks property
+     * @param array<AudioTrack>|null $value Value to set for the audio_tracks property.
     */
     public function setAudioTracks(?array $value): void {
-        $this->audioTracks = $value;
+        $this->audio_tracks = $value;
     }
 
 }

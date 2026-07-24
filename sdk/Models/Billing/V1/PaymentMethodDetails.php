@@ -19,9 +19,9 @@ class PaymentMethodDetails implements Parsable
     private ?string $id = null;
     
     /**
-     * @var bool|null $isDefault The isDefault property
+     * @var bool|null $is_default The is_default property
     */
-    private ?bool $isDefault = null;
+    private ?bool $is_default = null;
     
     /**
      * @var string|null $last4 The last4 property
@@ -59,7 +59,7 @@ class PaymentMethodDetails implements Parsable
         return  [
             'brand' => fn(ParseNode $n) => $o->setBrand($n->getStringValue()),
             'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
-            'isDefault' => fn(ParseNode $n) => $o->setIsDefault($n->getBooleanValue()),
+            'is_default' => fn(ParseNode $n) => $o->setIsDefault($n->getBooleanValue()),
             'last4' => fn(ParseNode $n) => $o->setLast4($n->getStringValue()),
             'type' => fn(ParseNode $n) => $o->setType($n->getStringValue()),
         ];
@@ -74,11 +74,11 @@ class PaymentMethodDetails implements Parsable
     }
 
     /**
-     * Gets the isDefault property value. The isDefault property
+     * Gets the is_default property value. The is_default property
      * @return bool|null
     */
     public function getIsDefault(): ?bool {
-        return $this->isDefault;
+        return $this->is_default;
     }
 
     /**
@@ -104,7 +104,7 @@ class PaymentMethodDetails implements Parsable
     public function serialize(SerializationWriter $writer): void {
         $writer->writeStringValue('brand', $this->getBrand());
         $writer->writeStringValue('id', $this->getId());
-        $writer->writeBooleanValue('isDefault', $this->getIsDefault());
+        $writer->writeBooleanValue('is_default', $this->getIsDefault());
         $writer->writeStringValue('last4', $this->getLast4());
         $writer->writeStringValue('type', $this->getType());
     }
@@ -126,11 +126,11 @@ class PaymentMethodDetails implements Parsable
     }
 
     /**
-     * Sets the isDefault property value. The isDefault property
-     * @param bool|null $value Value to set for the isDefault property.
+     * Sets the is_default property value. The is_default property
+     * @param bool|null $value Value to set for the is_default property.
     */
     public function setIsDefault(?bool $value): void {
-        $this->isDefault = $value;
+        $this->is_default = $value;
     }
 
     /**

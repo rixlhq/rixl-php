@@ -9,9 +9,9 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class MarkVideoFailedRequest implements Parsable 
 {
     /**
-     * @var string|null $fileId The fileId property
+     * @var string|null $file_id The file_id property
     */
-    private ?string $fileId = null;
+    private ?string $file_id = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -29,16 +29,16 @@ class MarkVideoFailedRequest implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'fileId' => fn(ParseNode $n) => $o->setFileId($n->getStringValue()),
+            'file_id' => fn(ParseNode $n) => $o->setFileId($n->getStringValue()),
         ];
     }
 
     /**
-     * Gets the fileId property value. The fileId property
+     * Gets the file_id property value. The file_id property
      * @return string|null
     */
     public function getFileId(): ?string {
-        return $this->fileId;
+        return $this->file_id;
     }
 
     /**
@@ -46,15 +46,15 @@ class MarkVideoFailedRequest implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('fileId', $this->getFileId());
+        $writer->writeStringValue('file_id', $this->getFileId());
     }
 
     /**
-     * Sets the fileId property value. The fileId property
-     * @param string|null $value Value to set for the fileId property.
+     * Sets the file_id property value. The file_id property
+     * @param string|null $value Value to set for the file_id property.
     */
     public function setFileId(?string $value): void {
-        $this->fileId = $value;
+        $this->file_id = $value;
     }
 
 }

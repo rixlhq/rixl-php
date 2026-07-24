@@ -9,9 +9,9 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class RotateApiKeyResponse implements Parsable 
 {
     /**
-     * @var ApiKey|null $apiKey The apiKey property
+     * @var ApiKey|null $api_key The api_key property
     */
-    private ?ApiKey $apiKey = null;
+    private ?ApiKey $api_key = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -23,11 +23,11 @@ class RotateApiKeyResponse implements Parsable
     }
 
     /**
-     * Gets the apiKey property value. The apiKey property
+     * Gets the api_key property value. The api_key property
      * @return ApiKey|null
     */
     public function getApiKey(): ?ApiKey {
-        return $this->apiKey;
+        return $this->api_key;
     }
 
     /**
@@ -37,7 +37,7 @@ class RotateApiKeyResponse implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'apiKey' => fn(ParseNode $n) => $o->setApiKey($n->getObjectValue([ApiKey::class, 'createFromDiscriminatorValue'])),
+            'api_key' => fn(ParseNode $n) => $o->setApiKey($n->getObjectValue([ApiKey::class, 'createFromDiscriminatorValue'])),
         ];
     }
 
@@ -46,15 +46,15 @@ class RotateApiKeyResponse implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeObjectValue('apiKey', $this->getApiKey());
+        $writer->writeObjectValue('api_key', $this->getApiKey());
     }
 
     /**
-     * Sets the apiKey property value. The apiKey property
-     * @param ApiKey|null $value Value to set for the apiKey property.
+     * Sets the api_key property value. The api_key property
+     * @param ApiKey|null $value Value to set for the api_key property.
     */
     public function setApiKey(?ApiKey $value): void {
-        $this->apiKey = $value;
+        $this->api_key = $value;
     }
 
 }

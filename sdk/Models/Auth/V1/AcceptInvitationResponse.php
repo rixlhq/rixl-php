@@ -9,14 +9,14 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class AcceptInvitationResponse implements Parsable 
 {
     /**
-     * @var string|null $orgId The orgId property
+     * @var string|null $org_id The org_id property
     */
-    private ?string $orgId = null;
+    private ?string $org_id = null;
     
     /**
-     * @var string|null $orgName The orgName property
+     * @var string|null $org_name The org_name property
     */
-    private ?string $orgName = null;
+    private ?string $org_name = null;
     
     /**
      * @var MembershipRole|null $role The role property
@@ -39,26 +39,26 @@ class AcceptInvitationResponse implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'orgId' => fn(ParseNode $n) => $o->setOrgId($n->getStringValue()),
-            'orgName' => fn(ParseNode $n) => $o->setOrgName($n->getStringValue()),
+            'org_id' => fn(ParseNode $n) => $o->setOrgId($n->getStringValue()),
+            'org_name' => fn(ParseNode $n) => $o->setOrgName($n->getStringValue()),
             'role' => fn(ParseNode $n) => $o->setRole($n->getEnumValue(MembershipRole::class)),
         ];
     }
 
     /**
-     * Gets the orgId property value. The orgId property
+     * Gets the org_id property value. The org_id property
      * @return string|null
     */
     public function getOrgId(): ?string {
-        return $this->orgId;
+        return $this->org_id;
     }
 
     /**
-     * Gets the orgName property value. The orgName property
+     * Gets the org_name property value. The org_name property
      * @return string|null
     */
     public function getOrgName(): ?string {
-        return $this->orgName;
+        return $this->org_name;
     }
 
     /**
@@ -74,25 +74,25 @@ class AcceptInvitationResponse implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('orgId', $this->getOrgId());
-        $writer->writeStringValue('orgName', $this->getOrgName());
+        $writer->writeStringValue('org_id', $this->getOrgId());
+        $writer->writeStringValue('org_name', $this->getOrgName());
         $writer->writeEnumValue('role', $this->getRole());
     }
 
     /**
-     * Sets the orgId property value. The orgId property
-     * @param string|null $value Value to set for the orgId property.
+     * Sets the org_id property value. The org_id property
+     * @param string|null $value Value to set for the org_id property.
     */
     public function setOrgId(?string $value): void {
-        $this->orgId = $value;
+        $this->org_id = $value;
     }
 
     /**
-     * Sets the orgName property value. The orgName property
-     * @param string|null $value Value to set for the orgName property.
+     * Sets the org_name property value. The org_name property
+     * @param string|null $value Value to set for the org_name property.
     */
     public function setOrgName(?string $value): void {
-        $this->orgName = $value;
+        $this->org_name = $value;
     }
 
     /**

@@ -11,14 +11,19 @@ use Rixl\Sdk\Models\Auth\V1\UserOrgRequest;
 class AttachmentsPostRequestBody implements Parsable 
 {
     /**
-     * @var string|null $identityId The identityId property
+     * @var string|null $identity_id The identity_id property
     */
-    private ?string $identityId = null;
+    private ?string $identity_id = null;
     
     /**
-     * @var PolicyIdentityType|null $identityType The identityType property
+     * @var PolicyIdentityType|null $identity_type The identity_type property
     */
-    private ?PolicyIdentityType $identityType = null;
+    private ?PolicyIdentityType $identity_type = null;
+    
+    /**
+     * @var string|null $policy_id The policy_id property
+    */
+    private ?string $policy_id = null;
     
     /**
      * @var UserOrgRequest|null $user The user property
@@ -41,26 +46,35 @@ class AttachmentsPostRequestBody implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'identityId' => fn(ParseNode $n) => $o->setIdentityId($n->getStringValue()),
-            'identityType' => fn(ParseNode $n) => $o->setIdentityType($n->getEnumValue(PolicyIdentityType::class)),
+            'identity_id' => fn(ParseNode $n) => $o->setIdentityId($n->getStringValue()),
+            'identity_type' => fn(ParseNode $n) => $o->setIdentityType($n->getEnumValue(PolicyIdentityType::class)),
+            'policy_id' => fn(ParseNode $n) => $o->setPolicyId($n->getStringValue()),
             'user' => fn(ParseNode $n) => $o->setUser($n->getObjectValue([UserOrgRequest::class, 'createFromDiscriminatorValue'])),
         ];
     }
 
     /**
-     * Gets the identityId property value. The identityId property
+     * Gets the identity_id property value. The identity_id property
      * @return string|null
     */
     public function getIdentityId(): ?string {
-        return $this->identityId;
+        return $this->identity_id;
     }
 
     /**
-     * Gets the identityType property value. The identityType property
+     * Gets the identity_type property value. The identity_type property
      * @return PolicyIdentityType|null
     */
     public function getIdentityType(): ?PolicyIdentityType {
-        return $this->identityType;
+        return $this->identity_type;
+    }
+
+    /**
+     * Gets the policy_id property value. The policy_id property
+     * @return string|null
+    */
+    public function getPolicyId(): ?string {
+        return $this->policy_id;
     }
 
     /**
@@ -76,25 +90,34 @@ class AttachmentsPostRequestBody implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('identityId', $this->getIdentityId());
-        $writer->writeEnumValue('identityType', $this->getIdentityType());
+        $writer->writeStringValue('identity_id', $this->getIdentityId());
+        $writer->writeEnumValue('identity_type', $this->getIdentityType());
+        $writer->writeStringValue('policy_id', $this->getPolicyId());
         $writer->writeObjectValue('user', $this->getUser());
     }
 
     /**
-     * Sets the identityId property value. The identityId property
-     * @param string|null $value Value to set for the identityId property.
+     * Sets the identity_id property value. The identity_id property
+     * @param string|null $value Value to set for the identity_id property.
     */
     public function setIdentityId(?string $value): void {
-        $this->identityId = $value;
+        $this->identity_id = $value;
     }
 
     /**
-     * Sets the identityType property value. The identityType property
-     * @param PolicyIdentityType|null $value Value to set for the identityType property.
+     * Sets the identity_type property value. The identity_type property
+     * @param PolicyIdentityType|null $value Value to set for the identity_type property.
     */
     public function setIdentityType(?PolicyIdentityType $value): void {
-        $this->identityType = $value;
+        $this->identity_type = $value;
+    }
+
+    /**
+     * Sets the policy_id property value. The policy_id property
+     * @param string|null $value Value to set for the policy_id property.
+    */
+    public function setPolicyId(?string $value): void {
+        $this->policy_id = $value;
     }
 
     /**

@@ -28,11 +28,11 @@ class PoliciesRequestBuilderGetRequestConfiguration extends BaseRequestConfigura
 
     /**
      * Instantiates a new PoliciesRequestBuilderGetQueryParameters.
-     * @param string|null $userId 
+     * @param string|null $user_id 
      * @return PoliciesRequestBuilderGetQueryParameters
     */
-    public static function createQueryParameters(?string $userId = null): PoliciesRequestBuilderGetQueryParameters {
-        return new PoliciesRequestBuilderGetQueryParameters($userId);
+    public static function createQueryParameters(?string $user_id = null): PoliciesRequestBuilderGetQueryParameters {
+        return new PoliciesRequestBuilderGetQueryParameters($user_id);
     }
 
 }

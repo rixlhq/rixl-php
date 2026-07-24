@@ -14,9 +14,9 @@ class EmailStatusResponse implements Parsable
     private ?string $email = null;
     
     /**
-     * @var bool|null $hasEmail The hasEmail property
+     * @var bool|null $has_email The has_email property
     */
-    private ?bool $hasEmail = null;
+    private ?bool $has_email = null;
     
     /**
      * @var bool|null $verified The verified property
@@ -48,17 +48,17 @@ class EmailStatusResponse implements Parsable
         $o = $this;
         return  [
             'email' => fn(ParseNode $n) => $o->setEmail($n->getStringValue()),
-            'hasEmail' => fn(ParseNode $n) => $o->setHasEmail($n->getBooleanValue()),
+            'has_email' => fn(ParseNode $n) => $o->setHasEmail($n->getBooleanValue()),
             'verified' => fn(ParseNode $n) => $o->setVerified($n->getBooleanValue()),
         ];
     }
 
     /**
-     * Gets the hasEmail property value. The hasEmail property
+     * Gets the has_email property value. The has_email property
      * @return bool|null
     */
     public function getHasEmail(): ?bool {
-        return $this->hasEmail;
+        return $this->has_email;
     }
 
     /**
@@ -75,7 +75,7 @@ class EmailStatusResponse implements Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeStringValue('email', $this->getEmail());
-        $writer->writeBooleanValue('hasEmail', $this->getHasEmail());
+        $writer->writeBooleanValue('has_email', $this->getHasEmail());
         $writer->writeBooleanValue('verified', $this->getVerified());
     }
 
@@ -88,11 +88,11 @@ class EmailStatusResponse implements Parsable
     }
 
     /**
-     * Sets the hasEmail property value. The hasEmail property
-     * @param bool|null $value Value to set for the hasEmail property.
+     * Sets the has_email property value. The has_email property
+     * @param bool|null $value Value to set for the has_email property.
     */
     public function setHasEmail(?bool $value): void {
-        $this->hasEmail = $value;
+        $this->has_email = $value;
     }
 
     /**

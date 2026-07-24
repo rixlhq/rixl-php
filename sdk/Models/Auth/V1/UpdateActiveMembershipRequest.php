@@ -9,9 +9,9 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class UpdateActiveMembershipRequest implements Parsable 
 {
     /**
-     * @var string|null $membershipId The membershipId property
+     * @var string|null $membership_id The membership_id property
     */
-    private ?string $membershipId = null;
+    private ?string $membership_id = null;
     
     /**
      * @var UserOrgRequest|null $user The user property
@@ -34,17 +34,17 @@ class UpdateActiveMembershipRequest implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'membershipId' => fn(ParseNode $n) => $o->setMembershipId($n->getStringValue()),
+            'membership_id' => fn(ParseNode $n) => $o->setMembershipId($n->getStringValue()),
             'user' => fn(ParseNode $n) => $o->setUser($n->getObjectValue([UserOrgRequest::class, 'createFromDiscriminatorValue'])),
         ];
     }
 
     /**
-     * Gets the membershipId property value. The membershipId property
+     * Gets the membership_id property value. The membership_id property
      * @return string|null
     */
     public function getMembershipId(): ?string {
-        return $this->membershipId;
+        return $this->membership_id;
     }
 
     /**
@@ -60,16 +60,16 @@ class UpdateActiveMembershipRequest implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('membershipId', $this->getMembershipId());
+        $writer->writeStringValue('membership_id', $this->getMembershipId());
         $writer->writeObjectValue('user', $this->getUser());
     }
 
     /**
-     * Sets the membershipId property value. The membershipId property
-     * @param string|null $value Value to set for the membershipId property.
+     * Sets the membership_id property value. The membership_id property
+     * @param string|null $value Value to set for the membership_id property.
     */
     public function setMembershipId(?string $value): void {
-        $this->membershipId = $value;
+        $this->membership_id = $value;
     }
 
     /**

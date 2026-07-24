@@ -9,24 +9,24 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class TokenResponse implements Parsable 
 {
     /**
-     * @var string|null $accessToken The accessToken property
+     * @var string|null $access_token The access_token property
     */
-    private ?string $accessToken = null;
+    private ?string $access_token = null;
     
     /**
-     * @var string|null $refreshToken The refreshToken property
+     * @var string|null $refresh_token The refresh_token property
     */
-    private ?string $refreshToken = null;
+    private ?string $refresh_token = null;
     
     /**
-     * @var string|null $requiresAction The requiresAction property
+     * @var string|null $requires_action The requires_action property
     */
-    private ?string $requiresAction = null;
+    private ?string $requires_action = null;
     
     /**
-     * @var string|null $tokenType The tokenType property
+     * @var string|null $token_type The token_type property
     */
-    private ?string $tokenType = null;
+    private ?string $token_type = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -38,11 +38,11 @@ class TokenResponse implements Parsable
     }
 
     /**
-     * Gets the accessToken property value. The accessToken property
+     * Gets the access_token property value. The access_token property
      * @return string|null
     */
     public function getAccessToken(): ?string {
-        return $this->accessToken;
+        return $this->access_token;
     }
 
     /**
@@ -52,35 +52,35 @@ class TokenResponse implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'accessToken' => fn(ParseNode $n) => $o->setAccessToken($n->getStringValue()),
-            'refreshToken' => fn(ParseNode $n) => $o->setRefreshToken($n->getStringValue()),
-            'requiresAction' => fn(ParseNode $n) => $o->setRequiresAction($n->getStringValue()),
-            'tokenType' => fn(ParseNode $n) => $o->setTokenType($n->getStringValue()),
+            'access_token' => fn(ParseNode $n) => $o->setAccessToken($n->getStringValue()),
+            'refresh_token' => fn(ParseNode $n) => $o->setRefreshToken($n->getStringValue()),
+            'requires_action' => fn(ParseNode $n) => $o->setRequiresAction($n->getStringValue()),
+            'token_type' => fn(ParseNode $n) => $o->setTokenType($n->getStringValue()),
         ];
     }
 
     /**
-     * Gets the refreshToken property value. The refreshToken property
+     * Gets the refresh_token property value. The refresh_token property
      * @return string|null
     */
     public function getRefreshToken(): ?string {
-        return $this->refreshToken;
+        return $this->refresh_token;
     }
 
     /**
-     * Gets the requiresAction property value. The requiresAction property
+     * Gets the requires_action property value. The requires_action property
      * @return string|null
     */
     public function getRequiresAction(): ?string {
-        return $this->requiresAction;
+        return $this->requires_action;
     }
 
     /**
-     * Gets the tokenType property value. The tokenType property
+     * Gets the token_type property value. The token_type property
      * @return string|null
     */
     public function getTokenType(): ?string {
-        return $this->tokenType;
+        return $this->token_type;
     }
 
     /**
@@ -88,42 +88,42 @@ class TokenResponse implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('accessToken', $this->getAccessToken());
-        $writer->writeStringValue('refreshToken', $this->getRefreshToken());
-        $writer->writeStringValue('requiresAction', $this->getRequiresAction());
-        $writer->writeStringValue('tokenType', $this->getTokenType());
+        $writer->writeStringValue('access_token', $this->getAccessToken());
+        $writer->writeStringValue('refresh_token', $this->getRefreshToken());
+        $writer->writeStringValue('requires_action', $this->getRequiresAction());
+        $writer->writeStringValue('token_type', $this->getTokenType());
     }
 
     /**
-     * Sets the accessToken property value. The accessToken property
-     * @param string|null $value Value to set for the accessToken property.
+     * Sets the access_token property value. The access_token property
+     * @param string|null $value Value to set for the access_token property.
     */
     public function setAccessToken(?string $value): void {
-        $this->accessToken = $value;
+        $this->access_token = $value;
     }
 
     /**
-     * Sets the refreshToken property value. The refreshToken property
-     * @param string|null $value Value to set for the refreshToken property.
+     * Sets the refresh_token property value. The refresh_token property
+     * @param string|null $value Value to set for the refresh_token property.
     */
     public function setRefreshToken(?string $value): void {
-        $this->refreshToken = $value;
+        $this->refresh_token = $value;
     }
 
     /**
-     * Sets the requiresAction property value. The requiresAction property
-     * @param string|null $value Value to set for the requiresAction property.
+     * Sets the requires_action property value. The requires_action property
+     * @param string|null $value Value to set for the requires_action property.
     */
     public function setRequiresAction(?string $value): void {
-        $this->requiresAction = $value;
+        $this->requires_action = $value;
     }
 
     /**
-     * Sets the tokenType property value. The tokenType property
-     * @param string|null $value Value to set for the tokenType property.
+     * Sets the token_type property value. The token_type property
+     * @param string|null $value Value to set for the token_type property.
     */
     public function setTokenType(?string $value): void {
-        $this->tokenType = $value;
+        $this->token_type = $value;
     }
 
 }

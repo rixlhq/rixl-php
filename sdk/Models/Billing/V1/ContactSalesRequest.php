@@ -19,19 +19,19 @@ class ContactSalesRequest implements Parsable
     private ?string $email = null;
     
     /**
-     * @var string|null $firstName The firstName property
+     * @var string|null $first_name The first_name property
     */
-    private ?string $firstName = null;
+    private ?string $first_name = null;
     
     /**
-     * @var string|null $jobTitle The jobTitle property
+     * @var string|null $job_title The job_title property
     */
-    private ?string $jobTitle = null;
+    private ?string $job_title = null;
     
     /**
-     * @var string|null $lastName The lastName property
+     * @var string|null $last_name The last_name property
     */
-    private ?string $lastName = null;
+    private ?string $last_name = null;
     
     /**
      * @var string|null $message The message property
@@ -39,9 +39,9 @@ class ContactSalesRequest implements Parsable
     private ?string $message = null;
     
     /**
-     * @var string|null $orgId The orgId property
+     * @var string|null $org_id The org_id property
     */
-    private ?string $orgId = null;
+    private ?string $org_id = null;
     
     /**
      * @var string|null $phone The phone property
@@ -87,38 +87,38 @@ class ContactSalesRequest implements Parsable
         return  [
             'company' => fn(ParseNode $n) => $o->setCompany($n->getStringValue()),
             'email' => fn(ParseNode $n) => $o->setEmail($n->getStringValue()),
-            'firstName' => fn(ParseNode $n) => $o->setFirstName($n->getStringValue()),
-            'jobTitle' => fn(ParseNode $n) => $o->setJobTitle($n->getStringValue()),
-            'lastName' => fn(ParseNode $n) => $o->setLastName($n->getStringValue()),
+            'first_name' => fn(ParseNode $n) => $o->setFirstName($n->getStringValue()),
+            'job_title' => fn(ParseNode $n) => $o->setJobTitle($n->getStringValue()),
+            'last_name' => fn(ParseNode $n) => $o->setLastName($n->getStringValue()),
             'message' => fn(ParseNode $n) => $o->setMessage($n->getStringValue()),
-            'orgId' => fn(ParseNode $n) => $o->setOrgId($n->getStringValue()),
+            'org_id' => fn(ParseNode $n) => $o->setOrgId($n->getStringValue()),
             'phone' => fn(ParseNode $n) => $o->setPhone($n->getStringValue()),
             'website' => fn(ParseNode $n) => $o->setWebsite($n->getStringValue()),
         ];
     }
 
     /**
-     * Gets the firstName property value. The firstName property
+     * Gets the first_name property value. The first_name property
      * @return string|null
     */
     public function getFirstName(): ?string {
-        return $this->firstName;
+        return $this->first_name;
     }
 
     /**
-     * Gets the jobTitle property value. The jobTitle property
+     * Gets the job_title property value. The job_title property
      * @return string|null
     */
     public function getJobTitle(): ?string {
-        return $this->jobTitle;
+        return $this->job_title;
     }
 
     /**
-     * Gets the lastName property value. The lastName property
+     * Gets the last_name property value. The last_name property
      * @return string|null
     */
     public function getLastName(): ?string {
-        return $this->lastName;
+        return $this->last_name;
     }
 
     /**
@@ -130,11 +130,11 @@ class ContactSalesRequest implements Parsable
     }
 
     /**
-     * Gets the orgId property value. The orgId property
+     * Gets the org_id property value. The org_id property
      * @return string|null
     */
     public function getOrgId(): ?string {
-        return $this->orgId;
+        return $this->org_id;
     }
 
     /**
@@ -160,11 +160,11 @@ class ContactSalesRequest implements Parsable
     public function serialize(SerializationWriter $writer): void {
         $writer->writeStringValue('company', $this->getCompany());
         $writer->writeStringValue('email', $this->getEmail());
-        $writer->writeStringValue('firstName', $this->getFirstName());
-        $writer->writeStringValue('jobTitle', $this->getJobTitle());
-        $writer->writeStringValue('lastName', $this->getLastName());
+        $writer->writeStringValue('first_name', $this->getFirstName());
+        $writer->writeStringValue('job_title', $this->getJobTitle());
+        $writer->writeStringValue('last_name', $this->getLastName());
         $writer->writeStringValue('message', $this->getMessage());
-        $writer->writeStringValue('orgId', $this->getOrgId());
+        $writer->writeStringValue('org_id', $this->getOrgId());
         $writer->writeStringValue('phone', $this->getPhone());
         $writer->writeStringValue('website', $this->getWebsite());
     }
@@ -186,27 +186,27 @@ class ContactSalesRequest implements Parsable
     }
 
     /**
-     * Sets the firstName property value. The firstName property
-     * @param string|null $value Value to set for the firstName property.
+     * Sets the first_name property value. The first_name property
+     * @param string|null $value Value to set for the first_name property.
     */
     public function setFirstName(?string $value): void {
-        $this->firstName = $value;
+        $this->first_name = $value;
     }
 
     /**
-     * Sets the jobTitle property value. The jobTitle property
-     * @param string|null $value Value to set for the jobTitle property.
+     * Sets the job_title property value. The job_title property
+     * @param string|null $value Value to set for the job_title property.
     */
     public function setJobTitle(?string $value): void {
-        $this->jobTitle = $value;
+        $this->job_title = $value;
     }
 
     /**
-     * Sets the lastName property value. The lastName property
-     * @param string|null $value Value to set for the lastName property.
+     * Sets the last_name property value. The last_name property
+     * @param string|null $value Value to set for the last_name property.
     */
     public function setLastName(?string $value): void {
-        $this->lastName = $value;
+        $this->last_name = $value;
     }
 
     /**
@@ -218,11 +218,11 @@ class ContactSalesRequest implements Parsable
     }
 
     /**
-     * Sets the orgId property value. The orgId property
-     * @param string|null $value Value to set for the orgId property.
+     * Sets the org_id property value. The org_id property
+     * @param string|null $value Value to set for the org_id property.
     */
     public function setOrgId(?string $value): void {
-        $this->orgId = $value;
+        $this->org_id = $value;
     }
 
     /**

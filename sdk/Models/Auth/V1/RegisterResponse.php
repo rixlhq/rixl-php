@@ -9,9 +9,9 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class RegisterResponse implements Parsable 
 {
     /**
-     * @var bool|null $emailVerificationSent The emailVerificationSent property
+     * @var bool|null $email_verification_sent The email_verification_sent property
     */
-    private ?bool $emailVerificationSent = null;
+    private ?bool $email_verification_sent = null;
     
     /**
      * @var string|null $message The message property
@@ -19,14 +19,14 @@ class RegisterResponse implements Parsable
     private ?string $message = null;
     
     /**
-     * @var string|null $userId The userId property
+     * @var string|null $user_id The user_id property
     */
-    private ?string $userId = null;
+    private ?string $user_id = null;
     
     /**
-     * @var string|null $verificationId The verificationId property
+     * @var string|null $verification_id The verification_id property
     */
-    private ?string $verificationId = null;
+    private ?string $verification_id = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -38,11 +38,11 @@ class RegisterResponse implements Parsable
     }
 
     /**
-     * Gets the emailVerificationSent property value. The emailVerificationSent property
+     * Gets the email_verification_sent property value. The email_verification_sent property
      * @return bool|null
     */
     public function getEmailVerificationSent(): ?bool {
-        return $this->emailVerificationSent;
+        return $this->email_verification_sent;
     }
 
     /**
@@ -52,10 +52,10 @@ class RegisterResponse implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'emailVerificationSent' => fn(ParseNode $n) => $o->setEmailVerificationSent($n->getBooleanValue()),
+            'email_verification_sent' => fn(ParseNode $n) => $o->setEmailVerificationSent($n->getBooleanValue()),
             'message' => fn(ParseNode $n) => $o->setMessage($n->getStringValue()),
-            'userId' => fn(ParseNode $n) => $o->setUserId($n->getStringValue()),
-            'verificationId' => fn(ParseNode $n) => $o->setVerificationId($n->getStringValue()),
+            'user_id' => fn(ParseNode $n) => $o->setUserId($n->getStringValue()),
+            'verification_id' => fn(ParseNode $n) => $o->setVerificationId($n->getStringValue()),
         ];
     }
 
@@ -68,19 +68,19 @@ class RegisterResponse implements Parsable
     }
 
     /**
-     * Gets the userId property value. The userId property
+     * Gets the user_id property value. The user_id property
      * @return string|null
     */
     public function getUserId(): ?string {
-        return $this->userId;
+        return $this->user_id;
     }
 
     /**
-     * Gets the verificationId property value. The verificationId property
+     * Gets the verification_id property value. The verification_id property
      * @return string|null
     */
     public function getVerificationId(): ?string {
-        return $this->verificationId;
+        return $this->verification_id;
     }
 
     /**
@@ -88,18 +88,18 @@ class RegisterResponse implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeBooleanValue('emailVerificationSent', $this->getEmailVerificationSent());
+        $writer->writeBooleanValue('email_verification_sent', $this->getEmailVerificationSent());
         $writer->writeStringValue('message', $this->getMessage());
-        $writer->writeStringValue('userId', $this->getUserId());
-        $writer->writeStringValue('verificationId', $this->getVerificationId());
+        $writer->writeStringValue('user_id', $this->getUserId());
+        $writer->writeStringValue('verification_id', $this->getVerificationId());
     }
 
     /**
-     * Sets the emailVerificationSent property value. The emailVerificationSent property
-     * @param bool|null $value Value to set for the emailVerificationSent property.
+     * Sets the email_verification_sent property value. The email_verification_sent property
+     * @param bool|null $value Value to set for the email_verification_sent property.
     */
     public function setEmailVerificationSent(?bool $value): void {
-        $this->emailVerificationSent = $value;
+        $this->email_verification_sent = $value;
     }
 
     /**
@@ -111,19 +111,19 @@ class RegisterResponse implements Parsable
     }
 
     /**
-     * Sets the userId property value. The userId property
-     * @param string|null $value Value to set for the userId property.
+     * Sets the user_id property value. The user_id property
+     * @param string|null $value Value to set for the user_id property.
     */
     public function setUserId(?string $value): void {
-        $this->userId = $value;
+        $this->user_id = $value;
     }
 
     /**
-     * Sets the verificationId property value. The verificationId property
-     * @param string|null $value Value to set for the verificationId property.
+     * Sets the verification_id property value. The verification_id property
+     * @param string|null $value Value to set for the verification_id property.
     */
     public function setVerificationId(?string $value): void {
-        $this->verificationId = $value;
+        $this->verification_id = $value;
     }
 
 }

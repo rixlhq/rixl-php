@@ -28,11 +28,11 @@ class AttachmentsRequestBuilderGetRequestConfiguration extends BaseRequestConfig
 
     /**
      * Instantiates a new AttachmentsRequestBuilderGetQueryParameters.
-     * @param string|null $userUserId 
+     * @param string|null $userUser_id 
      * @return AttachmentsRequestBuilderGetQueryParameters
     */
-    public static function createQueryParameters(?string $userUserId = null): AttachmentsRequestBuilderGetQueryParameters {
-        return new AttachmentsRequestBuilderGetQueryParameters($userUserId);
+    public static function createQueryParameters(?string $userUser_id = null): AttachmentsRequestBuilderGetQueryParameters {
+        return new AttachmentsRequestBuilderGetQueryParameters($userUser_id);
     }
 
 }

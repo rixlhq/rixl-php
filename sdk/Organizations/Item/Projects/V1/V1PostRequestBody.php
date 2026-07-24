@@ -16,14 +16,19 @@ class V1PostRequestBody implements Parsable
     private ?string $name = null;
     
     /**
+     * @var string|null $org_id The org_id property
+    */
+    private ?string $org_id = null;
+    
+    /**
      * @var array<string>|null $regions The regions property
     */
     private ?array $regions = null;
     
     /**
-     * @var VideoQuality|null $videoQuality The videoQuality property
+     * @var VideoQuality|null $video_quality The video_quality property
     */
-    private ?VideoQuality $videoQuality = null;
+    private ?VideoQuality $video_quality = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -42,6 +47,7 @@ class V1PostRequestBody implements Parsable
         $o = $this;
         return  [
             'name' => fn(ParseNode $n) => $o->setName($n->getStringValue()),
+            'org_id' => fn(ParseNode $n) => $o->setOrgId($n->getStringValue()),
             'regions' => function (ParseNode $n) {
                 $val = $n->getCollectionOfPrimitiveValues();
                 if (is_array($val)) {
@@ -50,7 +56,7 @@ class V1PostRequestBody implements Parsable
                 /** @var array<string>|null $val */
                 $this->setRegions($val);
             },
-            'videoQuality' => fn(ParseNode $n) => $o->setVideoQuality($n->getEnumValue(VideoQuality::class)),
+            'video_quality' => fn(ParseNode $n) => $o->setVideoQuality($n->getEnumValue(VideoQuality::class)),
         ];
     }
 
@@ -63,6 +69,14 @@ class V1PostRequestBody implements Parsable
     }
 
     /**
+     * Gets the org_id property value. The org_id property
+     * @return string|null
+    */
+    public function getOrgId(): ?string {
+        return $this->org_id;
+    }
+
+    /**
      * Gets the regions property value. The regions property
      * @return array<string>|null
     */
@@ -71,11 +85,11 @@ class V1PostRequestBody implements Parsable
     }
 
     /**
-     * Gets the videoQuality property value. The videoQuality property
+     * Gets the video_quality property value. The video_quality property
      * @return VideoQuality|null
     */
     public function getVideoQuality(): ?VideoQuality {
-        return $this->videoQuality;
+        return $this->video_quality;
     }
 
     /**
@@ -84,8 +98,9 @@ class V1PostRequestBody implements Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeStringValue('name', $this->getName());
+        $writer->writeStringValue('org_id', $this->getOrgId());
         $writer->writeCollectionOfPrimitiveValues('regions', $this->getRegions());
-        $writer->writeEnumValue('videoQuality', $this->getVideoQuality());
+        $writer->writeEnumValue('video_quality', $this->getVideoQuality());
     }
 
     /**
@@ -97,6 +112,14 @@ class V1PostRequestBody implements Parsable
     }
 
     /**
+     * Sets the org_id property value. The org_id property
+     * @param string|null $value Value to set for the org_id property.
+    */
+    public function setOrgId(?string $value): void {
+        $this->org_id = $value;
+    }
+
+    /**
      * Sets the regions property value. The regions property
      * @param array<string>|null $value Value to set for the regions property.
     */
@@ -105,11 +128,11 @@ class V1PostRequestBody implements Parsable
     }
 
     /**
-     * Sets the videoQuality property value. The videoQuality property
-     * @param VideoQuality|null $value Value to set for the videoQuality property.
+     * Sets the video_quality property value. The video_quality property
+     * @param VideoQuality|null $value Value to set for the video_quality property.
     */
     public function setVideoQuality(?VideoQuality $value): void {
-        $this->videoQuality = $value;
+        $this->video_quality = $value;
     }
 
 }

@@ -9,9 +9,9 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class Chapter implements Parsable 
 {
     /**
-     * @var float|null $startTimeSec The startTimeSec property
+     * @var float|null $start_time_sec The start_time_sec property
     */
-    private ?float $startTimeSec = null;
+    private ?float $start_time_sec = null;
     
     /**
      * @var string|null $title The title property
@@ -34,17 +34,17 @@ class Chapter implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'startTimeSec' => fn(ParseNode $n) => $o->setStartTimeSec($n->getFloatValue()),
+            'start_time_sec' => fn(ParseNode $n) => $o->setStartTimeSec($n->getFloatValue()),
             'title' => fn(ParseNode $n) => $o->setTitle($n->getStringValue()),
         ];
     }
 
     /**
-     * Gets the startTimeSec property value. The startTimeSec property
+     * Gets the start_time_sec property value. The start_time_sec property
      * @return float|null
     */
     public function getStartTimeSec(): ?float {
-        return $this->startTimeSec;
+        return $this->start_time_sec;
     }
 
     /**
@@ -60,16 +60,16 @@ class Chapter implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeFloatValue('startTimeSec', $this->getStartTimeSec());
+        $writer->writeFloatValue('start_time_sec', $this->getStartTimeSec());
         $writer->writeStringValue('title', $this->getTitle());
     }
 
     /**
-     * Sets the startTimeSec property value. The startTimeSec property
-     * @param float|null $value Value to set for the startTimeSec property.
+     * Sets the start_time_sec property value. The start_time_sec property
+     * @param float|null $value Value to set for the start_time_sec property.
     */
     public function setStartTimeSec(?float $value): void {
-        $this->startTimeSec = $value;
+        $this->start_time_sec = $value;
     }
 
     /**

@@ -9,24 +9,24 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class VideoStats implements Parsable 
 {
     /**
-     * @var float|null $avgWatchTimeMs The avgWatchTimeMs property
+     * @var float|null $avg_watch_time_ms The avg_watch_time_ms property
     */
-    private ?float $avgWatchTimeMs = null;
+    private ?float $avg_watch_time_ms = null;
     
     /**
-     * @var float|null $completionRate The completionRate property
+     * @var float|null $completion_rate The completion_rate property
     */
-    private ?float $completionRate = null;
+    private ?float $completion_rate = null;
     
     /**
-     * @var float|null $totalWatchTimeMs The totalWatchTimeMs property
+     * @var float|null $total_watch_time_ms The total_watch_time_ms property
     */
-    private ?float $totalWatchTimeMs = null;
+    private ?float $total_watch_time_ms = null;
     
     /**
-     * @var string|null $videoId The videoId property
+     * @var string|null $video_id The video_id property
     */
-    private ?string $videoId = null;
+    private ?string $video_id = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -38,19 +38,19 @@ class VideoStats implements Parsable
     }
 
     /**
-     * Gets the avgWatchTimeMs property value. The avgWatchTimeMs property
+     * Gets the avg_watch_time_ms property value. The avg_watch_time_ms property
      * @return float|null
     */
     public function getAvgWatchTimeMs(): ?float {
-        return $this->avgWatchTimeMs;
+        return $this->avg_watch_time_ms;
     }
 
     /**
-     * Gets the completionRate property value. The completionRate property
+     * Gets the completion_rate property value. The completion_rate property
      * @return float|null
     */
     public function getCompletionRate(): ?float {
-        return $this->completionRate;
+        return $this->completion_rate;
     }
 
     /**
@@ -60,27 +60,27 @@ class VideoStats implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'avgWatchTimeMs' => fn(ParseNode $n) => $o->setAvgWatchTimeMs($n->getFloatValue()),
-            'completionRate' => fn(ParseNode $n) => $o->setCompletionRate($n->getFloatValue()),
-            'totalWatchTimeMs' => fn(ParseNode $n) => $o->setTotalWatchTimeMs($n->getFloatValue()),
-            'videoId' => fn(ParseNode $n) => $o->setVideoId($n->getStringValue()),
+            'avg_watch_time_ms' => fn(ParseNode $n) => $o->setAvgWatchTimeMs($n->getFloatValue()),
+            'completion_rate' => fn(ParseNode $n) => $o->setCompletionRate($n->getFloatValue()),
+            'total_watch_time_ms' => fn(ParseNode $n) => $o->setTotalWatchTimeMs($n->getFloatValue()),
+            'video_id' => fn(ParseNode $n) => $o->setVideoId($n->getStringValue()),
         ];
     }
 
     /**
-     * Gets the totalWatchTimeMs property value. The totalWatchTimeMs property
+     * Gets the total_watch_time_ms property value. The total_watch_time_ms property
      * @return float|null
     */
     public function getTotalWatchTimeMs(): ?float {
-        return $this->totalWatchTimeMs;
+        return $this->total_watch_time_ms;
     }
 
     /**
-     * Gets the videoId property value. The videoId property
+     * Gets the video_id property value. The video_id property
      * @return string|null
     */
     public function getVideoId(): ?string {
-        return $this->videoId;
+        return $this->video_id;
     }
 
     /**
@@ -88,42 +88,42 @@ class VideoStats implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeFloatValue('avgWatchTimeMs', $this->getAvgWatchTimeMs());
-        $writer->writeFloatValue('completionRate', $this->getCompletionRate());
-        $writer->writeFloatValue('totalWatchTimeMs', $this->getTotalWatchTimeMs());
-        $writer->writeStringValue('videoId', $this->getVideoId());
+        $writer->writeFloatValue('avg_watch_time_ms', $this->getAvgWatchTimeMs());
+        $writer->writeFloatValue('completion_rate', $this->getCompletionRate());
+        $writer->writeFloatValue('total_watch_time_ms', $this->getTotalWatchTimeMs());
+        $writer->writeStringValue('video_id', $this->getVideoId());
     }
 
     /**
-     * Sets the avgWatchTimeMs property value. The avgWatchTimeMs property
-     * @param float|null $value Value to set for the avgWatchTimeMs property.
+     * Sets the avg_watch_time_ms property value. The avg_watch_time_ms property
+     * @param float|null $value Value to set for the avg_watch_time_ms property.
     */
     public function setAvgWatchTimeMs(?float $value): void {
-        $this->avgWatchTimeMs = $value;
+        $this->avg_watch_time_ms = $value;
     }
 
     /**
-     * Sets the completionRate property value. The completionRate property
-     * @param float|null $value Value to set for the completionRate property.
+     * Sets the completion_rate property value. The completion_rate property
+     * @param float|null $value Value to set for the completion_rate property.
     */
     public function setCompletionRate(?float $value): void {
-        $this->completionRate = $value;
+        $this->completion_rate = $value;
     }
 
     /**
-     * Sets the totalWatchTimeMs property value. The totalWatchTimeMs property
-     * @param float|null $value Value to set for the totalWatchTimeMs property.
+     * Sets the total_watch_time_ms property value. The total_watch_time_ms property
+     * @param float|null $value Value to set for the total_watch_time_ms property.
     */
     public function setTotalWatchTimeMs(?float $value): void {
-        $this->totalWatchTimeMs = $value;
+        $this->total_watch_time_ms = $value;
     }
 
     /**
-     * Sets the videoId property value. The videoId property
-     * @param string|null $value Value to set for the videoId property.
+     * Sets the video_id property value. The video_id property
+     * @param string|null $value Value to set for the video_id property.
     */
     public function setVideoId(?string $value): void {
-        $this->videoId = $value;
+        $this->video_id = $value;
     }
 
 }

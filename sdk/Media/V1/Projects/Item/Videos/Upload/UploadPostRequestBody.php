@@ -11,9 +11,9 @@ use Rixl\Sdk\Models\Common\V1\VideoQuality;
 class UploadPostRequestBody implements Parsable 
 {
     /**
-     * @var ImageFormat|null $imageFormat The imageFormat property
+     * @var ImageFormat|null $image_format The image_format property
     */
-    private ?ImageFormat $imageFormat = null;
+    private ?ImageFormat $image_format = null;
     
     /**
      * @var string|null $name The name property
@@ -21,14 +21,19 @@ class UploadPostRequestBody implements Parsable
     private ?string $name = null;
     
     /**
-     * @var string|null $orgId The orgId property
+     * @var string|null $org_id The org_id property
     */
-    private ?string $orgId = null;
+    private ?string $org_id = null;
     
     /**
-     * @var VideoQuality|null $videoQuality The videoQuality property
+     * @var string|null $project_id The project_id property
     */
-    private ?VideoQuality $videoQuality = null;
+    private ?string $project_id = null;
+    
+    /**
+     * @var VideoQuality|null $video_quality The video_quality property
+    */
+    private ?VideoQuality $video_quality = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -46,19 +51,20 @@ class UploadPostRequestBody implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'imageFormat' => fn(ParseNode $n) => $o->setImageFormat($n->getEnumValue(ImageFormat::class)),
+            'image_format' => fn(ParseNode $n) => $o->setImageFormat($n->getEnumValue(ImageFormat::class)),
             'name' => fn(ParseNode $n) => $o->setName($n->getStringValue()),
-            'orgId' => fn(ParseNode $n) => $o->setOrgId($n->getStringValue()),
-            'videoQuality' => fn(ParseNode $n) => $o->setVideoQuality($n->getEnumValue(VideoQuality::class)),
+            'org_id' => fn(ParseNode $n) => $o->setOrgId($n->getStringValue()),
+            'project_id' => fn(ParseNode $n) => $o->setProjectId($n->getStringValue()),
+            'video_quality' => fn(ParseNode $n) => $o->setVideoQuality($n->getEnumValue(VideoQuality::class)),
         ];
     }
 
     /**
-     * Gets the imageFormat property value. The imageFormat property
+     * Gets the image_format property value. The image_format property
      * @return ImageFormat|null
     */
     public function getImageFormat(): ?ImageFormat {
-        return $this->imageFormat;
+        return $this->image_format;
     }
 
     /**
@@ -70,19 +76,27 @@ class UploadPostRequestBody implements Parsable
     }
 
     /**
-     * Gets the orgId property value. The orgId property
+     * Gets the org_id property value. The org_id property
      * @return string|null
     */
     public function getOrgId(): ?string {
-        return $this->orgId;
+        return $this->org_id;
     }
 
     /**
-     * Gets the videoQuality property value. The videoQuality property
+     * Gets the project_id property value. The project_id property
+     * @return string|null
+    */
+    public function getProjectId(): ?string {
+        return $this->project_id;
+    }
+
+    /**
+     * Gets the video_quality property value. The video_quality property
      * @return VideoQuality|null
     */
     public function getVideoQuality(): ?VideoQuality {
-        return $this->videoQuality;
+        return $this->video_quality;
     }
 
     /**
@@ -90,18 +104,19 @@ class UploadPostRequestBody implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeEnumValue('imageFormat', $this->getImageFormat());
+        $writer->writeEnumValue('image_format', $this->getImageFormat());
         $writer->writeStringValue('name', $this->getName());
-        $writer->writeStringValue('orgId', $this->getOrgId());
-        $writer->writeEnumValue('videoQuality', $this->getVideoQuality());
+        $writer->writeStringValue('org_id', $this->getOrgId());
+        $writer->writeStringValue('project_id', $this->getProjectId());
+        $writer->writeEnumValue('video_quality', $this->getVideoQuality());
     }
 
     /**
-     * Sets the imageFormat property value. The imageFormat property
-     * @param ImageFormat|null $value Value to set for the imageFormat property.
+     * Sets the image_format property value. The image_format property
+     * @param ImageFormat|null $value Value to set for the image_format property.
     */
     public function setImageFormat(?ImageFormat $value): void {
-        $this->imageFormat = $value;
+        $this->image_format = $value;
     }
 
     /**
@@ -113,19 +128,27 @@ class UploadPostRequestBody implements Parsable
     }
 
     /**
-     * Sets the orgId property value. The orgId property
-     * @param string|null $value Value to set for the orgId property.
+     * Sets the org_id property value. The org_id property
+     * @param string|null $value Value to set for the org_id property.
     */
     public function setOrgId(?string $value): void {
-        $this->orgId = $value;
+        $this->org_id = $value;
     }
 
     /**
-     * Sets the videoQuality property value. The videoQuality property
-     * @param VideoQuality|null $value Value to set for the videoQuality property.
+     * Sets the project_id property value. The project_id property
+     * @param string|null $value Value to set for the project_id property.
+    */
+    public function setProjectId(?string $value): void {
+        $this->project_id = $value;
+    }
+
+    /**
+     * Sets the video_quality property value. The video_quality property
+     * @param VideoQuality|null $value Value to set for the video_quality property.
     */
     public function setVideoQuality(?VideoQuality $value): void {
-        $this->videoQuality = $value;
+        $this->video_quality = $value;
     }
 
 }

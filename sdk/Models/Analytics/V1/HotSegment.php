@@ -9,9 +9,9 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class HotSegment implements Parsable 
 {
     /**
-     * @var int|null $endSecond The endSecond property
+     * @var int|null $end_second The end_second property
     */
-    private ?int $endSecond = null;
+    private ?int $end_second = null;
     
     /**
      * @var float|null $multiplier The multiplier property
@@ -19,9 +19,9 @@ class HotSegment implements Parsable
     private ?float $multiplier = null;
     
     /**
-     * @var int|null $startSecond The startSecond property
+     * @var int|null $start_second The start_second property
     */
-    private ?int $startSecond = null;
+    private ?int $start_second = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -33,11 +33,11 @@ class HotSegment implements Parsable
     }
 
     /**
-     * Gets the endSecond property value. The endSecond property
+     * Gets the end_second property value. The end_second property
      * @return int|null
     */
     public function getEndSecond(): ?int {
-        return $this->endSecond;
+        return $this->end_second;
     }
 
     /**
@@ -47,9 +47,9 @@ class HotSegment implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'endSecond' => fn(ParseNode $n) => $o->setEndSecond($n->getIntegerValue()),
+            'end_second' => fn(ParseNode $n) => $o->setEndSecond($n->getIntegerValue()),
             'multiplier' => fn(ParseNode $n) => $o->setMultiplier($n->getFloatValue()),
-            'startSecond' => fn(ParseNode $n) => $o->setStartSecond($n->getIntegerValue()),
+            'start_second' => fn(ParseNode $n) => $o->setStartSecond($n->getIntegerValue()),
         ];
     }
 
@@ -62,11 +62,11 @@ class HotSegment implements Parsable
     }
 
     /**
-     * Gets the startSecond property value. The startSecond property
+     * Gets the start_second property value. The start_second property
      * @return int|null
     */
     public function getStartSecond(): ?int {
-        return $this->startSecond;
+        return $this->start_second;
     }
 
     /**
@@ -74,17 +74,17 @@ class HotSegment implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeIntegerValue('endSecond', $this->getEndSecond());
+        $writer->writeIntegerValue('end_second', $this->getEndSecond());
         $writer->writeFloatValue('multiplier', $this->getMultiplier());
-        $writer->writeIntegerValue('startSecond', $this->getStartSecond());
+        $writer->writeIntegerValue('start_second', $this->getStartSecond());
     }
 
     /**
-     * Sets the endSecond property value. The endSecond property
-     * @param int|null $value Value to set for the endSecond property.
+     * Sets the end_second property value. The end_second property
+     * @param int|null $value Value to set for the end_second property.
     */
     public function setEndSecond(?int $value): void {
-        $this->endSecond = $value;
+        $this->end_second = $value;
     }
 
     /**
@@ -96,11 +96,11 @@ class HotSegment implements Parsable
     }
 
     /**
-     * Sets the startSecond property value. The startSecond property
-     * @param int|null $value Value to set for the startSecond property.
+     * Sets the start_second property value. The start_second property
+     * @param int|null $value Value to set for the start_second property.
     */
     public function setStartSecond(?int $value): void {
-        $this->startSecond = $value;
+        $this->start_second = $value;
     }
 
 }

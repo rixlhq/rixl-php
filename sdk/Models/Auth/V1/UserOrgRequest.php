@@ -9,14 +9,14 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class UserOrgRequest implements Parsable 
 {
     /**
-     * @var string|null $orgId The orgId property
+     * @var string|null $org_id The org_id property
     */
-    private ?string $orgId = null;
+    private ?string $org_id = null;
     
     /**
-     * @var string|null $userId The userId property
+     * @var string|null $user_id The user_id property
     */
-    private ?string $userId = null;
+    private ?string $user_id = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -34,25 +34,25 @@ class UserOrgRequest implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'orgId' => fn(ParseNode $n) => $o->setOrgId($n->getStringValue()),
-            'userId' => fn(ParseNode $n) => $o->setUserId($n->getStringValue()),
+            'org_id' => fn(ParseNode $n) => $o->setOrgId($n->getStringValue()),
+            'user_id' => fn(ParseNode $n) => $o->setUserId($n->getStringValue()),
         ];
     }
 
     /**
-     * Gets the orgId property value. The orgId property
+     * Gets the org_id property value. The org_id property
      * @return string|null
     */
     public function getOrgId(): ?string {
-        return $this->orgId;
+        return $this->org_id;
     }
 
     /**
-     * Gets the userId property value. The userId property
+     * Gets the user_id property value. The user_id property
      * @return string|null
     */
     public function getUserId(): ?string {
-        return $this->userId;
+        return $this->user_id;
     }
 
     /**
@@ -60,24 +60,24 @@ class UserOrgRequest implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('orgId', $this->getOrgId());
-        $writer->writeStringValue('userId', $this->getUserId());
+        $writer->writeStringValue('org_id', $this->getOrgId());
+        $writer->writeStringValue('user_id', $this->getUserId());
     }
 
     /**
-     * Sets the orgId property value. The orgId property
-     * @param string|null $value Value to set for the orgId property.
+     * Sets the org_id property value. The org_id property
+     * @param string|null $value Value to set for the org_id property.
     */
     public function setOrgId(?string $value): void {
-        $this->orgId = $value;
+        $this->org_id = $value;
     }
 
     /**
-     * Sets the userId property value. The userId property
-     * @param string|null $value Value to set for the userId property.
+     * Sets the user_id property value. The user_id property
+     * @param string|null $value Value to set for the user_id property.
     */
     public function setUserId(?string $value): void {
-        $this->userId = $value;
+        $this->user_id = $value;
     }
 
 }

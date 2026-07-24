@@ -21,7 +21,7 @@ class FromSetupIntentRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/billing/v1/payment-methods/from-setup-intent{?setupIntentId*}');
+        parent::__construct($requestAdapter, [], '{+baseurl}/billing/v1/payment-methods/from-setup-intent{?setup_intent_id*}');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {

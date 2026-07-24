@@ -22,11 +22,13 @@ class VideosRequestBuilderGetQueryParameters
     public ?int $paginationOffset = null;
     
     /**
+     * @QueryParameter("sort_direction")
      * @var string|null $sortDirection 
     */
     public ?string $sortDirection = null;
     
     /**
+     * @QueryParameter("sort_field")
      * @var string|null $sortField 
     */
     public ?string $sortField = null;
@@ -35,14 +37,14 @@ class VideosRequestBuilderGetQueryParameters
      * Instantiates a new VideosRequestBuilderGetQueryParameters and sets the default values.
      * @param int|null $paginationLimit Maximum number of items to return.
      * @param int|null $paginationOffset Number of items to skip before collecting the result set.
-     * @param string|null $sortDirection 
-     * @param string|null $sortField 
+     * @param string|null $sort_direction 
+     * @param string|null $sort_field 
     */
-    public function __construct(?int $paginationLimit = null, ?int $paginationOffset = null, ?string $sortDirection = null, ?string $sortField = null) {
+    public function __construct(?int $paginationLimit = null, ?int $paginationOffset = null, ?string $sort_direction = null, ?string $sort_field = null) {
         $this->paginationLimit = $paginationLimit;
         $this->paginationOffset = $paginationOffset;
-        $this->sortDirection = $sortDirection;
-        $this->sortField = $sortField;
+        $this->sortDirection = $sort_direction;
+        $this->sortField = $sort_field;
     }
 
 }

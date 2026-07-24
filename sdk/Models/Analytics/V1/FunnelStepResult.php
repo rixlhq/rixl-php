@@ -9,24 +9,24 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class FunnelStepResult implements Parsable 
 {
     /**
-     * @var float|null $conversionRate The conversionRate property
+     * @var float|null $conversion_rate The conversion_rate property
     */
-    private ?float $conversionRate = null;
+    private ?float $conversion_rate = null;
     
     /**
-     * @var float|null $dropoffRate The dropoffRate property
+     * @var float|null $dropoff_rate The dropoff_rate property
     */
-    private ?float $dropoffRate = null;
+    private ?float $dropoff_rate = null;
     
     /**
-     * @var string|null $stepName The stepName property
+     * @var string|null $step_name The step_name property
     */
-    private ?string $stepName = null;
+    private ?string $step_name = null;
     
     /**
-     * @var int|null $userCount The userCount property
+     * @var int|null $user_count The user_count property
     */
-    private ?int $userCount = null;
+    private ?int $user_count = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -38,19 +38,19 @@ class FunnelStepResult implements Parsable
     }
 
     /**
-     * Gets the conversionRate property value. The conversionRate property
+     * Gets the conversion_rate property value. The conversion_rate property
      * @return float|null
     */
     public function getConversionRate(): ?float {
-        return $this->conversionRate;
+        return $this->conversion_rate;
     }
 
     /**
-     * Gets the dropoffRate property value. The dropoffRate property
+     * Gets the dropoff_rate property value. The dropoff_rate property
      * @return float|null
     */
     public function getDropoffRate(): ?float {
-        return $this->dropoffRate;
+        return $this->dropoff_rate;
     }
 
     /**
@@ -60,27 +60,27 @@ class FunnelStepResult implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'conversionRate' => fn(ParseNode $n) => $o->setConversionRate($n->getFloatValue()),
-            'dropoffRate' => fn(ParseNode $n) => $o->setDropoffRate($n->getFloatValue()),
-            'stepName' => fn(ParseNode $n) => $o->setStepName($n->getStringValue()),
-            'userCount' => fn(ParseNode $n) => $o->setUserCount($n->getIntegerValue()),
+            'conversion_rate' => fn(ParseNode $n) => $o->setConversionRate($n->getFloatValue()),
+            'dropoff_rate' => fn(ParseNode $n) => $o->setDropoffRate($n->getFloatValue()),
+            'step_name' => fn(ParseNode $n) => $o->setStepName($n->getStringValue()),
+            'user_count' => fn(ParseNode $n) => $o->setUserCount($n->getIntegerValue()),
         ];
     }
 
     /**
-     * Gets the stepName property value. The stepName property
+     * Gets the step_name property value. The step_name property
      * @return string|null
     */
     public function getStepName(): ?string {
-        return $this->stepName;
+        return $this->step_name;
     }
 
     /**
-     * Gets the userCount property value. The userCount property
+     * Gets the user_count property value. The user_count property
      * @return int|null
     */
     public function getUserCount(): ?int {
-        return $this->userCount;
+        return $this->user_count;
     }
 
     /**
@@ -88,42 +88,42 @@ class FunnelStepResult implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeFloatValue('conversionRate', $this->getConversionRate());
-        $writer->writeFloatValue('dropoffRate', $this->getDropoffRate());
-        $writer->writeStringValue('stepName', $this->getStepName());
-        $writer->writeIntegerValue('userCount', $this->getUserCount());
+        $writer->writeFloatValue('conversion_rate', $this->getConversionRate());
+        $writer->writeFloatValue('dropoff_rate', $this->getDropoffRate());
+        $writer->writeStringValue('step_name', $this->getStepName());
+        $writer->writeIntegerValue('user_count', $this->getUserCount());
     }
 
     /**
-     * Sets the conversionRate property value. The conversionRate property
-     * @param float|null $value Value to set for the conversionRate property.
+     * Sets the conversion_rate property value. The conversion_rate property
+     * @param float|null $value Value to set for the conversion_rate property.
     */
     public function setConversionRate(?float $value): void {
-        $this->conversionRate = $value;
+        $this->conversion_rate = $value;
     }
 
     /**
-     * Sets the dropoffRate property value. The dropoffRate property
-     * @param float|null $value Value to set for the dropoffRate property.
+     * Sets the dropoff_rate property value. The dropoff_rate property
+     * @param float|null $value Value to set for the dropoff_rate property.
     */
     public function setDropoffRate(?float $value): void {
-        $this->dropoffRate = $value;
+        $this->dropoff_rate = $value;
     }
 
     /**
-     * Sets the stepName property value. The stepName property
-     * @param string|null $value Value to set for the stepName property.
+     * Sets the step_name property value. The step_name property
+     * @param string|null $value Value to set for the step_name property.
     */
     public function setStepName(?string $value): void {
-        $this->stepName = $value;
+        $this->step_name = $value;
     }
 
     /**
-     * Sets the userCount property value. The userCount property
-     * @param int|null $value Value to set for the userCount property.
+     * Sets the user_count property value. The user_count property
+     * @param int|null $value Value to set for the user_count property.
     */
     public function setUserCount(?int $value): void {
-        $this->userCount = $value;
+        $this->user_count = $value;
     }
 
 }

@@ -10,6 +10,7 @@ use Microsoft\Kiota\Abstractions\QueryParameter;
 class PostsRequestBuilderGetQueryParameters 
 {
     /**
+     * @QueryParameter("creator_id")
      * @var string|null $creatorId 
     */
     public ?string $creatorId = null;
@@ -28,12 +29,12 @@ class PostsRequestBuilderGetQueryParameters
     
     /**
      * Instantiates a new PostsRequestBuilderGetQueryParameters and sets the default values.
-     * @param string|null $creatorId 
+     * @param string|null $creator_id 
      * @param int|null $paginationLimit Maximum number of items to return.
      * @param int|null $paginationOffset Number of items to skip before collecting the result set.
     */
-    public function __construct(?string $creatorId = null, ?int $paginationLimit = null, ?int $paginationOffset = null) {
-        $this->creatorId = $creatorId;
+    public function __construct(?string $creator_id = null, ?int $paginationLimit = null, ?int $paginationOffset = null) {
+        $this->creatorId = $creator_id;
         $this->paginationLimit = $paginationLimit;
         $this->paginationOffset = $paginationOffset;
     }

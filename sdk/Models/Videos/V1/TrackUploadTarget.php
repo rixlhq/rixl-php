@@ -14,19 +14,19 @@ class TrackUploadTarget implements Parsable
     private ?string $id = null;
     
     /**
-     * @var string|null $languageCode The languageCode property
+     * @var string|null $language_code The language_code property
     */
-    private ?string $languageCode = null;
+    private ?string $language_code = null;
     
     /**
-     * @var string|null $objectKey The objectKey property
+     * @var string|null $object_key The object_key property
     */
-    private ?string $objectKey = null;
+    private ?string $object_key = null;
     
     /**
-     * @var string|null $uploadUrl The uploadUrl property
+     * @var string|null $upload_url The upload_url property
     */
-    private ?string $uploadUrl = null;
+    private ?string $upload_url = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -45,9 +45,9 @@ class TrackUploadTarget implements Parsable
         $o = $this;
         return  [
             'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
-            'languageCode' => fn(ParseNode $n) => $o->setLanguageCode($n->getStringValue()),
-            'objectKey' => fn(ParseNode $n) => $o->setObjectKey($n->getStringValue()),
-            'uploadUrl' => fn(ParseNode $n) => $o->setUploadUrl($n->getStringValue()),
+            'language_code' => fn(ParseNode $n) => $o->setLanguageCode($n->getStringValue()),
+            'object_key' => fn(ParseNode $n) => $o->setObjectKey($n->getStringValue()),
+            'upload_url' => fn(ParseNode $n) => $o->setUploadUrl($n->getStringValue()),
         ];
     }
 
@@ -60,27 +60,27 @@ class TrackUploadTarget implements Parsable
     }
 
     /**
-     * Gets the languageCode property value. The languageCode property
+     * Gets the language_code property value. The language_code property
      * @return string|null
     */
     public function getLanguageCode(): ?string {
-        return $this->languageCode;
+        return $this->language_code;
     }
 
     /**
-     * Gets the objectKey property value. The objectKey property
+     * Gets the object_key property value. The object_key property
      * @return string|null
     */
     public function getObjectKey(): ?string {
-        return $this->objectKey;
+        return $this->object_key;
     }
 
     /**
-     * Gets the uploadUrl property value. The uploadUrl property
+     * Gets the upload_url property value. The upload_url property
      * @return string|null
     */
     public function getUploadUrl(): ?string {
-        return $this->uploadUrl;
+        return $this->upload_url;
     }
 
     /**
@@ -89,9 +89,9 @@ class TrackUploadTarget implements Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeStringValue('id', $this->getId());
-        $writer->writeStringValue('languageCode', $this->getLanguageCode());
-        $writer->writeStringValue('objectKey', $this->getObjectKey());
-        $writer->writeStringValue('uploadUrl', $this->getUploadUrl());
+        $writer->writeStringValue('language_code', $this->getLanguageCode());
+        $writer->writeStringValue('object_key', $this->getObjectKey());
+        $writer->writeStringValue('upload_url', $this->getUploadUrl());
     }
 
     /**
@@ -103,27 +103,27 @@ class TrackUploadTarget implements Parsable
     }
 
     /**
-     * Sets the languageCode property value. The languageCode property
-     * @param string|null $value Value to set for the languageCode property.
+     * Sets the language_code property value. The language_code property
+     * @param string|null $value Value to set for the language_code property.
     */
     public function setLanguageCode(?string $value): void {
-        $this->languageCode = $value;
+        $this->language_code = $value;
     }
 
     /**
-     * Sets the objectKey property value. The objectKey property
-     * @param string|null $value Value to set for the objectKey property.
+     * Sets the object_key property value. The object_key property
+     * @param string|null $value Value to set for the object_key property.
     */
     public function setObjectKey(?string $value): void {
-        $this->objectKey = $value;
+        $this->object_key = $value;
     }
 
     /**
-     * Sets the uploadUrl property value. The uploadUrl property
-     * @param string|null $value Value to set for the uploadUrl property.
+     * Sets the upload_url property value. The upload_url property
+     * @param string|null $value Value to set for the upload_url property.
     */
     public function setUploadUrl(?string $value): void {
-        $this->uploadUrl = $value;
+        $this->upload_url = $value;
     }
 
 }

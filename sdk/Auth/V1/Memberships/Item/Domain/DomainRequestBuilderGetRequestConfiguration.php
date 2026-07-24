@@ -28,11 +28,11 @@ class DomainRequestBuilderGetRequestConfiguration extends BaseRequestConfigurati
 
     /**
      * Instantiates a new DomainRequestBuilderGetQueryParameters.
-     * @param string|null $userId 
+     * @param string|null $user_id 
      * @return DomainRequestBuilderGetQueryParameters
     */
-    public static function createQueryParameters(?string $userId = null): DomainRequestBuilderGetQueryParameters {
-        return new DomainRequestBuilderGetQueryParameters($userId);
+    public static function createQueryParameters(?string $user_id = null): DomainRequestBuilderGetQueryParameters {
+        return new DomainRequestBuilderGetQueryParameters($user_id);
     }
 
 }

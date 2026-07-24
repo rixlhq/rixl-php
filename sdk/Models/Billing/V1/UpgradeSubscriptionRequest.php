@@ -9,14 +9,14 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class UpgradeSubscriptionRequest implements Parsable 
 {
     /**
-     * @var string|null $orgId The orgId property
+     * @var string|null $org_id The org_id property
     */
-    private ?string $orgId = null;
+    private ?string $org_id = null;
     
     /**
-     * @var string|null $stripePriceId The stripePriceId property
+     * @var string|null $stripe_price_id The stripe_price_id property
     */
-    private ?string $stripePriceId = null;
+    private ?string $stripe_price_id = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -34,25 +34,25 @@ class UpgradeSubscriptionRequest implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'orgId' => fn(ParseNode $n) => $o->setOrgId($n->getStringValue()),
-            'stripePriceId' => fn(ParseNode $n) => $o->setStripePriceId($n->getStringValue()),
+            'org_id' => fn(ParseNode $n) => $o->setOrgId($n->getStringValue()),
+            'stripe_price_id' => fn(ParseNode $n) => $o->setStripePriceId($n->getStringValue()),
         ];
     }
 
     /**
-     * Gets the orgId property value. The orgId property
+     * Gets the org_id property value. The org_id property
      * @return string|null
     */
     public function getOrgId(): ?string {
-        return $this->orgId;
+        return $this->org_id;
     }
 
     /**
-     * Gets the stripePriceId property value. The stripePriceId property
+     * Gets the stripe_price_id property value. The stripe_price_id property
      * @return string|null
     */
     public function getStripePriceId(): ?string {
-        return $this->stripePriceId;
+        return $this->stripe_price_id;
     }
 
     /**
@@ -60,24 +60,24 @@ class UpgradeSubscriptionRequest implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('orgId', $this->getOrgId());
-        $writer->writeStringValue('stripePriceId', $this->getStripePriceId());
+        $writer->writeStringValue('org_id', $this->getOrgId());
+        $writer->writeStringValue('stripe_price_id', $this->getStripePriceId());
     }
 
     /**
-     * Sets the orgId property value. The orgId property
-     * @param string|null $value Value to set for the orgId property.
+     * Sets the org_id property value. The org_id property
+     * @param string|null $value Value to set for the org_id property.
     */
     public function setOrgId(?string $value): void {
-        $this->orgId = $value;
+        $this->org_id = $value;
     }
 
     /**
-     * Sets the stripePriceId property value. The stripePriceId property
-     * @param string|null $value Value to set for the stripePriceId property.
+     * Sets the stripe_price_id property value. The stripe_price_id property
+     * @param string|null $value Value to set for the stripe_price_id property.
     */
     public function setStripePriceId(?string $value): void {
-        $this->stripePriceId = $value;
+        $this->stripe_price_id = $value;
     }
 
 }

@@ -8,6 +8,7 @@ namespace Rixl\Sdk\Billing\V1\PaymentMethods;
 class PaymentMethodsRequestBuilderGetQueryParameters 
 {
     /**
+     * @QueryParameter("org_id")
      * @var string|null $orgId 
     */
     public ?string $orgId = null;
@@ -19,11 +20,11 @@ class PaymentMethodsRequestBuilderGetQueryParameters
     
     /**
      * Instantiates a new PaymentMethodsRequestBuilderGetQueryParameters and sets the default values.
-     * @param string|null $orgId 
+     * @param string|null $org_id 
      * @param bool|null $refresh 
     */
-    public function __construct(?string $orgId = null, ?bool $refresh = null) {
-        $this->orgId = $orgId;
+    public function __construct(?string $org_id = null, ?bool $refresh = null) {
+        $this->orgId = $org_id;
         $this->refresh = $refresh;
     }
 

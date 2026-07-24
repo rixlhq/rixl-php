@@ -9,19 +9,19 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class MintClientTokenRequest implements Parsable 
 {
     /**
-     * @var string|null $clientId The clientId property
+     * @var string|null $client_id The client_id property
     */
-    private ?string $clientId = null;
+    private ?string $client_id = null;
     
     /**
-     * @var string|null $clientSecret The clientSecret property
+     * @var string|null $client_secret The client_secret property
     */
-    private ?string $clientSecret = null;
+    private ?string $client_secret = null;
     
     /**
-     * @var string|null $projectId The projectId property
+     * @var string|null $project_id The project_id property
     */
-    private ?string $projectId = null;
+    private ?string $project_id = null;
     
     /**
      * @var string|null $subject The subject property
@@ -29,9 +29,9 @@ class MintClientTokenRequest implements Parsable
     private ?string $subject = null;
     
     /**
-     * @var int|null $ttlMinutes The ttlMinutes property
+     * @var int|null $ttl_minutes The ttl_minutes property
     */
-    private ?int $ttlMinutes = null;
+    private ?int $ttl_minutes = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -43,19 +43,19 @@ class MintClientTokenRequest implements Parsable
     }
 
     /**
-     * Gets the clientId property value. The clientId property
+     * Gets the client_id property value. The client_id property
      * @return string|null
     */
     public function getClientId(): ?string {
-        return $this->clientId;
+        return $this->client_id;
     }
 
     /**
-     * Gets the clientSecret property value. The clientSecret property
+     * Gets the client_secret property value. The client_secret property
      * @return string|null
     */
     public function getClientSecret(): ?string {
-        return $this->clientSecret;
+        return $this->client_secret;
     }
 
     /**
@@ -65,20 +65,20 @@ class MintClientTokenRequest implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'clientId' => fn(ParseNode $n) => $o->setClientId($n->getStringValue()),
-            'clientSecret' => fn(ParseNode $n) => $o->setClientSecret($n->getStringValue()),
-            'projectId' => fn(ParseNode $n) => $o->setProjectId($n->getStringValue()),
+            'client_id' => fn(ParseNode $n) => $o->setClientId($n->getStringValue()),
+            'client_secret' => fn(ParseNode $n) => $o->setClientSecret($n->getStringValue()),
+            'project_id' => fn(ParseNode $n) => $o->setProjectId($n->getStringValue()),
             'subject' => fn(ParseNode $n) => $o->setSubject($n->getStringValue()),
-            'ttlMinutes' => fn(ParseNode $n) => $o->setTtlMinutes($n->getIntegerValue()),
+            'ttl_minutes' => fn(ParseNode $n) => $o->setTtlMinutes($n->getIntegerValue()),
         ];
     }
 
     /**
-     * Gets the projectId property value. The projectId property
+     * Gets the project_id property value. The project_id property
      * @return string|null
     */
     public function getProjectId(): ?string {
-        return $this->projectId;
+        return $this->project_id;
     }
 
     /**
@@ -90,11 +90,11 @@ class MintClientTokenRequest implements Parsable
     }
 
     /**
-     * Gets the ttlMinutes property value. The ttlMinutes property
+     * Gets the ttl_minutes property value. The ttl_minutes property
      * @return int|null
     */
     public function getTtlMinutes(): ?int {
-        return $this->ttlMinutes;
+        return $this->ttl_minutes;
     }
 
     /**
@@ -102,35 +102,35 @@ class MintClientTokenRequest implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('clientId', $this->getClientId());
-        $writer->writeStringValue('clientSecret', $this->getClientSecret());
-        $writer->writeStringValue('projectId', $this->getProjectId());
+        $writer->writeStringValue('client_id', $this->getClientId());
+        $writer->writeStringValue('client_secret', $this->getClientSecret());
+        $writer->writeStringValue('project_id', $this->getProjectId());
         $writer->writeStringValue('subject', $this->getSubject());
-        $writer->writeIntegerValue('ttlMinutes', $this->getTtlMinutes());
+        $writer->writeIntegerValue('ttl_minutes', $this->getTtlMinutes());
     }
 
     /**
-     * Sets the clientId property value. The clientId property
-     * @param string|null $value Value to set for the clientId property.
+     * Sets the client_id property value. The client_id property
+     * @param string|null $value Value to set for the client_id property.
     */
     public function setClientId(?string $value): void {
-        $this->clientId = $value;
+        $this->client_id = $value;
     }
 
     /**
-     * Sets the clientSecret property value. The clientSecret property
-     * @param string|null $value Value to set for the clientSecret property.
+     * Sets the client_secret property value. The client_secret property
+     * @param string|null $value Value to set for the client_secret property.
     */
     public function setClientSecret(?string $value): void {
-        $this->clientSecret = $value;
+        $this->client_secret = $value;
     }
 
     /**
-     * Sets the projectId property value. The projectId property
-     * @param string|null $value Value to set for the projectId property.
+     * Sets the project_id property value. The project_id property
+     * @param string|null $value Value to set for the project_id property.
     */
     public function setProjectId(?string $value): void {
-        $this->projectId = $value;
+        $this->project_id = $value;
     }
 
     /**
@@ -142,11 +142,11 @@ class MintClientTokenRequest implements Parsable
     }
 
     /**
-     * Sets the ttlMinutes property value. The ttlMinutes property
-     * @param int|null $value Value to set for the ttlMinutes property.
+     * Sets the ttl_minutes property value. The ttl_minutes property
+     * @param int|null $value Value to set for the ttl_minutes property.
     */
     public function setTtlMinutes(?int $value): void {
-        $this->ttlMinutes = $value;
+        $this->ttl_minutes = $value;
     }
 
 }

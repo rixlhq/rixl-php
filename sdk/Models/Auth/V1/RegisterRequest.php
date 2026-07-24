@@ -9,9 +9,9 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class RegisterRequest implements Parsable 
 {
     /**
-     * @var string|null $countryCode The countryCode property
+     * @var string|null $country_code The country_code property
     */
-    private ?string $countryCode = null;
+    private ?string $country_code = null;
     
     /**
      * @var string|null $email The email property
@@ -24,9 +24,9 @@ class RegisterRequest implements Parsable
     private ?string $password = null;
     
     /**
-     * @var bool|null $subscribeToBlog The subscribeToBlog property
+     * @var bool|null $subscribe_to_blog The subscribe_to_blog property
     */
-    private ?bool $subscribeToBlog = null;
+    private ?bool $subscribe_to_blog = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -38,11 +38,11 @@ class RegisterRequest implements Parsable
     }
 
     /**
-     * Gets the countryCode property value. The countryCode property
+     * Gets the country_code property value. The country_code property
      * @return string|null
     */
     public function getCountryCode(): ?string {
-        return $this->countryCode;
+        return $this->country_code;
     }
 
     /**
@@ -60,10 +60,10 @@ class RegisterRequest implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'countryCode' => fn(ParseNode $n) => $o->setCountryCode($n->getStringValue()),
+            'country_code' => fn(ParseNode $n) => $o->setCountryCode($n->getStringValue()),
             'email' => fn(ParseNode $n) => $o->setEmail($n->getStringValue()),
             'password' => fn(ParseNode $n) => $o->setPassword($n->getStringValue()),
-            'subscribeToBlog' => fn(ParseNode $n) => $o->setSubscribeToBlog($n->getBooleanValue()),
+            'subscribe_to_blog' => fn(ParseNode $n) => $o->setSubscribeToBlog($n->getBooleanValue()),
         ];
     }
 
@@ -76,11 +76,11 @@ class RegisterRequest implements Parsable
     }
 
     /**
-     * Gets the subscribeToBlog property value. The subscribeToBlog property
+     * Gets the subscribe_to_blog property value. The subscribe_to_blog property
      * @return bool|null
     */
     public function getSubscribeToBlog(): ?bool {
-        return $this->subscribeToBlog;
+        return $this->subscribe_to_blog;
     }
 
     /**
@@ -88,18 +88,18 @@ class RegisterRequest implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('countryCode', $this->getCountryCode());
+        $writer->writeStringValue('country_code', $this->getCountryCode());
         $writer->writeStringValue('email', $this->getEmail());
         $writer->writeStringValue('password', $this->getPassword());
-        $writer->writeBooleanValue('subscribeToBlog', $this->getSubscribeToBlog());
+        $writer->writeBooleanValue('subscribe_to_blog', $this->getSubscribeToBlog());
     }
 
     /**
-     * Sets the countryCode property value. The countryCode property
-     * @param string|null $value Value to set for the countryCode property.
+     * Sets the country_code property value. The country_code property
+     * @param string|null $value Value to set for the country_code property.
     */
     public function setCountryCode(?string $value): void {
-        $this->countryCode = $value;
+        $this->country_code = $value;
     }
 
     /**
@@ -119,11 +119,11 @@ class RegisterRequest implements Parsable
     }
 
     /**
-     * Sets the subscribeToBlog property value. The subscribeToBlog property
-     * @param bool|null $value Value to set for the subscribeToBlog property.
+     * Sets the subscribe_to_blog property value. The subscribe_to_blog property
+     * @param bool|null $value Value to set for the subscribe_to_blog property.
     */
     public function setSubscribeToBlog(?bool $value): void {
-        $this->subscribeToBlog = $value;
+        $this->subscribe_to_blog = $value;
     }
 
 }

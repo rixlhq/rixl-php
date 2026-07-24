@@ -14,9 +14,9 @@ class PasskeyRegisterFinishResponse implements Parsable
     private ?string $name = null;
     
     /**
-     * @var string|null $passkeyId The passkeyId property
+     * @var string|null $passkey_id The passkey_id property
     */
-    private ?string $passkeyId = null;
+    private ?string $passkey_id = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -35,7 +35,7 @@ class PasskeyRegisterFinishResponse implements Parsable
         $o = $this;
         return  [
             'name' => fn(ParseNode $n) => $o->setName($n->getStringValue()),
-            'passkeyId' => fn(ParseNode $n) => $o->setPasskeyId($n->getStringValue()),
+            'passkey_id' => fn(ParseNode $n) => $o->setPasskeyId($n->getStringValue()),
         ];
     }
 
@@ -48,11 +48,11 @@ class PasskeyRegisterFinishResponse implements Parsable
     }
 
     /**
-     * Gets the passkeyId property value. The passkeyId property
+     * Gets the passkey_id property value. The passkey_id property
      * @return string|null
     */
     public function getPasskeyId(): ?string {
-        return $this->passkeyId;
+        return $this->passkey_id;
     }
 
     /**
@@ -61,7 +61,7 @@ class PasskeyRegisterFinishResponse implements Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeStringValue('name', $this->getName());
-        $writer->writeStringValue('passkeyId', $this->getPasskeyId());
+        $writer->writeStringValue('passkey_id', $this->getPasskeyId());
     }
 
     /**
@@ -73,11 +73,11 @@ class PasskeyRegisterFinishResponse implements Parsable
     }
 
     /**
-     * Sets the passkeyId property value. The passkeyId property
-     * @param string|null $value Value to set for the passkeyId property.
+     * Sets the passkey_id property value. The passkey_id property
+     * @param string|null $value Value to set for the passkey_id property.
     */
     public function setPasskeyId(?string $value): void {
-        $this->passkeyId = $value;
+        $this->passkey_id = $value;
     }
 
 }

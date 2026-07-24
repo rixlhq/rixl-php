@@ -28,12 +28,12 @@ class PaymentMethodsRequestBuilderGetRequestConfiguration extends BaseRequestCon
 
     /**
      * Instantiates a new PaymentMethodsRequestBuilderGetQueryParameters.
-     * @param string|null $orgId 
+     * @param string|null $org_id 
      * @param bool|null $refresh 
      * @return PaymentMethodsRequestBuilderGetQueryParameters
     */
-    public static function createQueryParameters(?string $orgId = null, ?bool $refresh = null): PaymentMethodsRequestBuilderGetQueryParameters {
-        return new PaymentMethodsRequestBuilderGetQueryParameters($orgId, $refresh);
+    public static function createQueryParameters(?string $org_id = null, ?bool $refresh = null): PaymentMethodsRequestBuilderGetQueryParameters {
+        return new PaymentMethodsRequestBuilderGetQueryParameters($org_id, $refresh);
     }
 
 }

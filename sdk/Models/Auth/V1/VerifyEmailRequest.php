@@ -14,9 +14,9 @@ class VerifyEmailRequest implements Parsable
     private ?string $code = null;
     
     /**
-     * @var string|null $verificationId The verificationId property
+     * @var string|null $verification_id The verification_id property
     */
-    private ?string $verificationId = null;
+    private ?string $verification_id = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -43,16 +43,16 @@ class VerifyEmailRequest implements Parsable
         $o = $this;
         return  [
             'code' => fn(ParseNode $n) => $o->setCode($n->getStringValue()),
-            'verificationId' => fn(ParseNode $n) => $o->setVerificationId($n->getStringValue()),
+            'verification_id' => fn(ParseNode $n) => $o->setVerificationId($n->getStringValue()),
         ];
     }
 
     /**
-     * Gets the verificationId property value. The verificationId property
+     * Gets the verification_id property value. The verification_id property
      * @return string|null
     */
     public function getVerificationId(): ?string {
-        return $this->verificationId;
+        return $this->verification_id;
     }
 
     /**
@@ -61,7 +61,7 @@ class VerifyEmailRequest implements Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeStringValue('code', $this->getCode());
-        $writer->writeStringValue('verificationId', $this->getVerificationId());
+        $writer->writeStringValue('verification_id', $this->getVerificationId());
     }
 
     /**
@@ -73,11 +73,11 @@ class VerifyEmailRequest implements Parsable
     }
 
     /**
-     * Sets the verificationId property value. The verificationId property
-     * @param string|null $value Value to set for the verificationId property.
+     * Sets the verification_id property value. The verification_id property
+     * @param string|null $value Value to set for the verification_id property.
     */
     public function setVerificationId(?string $value): void {
-        $this->verificationId = $value;
+        $this->verification_id = $value;
     }
 
 }

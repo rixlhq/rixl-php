@@ -9,14 +9,14 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class VerificationSentResponse implements Parsable 
 {
     /**
-     * @var string|null $canResendAt The canResendAt property
+     * @var string|null $can_resend_at The can_resend_at property
     */
-    private ?string $canResendAt = null;
+    private ?string $can_resend_at = null;
     
     /**
-     * @var bool|null $codeSent The codeSent property
+     * @var bool|null $code_sent The code_sent property
     */
-    private ?bool $codeSent = null;
+    private ?bool $code_sent = null;
     
     /**
      * @var string|null $message The message property
@@ -24,9 +24,9 @@ class VerificationSentResponse implements Parsable
     private ?string $message = null;
     
     /**
-     * @var string|null $verificationId The verificationId property
+     * @var string|null $verification_id The verification_id property
     */
-    private ?string $verificationId = null;
+    private ?string $verification_id = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -38,19 +38,19 @@ class VerificationSentResponse implements Parsable
     }
 
     /**
-     * Gets the canResendAt property value. The canResendAt property
+     * Gets the can_resend_at property value. The can_resend_at property
      * @return string|null
     */
     public function getCanResendAt(): ?string {
-        return $this->canResendAt;
+        return $this->can_resend_at;
     }
 
     /**
-     * Gets the codeSent property value. The codeSent property
+     * Gets the code_sent property value. The code_sent property
      * @return bool|null
     */
     public function getCodeSent(): ?bool {
-        return $this->codeSent;
+        return $this->code_sent;
     }
 
     /**
@@ -60,10 +60,10 @@ class VerificationSentResponse implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'canResendAt' => fn(ParseNode $n) => $o->setCanResendAt($n->getStringValue()),
-            'codeSent' => fn(ParseNode $n) => $o->setCodeSent($n->getBooleanValue()),
+            'can_resend_at' => fn(ParseNode $n) => $o->setCanResendAt($n->getStringValue()),
+            'code_sent' => fn(ParseNode $n) => $o->setCodeSent($n->getBooleanValue()),
             'message' => fn(ParseNode $n) => $o->setMessage($n->getStringValue()),
-            'verificationId' => fn(ParseNode $n) => $o->setVerificationId($n->getStringValue()),
+            'verification_id' => fn(ParseNode $n) => $o->setVerificationId($n->getStringValue()),
         ];
     }
 
@@ -76,11 +76,11 @@ class VerificationSentResponse implements Parsable
     }
 
     /**
-     * Gets the verificationId property value. The verificationId property
+     * Gets the verification_id property value. The verification_id property
      * @return string|null
     */
     public function getVerificationId(): ?string {
-        return $this->verificationId;
+        return $this->verification_id;
     }
 
     /**
@@ -88,26 +88,26 @@ class VerificationSentResponse implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('canResendAt', $this->getCanResendAt());
-        $writer->writeBooleanValue('codeSent', $this->getCodeSent());
+        $writer->writeStringValue('can_resend_at', $this->getCanResendAt());
+        $writer->writeBooleanValue('code_sent', $this->getCodeSent());
         $writer->writeStringValue('message', $this->getMessage());
-        $writer->writeStringValue('verificationId', $this->getVerificationId());
+        $writer->writeStringValue('verification_id', $this->getVerificationId());
     }
 
     /**
-     * Sets the canResendAt property value. The canResendAt property
-     * @param string|null $value Value to set for the canResendAt property.
+     * Sets the can_resend_at property value. The can_resend_at property
+     * @param string|null $value Value to set for the can_resend_at property.
     */
     public function setCanResendAt(?string $value): void {
-        $this->canResendAt = $value;
+        $this->can_resend_at = $value;
     }
 
     /**
-     * Sets the codeSent property value. The codeSent property
-     * @param bool|null $value Value to set for the codeSent property.
+     * Sets the code_sent property value. The code_sent property
+     * @param bool|null $value Value to set for the code_sent property.
     */
     public function setCodeSent(?bool $value): void {
-        $this->codeSent = $value;
+        $this->code_sent = $value;
     }
 
     /**
@@ -119,11 +119,11 @@ class VerificationSentResponse implements Parsable
     }
 
     /**
-     * Sets the verificationId property value. The verificationId property
-     * @param string|null $value Value to set for the verificationId property.
+     * Sets the verification_id property value. The verification_id property
+     * @param string|null $value Value to set for the verification_id property.
     */
     public function setVerificationId(?string $value): void {
-        $this->verificationId = $value;
+        $this->verification_id = $value;
     }
 
 }

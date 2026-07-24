@@ -9,9 +9,19 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class CustomDomainPutRequestBody implements Parsable 
 {
     /**
-     * @var string|null $customDomain The customDomain property
+     * @var string|null $custom_domain The custom_domain property
     */
-    private ?string $customDomain = null;
+    private ?string $custom_domain = null;
+    
+    /**
+     * @var string|null $org_id The org_id property
+    */
+    private ?string $org_id = null;
+    
+    /**
+     * @var string|null $project_id The project_id property
+    */
+    private ?string $project_id = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -23,11 +33,11 @@ class CustomDomainPutRequestBody implements Parsable
     }
 
     /**
-     * Gets the customDomain property value. The customDomain property
+     * Gets the custom_domain property value. The custom_domain property
      * @return string|null
     */
     public function getCustomDomain(): ?string {
-        return $this->customDomain;
+        return $this->custom_domain;
     }
 
     /**
@@ -37,8 +47,26 @@ class CustomDomainPutRequestBody implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'customDomain' => fn(ParseNode $n) => $o->setCustomDomain($n->getStringValue()),
+            'custom_domain' => fn(ParseNode $n) => $o->setCustomDomain($n->getStringValue()),
+            'org_id' => fn(ParseNode $n) => $o->setOrgId($n->getStringValue()),
+            'project_id' => fn(ParseNode $n) => $o->setProjectId($n->getStringValue()),
         ];
+    }
+
+    /**
+     * Gets the org_id property value. The org_id property
+     * @return string|null
+    */
+    public function getOrgId(): ?string {
+        return $this->org_id;
+    }
+
+    /**
+     * Gets the project_id property value. The project_id property
+     * @return string|null
+    */
+    public function getProjectId(): ?string {
+        return $this->project_id;
     }
 
     /**
@@ -46,15 +74,33 @@ class CustomDomainPutRequestBody implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('customDomain', $this->getCustomDomain());
+        $writer->writeStringValue('custom_domain', $this->getCustomDomain());
+        $writer->writeStringValue('org_id', $this->getOrgId());
+        $writer->writeStringValue('project_id', $this->getProjectId());
     }
 
     /**
-     * Sets the customDomain property value. The customDomain property
-     * @param string|null $value Value to set for the customDomain property.
+     * Sets the custom_domain property value. The custom_domain property
+     * @param string|null $value Value to set for the custom_domain property.
     */
     public function setCustomDomain(?string $value): void {
-        $this->customDomain = $value;
+        $this->custom_domain = $value;
+    }
+
+    /**
+     * Sets the org_id property value. The org_id property
+     * @param string|null $value Value to set for the org_id property.
+    */
+    public function setOrgId(?string $value): void {
+        $this->org_id = $value;
+    }
+
+    /**
+     * Sets the project_id property value. The project_id property
+     * @param string|null $value Value to set for the project_id property.
+    */
+    public function setProjectId(?string $value): void {
+        $this->project_id = $value;
     }
 
 }

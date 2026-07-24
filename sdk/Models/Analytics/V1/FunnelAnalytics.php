@@ -9,19 +9,19 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class FunnelAnalytics implements Parsable 
 {
     /**
-     * @var float|null $averageTimeHours The averageTimeHours property
+     * @var float|null $average_time_hours The average_time_hours property
     */
-    private ?float $averageTimeHours = null;
+    private ?float $average_time_hours = null;
     
     /**
-     * @var int|null $completedUsers The completedUsers property
+     * @var int|null $completed_users The completed_users property
     */
-    private ?int $completedUsers = null;
+    private ?int $completed_users = null;
     
     /**
-     * @var float|null $completionRate The completionRate property
+     * @var float|null $completion_rate The completion_rate property
     */
-    private ?float $completionRate = null;
+    private ?float $completion_rate = null;
     
     /**
      * @var array<FunnelStepResult>|null $steps The steps property
@@ -29,9 +29,9 @@ class FunnelAnalytics implements Parsable
     private ?array $steps = null;
     
     /**
-     * @var int|null $totalUsers The totalUsers property
+     * @var int|null $total_users The total_users property
     */
-    private ?int $totalUsers = null;
+    private ?int $total_users = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -43,27 +43,27 @@ class FunnelAnalytics implements Parsable
     }
 
     /**
-     * Gets the averageTimeHours property value. The averageTimeHours property
+     * Gets the average_time_hours property value. The average_time_hours property
      * @return float|null
     */
     public function getAverageTimeHours(): ?float {
-        return $this->averageTimeHours;
+        return $this->average_time_hours;
     }
 
     /**
-     * Gets the completedUsers property value. The completedUsers property
+     * Gets the completed_users property value. The completed_users property
      * @return int|null
     */
     public function getCompletedUsers(): ?int {
-        return $this->completedUsers;
+        return $this->completed_users;
     }
 
     /**
-     * Gets the completionRate property value. The completionRate property
+     * Gets the completion_rate property value. The completion_rate property
      * @return float|null
     */
     public function getCompletionRate(): ?float {
-        return $this->completionRate;
+        return $this->completion_rate;
     }
 
     /**
@@ -73,11 +73,11 @@ class FunnelAnalytics implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'averageTimeHours' => fn(ParseNode $n) => $o->setAverageTimeHours($n->getFloatValue()),
-            'completedUsers' => fn(ParseNode $n) => $o->setCompletedUsers($n->getIntegerValue()),
-            'completionRate' => fn(ParseNode $n) => $o->setCompletionRate($n->getFloatValue()),
+            'average_time_hours' => fn(ParseNode $n) => $o->setAverageTimeHours($n->getFloatValue()),
+            'completed_users' => fn(ParseNode $n) => $o->setCompletedUsers($n->getIntegerValue()),
+            'completion_rate' => fn(ParseNode $n) => $o->setCompletionRate($n->getFloatValue()),
             'steps' => fn(ParseNode $n) => $o->setSteps($n->getCollectionOfObjectValues([FunnelStepResult::class, 'createFromDiscriminatorValue'])),
-            'totalUsers' => fn(ParseNode $n) => $o->setTotalUsers($n->getIntegerValue()),
+            'total_users' => fn(ParseNode $n) => $o->setTotalUsers($n->getIntegerValue()),
         ];
     }
 
@@ -90,11 +90,11 @@ class FunnelAnalytics implements Parsable
     }
 
     /**
-     * Gets the totalUsers property value. The totalUsers property
+     * Gets the total_users property value. The total_users property
      * @return int|null
     */
     public function getTotalUsers(): ?int {
-        return $this->totalUsers;
+        return $this->total_users;
     }
 
     /**
@@ -102,35 +102,35 @@ class FunnelAnalytics implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeFloatValue('averageTimeHours', $this->getAverageTimeHours());
-        $writer->writeIntegerValue('completedUsers', $this->getCompletedUsers());
-        $writer->writeFloatValue('completionRate', $this->getCompletionRate());
+        $writer->writeFloatValue('average_time_hours', $this->getAverageTimeHours());
+        $writer->writeIntegerValue('completed_users', $this->getCompletedUsers());
+        $writer->writeFloatValue('completion_rate', $this->getCompletionRate());
         $writer->writeCollectionOfObjectValues('steps', $this->getSteps());
-        $writer->writeIntegerValue('totalUsers', $this->getTotalUsers());
+        $writer->writeIntegerValue('total_users', $this->getTotalUsers());
     }
 
     /**
-     * Sets the averageTimeHours property value. The averageTimeHours property
-     * @param float|null $value Value to set for the averageTimeHours property.
+     * Sets the average_time_hours property value. The average_time_hours property
+     * @param float|null $value Value to set for the average_time_hours property.
     */
     public function setAverageTimeHours(?float $value): void {
-        $this->averageTimeHours = $value;
+        $this->average_time_hours = $value;
     }
 
     /**
-     * Sets the completedUsers property value. The completedUsers property
-     * @param int|null $value Value to set for the completedUsers property.
+     * Sets the completed_users property value. The completed_users property
+     * @param int|null $value Value to set for the completed_users property.
     */
     public function setCompletedUsers(?int $value): void {
-        $this->completedUsers = $value;
+        $this->completed_users = $value;
     }
 
     /**
-     * Sets the completionRate property value. The completionRate property
-     * @param float|null $value Value to set for the completionRate property.
+     * Sets the completion_rate property value. The completion_rate property
+     * @param float|null $value Value to set for the completion_rate property.
     */
     public function setCompletionRate(?float $value): void {
-        $this->completionRate = $value;
+        $this->completion_rate = $value;
     }
 
     /**
@@ -142,11 +142,11 @@ class FunnelAnalytics implements Parsable
     }
 
     /**
-     * Sets the totalUsers property value. The totalUsers property
-     * @param int|null $value Value to set for the totalUsers property.
+     * Sets the total_users property value. The total_users property
+     * @param int|null $value Value to set for the total_users property.
     */
     public function setTotalUsers(?int $value): void {
-        $this->totalUsers = $value;
+        $this->total_users = $value;
     }
 
 }

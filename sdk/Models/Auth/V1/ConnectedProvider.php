@@ -9,24 +9,24 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class ConnectedProvider implements Parsable 
 {
     /**
-     * @var string|null $emailAddress The emailAddress property
+     * @var string|null $email_address The email_address property
     */
-    private ?string $emailAddress = null;
+    private ?string $email_address = null;
     
     /**
-     * @var string|null $firstName The firstName property
+     * @var string|null $first_name The first_name property
     */
-    private ?string $firstName = null;
+    private ?string $first_name = null;
     
     /**
-     * @var string|null $imageUrl The imageUrl property
+     * @var string|null $image_url The image_url property
     */
-    private ?string $imageUrl = null;
+    private ?string $image_url = null;
     
     /**
-     * @var string|null $lastName The lastName property
+     * @var string|null $last_name The last_name property
     */
-    private ?string $lastName = null;
+    private ?string $last_name = null;
     
     /**
      * @var ExternalAccountProvider|null $provider The provider property
@@ -48,11 +48,11 @@ class ConnectedProvider implements Parsable
     }
 
     /**
-     * Gets the emailAddress property value. The emailAddress property
+     * Gets the email_address property value. The email_address property
      * @return string|null
     */
     public function getEmailAddress(): ?string {
-        return $this->emailAddress;
+        return $this->email_address;
     }
 
     /**
@@ -62,37 +62,37 @@ class ConnectedProvider implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'emailAddress' => fn(ParseNode $n) => $o->setEmailAddress($n->getStringValue()),
-            'firstName' => fn(ParseNode $n) => $o->setFirstName($n->getStringValue()),
-            'imageUrl' => fn(ParseNode $n) => $o->setImageUrl($n->getStringValue()),
-            'lastName' => fn(ParseNode $n) => $o->setLastName($n->getStringValue()),
+            'email_address' => fn(ParseNode $n) => $o->setEmailAddress($n->getStringValue()),
+            'first_name' => fn(ParseNode $n) => $o->setFirstName($n->getStringValue()),
+            'image_url' => fn(ParseNode $n) => $o->setImageUrl($n->getStringValue()),
+            'last_name' => fn(ParseNode $n) => $o->setLastName($n->getStringValue()),
             'provider' => fn(ParseNode $n) => $o->setProvider($n->getEnumValue(ExternalAccountProvider::class)),
             'username' => fn(ParseNode $n) => $o->setUsername($n->getStringValue()),
         ];
     }
 
     /**
-     * Gets the firstName property value. The firstName property
+     * Gets the first_name property value. The first_name property
      * @return string|null
     */
     public function getFirstName(): ?string {
-        return $this->firstName;
+        return $this->first_name;
     }
 
     /**
-     * Gets the imageUrl property value. The imageUrl property
+     * Gets the image_url property value. The image_url property
      * @return string|null
     */
     public function getImageUrl(): ?string {
-        return $this->imageUrl;
+        return $this->image_url;
     }
 
     /**
-     * Gets the lastName property value. The lastName property
+     * Gets the last_name property value. The last_name property
      * @return string|null
     */
     public function getLastName(): ?string {
-        return $this->lastName;
+        return $this->last_name;
     }
 
     /**
@@ -116,44 +116,44 @@ class ConnectedProvider implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('emailAddress', $this->getEmailAddress());
-        $writer->writeStringValue('firstName', $this->getFirstName());
-        $writer->writeStringValue('imageUrl', $this->getImageUrl());
-        $writer->writeStringValue('lastName', $this->getLastName());
+        $writer->writeStringValue('email_address', $this->getEmailAddress());
+        $writer->writeStringValue('first_name', $this->getFirstName());
+        $writer->writeStringValue('image_url', $this->getImageUrl());
+        $writer->writeStringValue('last_name', $this->getLastName());
         $writer->writeEnumValue('provider', $this->getProvider());
         $writer->writeStringValue('username', $this->getUsername());
     }
 
     /**
-     * Sets the emailAddress property value. The emailAddress property
-     * @param string|null $value Value to set for the emailAddress property.
+     * Sets the email_address property value. The email_address property
+     * @param string|null $value Value to set for the email_address property.
     */
     public function setEmailAddress(?string $value): void {
-        $this->emailAddress = $value;
+        $this->email_address = $value;
     }
 
     /**
-     * Sets the firstName property value. The firstName property
-     * @param string|null $value Value to set for the firstName property.
+     * Sets the first_name property value. The first_name property
+     * @param string|null $value Value to set for the first_name property.
     */
     public function setFirstName(?string $value): void {
-        $this->firstName = $value;
+        $this->first_name = $value;
     }
 
     /**
-     * Sets the imageUrl property value. The imageUrl property
-     * @param string|null $value Value to set for the imageUrl property.
+     * Sets the image_url property value. The image_url property
+     * @param string|null $value Value to set for the image_url property.
     */
     public function setImageUrl(?string $value): void {
-        $this->imageUrl = $value;
+        $this->image_url = $value;
     }
 
     /**
-     * Sets the lastName property value. The lastName property
-     * @param string|null $value Value to set for the lastName property.
+     * Sets the last_name property value. The last_name property
+     * @param string|null $value Value to set for the last_name property.
     */
     public function setLastName(?string $value): void {
-        $this->lastName = $value;
+        $this->last_name = $value;
     }
 
     /**

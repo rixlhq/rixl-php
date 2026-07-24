@@ -24,14 +24,14 @@ class AudioTrack implements Parsable
     private ?string $label = null;
     
     /**
-     * @var string|null $languageCode The languageCode property
+     * @var string|null $language_code The language_code property
     */
-    private ?string $languageCode = null;
+    private ?string $language_code = null;
     
     /**
-     * @var string|null $videoId The videoId property
+     * @var string|null $video_id The video_id property
     */
-    private ?string $videoId = null;
+    private ?string $video_id = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -60,8 +60,8 @@ class AudioTrack implements Parsable
             'codec' => fn(ParseNode $n) => $o->setCodec($n->getStringValue()),
             'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
             'label' => fn(ParseNode $n) => $o->setLabel($n->getStringValue()),
-            'languageCode' => fn(ParseNode $n) => $o->setLanguageCode($n->getStringValue()),
-            'videoId' => fn(ParseNode $n) => $o->setVideoId($n->getStringValue()),
+            'language_code' => fn(ParseNode $n) => $o->setLanguageCode($n->getStringValue()),
+            'video_id' => fn(ParseNode $n) => $o->setVideoId($n->getStringValue()),
         ];
     }
 
@@ -82,19 +82,19 @@ class AudioTrack implements Parsable
     }
 
     /**
-     * Gets the languageCode property value. The languageCode property
+     * Gets the language_code property value. The language_code property
      * @return string|null
     */
     public function getLanguageCode(): ?string {
-        return $this->languageCode;
+        return $this->language_code;
     }
 
     /**
-     * Gets the videoId property value. The videoId property
+     * Gets the video_id property value. The video_id property
      * @return string|null
     */
     public function getVideoId(): ?string {
-        return $this->videoId;
+        return $this->video_id;
     }
 
     /**
@@ -105,8 +105,8 @@ class AudioTrack implements Parsable
         $writer->writeStringValue('codec', $this->getCodec());
         $writer->writeStringValue('id', $this->getId());
         $writer->writeStringValue('label', $this->getLabel());
-        $writer->writeStringValue('languageCode', $this->getLanguageCode());
-        $writer->writeStringValue('videoId', $this->getVideoId());
+        $writer->writeStringValue('language_code', $this->getLanguageCode());
+        $writer->writeStringValue('video_id', $this->getVideoId());
     }
 
     /**
@@ -134,19 +134,19 @@ class AudioTrack implements Parsable
     }
 
     /**
-     * Sets the languageCode property value. The languageCode property
-     * @param string|null $value Value to set for the languageCode property.
+     * Sets the language_code property value. The language_code property
+     * @param string|null $value Value to set for the language_code property.
     */
     public function setLanguageCode(?string $value): void {
-        $this->languageCode = $value;
+        $this->language_code = $value;
     }
 
     /**
-     * Sets the videoId property value. The videoId property
-     * @param string|null $value Value to set for the videoId property.
+     * Sets the video_id property value. The video_id property
+     * @param string|null $value Value to set for the video_id property.
     */
     public function setVideoId(?string $value): void {
-        $this->videoId = $value;
+        $this->video_id = $value;
     }
 
 }

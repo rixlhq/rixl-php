@@ -44,9 +44,9 @@ class BillingAddress implements Parsable
     private ?string $phone = null;
     
     /**
-     * @var string|null $postalCode The postalCode property
+     * @var string|null $postal_code The postal_code property
     */
-    private ?string $postalCode = null;
+    private ?string $postal_code = null;
     
     /**
      * @var string|null $state The state property
@@ -100,7 +100,7 @@ class BillingAddress implements Parsable
             'line2' => fn(ParseNode $n) => $o->setLine2($n->getStringValue()),
             'name' => fn(ParseNode $n) => $o->setName($n->getStringValue()),
             'phone' => fn(ParseNode $n) => $o->setPhone($n->getStringValue()),
-            'postalCode' => fn(ParseNode $n) => $o->setPostalCode($n->getStringValue()),
+            'postal_code' => fn(ParseNode $n) => $o->setPostalCode($n->getStringValue()),
             'state' => fn(ParseNode $n) => $o->setState($n->getStringValue()),
         ];
     }
@@ -138,11 +138,11 @@ class BillingAddress implements Parsable
     }
 
     /**
-     * Gets the postalCode property value. The postalCode property
+     * Gets the postal_code property value. The postal_code property
      * @return string|null
     */
     public function getPostalCode(): ?string {
-        return $this->postalCode;
+        return $this->postal_code;
     }
 
     /**
@@ -165,7 +165,7 @@ class BillingAddress implements Parsable
         $writer->writeStringValue('line2', $this->getLine2());
         $writer->writeStringValue('name', $this->getName());
         $writer->writeStringValue('phone', $this->getPhone());
-        $writer->writeStringValue('postalCode', $this->getPostalCode());
+        $writer->writeStringValue('postal_code', $this->getPostalCode());
         $writer->writeStringValue('state', $this->getState());
     }
 
@@ -226,11 +226,11 @@ class BillingAddress implements Parsable
     }
 
     /**
-     * Sets the postalCode property value. The postalCode property
-     * @param string|null $value Value to set for the postalCode property.
+     * Sets the postal_code property value. The postal_code property
+     * @param string|null $value Value to set for the postal_code property.
     */
     public function setPostalCode(?string $value): void {
-        $this->postalCode = $value;
+        $this->postal_code = $value;
     }
 
     /**

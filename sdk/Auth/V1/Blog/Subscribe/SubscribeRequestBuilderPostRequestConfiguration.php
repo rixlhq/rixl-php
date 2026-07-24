@@ -28,11 +28,11 @@ class SubscribeRequestBuilderPostRequestConfiguration extends BaseRequestConfigu
 
     /**
      * Instantiates a new SubscribeRequestBuilderPostQueryParameters.
-     * @param string|null $userId 
+     * @param string|null $user_id 
      * @return SubscribeRequestBuilderPostQueryParameters
     */
-    public static function createQueryParameters(?string $userId = null): SubscribeRequestBuilderPostQueryParameters {
-        return new SubscribeRequestBuilderPostQueryParameters($userId);
+    public static function createQueryParameters(?string $user_id = null): SubscribeRequestBuilderPostQueryParameters {
+        return new SubscribeRequestBuilderPostQueryParameters($user_id);
     }
 
 }

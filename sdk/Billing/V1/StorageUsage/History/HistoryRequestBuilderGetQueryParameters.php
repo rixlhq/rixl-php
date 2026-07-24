@@ -13,6 +13,7 @@ class HistoryRequestBuilderGetQueryParameters
     public ?int $days = null;
     
     /**
+     * @QueryParameter("org_id")
      * @var string|null $orgId 
     */
     public ?string $orgId = null;
@@ -20,11 +21,11 @@ class HistoryRequestBuilderGetQueryParameters
     /**
      * Instantiates a new HistoryRequestBuilderGetQueryParameters and sets the default values.
      * @param int|null $days 
-     * @param string|null $orgId 
+     * @param string|null $org_id 
     */
-    public function __construct(?int $days = null, ?string $orgId = null) {
+    public function __construct(?int $days = null, ?string $org_id = null) {
         $this->days = $days;
-        $this->orgId = $orgId;
+        $this->orgId = $org_id;
     }
 
 }

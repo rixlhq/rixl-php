@@ -28,11 +28,11 @@ class DomainRequestBuilderDeleteRequestConfiguration extends BaseRequestConfigur
 
     /**
      * Instantiates a new DomainRequestBuilderDeleteQueryParameters.
-     * @param string|null $userId 
+     * @param string|null $user_id 
      * @return DomainRequestBuilderDeleteQueryParameters
     */
-    public static function createQueryParameters(?string $userId = null): DomainRequestBuilderDeleteQueryParameters {
-        return new DomainRequestBuilderDeleteQueryParameters($userId);
+    public static function createQueryParameters(?string $user_id = null): DomainRequestBuilderDeleteQueryParameters {
+        return new DomainRequestBuilderDeleteQueryParameters($user_id);
     }
 
 }

@@ -9,14 +9,14 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class UserInfo implements Parsable 
 {
     /**
-     * @var string|null $activeOrgId The activeOrgId property
+     * @var string|null $active_org_id The active_org_id property
     */
-    private ?string $activeOrgId = null;
+    private ?string $active_org_id = null;
     
     /**
-     * @var string|null $countryCode The countryCode property
+     * @var string|null $country_code The country_code property
     */
-    private ?string $countryCode = null;
+    private ?string $country_code = null;
     
     /**
      * @var string|null $email The email property
@@ -24,14 +24,14 @@ class UserInfo implements Parsable
     private ?string $email = null;
     
     /**
-     * @var bool|null $emailVerified The emailVerified property
+     * @var bool|null $email_verified The email_verified property
     */
-    private ?bool $emailVerified = null;
+    private ?bool $email_verified = null;
     
     /**
-     * @var string|null $firstName The firstName property
+     * @var string|null $first_name The first_name property
     */
-    private ?string $firstName = null;
+    private ?string $first_name = null;
     
     /**
      * @var string|null $id The id property
@@ -39,19 +39,19 @@ class UserInfo implements Parsable
     private ?string $id = null;
     
     /**
-     * @var string|null $imageUrl The imageUrl property
+     * @var string|null $image_url The image_url property
     */
-    private ?string $imageUrl = null;
+    private ?string $image_url = null;
     
     /**
-     * @var string|null $languageCode The languageCode property
+     * @var string|null $language_code The language_code property
     */
-    private ?string $languageCode = null;
+    private ?string $language_code = null;
     
     /**
-     * @var string|null $lastName The lastName property
+     * @var string|null $last_name The last_name property
     */
-    private ?string $lastName = null;
+    private ?string $last_name = null;
     
     /**
      * @var string|null $username The username property
@@ -68,19 +68,19 @@ class UserInfo implements Parsable
     }
 
     /**
-     * Gets the activeOrgId property value. The activeOrgId property
+     * Gets the active_org_id property value. The active_org_id property
      * @return string|null
     */
     public function getActiveOrgId(): ?string {
-        return $this->activeOrgId;
+        return $this->active_org_id;
     }
 
     /**
-     * Gets the countryCode property value. The countryCode property
+     * Gets the country_code property value. The country_code property
      * @return string|null
     */
     public function getCountryCode(): ?string {
-        return $this->countryCode;
+        return $this->country_code;
     }
 
     /**
@@ -92,11 +92,11 @@ class UserInfo implements Parsable
     }
 
     /**
-     * Gets the emailVerified property value. The emailVerified property
+     * Gets the email_verified property value. The email_verified property
      * @return bool|null
     */
     public function getEmailVerified(): ?bool {
-        return $this->emailVerified;
+        return $this->email_verified;
     }
 
     /**
@@ -106,25 +106,25 @@ class UserInfo implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'activeOrgId' => fn(ParseNode $n) => $o->setActiveOrgId($n->getStringValue()),
-            'countryCode' => fn(ParseNode $n) => $o->setCountryCode($n->getStringValue()),
+            'active_org_id' => fn(ParseNode $n) => $o->setActiveOrgId($n->getStringValue()),
+            'country_code' => fn(ParseNode $n) => $o->setCountryCode($n->getStringValue()),
             'email' => fn(ParseNode $n) => $o->setEmail($n->getStringValue()),
-            'emailVerified' => fn(ParseNode $n) => $o->setEmailVerified($n->getBooleanValue()),
-            'firstName' => fn(ParseNode $n) => $o->setFirstName($n->getStringValue()),
+            'email_verified' => fn(ParseNode $n) => $o->setEmailVerified($n->getBooleanValue()),
+            'first_name' => fn(ParseNode $n) => $o->setFirstName($n->getStringValue()),
             'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
-            'imageUrl' => fn(ParseNode $n) => $o->setImageUrl($n->getStringValue()),
-            'languageCode' => fn(ParseNode $n) => $o->setLanguageCode($n->getStringValue()),
-            'lastName' => fn(ParseNode $n) => $o->setLastName($n->getStringValue()),
+            'image_url' => fn(ParseNode $n) => $o->setImageUrl($n->getStringValue()),
+            'language_code' => fn(ParseNode $n) => $o->setLanguageCode($n->getStringValue()),
+            'last_name' => fn(ParseNode $n) => $o->setLastName($n->getStringValue()),
             'username' => fn(ParseNode $n) => $o->setUsername($n->getStringValue()),
         ];
     }
 
     /**
-     * Gets the firstName property value. The firstName property
+     * Gets the first_name property value. The first_name property
      * @return string|null
     */
     public function getFirstName(): ?string {
-        return $this->firstName;
+        return $this->first_name;
     }
 
     /**
@@ -136,27 +136,27 @@ class UserInfo implements Parsable
     }
 
     /**
-     * Gets the imageUrl property value. The imageUrl property
+     * Gets the image_url property value. The image_url property
      * @return string|null
     */
     public function getImageUrl(): ?string {
-        return $this->imageUrl;
+        return $this->image_url;
     }
 
     /**
-     * Gets the languageCode property value. The languageCode property
+     * Gets the language_code property value. The language_code property
      * @return string|null
     */
     public function getLanguageCode(): ?string {
-        return $this->languageCode;
+        return $this->language_code;
     }
 
     /**
-     * Gets the lastName property value. The lastName property
+     * Gets the last_name property value. The last_name property
      * @return string|null
     */
     public function getLastName(): ?string {
-        return $this->lastName;
+        return $this->last_name;
     }
 
     /**
@@ -172,32 +172,32 @@ class UserInfo implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('activeOrgId', $this->getActiveOrgId());
-        $writer->writeStringValue('countryCode', $this->getCountryCode());
+        $writer->writeStringValue('active_org_id', $this->getActiveOrgId());
+        $writer->writeStringValue('country_code', $this->getCountryCode());
         $writer->writeStringValue('email', $this->getEmail());
-        $writer->writeBooleanValue('emailVerified', $this->getEmailVerified());
-        $writer->writeStringValue('firstName', $this->getFirstName());
+        $writer->writeBooleanValue('email_verified', $this->getEmailVerified());
+        $writer->writeStringValue('first_name', $this->getFirstName());
         $writer->writeStringValue('id', $this->getId());
-        $writer->writeStringValue('imageUrl', $this->getImageUrl());
-        $writer->writeStringValue('languageCode', $this->getLanguageCode());
-        $writer->writeStringValue('lastName', $this->getLastName());
+        $writer->writeStringValue('image_url', $this->getImageUrl());
+        $writer->writeStringValue('language_code', $this->getLanguageCode());
+        $writer->writeStringValue('last_name', $this->getLastName());
         $writer->writeStringValue('username', $this->getUsername());
     }
 
     /**
-     * Sets the activeOrgId property value. The activeOrgId property
-     * @param string|null $value Value to set for the activeOrgId property.
+     * Sets the active_org_id property value. The active_org_id property
+     * @param string|null $value Value to set for the active_org_id property.
     */
     public function setActiveOrgId(?string $value): void {
-        $this->activeOrgId = $value;
+        $this->active_org_id = $value;
     }
 
     /**
-     * Sets the countryCode property value. The countryCode property
-     * @param string|null $value Value to set for the countryCode property.
+     * Sets the country_code property value. The country_code property
+     * @param string|null $value Value to set for the country_code property.
     */
     public function setCountryCode(?string $value): void {
-        $this->countryCode = $value;
+        $this->country_code = $value;
     }
 
     /**
@@ -209,19 +209,19 @@ class UserInfo implements Parsable
     }
 
     /**
-     * Sets the emailVerified property value. The emailVerified property
-     * @param bool|null $value Value to set for the emailVerified property.
+     * Sets the email_verified property value. The email_verified property
+     * @param bool|null $value Value to set for the email_verified property.
     */
     public function setEmailVerified(?bool $value): void {
-        $this->emailVerified = $value;
+        $this->email_verified = $value;
     }
 
     /**
-     * Sets the firstName property value. The firstName property
-     * @param string|null $value Value to set for the firstName property.
+     * Sets the first_name property value. The first_name property
+     * @param string|null $value Value to set for the first_name property.
     */
     public function setFirstName(?string $value): void {
-        $this->firstName = $value;
+        $this->first_name = $value;
     }
 
     /**
@@ -233,27 +233,27 @@ class UserInfo implements Parsable
     }
 
     /**
-     * Sets the imageUrl property value. The imageUrl property
-     * @param string|null $value Value to set for the imageUrl property.
+     * Sets the image_url property value. The image_url property
+     * @param string|null $value Value to set for the image_url property.
     */
     public function setImageUrl(?string $value): void {
-        $this->imageUrl = $value;
+        $this->image_url = $value;
     }
 
     /**
-     * Sets the languageCode property value. The languageCode property
-     * @param string|null $value Value to set for the languageCode property.
+     * Sets the language_code property value. The language_code property
+     * @param string|null $value Value to set for the language_code property.
     */
     public function setLanguageCode(?string $value): void {
-        $this->languageCode = $value;
+        $this->language_code = $value;
     }
 
     /**
-     * Sets the lastName property value. The lastName property
-     * @param string|null $value Value to set for the lastName property.
+     * Sets the last_name property value. The last_name property
+     * @param string|null $value Value to set for the last_name property.
     */
     public function setLastName(?string $value): void {
-        $this->lastName = $value;
+        $this->last_name = $value;
     }
 
     /**

@@ -12,14 +12,14 @@ use Rixl\Sdk\Models\Common\V1\VideoQuality;
 class InitPostRequestBody implements Parsable 
 {
     /**
-     * @var MediaType|null $contentType The contentType property
+     * @var MediaType|null $content_type The content_type property
     */
-    private ?MediaType $contentType = null;
+    private ?MediaType $content_type = null;
     
     /**
-     * @var string|null $creatorId The creatorId property
+     * @var string|null $creator_id The creator_id property
     */
-    private ?string $creatorId = null;
+    private ?string $creator_id = null;
     
     /**
      * @var string|null $description The description property
@@ -27,9 +27,14 @@ class InitPostRequestBody implements Parsable
     private ?string $description = null;
     
     /**
-     * @var string|null $fileName The fileName property
+     * @var string|null $feed_id The feed_id property
     */
-    private ?string $fileName = null;
+    private ?string $feed_id = null;
+    
+    /**
+     * @var string|null $file_name The file_name property
+    */
+    private ?string $file_name = null;
     
     /**
      * @var string|null $format The format property
@@ -37,19 +42,24 @@ class InitPostRequestBody implements Parsable
     private ?string $format = null;
     
     /**
-     * @var ImageFormat|null $imageFormat The imageFormat property
+     * @var ImageFormat|null $image_format The image_format property
     */
-    private ?ImageFormat $imageFormat = null;
+    private ?ImageFormat $image_format = null;
     
     /**
-     * @var string|null $orgId The orgId property
+     * @var string|null $org_id The org_id property
     */
-    private ?string $orgId = null;
+    private ?string $org_id = null;
     
     /**
-     * @var VideoQuality|null $videoQuality The videoQuality property
+     * @var string|null $project_id The project_id property
     */
-    private ?VideoQuality $videoQuality = null;
+    private ?string $project_id = null;
+    
+    /**
+     * @var VideoQuality|null $video_quality The video_quality property
+    */
+    private ?VideoQuality $video_quality = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -61,19 +71,19 @@ class InitPostRequestBody implements Parsable
     }
 
     /**
-     * Gets the contentType property value. The contentType property
+     * Gets the content_type property value. The content_type property
      * @return MediaType|null
     */
     public function getContentType(): ?MediaType {
-        return $this->contentType;
+        return $this->content_type;
     }
 
     /**
-     * Gets the creatorId property value. The creatorId property
+     * Gets the creator_id property value. The creator_id property
      * @return string|null
     */
     public function getCreatorId(): ?string {
-        return $this->creatorId;
+        return $this->creator_id;
     }
 
     /**
@@ -85,29 +95,39 @@ class InitPostRequestBody implements Parsable
     }
 
     /**
+     * Gets the feed_id property value. The feed_id property
+     * @return string|null
+    */
+    public function getFeedId(): ?string {
+        return $this->feed_id;
+    }
+
+    /**
      * The deserialization information for the current model
      * @return array<string, callable(ParseNode): void>
     */
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'contentType' => fn(ParseNode $n) => $o->setContentType($n->getEnumValue(MediaType::class)),
-            'creatorId' => fn(ParseNode $n) => $o->setCreatorId($n->getStringValue()),
+            'content_type' => fn(ParseNode $n) => $o->setContentType($n->getEnumValue(MediaType::class)),
+            'creator_id' => fn(ParseNode $n) => $o->setCreatorId($n->getStringValue()),
             'description' => fn(ParseNode $n) => $o->setDescription($n->getStringValue()),
-            'fileName' => fn(ParseNode $n) => $o->setFileName($n->getStringValue()),
+            'feed_id' => fn(ParseNode $n) => $o->setFeedId($n->getStringValue()),
+            'file_name' => fn(ParseNode $n) => $o->setFileName($n->getStringValue()),
             'format' => fn(ParseNode $n) => $o->setFormat($n->getStringValue()),
-            'imageFormat' => fn(ParseNode $n) => $o->setImageFormat($n->getEnumValue(ImageFormat::class)),
-            'orgId' => fn(ParseNode $n) => $o->setOrgId($n->getStringValue()),
-            'videoQuality' => fn(ParseNode $n) => $o->setVideoQuality($n->getEnumValue(VideoQuality::class)),
+            'image_format' => fn(ParseNode $n) => $o->setImageFormat($n->getEnumValue(ImageFormat::class)),
+            'org_id' => fn(ParseNode $n) => $o->setOrgId($n->getStringValue()),
+            'project_id' => fn(ParseNode $n) => $o->setProjectId($n->getStringValue()),
+            'video_quality' => fn(ParseNode $n) => $o->setVideoQuality($n->getEnumValue(VideoQuality::class)),
         ];
     }
 
     /**
-     * Gets the fileName property value. The fileName property
+     * Gets the file_name property value. The file_name property
      * @return string|null
     */
     public function getFileName(): ?string {
-        return $this->fileName;
+        return $this->file_name;
     }
 
     /**
@@ -119,27 +139,35 @@ class InitPostRequestBody implements Parsable
     }
 
     /**
-     * Gets the imageFormat property value. The imageFormat property
+     * Gets the image_format property value. The image_format property
      * @return ImageFormat|null
     */
     public function getImageFormat(): ?ImageFormat {
-        return $this->imageFormat;
+        return $this->image_format;
     }
 
     /**
-     * Gets the orgId property value. The orgId property
+     * Gets the org_id property value. The org_id property
      * @return string|null
     */
     public function getOrgId(): ?string {
-        return $this->orgId;
+        return $this->org_id;
     }
 
     /**
-     * Gets the videoQuality property value. The videoQuality property
+     * Gets the project_id property value. The project_id property
+     * @return string|null
+    */
+    public function getProjectId(): ?string {
+        return $this->project_id;
+    }
+
+    /**
+     * Gets the video_quality property value. The video_quality property
      * @return VideoQuality|null
     */
     public function getVideoQuality(): ?VideoQuality {
-        return $this->videoQuality;
+        return $this->video_quality;
     }
 
     /**
@@ -147,30 +175,32 @@ class InitPostRequestBody implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeEnumValue('contentType', $this->getContentType());
-        $writer->writeStringValue('creatorId', $this->getCreatorId());
+        $writer->writeEnumValue('content_type', $this->getContentType());
+        $writer->writeStringValue('creator_id', $this->getCreatorId());
         $writer->writeStringValue('description', $this->getDescription());
-        $writer->writeStringValue('fileName', $this->getFileName());
+        $writer->writeStringValue('feed_id', $this->getFeedId());
+        $writer->writeStringValue('file_name', $this->getFileName());
         $writer->writeStringValue('format', $this->getFormat());
-        $writer->writeEnumValue('imageFormat', $this->getImageFormat());
-        $writer->writeStringValue('orgId', $this->getOrgId());
-        $writer->writeEnumValue('videoQuality', $this->getVideoQuality());
+        $writer->writeEnumValue('image_format', $this->getImageFormat());
+        $writer->writeStringValue('org_id', $this->getOrgId());
+        $writer->writeStringValue('project_id', $this->getProjectId());
+        $writer->writeEnumValue('video_quality', $this->getVideoQuality());
     }
 
     /**
-     * Sets the contentType property value. The contentType property
-     * @param MediaType|null $value Value to set for the contentType property.
+     * Sets the content_type property value. The content_type property
+     * @param MediaType|null $value Value to set for the content_type property.
     */
     public function setContentType(?MediaType $value): void {
-        $this->contentType = $value;
+        $this->content_type = $value;
     }
 
     /**
-     * Sets the creatorId property value. The creatorId property
-     * @param string|null $value Value to set for the creatorId property.
+     * Sets the creator_id property value. The creator_id property
+     * @param string|null $value Value to set for the creator_id property.
     */
     public function setCreatorId(?string $value): void {
-        $this->creatorId = $value;
+        $this->creator_id = $value;
     }
 
     /**
@@ -182,11 +212,19 @@ class InitPostRequestBody implements Parsable
     }
 
     /**
-     * Sets the fileName property value. The fileName property
-     * @param string|null $value Value to set for the fileName property.
+     * Sets the feed_id property value. The feed_id property
+     * @param string|null $value Value to set for the feed_id property.
+    */
+    public function setFeedId(?string $value): void {
+        $this->feed_id = $value;
+    }
+
+    /**
+     * Sets the file_name property value. The file_name property
+     * @param string|null $value Value to set for the file_name property.
     */
     public function setFileName(?string $value): void {
-        $this->fileName = $value;
+        $this->file_name = $value;
     }
 
     /**
@@ -198,27 +236,35 @@ class InitPostRequestBody implements Parsable
     }
 
     /**
-     * Sets the imageFormat property value. The imageFormat property
-     * @param ImageFormat|null $value Value to set for the imageFormat property.
+     * Sets the image_format property value. The image_format property
+     * @param ImageFormat|null $value Value to set for the image_format property.
     */
     public function setImageFormat(?ImageFormat $value): void {
-        $this->imageFormat = $value;
+        $this->image_format = $value;
     }
 
     /**
-     * Sets the orgId property value. The orgId property
-     * @param string|null $value Value to set for the orgId property.
+     * Sets the org_id property value. The org_id property
+     * @param string|null $value Value to set for the org_id property.
     */
     public function setOrgId(?string $value): void {
-        $this->orgId = $value;
+        $this->org_id = $value;
     }
 
     /**
-     * Sets the videoQuality property value. The videoQuality property
-     * @param VideoQuality|null $value Value to set for the videoQuality property.
+     * Sets the project_id property value. The project_id property
+     * @param string|null $value Value to set for the project_id property.
+    */
+    public function setProjectId(?string $value): void {
+        $this->project_id = $value;
+    }
+
+    /**
+     * Sets the video_quality property value. The video_quality property
+     * @param VideoQuality|null $value Value to set for the video_quality property.
     */
     public function setVideoQuality(?VideoQuality $value): void {
-        $this->videoQuality = $value;
+        $this->video_quality = $value;
     }
 
 }

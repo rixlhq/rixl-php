@@ -28,11 +28,11 @@ class FromSetupIntentRequestBuilderGetRequestConfiguration extends BaseRequestCo
 
     /**
      * Instantiates a new FromSetupIntentRequestBuilderGetQueryParameters.
-     * @param string|null $setupIntentId 
+     * @param string|null $setup_intent_id 
      * @return FromSetupIntentRequestBuilderGetQueryParameters
     */
-    public static function createQueryParameters(?string $setupIntentId = null): FromSetupIntentRequestBuilderGetQueryParameters {
-        return new FromSetupIntentRequestBuilderGetQueryParameters($setupIntentId);
+    public static function createQueryParameters(?string $setup_intent_id = null): FromSetupIntentRequestBuilderGetQueryParameters {
+        return new FromSetupIntentRequestBuilderGetQueryParameters($setup_intent_id);
     }
 
 }

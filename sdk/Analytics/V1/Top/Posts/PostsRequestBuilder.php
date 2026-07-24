@@ -21,7 +21,7 @@ class PostsRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/analytics/v1/top/posts{?feedId*,limit*,range%2Eend*,range%2Estart*}');
+        parent::__construct($requestAdapter, [], '{+baseurl}/analytics/v1/top/posts{?feed_id*,limit*,range%2Eend*,range%2Estart*}');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {

@@ -28,11 +28,11 @@ class SetupRequestBuilderPostRequestConfiguration extends BaseRequestConfigurati
 
     /**
      * Instantiates a new SetupRequestBuilderPostQueryParameters.
-     * @param string|null $userId 
+     * @param string|null $user_id 
      * @return SetupRequestBuilderPostQueryParameters
     */
-    public static function createQueryParameters(?string $userId = null): SetupRequestBuilderPostQueryParameters {
-        return new SetupRequestBuilderPostQueryParameters($userId);
+    public static function createQueryParameters(?string $user_id = null): SetupRequestBuilderPostQueryParameters {
+        return new SetupRequestBuilderPostQueryParameters($user_id);
     }
 
 }

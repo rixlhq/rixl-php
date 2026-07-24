@@ -9,9 +9,9 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class EventCount implements Parsable 
 {
     /**
-     * @var string|null $eventType The eventType property
+     * @var string|null $event_type The event_type property
     */
-    private ?string $eventType = null;
+    private ?string $event_type = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -23,11 +23,11 @@ class EventCount implements Parsable
     }
 
     /**
-     * Gets the eventType property value. The eventType property
+     * Gets the event_type property value. The event_type property
      * @return string|null
     */
     public function getEventType(): ?string {
-        return $this->eventType;
+        return $this->event_type;
     }
 
     /**
@@ -37,7 +37,7 @@ class EventCount implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'eventType' => fn(ParseNode $n) => $o->setEventType($n->getStringValue()),
+            'event_type' => fn(ParseNode $n) => $o->setEventType($n->getStringValue()),
         ];
     }
 
@@ -46,15 +46,15 @@ class EventCount implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('eventType', $this->getEventType());
+        $writer->writeStringValue('event_type', $this->getEventType());
     }
 
     /**
-     * Sets the eventType property value. The eventType property
-     * @param string|null $value Value to set for the eventType property.
+     * Sets the event_type property value. The event_type property
+     * @param string|null $value Value to set for the event_type property.
     */
     public function setEventType(?string $value): void {
-        $this->eventType = $value;
+        $this->event_type = $value;
     }
 
 }

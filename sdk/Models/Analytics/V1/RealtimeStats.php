@@ -9,9 +9,9 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class RealtimeStats implements Parsable 
 {
     /**
-     * @var array<RecentEvent>|null $recentEvents The recentEvents property
+     * @var array<RecentEvent>|null $recent_events The recent_events property
     */
-    private ?array $recentEvents = null;
+    private ?array $recent_events = null;
     
     /**
      * @var string|null $timestamp The timestamp property
@@ -19,14 +19,14 @@ class RealtimeStats implements Parsable
     private ?string $timestamp = null;
     
     /**
-     * @var array<CountryCount>|null $topCountries The topCountries property
+     * @var array<CountryCount>|null $top_countries The top_countries property
     */
-    private ?array $topCountries = null;
+    private ?array $top_countries = null;
     
     /**
-     * @var array<EventCount>|null $topEvents The topEvents property
+     * @var array<EventCount>|null $top_events The top_events property
     */
-    private ?array $topEvents = null;
+    private ?array $top_events = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -44,19 +44,19 @@ class RealtimeStats implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'recentEvents' => fn(ParseNode $n) => $o->setRecentEvents($n->getCollectionOfObjectValues([RecentEvent::class, 'createFromDiscriminatorValue'])),
+            'recent_events' => fn(ParseNode $n) => $o->setRecentEvents($n->getCollectionOfObjectValues([RecentEvent::class, 'createFromDiscriminatorValue'])),
             'timestamp' => fn(ParseNode $n) => $o->setTimestamp($n->getStringValue()),
-            'topCountries' => fn(ParseNode $n) => $o->setTopCountries($n->getCollectionOfObjectValues([CountryCount::class, 'createFromDiscriminatorValue'])),
-            'topEvents' => fn(ParseNode $n) => $o->setTopEvents($n->getCollectionOfObjectValues([EventCount::class, 'createFromDiscriminatorValue'])),
+            'top_countries' => fn(ParseNode $n) => $o->setTopCountries($n->getCollectionOfObjectValues([CountryCount::class, 'createFromDiscriminatorValue'])),
+            'top_events' => fn(ParseNode $n) => $o->setTopEvents($n->getCollectionOfObjectValues([EventCount::class, 'createFromDiscriminatorValue'])),
         ];
     }
 
     /**
-     * Gets the recentEvents property value. The recentEvents property
+     * Gets the recent_events property value. The recent_events property
      * @return array<RecentEvent>|null
     */
     public function getRecentEvents(): ?array {
-        return $this->recentEvents;
+        return $this->recent_events;
     }
 
     /**
@@ -68,19 +68,19 @@ class RealtimeStats implements Parsable
     }
 
     /**
-     * Gets the topCountries property value. The topCountries property
+     * Gets the top_countries property value. The top_countries property
      * @return array<CountryCount>|null
     */
     public function getTopCountries(): ?array {
-        return $this->topCountries;
+        return $this->top_countries;
     }
 
     /**
-     * Gets the topEvents property value. The topEvents property
+     * Gets the top_events property value. The top_events property
      * @return array<EventCount>|null
     */
     public function getTopEvents(): ?array {
-        return $this->topEvents;
+        return $this->top_events;
     }
 
     /**
@@ -88,18 +88,18 @@ class RealtimeStats implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeCollectionOfObjectValues('recentEvents', $this->getRecentEvents());
+        $writer->writeCollectionOfObjectValues('recent_events', $this->getRecentEvents());
         $writer->writeStringValue('timestamp', $this->getTimestamp());
-        $writer->writeCollectionOfObjectValues('topCountries', $this->getTopCountries());
-        $writer->writeCollectionOfObjectValues('topEvents', $this->getTopEvents());
+        $writer->writeCollectionOfObjectValues('top_countries', $this->getTopCountries());
+        $writer->writeCollectionOfObjectValues('top_events', $this->getTopEvents());
     }
 
     /**
-     * Sets the recentEvents property value. The recentEvents property
-     * @param array<RecentEvent>|null $value Value to set for the recentEvents property.
+     * Sets the recent_events property value. The recent_events property
+     * @param array<RecentEvent>|null $value Value to set for the recent_events property.
     */
     public function setRecentEvents(?array $value): void {
-        $this->recentEvents = $value;
+        $this->recent_events = $value;
     }
 
     /**
@@ -111,19 +111,19 @@ class RealtimeStats implements Parsable
     }
 
     /**
-     * Sets the topCountries property value. The topCountries property
-     * @param array<CountryCount>|null $value Value to set for the topCountries property.
+     * Sets the top_countries property value. The top_countries property
+     * @param array<CountryCount>|null $value Value to set for the top_countries property.
     */
     public function setTopCountries(?array $value): void {
-        $this->topCountries = $value;
+        $this->top_countries = $value;
     }
 
     /**
-     * Sets the topEvents property value. The topEvents property
-     * @param array<EventCount>|null $value Value to set for the topEvents property.
+     * Sets the top_events property value. The top_events property
+     * @param array<EventCount>|null $value Value to set for the top_events property.
     */
     public function setTopEvents(?array $value): void {
-        $this->topEvents = $value;
+        $this->top_events = $value;
     }
 
 }

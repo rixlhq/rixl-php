@@ -15,9 +15,9 @@ class VideoHeatmap implements Parsable
     private ?array $data = null;
     
     /**
-     * @var string|null $videoId The videoId property
+     * @var string|null $video_id The video_id property
     */
-    private ?string $videoId = null;
+    private ?string $video_id = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -51,16 +51,16 @@ class VideoHeatmap implements Parsable
                 /** @var array<float>|null $val */
                 $this->setData($val);
             },
-            'videoId' => fn(ParseNode $n) => $o->setVideoId($n->getStringValue()),
+            'video_id' => fn(ParseNode $n) => $o->setVideoId($n->getStringValue()),
         ];
     }
 
     /**
-     * Gets the videoId property value. The videoId property
+     * Gets the video_id property value. The video_id property
      * @return string|null
     */
     public function getVideoId(): ?string {
-        return $this->videoId;
+        return $this->video_id;
     }
 
     /**
@@ -69,7 +69,7 @@ class VideoHeatmap implements Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeCollectionOfPrimitiveValues('data', $this->getData());
-        $writer->writeStringValue('videoId', $this->getVideoId());
+        $writer->writeStringValue('video_id', $this->getVideoId());
     }
 
     /**
@@ -81,11 +81,11 @@ class VideoHeatmap implements Parsable
     }
 
     /**
-     * Sets the videoId property value. The videoId property
-     * @param string|null $value Value to set for the videoId property.
+     * Sets the video_id property value. The video_id property
+     * @param string|null $value Value to set for the video_id property.
     */
     public function setVideoId(?string $value): void {
-        $this->videoId = $value;
+        $this->video_id = $value;
     }
 
 }

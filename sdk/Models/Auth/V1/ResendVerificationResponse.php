@@ -9,9 +9,9 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class ResendVerificationResponse implements Parsable 
 {
     /**
-     * @var bool|null $codeSent The codeSent property
+     * @var bool|null $code_sent The code_sent property
     */
-    private ?bool $codeSent = null;
+    private ?bool $code_sent = null;
     
     /**
      * @var string|null $message The message property
@@ -19,9 +19,9 @@ class ResendVerificationResponse implements Parsable
     private ?string $message = null;
     
     /**
-     * @var string|null $verificationId The verificationId property
+     * @var string|null $verification_id The verification_id property
     */
-    private ?string $verificationId = null;
+    private ?string $verification_id = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -33,11 +33,11 @@ class ResendVerificationResponse implements Parsable
     }
 
     /**
-     * Gets the codeSent property value. The codeSent property
+     * Gets the code_sent property value. The code_sent property
      * @return bool|null
     */
     public function getCodeSent(): ?bool {
-        return $this->codeSent;
+        return $this->code_sent;
     }
 
     /**
@@ -47,9 +47,9 @@ class ResendVerificationResponse implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'codeSent' => fn(ParseNode $n) => $o->setCodeSent($n->getBooleanValue()),
+            'code_sent' => fn(ParseNode $n) => $o->setCodeSent($n->getBooleanValue()),
             'message' => fn(ParseNode $n) => $o->setMessage($n->getStringValue()),
-            'verificationId' => fn(ParseNode $n) => $o->setVerificationId($n->getStringValue()),
+            'verification_id' => fn(ParseNode $n) => $o->setVerificationId($n->getStringValue()),
         ];
     }
 
@@ -62,11 +62,11 @@ class ResendVerificationResponse implements Parsable
     }
 
     /**
-     * Gets the verificationId property value. The verificationId property
+     * Gets the verification_id property value. The verification_id property
      * @return string|null
     */
     public function getVerificationId(): ?string {
-        return $this->verificationId;
+        return $this->verification_id;
     }
 
     /**
@@ -74,17 +74,17 @@ class ResendVerificationResponse implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeBooleanValue('codeSent', $this->getCodeSent());
+        $writer->writeBooleanValue('code_sent', $this->getCodeSent());
         $writer->writeStringValue('message', $this->getMessage());
-        $writer->writeStringValue('verificationId', $this->getVerificationId());
+        $writer->writeStringValue('verification_id', $this->getVerificationId());
     }
 
     /**
-     * Sets the codeSent property value. The codeSent property
-     * @param bool|null $value Value to set for the codeSent property.
+     * Sets the code_sent property value. The code_sent property
+     * @param bool|null $value Value to set for the code_sent property.
     */
     public function setCodeSent(?bool $value): void {
-        $this->codeSent = $value;
+        $this->code_sent = $value;
     }
 
     /**
@@ -96,11 +96,11 @@ class ResendVerificationResponse implements Parsable
     }
 
     /**
-     * Sets the verificationId property value. The verificationId property
-     * @param string|null $value Value to set for the verificationId property.
+     * Sets the verification_id property value. The verification_id property
+     * @param string|null $value Value to set for the verification_id property.
     */
     public function setVerificationId(?string $value): void {
-        $this->verificationId = $value;
+        $this->verification_id = $value;
     }
 
 }

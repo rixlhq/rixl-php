@@ -28,11 +28,11 @@ class WithPayment_method_ItemRequestBuilderDeleteRequestConfiguration extends Ba
 
     /**
      * Instantiates a new WithPayment_method_ItemRequestBuilderDeleteQueryParameters.
-     * @param string|null $orgId 
+     * @param string|null $org_id 
      * @return WithPayment_method_ItemRequestBuilderDeleteQueryParameters
     */
-    public static function createQueryParameters(?string $orgId = null): WithPayment_method_ItemRequestBuilderDeleteQueryParameters {
-        return new WithPayment_method_ItemRequestBuilderDeleteQueryParameters($orgId);
+    public static function createQueryParameters(?string $org_id = null): WithPayment_method_ItemRequestBuilderDeleteQueryParameters {
+        return new WithPayment_method_ItemRequestBuilderDeleteQueryParameters($org_id);
     }
 
 }

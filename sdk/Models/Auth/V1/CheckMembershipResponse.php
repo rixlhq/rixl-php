@@ -9,9 +9,9 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class CheckMembershipResponse implements Parsable 
 {
     /**
-     * @var bool|null $isMember The isMember property
+     * @var bool|null $is_member The is_member property
     */
-    private ?bool $isMember = null;
+    private ?bool $is_member = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -29,16 +29,16 @@ class CheckMembershipResponse implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'isMember' => fn(ParseNode $n) => $o->setIsMember($n->getBooleanValue()),
+            'is_member' => fn(ParseNode $n) => $o->setIsMember($n->getBooleanValue()),
         ];
     }
 
     /**
-     * Gets the isMember property value. The isMember property
+     * Gets the is_member property value. The is_member property
      * @return bool|null
     */
     public function getIsMember(): ?bool {
-        return $this->isMember;
+        return $this->is_member;
     }
 
     /**
@@ -46,15 +46,15 @@ class CheckMembershipResponse implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeBooleanValue('isMember', $this->getIsMember());
+        $writer->writeBooleanValue('is_member', $this->getIsMember());
     }
 
     /**
-     * Sets the isMember property value. The isMember property
-     * @param bool|null $value Value to set for the isMember property.
+     * Sets the is_member property value. The is_member property
+     * @param bool|null $value Value to set for the is_member property.
     */
     public function setIsMember(?bool $value): void {
-        $this->isMember = $value;
+        $this->is_member = $value;
     }
 
 }

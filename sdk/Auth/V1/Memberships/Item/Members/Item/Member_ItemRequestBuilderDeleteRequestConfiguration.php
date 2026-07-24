@@ -28,11 +28,11 @@ class Member_ItemRequestBuilderDeleteRequestConfiguration extends BaseRequestCon
 
     /**
      * Instantiates a new Member_ItemRequestBuilderDeleteQueryParameters.
-     * @param string|null $userActorId 
+     * @param string|null $userActor_id 
      * @return Member_ItemRequestBuilderDeleteQueryParameters
     */
-    public static function createQueryParameters(?string $userActorId = null): Member_ItemRequestBuilderDeleteQueryParameters {
-        return new Member_ItemRequestBuilderDeleteQueryParameters($userActorId);
+    public static function createQueryParameters(?string $userActor_id = null): Member_ItemRequestBuilderDeleteQueryParameters {
+        return new Member_ItemRequestBuilderDeleteQueryParameters($userActor_id);
     }
 
 }

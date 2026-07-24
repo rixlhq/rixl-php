@@ -22,7 +22,7 @@ class WithPost_ItemRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/posts/v1/projects/{project_id}/posts/{post_id}{?feedId*}');
+        parent::__construct($requestAdapter, [], '{+baseurl}/posts/v1/projects/{project_id}/posts/{post_id}{?feed_id*}');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {

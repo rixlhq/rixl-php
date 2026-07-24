@@ -28,11 +28,11 @@ class WithPost_ItemRequestBuilderGetRequestConfiguration extends BaseRequestConf
 
     /**
      * Instantiates a new WithPost_ItemRequestBuilderGetQueryParameters.
-     * @param string|null $projectId 
+     * @param string|null $project_id 
      * @return WithPost_ItemRequestBuilderGetQueryParameters
     */
-    public static function createQueryParameters(?string $projectId = null): WithPost_ItemRequestBuilderGetQueryParameters {
-        return new WithPost_ItemRequestBuilderGetQueryParameters($projectId);
+    public static function createQueryParameters(?string $project_id = null): WithPost_ItemRequestBuilderGetQueryParameters {
+        return new WithPost_ItemRequestBuilderGetQueryParameters($project_id);
     }
 
 }

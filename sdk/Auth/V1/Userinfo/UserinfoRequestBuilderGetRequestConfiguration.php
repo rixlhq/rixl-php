@@ -28,11 +28,11 @@ class UserinfoRequestBuilderGetRequestConfiguration extends BaseRequestConfigura
 
     /**
      * Instantiates a new UserinfoRequestBuilderGetQueryParameters.
-     * @param string|null $userId 
+     * @param string|null $user_id 
      * @return UserinfoRequestBuilderGetQueryParameters
     */
-    public static function createQueryParameters(?string $userId = null): UserinfoRequestBuilderGetQueryParameters {
-        return new UserinfoRequestBuilderGetQueryParameters($userId);
+    public static function createQueryParameters(?string $user_id = null): UserinfoRequestBuilderGetQueryParameters {
+        return new UserinfoRequestBuilderGetQueryParameters($user_id);
     }
 
 }

@@ -28,11 +28,11 @@ class SubscriptionRequestBuilderGetRequestConfiguration extends BaseRequestConfi
 
     /**
      * Instantiates a new SubscriptionRequestBuilderGetQueryParameters.
-     * @param string|null $orgId 
+     * @param string|null $org_id 
      * @return SubscriptionRequestBuilderGetQueryParameters
     */
-    public static function createQueryParameters(?string $orgId = null): SubscriptionRequestBuilderGetQueryParameters {
-        return new SubscriptionRequestBuilderGetQueryParameters($orgId);
+    public static function createQueryParameters(?string $org_id = null): SubscriptionRequestBuilderGetQueryParameters {
+        return new SubscriptionRequestBuilderGetQueryParameters($org_id);
     }
 
 }

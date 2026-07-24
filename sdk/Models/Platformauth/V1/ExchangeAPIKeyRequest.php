@@ -9,9 +9,9 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class ExchangeAPIKeyRequest implements Parsable 
 {
     /**
-     * @var string|null $apiKey The apiKey property
+     * @var string|null $api_key The api_key property
     */
-    private ?string $apiKey = null;
+    private ?string $api_key = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -23,11 +23,11 @@ class ExchangeAPIKeyRequest implements Parsable
     }
 
     /**
-     * Gets the apiKey property value. The apiKey property
+     * Gets the api_key property value. The api_key property
      * @return string|null
     */
     public function getApiKey(): ?string {
-        return $this->apiKey;
+        return $this->api_key;
     }
 
     /**
@@ -37,7 +37,7 @@ class ExchangeAPIKeyRequest implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'apiKey' => fn(ParseNode $n) => $o->setApiKey($n->getStringValue()),
+            'api_key' => fn(ParseNode $n) => $o->setApiKey($n->getStringValue()),
         ];
     }
 
@@ -46,15 +46,15 @@ class ExchangeAPIKeyRequest implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('apiKey', $this->getApiKey());
+        $writer->writeStringValue('api_key', $this->getApiKey());
     }
 
     /**
-     * Sets the apiKey property value. The apiKey property
-     * @param string|null $value Value to set for the apiKey property.
+     * Sets the api_key property value. The api_key property
+     * @param string|null $value Value to set for the api_key property.
     */
     public function setApiKey(?string $value): void {
-        $this->apiKey = $value;
+        $this->api_key = $value;
     }
 
 }

@@ -9,9 +9,9 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class RefreshTokenRequest implements Parsable 
 {
     /**
-     * @var string|null $countryCode The countryCode property
+     * @var string|null $country_code The country_code property
     */
-    private ?string $countryCode = null;
+    private ?string $country_code = null;
     
     /**
      * @var string|null $origin The origin property
@@ -19,14 +19,14 @@ class RefreshTokenRequest implements Parsable
     private ?string $origin = null;
     
     /**
-     * @var string|null $refreshToken The refreshToken property
+     * @var string|null $refresh_token The refresh_token property
     */
-    private ?string $refreshToken = null;
+    private ?string $refresh_token = null;
     
     /**
-     * @var string|null $tokenType The tokenType property
+     * @var string|null $token_type The token_type property
     */
-    private ?string $tokenType = null;
+    private ?string $token_type = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -38,11 +38,11 @@ class RefreshTokenRequest implements Parsable
     }
 
     /**
-     * Gets the countryCode property value. The countryCode property
+     * Gets the country_code property value. The country_code property
      * @return string|null
     */
     public function getCountryCode(): ?string {
-        return $this->countryCode;
+        return $this->country_code;
     }
 
     /**
@@ -52,10 +52,10 @@ class RefreshTokenRequest implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'countryCode' => fn(ParseNode $n) => $o->setCountryCode($n->getStringValue()),
+            'country_code' => fn(ParseNode $n) => $o->setCountryCode($n->getStringValue()),
             'origin' => fn(ParseNode $n) => $o->setOrigin($n->getStringValue()),
-            'refreshToken' => fn(ParseNode $n) => $o->setRefreshToken($n->getStringValue()),
-            'tokenType' => fn(ParseNode $n) => $o->setTokenType($n->getStringValue()),
+            'refresh_token' => fn(ParseNode $n) => $o->setRefreshToken($n->getStringValue()),
+            'token_type' => fn(ParseNode $n) => $o->setTokenType($n->getStringValue()),
         ];
     }
 
@@ -68,19 +68,19 @@ class RefreshTokenRequest implements Parsable
     }
 
     /**
-     * Gets the refreshToken property value. The refreshToken property
+     * Gets the refresh_token property value. The refresh_token property
      * @return string|null
     */
     public function getRefreshToken(): ?string {
-        return $this->refreshToken;
+        return $this->refresh_token;
     }
 
     /**
-     * Gets the tokenType property value. The tokenType property
+     * Gets the token_type property value. The token_type property
      * @return string|null
     */
     public function getTokenType(): ?string {
-        return $this->tokenType;
+        return $this->token_type;
     }
 
     /**
@@ -88,18 +88,18 @@ class RefreshTokenRequest implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('countryCode', $this->getCountryCode());
+        $writer->writeStringValue('country_code', $this->getCountryCode());
         $writer->writeStringValue('origin', $this->getOrigin());
-        $writer->writeStringValue('refreshToken', $this->getRefreshToken());
-        $writer->writeStringValue('tokenType', $this->getTokenType());
+        $writer->writeStringValue('refresh_token', $this->getRefreshToken());
+        $writer->writeStringValue('token_type', $this->getTokenType());
     }
 
     /**
-     * Sets the countryCode property value. The countryCode property
-     * @param string|null $value Value to set for the countryCode property.
+     * Sets the country_code property value. The country_code property
+     * @param string|null $value Value to set for the country_code property.
     */
     public function setCountryCode(?string $value): void {
-        $this->countryCode = $value;
+        $this->country_code = $value;
     }
 
     /**
@@ -111,19 +111,19 @@ class RefreshTokenRequest implements Parsable
     }
 
     /**
-     * Sets the refreshToken property value. The refreshToken property
-     * @param string|null $value Value to set for the refreshToken property.
+     * Sets the refresh_token property value. The refresh_token property
+     * @param string|null $value Value to set for the refresh_token property.
     */
     public function setRefreshToken(?string $value): void {
-        $this->refreshToken = $value;
+        $this->refresh_token = $value;
     }
 
     /**
-     * Sets the tokenType property value. The tokenType property
-     * @param string|null $value Value to set for the tokenType property.
+     * Sets the token_type property value. The token_type property
+     * @param string|null $value Value to set for the token_type property.
     */
     public function setTokenType(?string $value): void {
-        $this->tokenType = $value;
+        $this->token_type = $value;
     }
 
 }

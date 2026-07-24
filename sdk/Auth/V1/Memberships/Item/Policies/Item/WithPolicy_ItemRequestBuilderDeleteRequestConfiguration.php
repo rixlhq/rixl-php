@@ -28,11 +28,11 @@ class WithPolicy_ItemRequestBuilderDeleteRequestConfiguration extends BaseReques
 
     /**
      * Instantiates a new WithPolicy_ItemRequestBuilderDeleteQueryParameters.
-     * @param string|null $userUserId 
+     * @param string|null $userUser_id 
      * @return WithPolicy_ItemRequestBuilderDeleteQueryParameters
     */
-    public static function createQueryParameters(?string $userUserId = null): WithPolicy_ItemRequestBuilderDeleteQueryParameters {
-        return new WithPolicy_ItemRequestBuilderDeleteQueryParameters($userUserId);
+    public static function createQueryParameters(?string $userUser_id = null): WithPolicy_ItemRequestBuilderDeleteQueryParameters {
+        return new WithPolicy_ItemRequestBuilderDeleteQueryParameters($userUser_id);
     }
 
 }

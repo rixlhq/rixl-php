@@ -19,14 +19,14 @@ class HostedCheckoutSessionResponse implements Parsable
     private ?string $currency = null;
     
     /**
-     * @var string|null $sessionId The sessionId property
+     * @var string|null $session_id The session_id property
     */
-    private ?string $sessionId = null;
+    private ?string $session_id = null;
     
     /**
-     * @var string|null $sessionUrl The sessionUrl property
+     * @var string|null $session_url The session_url property
     */
-    private ?string $sessionUrl = null;
+    private ?string $session_url = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -62,25 +62,25 @@ class HostedCheckoutSessionResponse implements Parsable
         return  [
             'amount' => fn(ParseNode $n) => $o->setAmount($n->getFloatValue()),
             'currency' => fn(ParseNode $n) => $o->setCurrency($n->getStringValue()),
-            'sessionId' => fn(ParseNode $n) => $o->setSessionId($n->getStringValue()),
-            'sessionUrl' => fn(ParseNode $n) => $o->setSessionUrl($n->getStringValue()),
+            'session_id' => fn(ParseNode $n) => $o->setSessionId($n->getStringValue()),
+            'session_url' => fn(ParseNode $n) => $o->setSessionUrl($n->getStringValue()),
         ];
     }
 
     /**
-     * Gets the sessionId property value. The sessionId property
+     * Gets the session_id property value. The session_id property
      * @return string|null
     */
     public function getSessionId(): ?string {
-        return $this->sessionId;
+        return $this->session_id;
     }
 
     /**
-     * Gets the sessionUrl property value. The sessionUrl property
+     * Gets the session_url property value. The session_url property
      * @return string|null
     */
     public function getSessionUrl(): ?string {
-        return $this->sessionUrl;
+        return $this->session_url;
     }
 
     /**
@@ -90,8 +90,8 @@ class HostedCheckoutSessionResponse implements Parsable
     public function serialize(SerializationWriter $writer): void {
         $writer->writeFloatValue('amount', $this->getAmount());
         $writer->writeStringValue('currency', $this->getCurrency());
-        $writer->writeStringValue('sessionId', $this->getSessionId());
-        $writer->writeStringValue('sessionUrl', $this->getSessionUrl());
+        $writer->writeStringValue('session_id', $this->getSessionId());
+        $writer->writeStringValue('session_url', $this->getSessionUrl());
     }
 
     /**
@@ -111,19 +111,19 @@ class HostedCheckoutSessionResponse implements Parsable
     }
 
     /**
-     * Sets the sessionId property value. The sessionId property
-     * @param string|null $value Value to set for the sessionId property.
+     * Sets the session_id property value. The session_id property
+     * @param string|null $value Value to set for the session_id property.
     */
     public function setSessionId(?string $value): void {
-        $this->sessionId = $value;
+        $this->session_id = $value;
     }
 
     /**
-     * Sets the sessionUrl property value. The sessionUrl property
-     * @param string|null $value Value to set for the sessionUrl property.
+     * Sets the session_url property value. The session_url property
+     * @param string|null $value Value to set for the session_url property.
     */
     public function setSessionUrl(?string $value): void {
-        $this->sessionUrl = $value;
+        $this->session_url = $value;
     }
 
 }

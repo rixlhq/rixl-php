@@ -10,6 +10,7 @@ use Microsoft\Kiota\Abstractions\QueryParameter;
 class PostsRequestBuilderGetQueryParameters 
 {
     /**
+     * @QueryParameter("feed_id")
      * @var string|null $feedId 
     */
     public ?string $feedId = null;
@@ -33,13 +34,13 @@ class PostsRequestBuilderGetQueryParameters
     
     /**
      * Instantiates a new PostsRequestBuilderGetQueryParameters and sets the default values.
-     * @param string|null $feedId 
+     * @param string|null $feed_id 
      * @param int|null $limit 
      * @param string|null $rangeEnd 
      * @param string|null $rangeStart 
     */
-    public function __construct(?string $feedId = null, ?int $limit = null, ?string $rangeEnd = null, ?string $rangeStart = null) {
-        $this->feedId = $feedId;
+    public function __construct(?string $feed_id = null, ?int $limit = null, ?string $rangeEnd = null, ?string $rangeStart = null) {
+        $this->feedId = $feed_id;
         $this->limit = $limit;
         $this->rangeEnd = $rangeEnd;
         $this->rangeStart = $rangeStart;

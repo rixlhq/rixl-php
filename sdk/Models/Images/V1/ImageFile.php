@@ -26,9 +26,9 @@ class ImageFile implements Parsable
     private ?string $name = null;
     
     /**
-     * @var string|null $projectId The projectId property
+     * @var string|null $project_id The project_id property
     */
-    private ?string $projectId = null;
+    private ?string $project_id = null;
     
     /**
      * @var FileStatus|null $status The status property
@@ -59,7 +59,7 @@ class ImageFile implements Parsable
             'format' => fn(ParseNode $n) => $o->setFormat($n->getEnumValue(ImageFormat::class)),
             'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
             'name' => fn(ParseNode $n) => $o->setName($n->getStringValue()),
-            'projectId' => fn(ParseNode $n) => $o->setProjectId($n->getStringValue()),
+            'project_id' => fn(ParseNode $n) => $o->setProjectId($n->getStringValue()),
             'status' => fn(ParseNode $n) => $o->setStatus($n->getEnumValue(FileStatus::class)),
             'url' => fn(ParseNode $n) => $o->setUrl($n->getStringValue()),
         ];
@@ -90,11 +90,11 @@ class ImageFile implements Parsable
     }
 
     /**
-     * Gets the projectId property value. The projectId property
+     * Gets the project_id property value. The project_id property
      * @return string|null
     */
     public function getProjectId(): ?string {
-        return $this->projectId;
+        return $this->project_id;
     }
 
     /**
@@ -121,7 +121,7 @@ class ImageFile implements Parsable
         $writer->writeEnumValue('format', $this->getFormat());
         $writer->writeStringValue('id', $this->getId());
         $writer->writeStringValue('name', $this->getName());
-        $writer->writeStringValue('projectId', $this->getProjectId());
+        $writer->writeStringValue('project_id', $this->getProjectId());
         $writer->writeEnumValue('status', $this->getStatus());
         $writer->writeStringValue('url', $this->getUrl());
     }
@@ -151,11 +151,11 @@ class ImageFile implements Parsable
     }
 
     /**
-     * Sets the projectId property value. The projectId property
-     * @param string|null $value Value to set for the projectId property.
+     * Sets the project_id property value. The project_id property
+     * @param string|null $value Value to set for the project_id property.
     */
     public function setProjectId(?string $value): void {
-        $this->projectId = $value;
+        $this->project_id = $value;
     }
 
     /**

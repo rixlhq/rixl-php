@@ -28,11 +28,11 @@ class ReactivateRequestBuilderPostRequestConfiguration extends BaseRequestConfig
 
     /**
      * Instantiates a new ReactivateRequestBuilderPostQueryParameters.
-     * @param string|null $orgId 
+     * @param string|null $org_id 
      * @return ReactivateRequestBuilderPostQueryParameters
     */
-    public static function createQueryParameters(?string $orgId = null): ReactivateRequestBuilderPostQueryParameters {
-        return new ReactivateRequestBuilderPostQueryParameters($orgId);
+    public static function createQueryParameters(?string $org_id = null): ReactivateRequestBuilderPostQueryParameters {
+        return new ReactivateRequestBuilderPostQueryParameters($org_id);
     }
 
 }

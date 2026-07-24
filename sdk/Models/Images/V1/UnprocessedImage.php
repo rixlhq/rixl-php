@@ -25,14 +25,14 @@ class UnprocessedImage implements Parsable
     private ?string $name = null;
     
     /**
-     * @var string|null $projectId The projectId property
+     * @var string|null $project_id The project_id property
     */
-    private ?string $projectId = null;
+    private ?string $project_id = null;
     
     /**
-     * @var string|null $s3Path The s3Path property
+     * @var string|null $s3_path The s3_path property
     */
-    private ?string $s3Path = null;
+    private ?string $s3_path = null;
     
     /**
      * @var FileStatus|null $status The status property
@@ -58,8 +58,8 @@ class UnprocessedImage implements Parsable
             'format' => fn(ParseNode $n) => $o->setFormat($n->getStringValue()),
             'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
             'name' => fn(ParseNode $n) => $o->setName($n->getStringValue()),
-            'projectId' => fn(ParseNode $n) => $o->setProjectId($n->getStringValue()),
-            's3Path' => fn(ParseNode $n) => $o->setS3Path($n->getStringValue()),
+            'project_id' => fn(ParseNode $n) => $o->setProjectId($n->getStringValue()),
+            's3_path' => fn(ParseNode $n) => $o->setS3Path($n->getStringValue()),
             'status' => fn(ParseNode $n) => $o->setStatus($n->getEnumValue(FileStatus::class)),
         ];
     }
@@ -89,19 +89,19 @@ class UnprocessedImage implements Parsable
     }
 
     /**
-     * Gets the projectId property value. The projectId property
+     * Gets the project_id property value. The project_id property
      * @return string|null
     */
     public function getProjectId(): ?string {
-        return $this->projectId;
+        return $this->project_id;
     }
 
     /**
-     * Gets the s3Path property value. The s3Path property
+     * Gets the s3_path property value. The s3_path property
      * @return string|null
     */
     public function getS3Path(): ?string {
-        return $this->s3Path;
+        return $this->s3_path;
     }
 
     /**
@@ -120,8 +120,8 @@ class UnprocessedImage implements Parsable
         $writer->writeStringValue('format', $this->getFormat());
         $writer->writeStringValue('id', $this->getId());
         $writer->writeStringValue('name', $this->getName());
-        $writer->writeStringValue('projectId', $this->getProjectId());
-        $writer->writeStringValue('s3Path', $this->getS3Path());
+        $writer->writeStringValue('project_id', $this->getProjectId());
+        $writer->writeStringValue('s3_path', $this->getS3Path());
         $writer->writeEnumValue('status', $this->getStatus());
     }
 
@@ -150,19 +150,19 @@ class UnprocessedImage implements Parsable
     }
 
     /**
-     * Sets the projectId property value. The projectId property
-     * @param string|null $value Value to set for the projectId property.
+     * Sets the project_id property value. The project_id property
+     * @param string|null $value Value to set for the project_id property.
     */
     public function setProjectId(?string $value): void {
-        $this->projectId = $value;
+        $this->project_id = $value;
     }
 
     /**
-     * Sets the s3Path property value. The s3Path property
-     * @param string|null $value Value to set for the s3Path property.
+     * Sets the s3_path property value. The s3_path property
+     * @param string|null $value Value to set for the s3_path property.
     */
     public function setS3Path(?string $value): void {
-        $this->s3Path = $value;
+        $this->s3_path = $value;
     }
 
     /**

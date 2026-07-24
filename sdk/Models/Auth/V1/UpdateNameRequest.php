@@ -9,14 +9,14 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class UpdateNameRequest implements Parsable 
 {
     /**
-     * @var string|null $fullName The fullName property
+     * @var string|null $full_name The full_name property
     */
-    private ?string $fullName = null;
+    private ?string $full_name = null;
     
     /**
-     * @var string|null $userId The userId property
+     * @var string|null $user_id The user_id property
     */
-    private ?string $userId = null;
+    private ?string $user_id = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -34,25 +34,25 @@ class UpdateNameRequest implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'fullName' => fn(ParseNode $n) => $o->setFullName($n->getStringValue()),
-            'userId' => fn(ParseNode $n) => $o->setUserId($n->getStringValue()),
+            'full_name' => fn(ParseNode $n) => $o->setFullName($n->getStringValue()),
+            'user_id' => fn(ParseNode $n) => $o->setUserId($n->getStringValue()),
         ];
     }
 
     /**
-     * Gets the fullName property value. The fullName property
+     * Gets the full_name property value. The full_name property
      * @return string|null
     */
     public function getFullName(): ?string {
-        return $this->fullName;
+        return $this->full_name;
     }
 
     /**
-     * Gets the userId property value. The userId property
+     * Gets the user_id property value. The user_id property
      * @return string|null
     */
     public function getUserId(): ?string {
-        return $this->userId;
+        return $this->user_id;
     }
 
     /**
@@ -60,24 +60,24 @@ class UpdateNameRequest implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('fullName', $this->getFullName());
-        $writer->writeStringValue('userId', $this->getUserId());
+        $writer->writeStringValue('full_name', $this->getFullName());
+        $writer->writeStringValue('user_id', $this->getUserId());
     }
 
     /**
-     * Sets the fullName property value. The fullName property
-     * @param string|null $value Value to set for the fullName property.
+     * Sets the full_name property value. The full_name property
+     * @param string|null $value Value to set for the full_name property.
     */
     public function setFullName(?string $value): void {
-        $this->fullName = $value;
+        $this->full_name = $value;
     }
 
     /**
-     * Sets the userId property value. The userId property
-     * @param string|null $value Value to set for the userId property.
+     * Sets the user_id property value. The user_id property
+     * @param string|null $value Value to set for the user_id property.
     */
     public function setUserId(?string $value): void {
-        $this->userId = $value;
+        $this->user_id = $value;
     }
 
 }

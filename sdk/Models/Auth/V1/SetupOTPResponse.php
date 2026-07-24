@@ -9,9 +9,9 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class SetupOTPResponse implements Parsable 
 {
     /**
-     * @var string|null $qrCodeUrl The qrCodeUrl property
+     * @var string|null $qr_code_url The qr_code_url property
     */
-    private ?string $qrCodeUrl = null;
+    private ?string $qr_code_url = null;
     
     /**
      * @var string|null $secret The secret property
@@ -34,17 +34,17 @@ class SetupOTPResponse implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'qrCodeUrl' => fn(ParseNode $n) => $o->setQrCodeUrl($n->getStringValue()),
+            'qr_code_url' => fn(ParseNode $n) => $o->setQrCodeUrl($n->getStringValue()),
             'secret' => fn(ParseNode $n) => $o->setSecret($n->getStringValue()),
         ];
     }
 
     /**
-     * Gets the qrCodeUrl property value. The qrCodeUrl property
+     * Gets the qr_code_url property value. The qr_code_url property
      * @return string|null
     */
     public function getQrCodeUrl(): ?string {
-        return $this->qrCodeUrl;
+        return $this->qr_code_url;
     }
 
     /**
@@ -60,16 +60,16 @@ class SetupOTPResponse implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('qrCodeUrl', $this->getQrCodeUrl());
+        $writer->writeStringValue('qr_code_url', $this->getQrCodeUrl());
         $writer->writeStringValue('secret', $this->getSecret());
     }
 
     /**
-     * Sets the qrCodeUrl property value. The qrCodeUrl property
-     * @param string|null $value Value to set for the qrCodeUrl property.
+     * Sets the qr_code_url property value. The qr_code_url property
+     * @param string|null $value Value to set for the qr_code_url property.
     */
     public function setQrCodeUrl(?string $value): void {
-        $this->qrCodeUrl = $value;
+        $this->qr_code_url = $value;
     }
 
     /**

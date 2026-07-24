@@ -30,12 +30,12 @@ class ImagesRequestBuilderGetRequestConfiguration extends BaseRequestConfigurati
      * Instantiates a new ImagesRequestBuilderGetQueryParameters.
      * @param int|null $paginationLimit Maximum number of items to return.
      * @param int|null $paginationOffset Number of items to skip before collecting the result set.
-     * @param string|null $sortDirection 
-     * @param string|null $sortField 
+     * @param string|null $sort_direction 
+     * @param string|null $sort_field 
      * @return ImagesRequestBuilderGetQueryParameters
     */
-    public static function createQueryParameters(?int $paginationLimit = null, ?int $paginationOffset = null, ?string $sortDirection = null, ?string $sortField = null): ImagesRequestBuilderGetQueryParameters {
-        return new ImagesRequestBuilderGetQueryParameters($paginationLimit, $paginationOffset, $sortDirection, $sortField);
+    public static function createQueryParameters(?int $paginationLimit = null, ?int $paginationOffset = null, ?string $sort_direction = null, ?string $sort_field = null): ImagesRequestBuilderGetQueryParameters {
+        return new ImagesRequestBuilderGetQueryParameters($paginationLimit, $paginationOffset, $sort_direction, $sort_field);
     }
 
 }

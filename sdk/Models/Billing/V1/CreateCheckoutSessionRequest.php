@@ -9,24 +9,24 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class CreateCheckoutSessionRequest implements Parsable 
 {
     /**
-     * @var string|null $cancelUrl The cancelUrl property
+     * @var string|null $cancel_url The cancel_url property
     */
-    private ?string $cancelUrl = null;
+    private ?string $cancel_url = null;
     
     /**
-     * @var string|null $orgId The orgId property
+     * @var string|null $org_id The org_id property
     */
-    private ?string $orgId = null;
+    private ?string $org_id = null;
     
     /**
-     * @var string|null $stripePriceId The stripePriceId property
+     * @var string|null $stripe_price_id The stripe_price_id property
     */
-    private ?string $stripePriceId = null;
+    private ?string $stripe_price_id = null;
     
     /**
-     * @var string|null $successUrl The successUrl property
+     * @var string|null $success_url The success_url property
     */
-    private ?string $successUrl = null;
+    private ?string $success_url = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -38,11 +38,11 @@ class CreateCheckoutSessionRequest implements Parsable
     }
 
     /**
-     * Gets the cancelUrl property value. The cancelUrl property
+     * Gets the cancel_url property value. The cancel_url property
      * @return string|null
     */
     public function getCancelUrl(): ?string {
-        return $this->cancelUrl;
+        return $this->cancel_url;
     }
 
     /**
@@ -52,35 +52,35 @@ class CreateCheckoutSessionRequest implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'cancelUrl' => fn(ParseNode $n) => $o->setCancelUrl($n->getStringValue()),
-            'orgId' => fn(ParseNode $n) => $o->setOrgId($n->getStringValue()),
-            'stripePriceId' => fn(ParseNode $n) => $o->setStripePriceId($n->getStringValue()),
-            'successUrl' => fn(ParseNode $n) => $o->setSuccessUrl($n->getStringValue()),
+            'cancel_url' => fn(ParseNode $n) => $o->setCancelUrl($n->getStringValue()),
+            'org_id' => fn(ParseNode $n) => $o->setOrgId($n->getStringValue()),
+            'stripe_price_id' => fn(ParseNode $n) => $o->setStripePriceId($n->getStringValue()),
+            'success_url' => fn(ParseNode $n) => $o->setSuccessUrl($n->getStringValue()),
         ];
     }
 
     /**
-     * Gets the orgId property value. The orgId property
+     * Gets the org_id property value. The org_id property
      * @return string|null
     */
     public function getOrgId(): ?string {
-        return $this->orgId;
+        return $this->org_id;
     }
 
     /**
-     * Gets the stripePriceId property value. The stripePriceId property
+     * Gets the stripe_price_id property value. The stripe_price_id property
      * @return string|null
     */
     public function getStripePriceId(): ?string {
-        return $this->stripePriceId;
+        return $this->stripe_price_id;
     }
 
     /**
-     * Gets the successUrl property value. The successUrl property
+     * Gets the success_url property value. The success_url property
      * @return string|null
     */
     public function getSuccessUrl(): ?string {
-        return $this->successUrl;
+        return $this->success_url;
     }
 
     /**
@@ -88,42 +88,42 @@ class CreateCheckoutSessionRequest implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('cancelUrl', $this->getCancelUrl());
-        $writer->writeStringValue('orgId', $this->getOrgId());
-        $writer->writeStringValue('stripePriceId', $this->getStripePriceId());
-        $writer->writeStringValue('successUrl', $this->getSuccessUrl());
+        $writer->writeStringValue('cancel_url', $this->getCancelUrl());
+        $writer->writeStringValue('org_id', $this->getOrgId());
+        $writer->writeStringValue('stripe_price_id', $this->getStripePriceId());
+        $writer->writeStringValue('success_url', $this->getSuccessUrl());
     }
 
     /**
-     * Sets the cancelUrl property value. The cancelUrl property
-     * @param string|null $value Value to set for the cancelUrl property.
+     * Sets the cancel_url property value. The cancel_url property
+     * @param string|null $value Value to set for the cancel_url property.
     */
     public function setCancelUrl(?string $value): void {
-        $this->cancelUrl = $value;
+        $this->cancel_url = $value;
     }
 
     /**
-     * Sets the orgId property value. The orgId property
-     * @param string|null $value Value to set for the orgId property.
+     * Sets the org_id property value. The org_id property
+     * @param string|null $value Value to set for the org_id property.
     */
     public function setOrgId(?string $value): void {
-        $this->orgId = $value;
+        $this->org_id = $value;
     }
 
     /**
-     * Sets the stripePriceId property value. The stripePriceId property
-     * @param string|null $value Value to set for the stripePriceId property.
+     * Sets the stripe_price_id property value. The stripe_price_id property
+     * @param string|null $value Value to set for the stripe_price_id property.
     */
     public function setStripePriceId(?string $value): void {
-        $this->stripePriceId = $value;
+        $this->stripe_price_id = $value;
     }
 
     /**
-     * Sets the successUrl property value. The successUrl property
-     * @param string|null $value Value to set for the successUrl property.
+     * Sets the success_url property value. The success_url property
+     * @param string|null $value Value to set for the success_url property.
     */
     public function setSuccessUrl(?string $value): void {
-        $this->successUrl = $value;
+        $this->success_url = $value;
     }
 
 }

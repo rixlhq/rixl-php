@@ -9,19 +9,19 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class UpsertPaymentMethodRequest implements Parsable 
 {
     /**
-     * @var string|null $orgId The orgId property
+     * @var string|null $org_id The org_id property
     */
-    private ?string $orgId = null;
+    private ?string $org_id = null;
     
     /**
-     * @var string|null $paymentMethodId The paymentMethodId property
+     * @var string|null $payment_method_id The payment_method_id property
     */
-    private ?string $paymentMethodId = null;
+    private ?string $payment_method_id = null;
     
     /**
-     * @var bool|null $setAsDefault The setAsDefault property
+     * @var bool|null $set_as_default The set_as_default property
     */
-    private ?bool $setAsDefault = null;
+    private ?bool $set_as_default = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -39,34 +39,34 @@ class UpsertPaymentMethodRequest implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'orgId' => fn(ParseNode $n) => $o->setOrgId($n->getStringValue()),
-            'paymentMethodId' => fn(ParseNode $n) => $o->setPaymentMethodId($n->getStringValue()),
-            'setAsDefault' => fn(ParseNode $n) => $o->setSetAsDefault($n->getBooleanValue()),
+            'org_id' => fn(ParseNode $n) => $o->setOrgId($n->getStringValue()),
+            'payment_method_id' => fn(ParseNode $n) => $o->setPaymentMethodId($n->getStringValue()),
+            'set_as_default' => fn(ParseNode $n) => $o->setSetAsDefault($n->getBooleanValue()),
         ];
     }
 
     /**
-     * Gets the orgId property value. The orgId property
+     * Gets the org_id property value. The org_id property
      * @return string|null
     */
     public function getOrgId(): ?string {
-        return $this->orgId;
+        return $this->org_id;
     }
 
     /**
-     * Gets the paymentMethodId property value. The paymentMethodId property
+     * Gets the payment_method_id property value. The payment_method_id property
      * @return string|null
     */
     public function getPaymentMethodId(): ?string {
-        return $this->paymentMethodId;
+        return $this->payment_method_id;
     }
 
     /**
-     * Gets the setAsDefault property value. The setAsDefault property
+     * Gets the set_as_default property value. The set_as_default property
      * @return bool|null
     */
     public function getSetAsDefault(): ?bool {
-        return $this->setAsDefault;
+        return $this->set_as_default;
     }
 
     /**
@@ -74,33 +74,33 @@ class UpsertPaymentMethodRequest implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('orgId', $this->getOrgId());
-        $writer->writeStringValue('paymentMethodId', $this->getPaymentMethodId());
-        $writer->writeBooleanValue('setAsDefault', $this->getSetAsDefault());
+        $writer->writeStringValue('org_id', $this->getOrgId());
+        $writer->writeStringValue('payment_method_id', $this->getPaymentMethodId());
+        $writer->writeBooleanValue('set_as_default', $this->getSetAsDefault());
     }
 
     /**
-     * Sets the orgId property value. The orgId property
-     * @param string|null $value Value to set for the orgId property.
+     * Sets the org_id property value. The org_id property
+     * @param string|null $value Value to set for the org_id property.
     */
     public function setOrgId(?string $value): void {
-        $this->orgId = $value;
+        $this->org_id = $value;
     }
 
     /**
-     * Sets the paymentMethodId property value. The paymentMethodId property
-     * @param string|null $value Value to set for the paymentMethodId property.
+     * Sets the payment_method_id property value. The payment_method_id property
+     * @param string|null $value Value to set for the payment_method_id property.
     */
     public function setPaymentMethodId(?string $value): void {
-        $this->paymentMethodId = $value;
+        $this->payment_method_id = $value;
     }
 
     /**
-     * Sets the setAsDefault property value. The setAsDefault property
-     * @param bool|null $value Value to set for the setAsDefault property.
+     * Sets the set_as_default property value. The set_as_default property
+     * @param bool|null $value Value to set for the set_as_default property.
     */
     public function setSetAsDefault(?bool $value): void {
-        $this->setAsDefault = $value;
+        $this->set_as_default = $value;
     }
 
 }
