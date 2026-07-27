@@ -8,8 +8,9 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
+use Rixl\Sdk\Auth\V1\Memberships\Item\Invite\Item\WithUser_ItemRequestBuilder;
 use Rixl\Sdk\Auth\V1\Memberships\Item\Invite\Resend\ResendRequestBuilder;
-use Rixl\Sdk\Models\Auth\V1\MembershipMutation;
+use Rixl\Sdk\Models\Auth\V1\MembershipApplication;
 
 /**
  * Builds and executes requests for operations under /auth/v1/memberships/{org_-id}/invite
@@ -23,6 +24,17 @@ class InviteRequestBuilder extends BaseRequestBuilder
         return new ResendRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
     
+    /**
+     * Gets an item from the Rixl/Sdk.auth.v1.memberships.item.invite.item collection
+     * @param string $user_id Unique identifier of the item
+     * @return WithUser_ItemRequestBuilder
+    */
+    public function byUser_id(string $user_id): WithUser_ItemRequestBuilder {
+        $urlTplParams = $this->pathParameters;
+        $urlTplParams['user_id'] = $user_id;
+        return new WithUser_ItemRequestBuilder($urlTplParams, $this->requestAdapter);
+    }
+
     /**
      * Instantiates a new InviteRequestBuilder and sets the default values.
      * @param array<string, mixed>|string $pathParametersOrRawUrl Path parameters for the request or a String representing the raw URL.
@@ -41,12 +53,12 @@ class InviteRequestBuilder extends BaseRequestBuilder
      * InviteMember
      * @param InvitePostRequestBody $body The request body
      * @param InviteRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
-     * @return Promise<MembershipMutation|null>
+     * @return Promise<MembershipApplication|null>
      * @throws Exception
     */
     public function post(InvitePostRequestBody $body, ?InviteRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [MembershipMutation::class, 'createFromDiscriminatorValue'], null);
+        return $this->requestAdapter->sendAsync($requestInfo, [MembershipApplication::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**

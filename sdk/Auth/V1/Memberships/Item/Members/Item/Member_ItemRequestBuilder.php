@@ -9,7 +9,9 @@ use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Auth\V1\Memberships\Item\Members\Item\Policies\PoliciesRequestBuilder;
+use Rixl\Sdk\Auth\V1\Memberships\Item\Members\Item\Reactivate\ReactivateRequestBuilder;
 use Rixl\Sdk\Auth\V1\Memberships\Item\Members\Item\Role\RoleRequestBuilder;
+use Rixl\Sdk\Auth\V1\Memberships\Item\Members\Item\Suspend\SuspendRequestBuilder;
 use Rixl\Sdk\Models\Google\Protobuf\EscapedEmpty;
 
 /**
@@ -25,10 +27,24 @@ class Member_ItemRequestBuilder extends BaseRequestBuilder
     }
     
     /**
+     * The reactivate property
+    */
+    public function reactivate(): ReactivateRequestBuilder {
+        return new ReactivateRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
      * The role property
     */
     public function role(): RoleRequestBuilder {
         return new RoleRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
+     * The suspend property
+    */
+    public function suspend(): SuspendRequestBuilder {
+        return new SuspendRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
     
     /**

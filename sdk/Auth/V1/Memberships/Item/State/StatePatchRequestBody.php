@@ -5,15 +5,15 @@ namespace Rixl\Sdk\Auth\V1\Memberships\Item\State;
 use Microsoft\Kiota\Abstractions\Serialization\Parsable;
 use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
 use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
-use Rixl\Sdk\Models\Auth\V1\MembershipState;
+use Rixl\Sdk\Models\Auth\V1\MembershipApplicationState;
 use Rixl\Sdk\Models\Auth\V1\UserOrgRequest;
 
 class StatePatchRequestBody implements Parsable 
 {
     /**
-     * @var MembershipState|null $state The state property
+     * @var MembershipApplicationState|null $state The state property
     */
-    private ?MembershipState $state = null;
+    private ?MembershipApplicationState $state = null;
     
     /**
      * @var UserOrgRequest|null $user The user property
@@ -36,16 +36,16 @@ class StatePatchRequestBody implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'state' => fn(ParseNode $n) => $o->setState($n->getEnumValue(MembershipState::class)),
+            'state' => fn(ParseNode $n) => $o->setState($n->getEnumValue(MembershipApplicationState::class)),
             'user' => fn(ParseNode $n) => $o->setUser($n->getObjectValue([UserOrgRequest::class, 'createFromDiscriminatorValue'])),
         ];
     }
 
     /**
      * Gets the state property value. The state property
-     * @return MembershipState|null
+     * @return MembershipApplicationState|null
     */
-    public function getState(): ?MembershipState {
+    public function getState(): ?MembershipApplicationState {
         return $this->state;
     }
 
@@ -68,9 +68,9 @@ class StatePatchRequestBody implements Parsable
 
     /**
      * Sets the state property value. The state property
-     * @param MembershipState|null $value Value to set for the state property.
+     * @param MembershipApplicationState|null $value Value to set for the state property.
     */
-    public function setState(?MembershipState $value): void {
+    public function setState(?MembershipApplicationState $value): void {
         $this->state = $value;
     }
 
