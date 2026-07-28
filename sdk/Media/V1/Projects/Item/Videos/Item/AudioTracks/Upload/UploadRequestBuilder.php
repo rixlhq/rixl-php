@@ -8,21 +8,13 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Media\V1\Projects\Item\Videos\Item\AudioTracks\Upload\Complete\CompleteRequestBuilder;
-use Rixl\Sdk\Models\Videos\V1\TrackUploadInit;
+use Rixl\Sdk\Models\Videos\V1\TrackUpload;
 
 /**
  * Builds and executes requests for operations under /media/v1/projects/{project_id}/videos/{video_id}/audio-tracks/upload
 */
 class UploadRequestBuilder extends BaseRequestBuilder 
 {
-    /**
-     * The complete property
-    */
-    public function complete(): CompleteRequestBuilder {
-        return new CompleteRequestBuilder($this->pathParameters, $this->requestAdapter);
-    }
-    
     /**
      * Instantiates a new UploadRequestBuilder and sets the default values.
      * @param array<string, mixed>|string $pathParametersOrRawUrl Path parameters for the request or a String representing the raw URL.
@@ -38,19 +30,19 @@ class UploadRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * InitAudioTrackUpload
+     * CreateAudioTrackUpload
      * @param UploadPostRequestBody $body The request body
      * @param UploadRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
-     * @return Promise<TrackUploadInit|null>
+     * @return Promise<TrackUpload|null>
      * @throws Exception
     */
     public function post(UploadPostRequestBody $body, ?UploadRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [TrackUploadInit::class, 'createFromDiscriminatorValue'], null);
+        return $this->requestAdapter->sendAsync($requestInfo, [TrackUpload::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
-     * InitAudioTrackUpload
+     * CreateAudioTrackUpload
      * @param UploadPostRequestBody $body The request body
      * @param UploadRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation

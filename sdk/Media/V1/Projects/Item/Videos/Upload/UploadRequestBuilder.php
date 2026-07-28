@@ -8,7 +8,7 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Videos\V1\VideoUploadInit;
+use Rixl\Sdk\Models\Videos\V1\VideoUpload;
 
 /**
  * Builds and executes requests for operations under /media/v1/projects/{project_id}/videos/upload
@@ -33,12 +33,12 @@ class UploadRequestBuilder extends BaseRequestBuilder
      * CreateVideoUpload
      * @param UploadPostRequestBody $body The request body
      * @param UploadRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
-     * @return Promise<VideoUploadInit|null>
+     * @return Promise<VideoUpload|null>
      * @throws Exception
     */
     public function post(UploadPostRequestBody $body, ?UploadRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [VideoUploadInit::class, 'createFromDiscriminatorValue'], null);
+        return $this->requestAdapter->sendAsync($requestInfo, [VideoUpload::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**

@@ -7,7 +7,7 @@ use Microsoft\Kiota\Abstractions\Serialization\Parsable;
 use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
 use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 
-class PostUploadInit implements Parsable 
+class PostUpload implements Parsable 
 {
     /**
      * @var string|null $content_id The content_id property
@@ -42,10 +42,10 @@ class PostUploadInit implements Parsable
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object
-     * @return PostUploadInit
+     * @return PostUpload
     */
-    public static function createFromDiscriminatorValue(ParseNode $parseNode): PostUploadInit {
-        return new PostUploadInit();
+    public static function createFromDiscriminatorValue(ParseNode $parseNode): PostUpload {
+        return new PostUpload();
     }
 
     /**

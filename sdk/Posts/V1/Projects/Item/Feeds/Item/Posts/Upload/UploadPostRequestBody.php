@@ -1,6 +1,6 @@
 <?php
 
-namespace Rixl\Sdk\Posts\V1\Projects\Item\Feeds\Item\Posts\Upload\Init;
+namespace Rixl\Sdk\Posts\V1\Projects\Item\Feeds\Item\Posts\Upload;
 
 use Microsoft\Kiota\Abstractions\Serialization\Parsable;
 use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
@@ -9,7 +9,7 @@ use Rixl\Sdk\Models\Common\V1\ImageFormat;
 use Rixl\Sdk\Models\Common\V1\MediaType;
 use Rixl\Sdk\Models\Common\V1\VideoQuality;
 
-class InitPostRequestBody implements Parsable 
+class UploadPostRequestBody implements Parsable 
 {
     /**
      * @var MediaType|null $content_type The content_type property
@@ -64,10 +64,10 @@ class InitPostRequestBody implements Parsable
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object
-     * @return InitPostRequestBody
+     * @return UploadPostRequestBody
     */
-    public static function createFromDiscriminatorValue(ParseNode $parseNode): InitPostRequestBody {
-        return new InitPostRequestBody();
+    public static function createFromDiscriminatorValue(ParseNode $parseNode): UploadPostRequestBody {
+        return new UploadPostRequestBody();
     }
 
     /**

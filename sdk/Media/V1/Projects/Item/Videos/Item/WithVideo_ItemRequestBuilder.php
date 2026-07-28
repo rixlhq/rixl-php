@@ -11,7 +11,6 @@ use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Media\V1\Projects\Item\Videos\Item\AudioTracks\AudioTracksRequestBuilder;
 use Rixl\Sdk\Media\V1\Projects\Item\Videos\Item\Chapters\ChaptersRequestBuilder;
 use Rixl\Sdk\Media\V1\Projects\Item\Videos\Item\Subtitles\SubtitlesRequestBuilder;
-use Rixl\Sdk\Media\V1\Projects\Item\Videos\Item\Upload\UploadRequestBuilder;
 use Rixl\Sdk\Media\V1\Projects\Item\Videos\Item\Visibility\VisibilityRequestBuilder;
 use Rixl\Sdk\Models\Google\Protobuf\EscapedEmpty;
 
@@ -39,13 +38,6 @@ class WithVideo_ItemRequestBuilder extends BaseRequestBuilder
     */
     public function subtitles(): SubtitlesRequestBuilder {
         return new SubtitlesRequestBuilder($this->pathParameters, $this->requestAdapter);
-    }
-    
-    /**
-     * The upload property
-    */
-    public function upload(): UploadRequestBuilder {
-        return new UploadRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
     
     /**

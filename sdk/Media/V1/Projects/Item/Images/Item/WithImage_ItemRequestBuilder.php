@@ -8,7 +8,6 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Media\V1\Projects\Item\Images\Item\Upload\UploadRequestBuilder;
 use Rixl\Sdk\Media\V1\Projects\Item\Images\Item\Visibility\VisibilityRequestBuilder;
 use Rixl\Sdk\Models\Google\Protobuf\EscapedEmpty;
 
@@ -17,13 +16,6 @@ use Rixl\Sdk\Models\Google\Protobuf\EscapedEmpty;
 */
 class WithImage_ItemRequestBuilder extends BaseRequestBuilder 
 {
-    /**
-     * The upload property
-    */
-    public function upload(): UploadRequestBuilder {
-        return new UploadRequestBuilder($this->pathParameters, $this->requestAdapter);
-    }
-    
     /**
      * The visibility property
     */

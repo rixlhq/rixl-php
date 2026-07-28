@@ -8,7 +8,7 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Images\V1\ImageUploadInit;
+use Rixl\Sdk\Models\Images\V1\ImageUpload;
 
 /**
  * Builds and executes requests for operations under /media/v1/projects/{project_id}/images/upload
@@ -33,12 +33,12 @@ class UploadRequestBuilder extends BaseRequestBuilder
      * CreateImageUpload
      * @param UploadPostRequestBody $body The request body
      * @param UploadRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
-     * @return Promise<ImageUploadInit|null>
+     * @return Promise<ImageUpload|null>
      * @throws Exception
     */
     public function post(UploadPostRequestBody $body, ?UploadRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [ImageUploadInit::class, 'createFromDiscriminatorValue'], null);
+        return $this->requestAdapter->sendAsync($requestInfo, [ImageUpload::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
