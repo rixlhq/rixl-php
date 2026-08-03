@@ -1,6 +1,6 @@
 # Contributing
 
-Everything under `sdk/` is generated. Do not edit it by hand — the next
+Everything under `sdk/` is generated. Do not edit it by hand, because the next
 regeneration will overwrite your changes. Fix the OpenAPI spec instead, then
 regenerate.
 
@@ -42,7 +42,7 @@ response.
 composer install
 ```
 
-The package has no build step — `sdk/` is autoloaded under the `Rixl\Sdk\`
+The package has no build step. `sdk/` is autoloaded under the `Rixl\Sdk\`
 PSR-4 prefix.
 
 ## Releasing
