@@ -8,7 +8,7 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Videos\V1\GetVideoResponse;
+use Rixl\Sdk\Models\Videos\V1\UpdateVideoVisibilityResponse;
 
 /**
  * Builds and executes requests for operations under /media/v1/projects/{project_id}/videos/{video_id}/visibility
@@ -33,12 +33,12 @@ class VisibilityRequestBuilder extends BaseRequestBuilder
      * UpdateVideoVisibility
      * @param VisibilityPatchRequestBody $body The request body
      * @param VisibilityRequestBuilderPatchRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
-     * @return Promise<GetVideoResponse|null>
+     * @return Promise<UpdateVideoVisibilityResponse|null>
      * @throws Exception
     */
     public function patch(VisibilityPatchRequestBody $body, ?VisibilityRequestBuilderPatchRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPatchRequestInformation($body, $requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [GetVideoResponse::class, 'createFromDiscriminatorValue'], null);
+        return $this->requestAdapter->sendAsync($requestInfo, [UpdateVideoVisibilityResponse::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**

@@ -1,25 +1,25 @@
 <?php
 
-namespace Rixl\Sdk\Models\Images\V1;
+namespace Rixl\Sdk\Models\Posts\V1;
 
 use Microsoft\Kiota\Abstractions\Serialization\Parsable;
 use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
 use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 
-class GetImageResponse implements Parsable 
+class GetPostResponse implements Parsable 
 {
     /**
-     * @var Image|null $image The image property
+     * @var Post|null $post The post property
     */
-    private ?Image $image = null;
+    private ?Post $post = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object
-     * @return GetImageResponse
+     * @return GetPostResponse
     */
-    public static function createFromDiscriminatorValue(ParseNode $parseNode): GetImageResponse {
-        return new GetImageResponse();
+    public static function createFromDiscriminatorValue(ParseNode $parseNode): GetPostResponse {
+        return new GetPostResponse();
     }
 
     /**
@@ -29,16 +29,16 @@ class GetImageResponse implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'image' => fn(ParseNode $n) => $o->setImage($n->getObjectValue([Image::class, 'createFromDiscriminatorValue'])),
+            'post' => fn(ParseNode $n) => $o->setPost($n->getObjectValue([Post::class, 'createFromDiscriminatorValue'])),
         ];
     }
 
     /**
-     * Gets the image property value. The image property
-     * @return Image|null
+     * Gets the post property value. The post property
+     * @return Post|null
     */
-    public function getImage(): ?Image {
-        return $this->image;
+    public function getPost(): ?Post {
+        return $this->post;
     }
 
     /**
@@ -46,15 +46,15 @@ class GetImageResponse implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeObjectValue('image', $this->getImage());
+        $writer->writeObjectValue('post', $this->getPost());
     }
 
     /**
-     * Sets the image property value. The image property
-     * @param Image|null $value Value to set for the image property.
+     * Sets the post property value. The post property
+     * @param Post|null $value Value to set for the post property.
     */
-    public function setImage(?Image $value): void {
-        $this->image = $value;
+    public function setPost(?Post $value): void {
+        $this->post = $value;
     }
 
 }

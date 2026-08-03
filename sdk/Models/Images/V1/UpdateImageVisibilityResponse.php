@@ -6,7 +6,7 @@ use Microsoft\Kiota\Abstractions\Serialization\Parsable;
 use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
 use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 
-class GetImageResponse implements Parsable 
+class UpdateImageVisibilityResponse implements Parsable 
 {
     /**
      * @var Image|null $image The image property
@@ -16,10 +16,10 @@ class GetImageResponse implements Parsable
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object
-     * @return GetImageResponse
+     * @return UpdateImageVisibilityResponse
     */
-    public static function createFromDiscriminatorValue(ParseNode $parseNode): GetImageResponse {
-        return new GetImageResponse();
+    public static function createFromDiscriminatorValue(ParseNode $parseNode): UpdateImageVisibilityResponse {
+        return new UpdateImageVisibilityResponse();
     }
 
     /**

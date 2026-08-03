@@ -5,7 +5,6 @@ namespace Rixl\Sdk\Posts\V1\Projects\Item\Feeds\Item\Posts\Upload;
 use Microsoft\Kiota\Abstractions\Serialization\Parsable;
 use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
 use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
-use Rixl\Sdk\Models\Common\V1\ImageFormat;
 use Rixl\Sdk\Models\Common\V1\MediaType;
 use Rixl\Sdk\Models\Common\V1\VideoQuality;
 
@@ -35,16 +34,6 @@ class UploadPostRequestBody implements Parsable
      * @var string|null $file_name The file_name property
     */
     private ?string $file_name = null;
-    
-    /**
-     * @var string|null $format The format property
-    */
-    private ?string $format = null;
-    
-    /**
-     * @var ImageFormat|null $image_format The image_format property
-    */
-    private ?ImageFormat $image_format = null;
     
     /**
      * @var string|null $org_id The org_id property
@@ -114,8 +103,6 @@ class UploadPostRequestBody implements Parsable
             'description' => fn(ParseNode $n) => $o->setDescription($n->getStringValue()),
             'feed_id' => fn(ParseNode $n) => $o->setFeedId($n->getStringValue()),
             'file_name' => fn(ParseNode $n) => $o->setFileName($n->getStringValue()),
-            'format' => fn(ParseNode $n) => $o->setFormat($n->getStringValue()),
-            'image_format' => fn(ParseNode $n) => $o->setImageFormat($n->getEnumValue(ImageFormat::class)),
             'org_id' => fn(ParseNode $n) => $o->setOrgId($n->getStringValue()),
             'project_id' => fn(ParseNode $n) => $o->setProjectId($n->getStringValue()),
             'video_quality' => fn(ParseNode $n) => $o->setVideoQuality($n->getEnumValue(VideoQuality::class)),
@@ -128,22 +115,6 @@ class UploadPostRequestBody implements Parsable
     */
     public function getFileName(): ?string {
         return $this->file_name;
-    }
-
-    /**
-     * Gets the format property value. The format property
-     * @return string|null
-    */
-    public function getFormat(): ?string {
-        return $this->format;
-    }
-
-    /**
-     * Gets the image_format property value. The image_format property
-     * @return ImageFormat|null
-    */
-    public function getImageFormat(): ?ImageFormat {
-        return $this->image_format;
     }
 
     /**
@@ -180,8 +151,6 @@ class UploadPostRequestBody implements Parsable
         $writer->writeStringValue('description', $this->getDescription());
         $writer->writeStringValue('feed_id', $this->getFeedId());
         $writer->writeStringValue('file_name', $this->getFileName());
-        $writer->writeStringValue('format', $this->getFormat());
-        $writer->writeEnumValue('image_format', $this->getImageFormat());
         $writer->writeStringValue('org_id', $this->getOrgId());
         $writer->writeStringValue('project_id', $this->getProjectId());
         $writer->writeEnumValue('video_quality', $this->getVideoQuality());
@@ -225,22 +194,6 @@ class UploadPostRequestBody implements Parsable
     */
     public function setFileName(?string $value): void {
         $this->file_name = $value;
-    }
-
-    /**
-     * Sets the format property value. The format property
-     * @param string|null $value Value to set for the format property.
-    */
-    public function setFormat(?string $value): void {
-        $this->format = $value;
-    }
-
-    /**
-     * Sets the image_format property value. The image_format property
-     * @param ImageFormat|null $value Value to set for the image_format property.
-    */
-    public function setImageFormat(?ImageFormat $value): void {
-        $this->image_format = $value;
     }
 
     /**

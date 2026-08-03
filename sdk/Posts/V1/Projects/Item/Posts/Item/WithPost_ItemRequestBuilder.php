@@ -9,7 +9,7 @@ use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Models\Google\Protobuf\EscapedEmpty;
-use Rixl\Sdk\Models\Posts\V1\Post;
+use Rixl\Sdk\Models\Posts\V1\GetPostResponse;
 
 /**
  * Builds and executes requests for operations under /posts/v1/projects/{project_id}/posts/{post_id}
@@ -44,12 +44,12 @@ class WithPost_ItemRequestBuilder extends BaseRequestBuilder
     /**
      * GetPost
      * @param WithPost_ItemRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
-     * @return Promise<Post|null>
+     * @return Promise<GetPostResponse|null>
      * @throws Exception
     */
     public function get(?WithPost_ItemRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [Post::class, 'createFromDiscriminatorValue'], null);
+        return $this->requestAdapter->sendAsync($requestInfo, [GetPostResponse::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**

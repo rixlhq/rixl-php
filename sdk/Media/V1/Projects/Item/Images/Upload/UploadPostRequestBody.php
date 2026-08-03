@@ -5,15 +5,9 @@ namespace Rixl\Sdk\Media\V1\Projects\Item\Images\Upload;
 use Microsoft\Kiota\Abstractions\Serialization\Parsable;
 use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
 use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
-use Rixl\Sdk\Models\Common\V1\ImageFormat;
 
 class UploadPostRequestBody implements Parsable 
 {
-    /**
-     * @var ImageFormat|null $format The format property
-    */
-    private ?ImageFormat $format = null;
-    
     /**
      * @var string|null $name The name property
     */
@@ -45,19 +39,10 @@ class UploadPostRequestBody implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'format' => fn(ParseNode $n) => $o->setFormat($n->getEnumValue(ImageFormat::class)),
             'name' => fn(ParseNode $n) => $o->setName($n->getStringValue()),
             'org_id' => fn(ParseNode $n) => $o->setOrgId($n->getStringValue()),
             'project_id' => fn(ParseNode $n) => $o->setProjectId($n->getStringValue()),
         ];
-    }
-
-    /**
-     * Gets the format property value. The format property
-     * @return ImageFormat|null
-    */
-    public function getFormat(): ?ImageFormat {
-        return $this->format;
     }
 
     /**
@@ -89,18 +74,9 @@ class UploadPostRequestBody implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeEnumValue('format', $this->getFormat());
         $writer->writeStringValue('name', $this->getName());
         $writer->writeStringValue('org_id', $this->getOrgId());
         $writer->writeStringValue('project_id', $this->getProjectId());
-    }
-
-    /**
-     * Sets the format property value. The format property
-     * @param ImageFormat|null $value Value to set for the format property.
-    */
-    public function setFormat(?ImageFormat $value): void {
-        $this->format = $value;
     }
 
     /**

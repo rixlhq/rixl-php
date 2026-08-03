@@ -8,7 +8,7 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Images\V1\GetImageResponse;
+use Rixl\Sdk\Models\Images\V1\UpdateImageVisibilityResponse;
 
 /**
  * Builds and executes requests for operations under /media/v1/projects/{project_id}/images/{image_id}/visibility
@@ -33,12 +33,12 @@ class VisibilityRequestBuilder extends BaseRequestBuilder
      * UpdateImageVisibility
      * @param VisibilityPatchRequestBody $body The request body
      * @param VisibilityRequestBuilderPatchRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
-     * @return Promise<GetImageResponse|null>
+     * @return Promise<UpdateImageVisibilityResponse|null>
      * @throws Exception
     */
     public function patch(VisibilityPatchRequestBody $body, ?VisibilityRequestBuilderPatchRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPatchRequestInformation($body, $requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [GetImageResponse::class, 'createFromDiscriminatorValue'], null);
+        return $this->requestAdapter->sendAsync($requestInfo, [UpdateImageVisibilityResponse::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**

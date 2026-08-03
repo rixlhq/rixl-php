@@ -8,8 +8,8 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
+use Rixl\Sdk\Models\Posts\V1\CreatePostResponse;
 use Rixl\Sdk\Models\Posts\V1\ListPostsResponse;
-use Rixl\Sdk\Models\Posts\V1\Post;
 use Rixl\Sdk\Posts\V1\Projects\Item\Feeds\Item\Posts\Creators\CreatorsRequestBuilder;
 use Rixl\Sdk\Posts\V1\Projects\Item\Feeds\Item\Posts\Item\WithPost_ItemRequestBuilder;
 use Rixl\Sdk\Posts\V1\Projects\Item\Feeds\Item\Posts\Upload\UploadRequestBuilder;
@@ -73,12 +73,12 @@ class PostsRequestBuilder extends BaseRequestBuilder
      * CreatePost
      * @param PostsPostRequestBody $body The request body
      * @param PostsRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
-     * @return Promise<Post|null>
+     * @return Promise<CreatePostResponse|null>
      * @throws Exception
     */
     public function post(PostsPostRequestBody $body, ?PostsRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [Post::class, 'createFromDiscriminatorValue'], null);
+        return $this->requestAdapter->sendAsync($requestInfo, [CreatePostResponse::class, 'createFromDiscriminatorValue'], null);
     }
 
     /**
