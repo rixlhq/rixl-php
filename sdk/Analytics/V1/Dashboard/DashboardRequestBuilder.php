@@ -8,6 +8,9 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
+use Rixl\Sdk\Analytics\V1\Dashboard\ChartQuery\ChartQueryRequestBuilder;
+use Rixl\Sdk\Analytics\V1\Dashboard\Datasets\DatasetsRequestBuilder;
+use Rixl\Sdk\Analytics\V1\Dashboard\FilterOptions\FilterOptionsRequestBuilder;
 use Rixl\Sdk\Models\Analytics\V1\DashboardStatsResponse;
 
 /**
@@ -16,12 +19,33 @@ use Rixl\Sdk\Models\Analytics\V1\DashboardStatsResponse;
 class DashboardRequestBuilder extends BaseRequestBuilder 
 {
     /**
+     * The chartQuery property
+    */
+    public function chartQuery(): ChartQueryRequestBuilder {
+        return new ChartQueryRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
+     * The datasets property
+    */
+    public function datasets(): DatasetsRequestBuilder {
+        return new DatasetsRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
+     * The filterOptions property
+    */
+    public function filterOptions(): FilterOptionsRequestBuilder {
+        return new FilterOptionsRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
      * Instantiates a new DashboardRequestBuilder and sets the default values.
      * @param array<string, mixed>|string $pathParametersOrRawUrl Path parameters for the request or a String representing the raw URL.
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/analytics/v1/dashboard?time_end={time_end}&time_start={time_start}{&interval*}');
+        parent::__construct($requestAdapter, [], '{+baseurl}/analytics/v1/dashboard?time_end={time_end}&time_start={time_start}{&filter%2Ebrowsers*,filter%2Ecities*,filter%2Ecountries*,filter%2Edevices*,filter%2Elanguages*,filter%2Eos*,filter%2Eos_versions*,filter%2Eregions*,interval*}');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
