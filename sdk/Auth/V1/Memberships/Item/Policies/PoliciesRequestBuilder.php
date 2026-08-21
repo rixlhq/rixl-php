@@ -10,6 +10,7 @@ use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Auth\V1\Memberships\Item\Policies\Attachments\AttachmentsRequestBuilder;
 use Rixl\Sdk\Auth\V1\Memberships\Item\Policies\Item\WithPolicy_ItemRequestBuilder;
+use Rixl\Sdk\Auth\V1\Memberships\Item\Policies\Permissions\PermissionsRequestBuilder;
 use Rixl\Sdk\Models\Auth\V1\ListPoliciesResponse;
 use Rixl\Sdk\Models\Auth\V1\Policy;
 
@@ -23,6 +24,13 @@ class PoliciesRequestBuilder extends BaseRequestBuilder
     */
     public function attachments(): AttachmentsRequestBuilder {
         return new AttachmentsRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
+     * The permissions property
+    */
+    public function permissions(): PermissionsRequestBuilder {
+        return new PermissionsRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
     
     /**

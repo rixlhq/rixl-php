@@ -13,7 +13,6 @@ use Rixl\Sdk\Auth\V1\MembershipApplications\MembershipApplicationsRequestBuilder
 use Rixl\Sdk\Auth\V1\Memberships\MembershipsRequestBuilder;
 use Rixl\Sdk\Auth\V1\Passkey\PasskeyRequestBuilder;
 use Rixl\Sdk\Auth\V1\Password\PasswordRequestBuilder;
-use Rixl\Sdk\Auth\V1\Policies\PoliciesRequestBuilder;
 use Rixl\Sdk\Auth\V1\Providers\ProvidersRequestBuilder;
 use Rixl\Sdk\Auth\V1\Register\RegisterRequestBuilder;
 use Rixl\Sdk\Auth\V1\Token\TokenRequestBuilder;
@@ -88,13 +87,6 @@ class V1RequestBuilder extends BaseRequestBuilder
     */
     public function password(): PasswordRequestBuilder {
         return new PasswordRequestBuilder($this->pathParameters, $this->requestAdapter);
-    }
-    
-    /**
-     * The policies property
-    */
-    public function policies(): PoliciesRequestBuilder {
-        return new PoliciesRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
     
     /**

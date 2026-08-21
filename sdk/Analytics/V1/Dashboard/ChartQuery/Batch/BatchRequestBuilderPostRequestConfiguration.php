@@ -1,6 +1,6 @@
 <?php
 
-namespace Rixl\Sdk\Auth\V1\Policies\Permissions;
+namespace Rixl\Sdk\Analytics\V1\Dashboard\ChartQuery\Batch;
 
 use Microsoft\Kiota\Abstractions\BaseRequestConfiguration;
 use Microsoft\Kiota\Abstractions\RequestOption;
@@ -8,10 +8,10 @@ use Microsoft\Kiota\Abstractions\RequestOption;
 /**
  * Configuration for the request such as headers, query parameters, and middleware options.
 */
-class PermissionsRequestBuilderGetRequestConfiguration extends BaseRequestConfiguration 
+class BatchRequestBuilderPostRequestConfiguration extends BaseRequestConfiguration 
 {
     /**
-     * Instantiates a new PermissionsRequestBuilderGetRequestConfiguration and sets the default values.
+     * Instantiates a new BatchRequestBuilderPostRequestConfiguration and sets the default values.
      * @param array<string, array<string>|string>|null $headers Request headers
      * @param array<RequestOption>|null $options Request options
     */

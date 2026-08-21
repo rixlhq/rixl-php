@@ -8,6 +8,7 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
+use Rixl\Sdk\Analytics\V1\Dashboard\ChartQuery\Batch\BatchRequestBuilder;
 use Rixl\Sdk\Models\Analytics\V1\ChartQueryRequest;
 use Rixl\Sdk\Models\Analytics\V1\ChartQueryResponse;
 
@@ -16,6 +17,13 @@ use Rixl\Sdk\Models\Analytics\V1\ChartQueryResponse;
 */
 class ChartQueryRequestBuilder extends BaseRequestBuilder 
 {
+    /**
+     * The batch property
+    */
+    public function batch(): BatchRequestBuilder {
+        return new BatchRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
     /**
      * Instantiates a new ChartQueryRequestBuilder and sets the default values.
      * @param array<string, mixed>|string $pathParametersOrRawUrl Path parameters for the request or a String representing the raw URL.

@@ -11,6 +11,7 @@ use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Analytics\V1\Dashboard\ChartQuery\ChartQueryRequestBuilder;
 use Rixl\Sdk\Analytics\V1\Dashboard\Datasets\DatasetsRequestBuilder;
 use Rixl\Sdk\Analytics\V1\Dashboard\FilterOptions\FilterOptionsRequestBuilder;
+use Rixl\Sdk\Analytics\V1\Dashboard\ScopeTree\ScopeTreeRequestBuilder;
 use Rixl\Sdk\Models\Analytics\V1\DashboardStatsResponse;
 
 /**
@@ -37,6 +38,13 @@ class DashboardRequestBuilder extends BaseRequestBuilder
     */
     public function filterOptions(): FilterOptionsRequestBuilder {
         return new FilterOptionsRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
+     * The scopeTree property
+    */
+    public function scopeTree(): ScopeTreeRequestBuilder {
+        return new ScopeTreeRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
     
     /**

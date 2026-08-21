@@ -49,6 +49,11 @@ class TrackEventsRequest implements Parsable
     private ?string $os_version = null;
     
     /**
+     * @var string|null $project_id Project the events belong to (Organization > Project > Videos/Images/Posts/Feeds). Sent alongside the other envelope-level context because a client session is scoped to one project. org_id is still derived server-side from the credential and is never taken from the body, so a wrong project_id can only mis-attribute within the caller's own organization.
+    */
+    private ?string $project_id = null;
+    
+    /**
      * @var string|null $region The region property
     */
     private ?string $region = null;
@@ -122,6 +127,7 @@ class TrackEventsRequest implements Parsable
             'language' => fn(ParseNode $n) => $o->setLanguage($n->getStringValue()),
             'os' => fn(ParseNode $n) => $o->setOs($n->getStringValue()),
             'os_version' => fn(ParseNode $n) => $o->setOsVersion($n->getStringValue()),
+            'project_id' => fn(ParseNode $n) => $o->setProjectId($n->getStringValue()),
             'region' => fn(ParseNode $n) => $o->setRegion($n->getStringValue()),
             'user_id' => fn(ParseNode $n) => $o->setUserId($n->getStringValue()),
         ];
@@ -149,6 +155,14 @@ class TrackEventsRequest implements Parsable
     */
     public function getOsVersion(): ?string {
         return $this->os_version;
+    }
+
+    /**
+     * Gets the project_id property value. Project the events belong to (Organization > Project > Videos/Images/Posts/Feeds). Sent alongside the other envelope-level context because a client session is scoped to one project. org_id is still derived server-side from the credential and is never taken from the body, so a wrong project_id can only mis-attribute within the caller's own organization.
+     * @return string|null
+    */
+    public function getProjectId(): ?string {
+        return $this->project_id;
     }
 
     /**
@@ -180,6 +194,7 @@ class TrackEventsRequest implements Parsable
         $writer->writeStringValue('language', $this->getLanguage());
         $writer->writeStringValue('os', $this->getOs());
         $writer->writeStringValue('os_version', $this->getOsVersion());
+        $writer->writeStringValue('project_id', $this->getProjectId());
         $writer->writeStringValue('region', $this->getRegion());
         $writer->writeStringValue('user_id', $this->getUserId());
     }
@@ -246,6 +261,14 @@ class TrackEventsRequest implements Parsable
     */
     public function setOsVersion(?string $value): void {
         $this->os_version = $value;
+    }
+
+    /**
+     * Sets the project_id property value. Project the events belong to (Organization > Project > Videos/Images/Posts/Feeds). Sent alongside the other envelope-level context because a client session is scoped to one project. org_id is still derived server-side from the credential and is never taken from the body, so a wrong project_id can only mis-attribute within the caller's own organization.
+     * @param string|null $value Value to set for the project_id property.
+    */
+    public function setProjectId(?string $value): void {
+        $this->project_id = $value;
     }
 
     /**

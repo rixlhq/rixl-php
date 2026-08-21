@@ -1,30 +1,30 @@
 <?php
 
-namespace Rixl\Sdk\Auth\V1\Policies;
+namespace Rixl\Sdk\Auth\V1\Users\Current\Totp\BackupCodes;
 
 use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
-use Rixl\Sdk\Auth\V1\Policies\Permissions\PermissionsRequestBuilder;
+use Rixl\Sdk\Auth\V1\Users\Current\Totp\BackupCodes\Regenerate\RegenerateRequestBuilder;
 
 /**
- * Builds and executes requests for operations under /auth/v1/policies
+ * Builds and executes requests for operations under /auth/v1/users/current/totp/backup-codes
 */
-class PoliciesRequestBuilder extends BaseRequestBuilder 
+class BackupCodesRequestBuilder extends BaseRequestBuilder 
 {
     /**
-     * The permissions property
+     * The regenerate property
     */
-    public function permissions(): PermissionsRequestBuilder {
-        return new PermissionsRequestBuilder($this->pathParameters, $this->requestAdapter);
+    public function regenerate(): RegenerateRequestBuilder {
+        return new RegenerateRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
     
     /**
-     * Instantiates a new PoliciesRequestBuilder and sets the default values.
+     * Instantiates a new BackupCodesRequestBuilder and sets the default values.
      * @param array<string, mixed>|string $pathParametersOrRawUrl Path parameters for the request or a String representing the raw URL.
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/policies');
+        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/users/current/totp/backup-codes');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {

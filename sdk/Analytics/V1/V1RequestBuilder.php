@@ -5,9 +5,11 @@ namespace Rixl\Sdk\Analytics\V1;
 use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Rixl\Sdk\Analytics\V1\Dashboard\DashboardRequestBuilder;
+use Rixl\Sdk\Analytics\V1\Dashboards\DashboardsRequestBuilder;
 use Rixl\Sdk\Analytics\V1\Events\EventsRequestBuilder;
 use Rixl\Sdk\Analytics\V1\Feeds\FeedsRequestBuilder;
 use Rixl\Sdk\Analytics\V1\Funnels\FunnelsRequestBuilder;
+use Rixl\Sdk\Analytics\V1\Images\ImagesRequestBuilder;
 use Rixl\Sdk\Analytics\V1\Posts\PostsRequestBuilder;
 use Rixl\Sdk\Analytics\V1\Realtime\RealtimeRequestBuilder;
 use Rixl\Sdk\Analytics\V1\Retention\RetentionRequestBuilder;
@@ -24,6 +26,13 @@ class V1RequestBuilder extends BaseRequestBuilder
     */
     public function dashboard(): DashboardRequestBuilder {
         return new DashboardRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
+     * The dashboards property
+    */
+    public function dashboards(): DashboardsRequestBuilder {
+        return new DashboardsRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
     
     /**
@@ -45,6 +54,13 @@ class V1RequestBuilder extends BaseRequestBuilder
     */
     public function funnels(): FunnelsRequestBuilder {
         return new FunnelsRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
+     * The images property
+    */
+    public function images(): ImagesRequestBuilder {
+        return new ImagesRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
     
     /**

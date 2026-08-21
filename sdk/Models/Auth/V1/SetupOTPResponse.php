@@ -5,9 +5,15 @@ namespace Rixl\Sdk\Models\Auth\V1;
 use Microsoft\Kiota\Abstractions\Serialization\Parsable;
 use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
 use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
+use Microsoft\Kiota\Abstractions\Types\TypeUtils;
 
 class SetupOTPResponse implements Parsable 
 {
+    /**
+     * @var array<string>|null $backup_codes The backup_codes property
+    */
+    private ?array $backup_codes = null;
+    
     /**
      * @var string|null $qr_code_url The qr_code_url property
     */
@@ -28,12 +34,28 @@ class SetupOTPResponse implements Parsable
     }
 
     /**
+     * Gets the backup_codes property value. The backup_codes property
+     * @return array<string>|null
+    */
+    public function getBackupCodes(): ?array {
+        return $this->backup_codes;
+    }
+
+    /**
      * The deserialization information for the current model
      * @return array<string, callable(ParseNode): void>
     */
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
+            'backup_codes' => function (ParseNode $n) {
+                $val = $n->getCollectionOfPrimitiveValues();
+                if (is_array($val)) {
+                    TypeUtils::validateCollectionValues($val, 'string');
+                }
+                /** @var array<string>|null $val */
+                $this->setBackupCodes($val);
+            },
             'qr_code_url' => fn(ParseNode $n) => $o->setQrCodeUrl($n->getStringValue()),
             'secret' => fn(ParseNode $n) => $o->setSecret($n->getStringValue()),
         ];
@@ -60,8 +82,17 @@ class SetupOTPResponse implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
+        $writer->writeCollectionOfPrimitiveValues('backup_codes', $this->getBackupCodes());
         $writer->writeStringValue('qr_code_url', $this->getQrCodeUrl());
         $writer->writeStringValue('secret', $this->getSecret());
+    }
+
+    /**
+     * Sets the backup_codes property value. The backup_codes property
+     * @param array<string>|null $value Value to set for the backup_codes property.
+    */
+    public function setBackupCodes(?array $value): void {
+        $this->backup_codes = $value;
     }
 
     /**

@@ -4,6 +4,7 @@ namespace Rixl\Sdk\Auth\V1\Users\Current\Totp;
 
 use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
+use Rixl\Sdk\Auth\V1\Users\Current\Totp\BackupCodes\BackupCodesRequestBuilder;
 use Rixl\Sdk\Auth\V1\Users\Current\Totp\Delete\DeleteRequestBuilder;
 use Rixl\Sdk\Auth\V1\Users\Current\Totp\Setup\SetupRequestBuilder;
 use Rixl\Sdk\Auth\V1\Users\Current\Totp\Status\StatusRequestBuilder;
@@ -14,6 +15,13 @@ use Rixl\Sdk\Auth\V1\Users\Current\Totp\Verify\VerifyRequestBuilder;
 */
 class TotpRequestBuilder extends BaseRequestBuilder 
 {
+    /**
+     * The backupCodes property
+    */
+    public function backupCodes(): BackupCodesRequestBuilder {
+        return new BackupCodesRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
     /**
      * The deletePath property
     */

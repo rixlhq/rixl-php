@@ -5,6 +5,7 @@ namespace Rixl\Sdk\Analytics\V1\Top;
 use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Rixl\Sdk\Analytics\V1\Top\Feeds\FeedsRequestBuilder;
+use Rixl\Sdk\Analytics\V1\Top\Images\ImagesRequestBuilder;
 use Rixl\Sdk\Analytics\V1\Top\Posts\PostsRequestBuilder;
 use Rixl\Sdk\Analytics\V1\Top\Videos\VideosRequestBuilder;
 
@@ -18,6 +19,13 @@ class TopRequestBuilder extends BaseRequestBuilder
     */
     public function feeds(): FeedsRequestBuilder {
         return new FeedsRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
+     * The images property
+    */
+    public function images(): ImagesRequestBuilder {
+        return new ImagesRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
     
     /**

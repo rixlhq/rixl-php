@@ -14,6 +14,11 @@ class PermissionRegistryResponse implements Parsable
     private ?array $permissions = null;
     
     /**
+     * @var int|null $total The total property
+    */
+    private ?int $total = null;
+    
+    /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object
      * @return PermissionRegistryResponse
@@ -30,6 +35,7 @@ class PermissionRegistryResponse implements Parsable
         $o = $this;
         return  [
             'permissions' => fn(ParseNode $n) => $o->setPermissions($n->getCollectionOfObjectValues([PermissionOffset::class, 'createFromDiscriminatorValue'])),
+            'total' => fn(ParseNode $n) => $o->setTotal($n->getIntegerValue()),
         ];
     }
 
@@ -42,11 +48,20 @@ class PermissionRegistryResponse implements Parsable
     }
 
     /**
+     * Gets the total property value. The total property
+     * @return int|null
+    */
+    public function getTotal(): ?int {
+        return $this->total;
+    }
+
+    /**
      * Serializes information the current object
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeCollectionOfObjectValues('permissions', $this->getPermissions());
+        $writer->writeIntegerValue('total', $this->getTotal());
     }
 
     /**
@@ -55,6 +70,14 @@ class PermissionRegistryResponse implements Parsable
     */
     public function setPermissions(?array $value): void {
         $this->permissions = $value;
+    }
+
+    /**
+     * Sets the total property value. The total property
+     * @param int|null $value Value to set for the total property.
+    */
+    public function setTotal(?int $value): void {
+        $this->total = $value;
     }
 
 }

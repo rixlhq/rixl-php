@@ -24,6 +24,11 @@ class GetFilterOptionsRequest implements Parsable
     private ?int $limit = null;
     
     /**
+     * @var string|null $search The search property
+    */
+    private ?string $search = null;
+    
+    /**
      * @var string|null $time_end The time_end property
     */
     private ?string $time_end = null;
@@ -68,6 +73,7 @@ class GetFilterOptionsRequest implements Parsable
             'dataset' => fn(ParseNode $n) => $o->setDataset($n->getStringValue()),
             'field' => fn(ParseNode $n) => $o->setField($n->getStringValue()),
             'limit' => fn(ParseNode $n) => $o->setLimit($n->getIntegerValue()),
+            'search' => fn(ParseNode $n) => $o->setSearch($n->getStringValue()),
             'time_end' => fn(ParseNode $n) => $o->setTimeEnd($n->getStringValue()),
             'time_start' => fn(ParseNode $n) => $o->setTimeStart($n->getStringValue()),
         ];
@@ -79,6 +85,14 @@ class GetFilterOptionsRequest implements Parsable
     */
     public function getLimit(): ?int {
         return $this->limit;
+    }
+
+    /**
+     * Gets the search property value. The search property
+     * @return string|null
+    */
+    public function getSearch(): ?string {
+        return $this->search;
     }
 
     /**
@@ -105,6 +119,7 @@ class GetFilterOptionsRequest implements Parsable
         $writer->writeStringValue('dataset', $this->getDataset());
         $writer->writeStringValue('field', $this->getField());
         $writer->writeIntegerValue('limit', $this->getLimit());
+        $writer->writeStringValue('search', $this->getSearch());
         $writer->writeStringValue('time_end', $this->getTimeEnd());
         $writer->writeStringValue('time_start', $this->getTimeStart());
     }
@@ -131,6 +146,14 @@ class GetFilterOptionsRequest implements Parsable
     */
     public function setLimit(?int $value): void {
         $this->limit = $value;
+    }
+
+    /**
+     * Sets the search property value. The search property
+     * @param string|null $value Value to set for the search property.
+    */
+    public function setSearch(?string $value): void {
+        $this->search = $value;
     }
 
     /**
