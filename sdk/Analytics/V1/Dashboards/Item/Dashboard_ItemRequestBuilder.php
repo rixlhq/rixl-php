@@ -9,6 +9,7 @@ use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Analytics\V1\Dashboards\Item\EscapedDefault\DefaultRequestBuilder;
+use Rixl\Sdk\Analytics\V1\Dashboards\Item\Export\ExportRequestBuilder;
 use Rixl\Sdk\Analytics\V1\Dashboards\Item\Layout\LayoutRequestBuilder;
 use Rixl\Sdk\Analytics\V1\Dashboards\Item\Widgets\WidgetsRequestBuilder;
 use Rixl\Sdk\Models\Analytics\V1\Dashboard;
@@ -24,6 +25,13 @@ class Dashboard_ItemRequestBuilder extends BaseRequestBuilder
     */
     public function escapedDefault(): DefaultRequestBuilder {
         return new DefaultRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
+     * The export property
+    */
+    public function export(): ExportRequestBuilder {
+        return new ExportRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
     
     /**
