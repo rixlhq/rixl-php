@@ -8,6 +8,7 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
+use Rixl\Sdk\Auth\V1\Users\Current\Avatar\AvatarRequestBuilder;
 use Rixl\Sdk\Auth\V1\Users\Current\Emails\EmailsRequestBuilder;
 use Rixl\Sdk\Auth\V1\Users\Current\Name\NameRequestBuilder;
 use Rixl\Sdk\Auth\V1\Users\Current\Passkeys\PasskeysRequestBuilder;
@@ -20,6 +21,13 @@ use Rixl\Sdk\Models\Auth\V1\GetUserResponse;
 */
 class CurrentRequestBuilder extends BaseRequestBuilder 
 {
+    /**
+     * The avatar property
+    */
+    public function avatar(): AvatarRequestBuilder {
+        return new AvatarRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
     /**
      * The emails property
     */

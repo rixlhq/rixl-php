@@ -39,6 +39,11 @@ class UserInfo implements Parsable
     private ?string $id = null;
     
     /**
+     * @var string|null $image_id The image_id property
+    */
+    private ?string $image_id = null;
+    
+    /**
      * @var string|null $image_url The image_url property
     */
     private ?string $image_url = null;
@@ -112,6 +117,7 @@ class UserInfo implements Parsable
             'email_verified' => fn(ParseNode $n) => $o->setEmailVerified($n->getBooleanValue()),
             'first_name' => fn(ParseNode $n) => $o->setFirstName($n->getStringValue()),
             'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
+            'image_id' => fn(ParseNode $n) => $o->setImageId($n->getStringValue()),
             'image_url' => fn(ParseNode $n) => $o->setImageUrl($n->getStringValue()),
             'language_code' => fn(ParseNode $n) => $o->setLanguageCode($n->getStringValue()),
             'last_name' => fn(ParseNode $n) => $o->setLastName($n->getStringValue()),
@@ -133,6 +139,14 @@ class UserInfo implements Parsable
     */
     public function getId(): ?string {
         return $this->id;
+    }
+
+    /**
+     * Gets the image_id property value. The image_id property
+     * @return string|null
+    */
+    public function getImageId(): ?string {
+        return $this->image_id;
     }
 
     /**
@@ -178,6 +192,7 @@ class UserInfo implements Parsable
         $writer->writeBooleanValue('email_verified', $this->getEmailVerified());
         $writer->writeStringValue('first_name', $this->getFirstName());
         $writer->writeStringValue('id', $this->getId());
+        $writer->writeStringValue('image_id', $this->getImageId());
         $writer->writeStringValue('image_url', $this->getImageUrl());
         $writer->writeStringValue('language_code', $this->getLanguageCode());
         $writer->writeStringValue('last_name', $this->getLastName());
@@ -230,6 +245,14 @@ class UserInfo implements Parsable
     */
     public function setId(?string $value): void {
         $this->id = $value;
+    }
+
+    /**
+     * Sets the image_id property value. The image_id property
+     * @param string|null $value Value to set for the image_id property.
+    */
+    public function setImageId(?string $value): void {
+        $this->image_id = $value;
     }
 
     /**
