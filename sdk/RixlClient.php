@@ -21,6 +21,7 @@ use Rixl\Sdk\Media\MediaRequestBuilder;
 use Rixl\Sdk\Organizations\OrganizationsRequestBuilder;
 use Rixl\Sdk\Platform\PlatformRequestBuilder;
 use Rixl\Sdk\Posts\PostsRequestBuilder;
+use Rixl\Sdk\Support\SupportRequestBuilder;
 
 /**
  * The main entry point of the SDK, exposes the configuration and the fluent API.
@@ -88,6 +89,13 @@ class RixlClient extends BaseRequestBuilder
     */
     public function posts(): PostsRequestBuilder {
         return new PostsRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
+     * The support property
+    */
+    public function support(): SupportRequestBuilder {
+        return new SupportRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
     
     /**
