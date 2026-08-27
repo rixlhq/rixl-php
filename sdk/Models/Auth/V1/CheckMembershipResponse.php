@@ -9,6 +9,11 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class CheckMembershipResponse implements Parsable 
 {
     /**
+     * @var bool|null $is_internal_org The is_internal_org property
+    */
+    private ?bool $is_internal_org = null;
+    
+    /**
      * @var bool|null $is_member The is_member property
     */
     private ?bool $is_member = null;
@@ -29,8 +34,17 @@ class CheckMembershipResponse implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
+            'is_internal_org' => fn(ParseNode $n) => $o->setIsInternalOrg($n->getBooleanValue()),
             'is_member' => fn(ParseNode $n) => $o->setIsMember($n->getBooleanValue()),
         ];
+    }
+
+    /**
+     * Gets the is_internal_org property value. The is_internal_org property
+     * @return bool|null
+    */
+    public function getIsInternalOrg(): ?bool {
+        return $this->is_internal_org;
     }
 
     /**
@@ -46,7 +60,16 @@ class CheckMembershipResponse implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
+        $writer->writeBooleanValue('is_internal_org', $this->getIsInternalOrg());
         $writer->writeBooleanValue('is_member', $this->getIsMember());
+    }
+
+    /**
+     * Sets the is_internal_org property value. The is_internal_org property
+     * @param bool|null $value Value to set for the is_internal_org property.
+    */
+    public function setIsInternalOrg(?bool $value): void {
+        $this->is_internal_org = $value;
     }
 
     /**
