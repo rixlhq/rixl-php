@@ -5,6 +5,7 @@ namespace Rixl\Sdk\Models\Auth\V1;
 use Microsoft\Kiota\Abstractions\Serialization\Parsable;
 use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
 use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
+use Microsoft\Kiota\Abstractions\Types\TypeUtils;
 
 class UserInfo implements Parsable 
 {
@@ -57,6 +58,16 @@ class UserInfo implements Parsable
      * @var string|null $last_name The last_name property
     */
     private ?string $last_name = null;
+    
+    /**
+     * @var array<string>|null $permissions The permissions property
+    */
+    private ?array $permissions = null;
+    
+    /**
+     * @var array<Policy>|null $policies The policies property
+    */
+    private ?array $policies = null;
     
     /**
      * @var string|null $username The username property
@@ -121,6 +132,15 @@ class UserInfo implements Parsable
             'image_url' => fn(ParseNode $n) => $o->setImageUrl($n->getStringValue()),
             'language_code' => fn(ParseNode $n) => $o->setLanguageCode($n->getStringValue()),
             'last_name' => fn(ParseNode $n) => $o->setLastName($n->getStringValue()),
+            'permissions' => function (ParseNode $n) {
+                $val = $n->getCollectionOfPrimitiveValues();
+                if (is_array($val)) {
+                    TypeUtils::validateCollectionValues($val, 'string');
+                }
+                /** @var array<string>|null $val */
+                $this->setPermissions($val);
+            },
+            'policies' => fn(ParseNode $n) => $o->setPolicies($n->getCollectionOfObjectValues([Policy::class, 'createFromDiscriminatorValue'])),
             'username' => fn(ParseNode $n) => $o->setUsername($n->getStringValue()),
         ];
     }
@@ -174,6 +194,22 @@ class UserInfo implements Parsable
     }
 
     /**
+     * Gets the permissions property value. The permissions property
+     * @return array<string>|null
+    */
+    public function getPermissions(): ?array {
+        return $this->permissions;
+    }
+
+    /**
+     * Gets the policies property value. The policies property
+     * @return array<Policy>|null
+    */
+    public function getPolicies(): ?array {
+        return $this->policies;
+    }
+
+    /**
      * Gets the username property value. The username property
      * @return string|null
     */
@@ -196,6 +232,8 @@ class UserInfo implements Parsable
         $writer->writeStringValue('image_url', $this->getImageUrl());
         $writer->writeStringValue('language_code', $this->getLanguageCode());
         $writer->writeStringValue('last_name', $this->getLastName());
+        $writer->writeCollectionOfPrimitiveValues('permissions', $this->getPermissions());
+        $writer->writeCollectionOfObjectValues('policies', $this->getPolicies());
         $writer->writeStringValue('username', $this->getUsername());
     }
 
@@ -277,6 +315,22 @@ class UserInfo implements Parsable
     */
     public function setLastName(?string $value): void {
         $this->last_name = $value;
+    }
+
+    /**
+     * Sets the permissions property value. The permissions property
+     * @param array<string>|null $value Value to set for the permissions property.
+    */
+    public function setPermissions(?array $value): void {
+        $this->permissions = $value;
+    }
+
+    /**
+     * Sets the policies property value. The policies property
+     * @param array<Policy>|null $value Value to set for the policies property.
+    */
+    public function setPolicies(?array $value): void {
+        $this->policies = $value;
     }
 
     /**
