@@ -6,6 +6,7 @@ use DateTime;
 use Microsoft\Kiota\Abstractions\Serialization\Parsable;
 use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
 use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
+use Microsoft\Kiota\Abstractions\Types\TypeUtils;
 
 class ApiKey implements Parsable 
 {
@@ -38,6 +39,16 @@ class ApiKey implements Parsable
      * @var string|null $org_id The org_id property
     */
     private ?string $org_id = null;
+    
+    /**
+     * @var array<string>|null $permissions The permissions property
+    */
+    private ?array $permissions = null;
+    
+    /**
+     * @var array<string>|null $policy_ids The policy_ids property
+    */
+    private ?array $policy_ids = null;
     
     /**
      * @var string|null $project_id The project_id property
@@ -92,6 +103,22 @@ class ApiKey implements Parsable
             'last_used' => fn(ParseNode $n) => $o->setLastUsed($n->getDateTimeValue()),
             'name' => fn(ParseNode $n) => $o->setName($n->getStringValue()),
             'org_id' => fn(ParseNode $n) => $o->setOrgId($n->getStringValue()),
+            'permissions' => function (ParseNode $n) {
+                $val = $n->getCollectionOfPrimitiveValues();
+                if (is_array($val)) {
+                    TypeUtils::validateCollectionValues($val, 'string');
+                }
+                /** @var array<string>|null $val */
+                $this->setPermissions($val);
+            },
+            'policy_ids' => function (ParseNode $n) {
+                $val = $n->getCollectionOfPrimitiveValues();
+                if (is_array($val)) {
+                    TypeUtils::validateCollectionValues($val, 'string');
+                }
+                /** @var array<string>|null $val */
+                $this->setPolicyIds($val);
+            },
             'project_id' => fn(ParseNode $n) => $o->setProjectId($n->getStringValue()),
             'project_name' => fn(ParseNode $n) => $o->setProjectName($n->getStringValue()),
             'secret' => fn(ParseNode $n) => $o->setSecret($n->getStringValue()),
@@ -131,6 +158,22 @@ class ApiKey implements Parsable
     }
 
     /**
+     * Gets the permissions property value. The permissions property
+     * @return array<string>|null
+    */
+    public function getPermissions(): ?array {
+        return $this->permissions;
+    }
+
+    /**
+     * Gets the policy_ids property value. The policy_ids property
+     * @return array<string>|null
+    */
+    public function getPolicyIds(): ?array {
+        return $this->policy_ids;
+    }
+
+    /**
      * Gets the project_id property value. The project_id property
      * @return string|null
     */
@@ -165,6 +208,8 @@ class ApiKey implements Parsable
         $writer->writeDateTimeValue('last_used', $this->getLastUsed());
         $writer->writeStringValue('name', $this->getName());
         $writer->writeStringValue('org_id', $this->getOrgId());
+        $writer->writeCollectionOfPrimitiveValues('permissions', $this->getPermissions());
+        $writer->writeCollectionOfPrimitiveValues('policy_ids', $this->getPolicyIds());
         $writer->writeStringValue('project_id', $this->getProjectId());
         $writer->writeStringValue('project_name', $this->getProjectName());
         $writer->writeStringValue('secret', $this->getSecret());
@@ -216,6 +261,22 @@ class ApiKey implements Parsable
     */
     public function setOrgId(?string $value): void {
         $this->org_id = $value;
+    }
+
+    /**
+     * Sets the permissions property value. The permissions property
+     * @param array<string>|null $value Value to set for the permissions property.
+    */
+    public function setPermissions(?array $value): void {
+        $this->permissions = $value;
+    }
+
+    /**
+     * Sets the policy_ids property value. The policy_ids property
+     * @param array<string>|null $value Value to set for the policy_ids property.
+    */
+    public function setPolicyIds(?array $value): void {
+        $this->policy_ids = $value;
     }
 
     /**

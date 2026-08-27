@@ -8,6 +8,7 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
+use Rixl\Sdk\Models\Apikeys\V1\UpdateApiKeyResponse;
 use Rixl\Sdk\Models\Google\Protobuf\EscapedEmpty;
 use Rixl\Sdk\Organizations\Item\ApiKeys\V1\Item\Rotate\RotateRequestBuilder;
 
@@ -49,6 +50,18 @@ class WithKey_ItemRequestBuilder extends BaseRequestBuilder
     }
 
     /**
+     * UpdateApiKey
+     * @param WithKey_PatchRequestBody $body The request body
+     * @param WithKey_ItemRequestBuilderPatchRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * @return Promise<UpdateApiKeyResponse|null>
+     * @throws Exception
+    */
+    public function patch(WithKey_PatchRequestBody $body, ?WithKey_ItemRequestBuilderPatchRequestConfiguration $requestConfiguration = null): Promise {
+        $requestInfo = $this->toPatchRequestInformation($body, $requestConfiguration);
+        return $this->requestAdapter->sendAsync($requestInfo, [UpdateApiKeyResponse::class, 'createFromDiscriminatorValue'], null);
+    }
+
+    /**
      * DeleteApiKey
      * @param WithKey_ItemRequestBuilderDeleteRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
@@ -63,6 +76,26 @@ class WithKey_ItemRequestBuilder extends BaseRequestBuilder
             $requestInfo->addRequestOptions(...$requestConfiguration->options);
         }
         $requestInfo->tryAddHeader('Accept', "application/json");
+        return $requestInfo;
+    }
+
+    /**
+     * UpdateApiKey
+     * @param WithKey_PatchRequestBody $body The request body
+     * @param WithKey_ItemRequestBuilderPatchRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * @return RequestInformation
+    */
+    public function toPatchRequestInformation(WithKey_PatchRequestBody $body, ?WithKey_ItemRequestBuilderPatchRequestConfiguration $requestConfiguration = null): RequestInformation {
+        $requestInfo = new RequestInformation();
+        $requestInfo->urlTemplate = $this->urlTemplate;
+        $requestInfo->pathParameters = $this->pathParameters;
+        $requestInfo->httpMethod = HttpMethod::PATCH;
+        if ($requestConfiguration !== null) {
+            $requestInfo->addHeaders($requestConfiguration->headers);
+            $requestInfo->addRequestOptions(...$requestConfiguration->options);
+        }
+        $requestInfo->tryAddHeader('Accept', "application/json");
+        $requestInfo->setContentFromParsable($this->requestAdapter, "application/json", $body);
         return $requestInfo;
     }
 
