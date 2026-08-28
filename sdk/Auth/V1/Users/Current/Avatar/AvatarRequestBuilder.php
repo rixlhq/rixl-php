@@ -8,6 +8,7 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
+use Rixl\Sdk\Auth\V1\Users\Current\Avatar\Upload\UploadRequestBuilder;
 use Rixl\Sdk\Models\Auth\V1\UpdateUserAvatarRequest;
 use Rixl\Sdk\Models\Auth\V1\UpdateUserAvatarResponse;
 
@@ -16,6 +17,13 @@ use Rixl\Sdk\Models\Auth\V1\UpdateUserAvatarResponse;
 */
 class AvatarRequestBuilder extends BaseRequestBuilder 
 {
+    /**
+     * The upload property
+    */
+    public function upload(): UploadRequestBuilder {
+        return new UploadRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
     /**
      * Instantiates a new AvatarRequestBuilder and sets the default values.
      * @param array<string, mixed>|string $pathParametersOrRawUrl Path parameters for the request or a String representing the raw URL.
