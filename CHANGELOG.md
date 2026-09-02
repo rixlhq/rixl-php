@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.5.0](https://github.com/rixlhq/rixl-php/compare/v0.4.0...v0.5.0) (2026-09-02)
+
+
+### Features
+
+* **sdk:** regenerate based on latest OpenAPI spec ([cecff25](https://github.com/rixlhq/rixl-php/commit/cecff2548f2b411536e64d30b2ffbf78d7d14906))
+* **sdk:** regenerate based on latest OpenAPI spec ([720b274](https://github.com/rixlhq/rixl-php/commit/720b27483620f0d84e7c034604b74da6247b6dcb))
+* **sdk:** regenerate based on latest OpenAPI spec ([fda86b3](https://github.com/rixlhq/rixl-php/commit/fda86b3662c3cb182f34515f9d16b970ed75e265))
+
 ## [0.4.0](https://github.com/rixlhq/rixl-php/compare/v0.3.0...v0.4.0) (2026-08-28)
 
 
