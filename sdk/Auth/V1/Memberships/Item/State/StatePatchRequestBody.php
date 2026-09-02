@@ -6,6 +6,7 @@ use Microsoft\Kiota\Abstractions\Serialization\Parsable;
 use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
 use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 use Rixl\Sdk\Models\Auth\V1\MembershipApplicationState;
+use Rixl\Sdk\Models\Auth\V1\UserOrgRequest;
 
 class StatePatchRequestBody implements Parsable 
 {
@@ -13,6 +14,11 @@ class StatePatchRequestBody implements Parsable
      * @var MembershipApplicationState|null $state The state property
     */
     private ?MembershipApplicationState $state = null;
+    
+    /**
+     * @var UserOrgRequest|null $user The user property
+    */
+    private ?UserOrgRequest $user = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -31,6 +37,7 @@ class StatePatchRequestBody implements Parsable
         $o = $this;
         return  [
             'state' => fn(ParseNode $n) => $o->setState($n->getEnumValue(MembershipApplicationState::class)),
+            'user' => fn(ParseNode $n) => $o->setUser($n->getObjectValue([UserOrgRequest::class, 'createFromDiscriminatorValue'])),
         ];
     }
 
@@ -43,11 +50,20 @@ class StatePatchRequestBody implements Parsable
     }
 
     /**
+     * Gets the user property value. The user property
+     * @return UserOrgRequest|null
+    */
+    public function getUser(): ?UserOrgRequest {
+        return $this->user;
+    }
+
+    /**
      * Serializes information the current object
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeEnumValue('state', $this->getState());
+        $writer->writeObjectValue('user', $this->getUser());
     }
 
     /**
@@ -56,6 +72,14 @@ class StatePatchRequestBody implements Parsable
     */
     public function setState(?MembershipApplicationState $value): void {
         $this->state = $value;
+    }
+
+    /**
+     * Sets the user property value. The user property
+     * @param UserOrgRequest|null $value Value to set for the user property.
+    */
+    public function setUser(?UserOrgRequest $value): void {
+        $this->user = $value;
     }
 
 }
