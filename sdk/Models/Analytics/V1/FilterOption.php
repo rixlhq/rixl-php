@@ -9,6 +9,11 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class FilterOption implements Parsable 
 {
     /**
+     * @var int|null $count The count property
+    */
+    private ?int $count = null;
+    
+    /**
      * @var string|null $value The value property
     */
     private ?string $value = null;
@@ -23,12 +28,21 @@ class FilterOption implements Parsable
     }
 
     /**
+     * Gets the count property value. The count property
+     * @return int|null
+    */
+    public function getCount(): ?int {
+        return $this->count;
+    }
+
+    /**
      * The deserialization information for the current model
      * @return array<string, callable(ParseNode): void>
     */
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
+            'count' => fn(ParseNode $n) => $o->setCount($n->getIntegerValue()),
             'value' => fn(ParseNode $n) => $o->setValue($n->getStringValue()),
         ];
     }
@@ -46,7 +60,16 @@ class FilterOption implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
+        $writer->writeIntegerValue('count', $this->getCount());
         $writer->writeStringValue('value', $this->getValue());
+    }
+
+    /**
+     * Sets the count property value. The count property
+     * @param int|null $value Value to set for the count property.
+    */
+    public function setCount(?int $value): void {
+        $this->count = $value;
     }
 
     /**

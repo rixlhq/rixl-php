@@ -14,6 +14,11 @@ class ListClientCredentialsResponse implements Parsable
     private ?array $credentials = null;
     
     /**
+     * @var int|null $total The total property
+    */
+    private ?int $total = null;
+    
+    /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object
      * @return ListClientCredentialsResponse
@@ -38,7 +43,16 @@ class ListClientCredentialsResponse implements Parsable
         $o = $this;
         return  [
             'credentials' => fn(ParseNode $n) => $o->setCredentials($n->getCollectionOfObjectValues([ClientCredential::class, 'createFromDiscriminatorValue'])),
+            'total' => fn(ParseNode $n) => $o->setTotal($n->getIntegerValue()),
         ];
+    }
+
+    /**
+     * Gets the total property value. The total property
+     * @return int|null
+    */
+    public function getTotal(): ?int {
+        return $this->total;
     }
 
     /**
@@ -47,6 +61,7 @@ class ListClientCredentialsResponse implements Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeCollectionOfObjectValues('credentials', $this->getCredentials());
+        $writer->writeIntegerValue('total', $this->getTotal());
     }
 
     /**
@@ -55,6 +70,14 @@ class ListClientCredentialsResponse implements Parsable
     */
     public function setCredentials(?array $value): void {
         $this->credentials = $value;
+    }
+
+    /**
+     * Sets the total property value. The total property
+     * @param int|null $value Value to set for the total property.
+    */
+    public function setTotal(?int $value): void {
+        $this->total = $value;
     }
 
 }

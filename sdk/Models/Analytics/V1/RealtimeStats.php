@@ -9,6 +9,16 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class RealtimeStats implements Parsable 
 {
     /**
+     * @var int|null $active_users The active_users property
+    */
+    private ?int $active_users = null;
+    
+    /**
+     * @var int|null $events_per_minute The events_per_minute property
+    */
+    private ?int $events_per_minute = null;
+    
+    /**
      * @var array<RecentEvent>|null $recent_events The recent_events property
     */
     private ?array $recent_events = null;
@@ -38,12 +48,30 @@ class RealtimeStats implements Parsable
     }
 
     /**
+     * Gets the active_users property value. The active_users property
+     * @return int|null
+    */
+    public function getActiveUsers(): ?int {
+        return $this->active_users;
+    }
+
+    /**
+     * Gets the events_per_minute property value. The events_per_minute property
+     * @return int|null
+    */
+    public function getEventsPerMinute(): ?int {
+        return $this->events_per_minute;
+    }
+
+    /**
      * The deserialization information for the current model
      * @return array<string, callable(ParseNode): void>
     */
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
+            'active_users' => fn(ParseNode $n) => $o->setActiveUsers($n->getIntegerValue()),
+            'events_per_minute' => fn(ParseNode $n) => $o->setEventsPerMinute($n->getIntegerValue()),
             'recent_events' => fn(ParseNode $n) => $o->setRecentEvents($n->getCollectionOfObjectValues([RecentEvent::class, 'createFromDiscriminatorValue'])),
             'timestamp' => fn(ParseNode $n) => $o->setTimestamp($n->getStringValue()),
             'top_countries' => fn(ParseNode $n) => $o->setTopCountries($n->getCollectionOfObjectValues([CountryCount::class, 'createFromDiscriminatorValue'])),
@@ -88,10 +116,28 @@ class RealtimeStats implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
+        $writer->writeIntegerValue('active_users', $this->getActiveUsers());
+        $writer->writeIntegerValue('events_per_minute', $this->getEventsPerMinute());
         $writer->writeCollectionOfObjectValues('recent_events', $this->getRecentEvents());
         $writer->writeStringValue('timestamp', $this->getTimestamp());
         $writer->writeCollectionOfObjectValues('top_countries', $this->getTopCountries());
         $writer->writeCollectionOfObjectValues('top_events', $this->getTopEvents());
+    }
+
+    /**
+     * Sets the active_users property value. The active_users property
+     * @param int|null $value Value to set for the active_users property.
+    */
+    public function setActiveUsers(?int $value): void {
+        $this->active_users = $value;
+    }
+
+    /**
+     * Sets the events_per_minute property value. The events_per_minute property
+     * @param int|null $value Value to set for the events_per_minute property.
+    */
+    public function setEventsPerMinute(?int $value): void {
+        $this->events_per_minute = $value;
     }
 
     /**

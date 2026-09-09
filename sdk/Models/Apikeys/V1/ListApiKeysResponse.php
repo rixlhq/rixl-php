@@ -14,6 +14,11 @@ class ListApiKeysResponse implements Parsable
     private ?array $api_keys = null;
     
     /**
+     * @var int|null $total The total property
+    */
+    private ?int $total = null;
+    
+    /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object
      * @return ListApiKeysResponse
@@ -38,7 +43,16 @@ class ListApiKeysResponse implements Parsable
         $o = $this;
         return  [
             'api_keys' => fn(ParseNode $n) => $o->setApiKeys($n->getCollectionOfObjectValues([ApiKey::class, 'createFromDiscriminatorValue'])),
+            'total' => fn(ParseNode $n) => $o->setTotal($n->getIntegerValue()),
         ];
+    }
+
+    /**
+     * Gets the total property value. The total property
+     * @return int|null
+    */
+    public function getTotal(): ?int {
+        return $this->total;
     }
 
     /**
@@ -47,6 +61,7 @@ class ListApiKeysResponse implements Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeCollectionOfObjectValues('api_keys', $this->getApiKeys());
+        $writer->writeIntegerValue('total', $this->getTotal());
     }
 
     /**
@@ -55,6 +70,14 @@ class ListApiKeysResponse implements Parsable
     */
     public function setApiKeys(?array $value): void {
         $this->api_keys = $value;
+    }
+
+    /**
+     * Sets the total property value. The total property
+     * @param int|null $value Value to set for the total property.
+    */
+    public function setTotal(?int $value): void {
+        $this->total = $value;
     }
 
 }

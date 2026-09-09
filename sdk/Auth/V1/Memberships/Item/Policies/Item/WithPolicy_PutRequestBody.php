@@ -25,11 +25,6 @@ class WithPolicy_PutRequestBody implements Parsable
     private ?array $permissions = null;
     
     /**
-     * @var string|null $policy_id The policy_id property
-    */
-    private ?string $policy_id = null;
-    
-    /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object
      * @return WithPolicy_PutRequestBody
@@ -63,7 +58,6 @@ class WithPolicy_PutRequestBody implements Parsable
                 /** @var array<string>|null $val */
                 $this->setPermissions($val);
             },
-            'policy_id' => fn(ParseNode $n) => $o->setPolicyId($n->getStringValue()),
         ];
     }
 
@@ -84,14 +78,6 @@ class WithPolicy_PutRequestBody implements Parsable
     }
 
     /**
-     * Gets the policy_id property value. The policy_id property
-     * @return string|null
-    */
-    public function getPolicyId(): ?string {
-        return $this->policy_id;
-    }
-
-    /**
      * Serializes information the current object
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
@@ -99,7 +85,6 @@ class WithPolicy_PutRequestBody implements Parsable
         $writer->writeStringValue('description', $this->getDescription());
         $writer->writeStringValue('name', $this->getName());
         $writer->writeCollectionOfPrimitiveValues('permissions', $this->getPermissions());
-        $writer->writeStringValue('policy_id', $this->getPolicyId());
     }
 
     /**
@@ -124,14 +109,6 @@ class WithPolicy_PutRequestBody implements Parsable
     */
     public function setPermissions(?array $value): void {
         $this->permissions = $value;
-    }
-
-    /**
-     * Sets the policy_id property value. The policy_id property
-     * @param string|null $value Value to set for the policy_id property.
-    */
-    public function setPolicyId(?string $value): void {
-        $this->policy_id = $value;
     }
 
 }

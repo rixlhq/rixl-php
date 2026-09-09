@@ -6,28 +6,19 @@ use Microsoft\Kiota\Abstractions\Serialization\Parsable;
 use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
 use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 use Microsoft\Kiota\Abstractions\Types\TypeUtils;
+use Rixl\Sdk\Models\Google\Protobuf\Timestamp;
 
 class WithKey_PatchRequestBody implements Parsable 
 {
     /**
-     * @var WithKey_PatchRequestBody_expiring_at|null $expiring_at The expiring_at property
+     * @var Timestamp|null $expiring_at The expiring_at property
     */
-    private ?WithKey_PatchRequestBody_expiring_at $expiring_at = null;
-    
-    /**
-     * @var string|null $key_id The key_id property
-    */
-    private ?string $key_id = null;
+    private ?Timestamp $expiring_at = null;
     
     /**
      * @var string|null $name The name property
     */
     private ?string $name = null;
-    
-    /**
-     * @var string|null $org_id The org_id property
-    */
-    private ?string $org_id = null;
     
     /**
      * @var array<string>|null $policy_ids The policy_ids property
@@ -50,9 +41,9 @@ class WithKey_PatchRequestBody implements Parsable
 
     /**
      * Gets the expiring_at property value. The expiring_at property
-     * @return WithKey_PatchRequestBody_expiring_at|null
+     * @return Timestamp|null
     */
-    public function getExpiringAt(): ?WithKey_PatchRequestBody_expiring_at {
+    public function getExpiringAt(): ?Timestamp {
         return $this->expiring_at;
     }
 
@@ -63,10 +54,8 @@ class WithKey_PatchRequestBody implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'expiring_at' => fn(ParseNode $n) => $o->setExpiringAt($n->getObjectValue([WithKey_PatchRequestBody_expiring_at::class, 'createFromDiscriminatorValue'])),
-            'key_id' => fn(ParseNode $n) => $o->setKeyId($n->getStringValue()),
+            'expiring_at' => fn(ParseNode $n) => $o->setExpiringAt($n->getObjectValue([Timestamp::class, 'createFromDiscriminatorValue'])),
             'name' => fn(ParseNode $n) => $o->setName($n->getStringValue()),
-            'org_id' => fn(ParseNode $n) => $o->setOrgId($n->getStringValue()),
             'policy_ids' => function (ParseNode $n) {
                 $val = $n->getCollectionOfPrimitiveValues();
                 if (is_array($val)) {
@@ -80,27 +69,11 @@ class WithKey_PatchRequestBody implements Parsable
     }
 
     /**
-     * Gets the key_id property value. The key_id property
-     * @return string|null
-    */
-    public function getKeyId(): ?string {
-        return $this->key_id;
-    }
-
-    /**
      * Gets the name property value. The name property
      * @return string|null
     */
     public function getName(): ?string {
         return $this->name;
-    }
-
-    /**
-     * Gets the org_id property value. The org_id property
-     * @return string|null
-    */
-    public function getOrgId(): ?string {
-        return $this->org_id;
     }
 
     /**
@@ -125,27 +98,17 @@ class WithKey_PatchRequestBody implements Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeObjectValue('expiring_at', $this->getExpiringAt());
-        $writer->writeStringValue('key_id', $this->getKeyId());
         $writer->writeStringValue('name', $this->getName());
-        $writer->writeStringValue('org_id', $this->getOrgId());
         $writer->writeCollectionOfPrimitiveValues('policy_ids', $this->getPolicyIds());
         $writer->writeBooleanValue('replace_policies', $this->getReplacePolicies());
     }
 
     /**
      * Sets the expiring_at property value. The expiring_at property
-     * @param WithKey_PatchRequestBody_expiring_at|null $value Value to set for the expiring_at property.
+     * @param Timestamp|null $value Value to set for the expiring_at property.
     */
-    public function setExpiringAt(?WithKey_PatchRequestBody_expiring_at $value): void {
+    public function setExpiringAt(?Timestamp $value): void {
         $this->expiring_at = $value;
-    }
-
-    /**
-     * Sets the key_id property value. The key_id property
-     * @param string|null $value Value to set for the key_id property.
-    */
-    public function setKeyId(?string $value): void {
-        $this->key_id = $value;
     }
 
     /**
@@ -154,14 +117,6 @@ class WithKey_PatchRequestBody implements Parsable
     */
     public function setName(?string $value): void {
         $this->name = $value;
-    }
-
-    /**
-     * Sets the org_id property value. The org_id property
-     * @param string|null $value Value to set for the org_id property.
-    */
-    public function setOrgId(?string $value): void {
-        $this->org_id = $value;
     }
 
     /**

@@ -9,6 +9,11 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class EventCount implements Parsable 
 {
     /**
+     * @var int|null $count The count property
+    */
+    private ?int $count = null;
+    
+    /**
      * @var string|null $event_type The event_type property
     */
     private ?string $event_type = null;
@@ -20,6 +25,14 @@ class EventCount implements Parsable
     */
     public static function createFromDiscriminatorValue(ParseNode $parseNode): EventCount {
         return new EventCount();
+    }
+
+    /**
+     * Gets the count property value. The count property
+     * @return int|null
+    */
+    public function getCount(): ?int {
+        return $this->count;
     }
 
     /**
@@ -37,6 +50,7 @@ class EventCount implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
+            'count' => fn(ParseNode $n) => $o->setCount($n->getIntegerValue()),
             'event_type' => fn(ParseNode $n) => $o->setEventType($n->getStringValue()),
         ];
     }
@@ -46,7 +60,16 @@ class EventCount implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
+        $writer->writeIntegerValue('count', $this->getCount());
         $writer->writeStringValue('event_type', $this->getEventType());
+    }
+
+    /**
+     * Sets the count property value. The count property
+     * @param int|null $value Value to set for the count property.
+    */
+    public function setCount(?int $value): void {
+        $this->count = $value;
     }
 
     /**

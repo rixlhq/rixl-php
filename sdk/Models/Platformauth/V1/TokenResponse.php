@@ -20,6 +20,11 @@ class TokenResponse implements Parsable
     private ?DateTime $expires_at = null;
     
     /**
+     * @var int|null $expires_in The expires_in property
+    */
+    private ?int $expires_in = null;
+    
+    /**
      * @var string|null $refresh_token The refresh_token property
     */
     private ?string $refresh_token = null;
@@ -55,6 +60,14 @@ class TokenResponse implements Parsable
     }
 
     /**
+     * Gets the expires_in property value. The expires_in property
+     * @return int|null
+    */
+    public function getExpiresIn(): ?int {
+        return $this->expires_in;
+    }
+
+    /**
      * The deserialization information for the current model
      * @return array<string, callable(ParseNode): void>
     */
@@ -63,6 +76,7 @@ class TokenResponse implements Parsable
         return  [
             'access_token' => fn(ParseNode $n) => $o->setAccessToken($n->getStringValue()),
             'expires_at' => fn(ParseNode $n) => $o->setExpiresAt($n->getDateTimeValue()),
+            'expires_in' => fn(ParseNode $n) => $o->setExpiresIn($n->getIntegerValue()),
             'refresh_token' => fn(ParseNode $n) => $o->setRefreshToken($n->getStringValue()),
             'token_type' => fn(ParseNode $n) => $o->setTokenType($n->getStringValue()),
         ];
@@ -91,6 +105,7 @@ class TokenResponse implements Parsable
     public function serialize(SerializationWriter $writer): void {
         $writer->writeStringValue('access_token', $this->getAccessToken());
         $writer->writeDateTimeValue('expires_at', $this->getExpiresAt());
+        $writer->writeIntegerValue('expires_in', $this->getExpiresIn());
         $writer->writeStringValue('refresh_token', $this->getRefreshToken());
         $writer->writeStringValue('token_type', $this->getTokenType());
     }
@@ -109,6 +124,14 @@ class TokenResponse implements Parsable
     */
     public function setExpiresAt(?DateTime $value): void {
         $this->expires_at = $value;
+    }
+
+    /**
+     * Sets the expires_in property value. The expires_in property
+     * @param int|null $value Value to set for the expires_in property.
+    */
+    public function setExpiresIn(?int $value): void {
+        $this->expires_in = $value;
     }
 
     /**

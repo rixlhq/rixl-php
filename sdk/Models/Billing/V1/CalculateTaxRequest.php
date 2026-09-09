@@ -29,6 +29,11 @@ class CalculateTaxRequest implements Parsable
     private ?string $currency = null;
     
     /**
+     * @var int|null $interval_count The interval_count property
+    */
+    private ?int $interval_count = null;
+    
+    /**
      * @var array<TaxLineItem>|null $line_items The line_items property
     */
     private ?array $line_items = null;
@@ -105,12 +110,21 @@ class CalculateTaxRequest implements Parsable
             'billing_address' => fn(ParseNode $n) => $o->setBillingAddress($n->getObjectValue([BillingAddress::class, 'createFromDiscriminatorValue'])),
             'billing_cycle' => fn(ParseNode $n) => $o->setBillingCycle($n->getEnumValue(BillingCycle::class)),
             'currency' => fn(ParseNode $n) => $o->setCurrency($n->getStringValue()),
+            'interval_count' => fn(ParseNode $n) => $o->setIntervalCount($n->getIntegerValue()),
             'line_items' => fn(ParseNode $n) => $o->setLineItems($n->getCollectionOfObjectValues([TaxLineItem::class, 'createFromDiscriminatorValue'])),
             'metadata' => fn(ParseNode $n) => $o->setMetadata($n->getObjectValue([CalculateTaxRequest_metadata::class, 'createFromDiscriminatorValue'])),
             'org_id' => fn(ParseNode $n) => $o->setOrgId($n->getStringValue()),
             'plan_id' => fn(ParseNode $n) => $o->setPlanId($n->getStringValue()),
             'plan_name' => fn(ParseNode $n) => $o->setPlanName($n->getStringValue()),
         ];
+    }
+
+    /**
+     * Gets the interval_count property value. The interval_count property
+     * @return int|null
+    */
+    public function getIntervalCount(): ?int {
+        return $this->interval_count;
     }
 
     /**
@@ -162,6 +176,7 @@ class CalculateTaxRequest implements Parsable
         $writer->writeObjectValue('billing_address', $this->getBillingAddress());
         $writer->writeEnumValue('billing_cycle', $this->getBillingCycle());
         $writer->writeStringValue('currency', $this->getCurrency());
+        $writer->writeIntegerValue('interval_count', $this->getIntervalCount());
         $writer->writeCollectionOfObjectValues('line_items', $this->getLineItems());
         $writer->writeObjectValue('metadata', $this->getMetadata());
         $writer->writeStringValue('org_id', $this->getOrgId());
@@ -199,6 +214,14 @@ class CalculateTaxRequest implements Parsable
     */
     public function setCurrency(?string $value): void {
         $this->currency = $value;
+    }
+
+    /**
+     * Sets the interval_count property value. The interval_count property
+     * @param int|null $value Value to set for the interval_count property.
+    */
+    public function setIntervalCount(?int $value): void {
+        $this->interval_count = $value;
     }
 
     /**

@@ -14,6 +14,11 @@ class UpdateActiveMembershipRequest implements Parsable
     private ?string $membership_id = null;
     
     /**
+     * @var string|null $org_id The org_id property
+    */
+    private ?string $org_id = null;
+    
+    /**
      * @var UserOrgRequest|null $user The user property
     */
     private ?UserOrgRequest $user = null;
@@ -35,6 +40,7 @@ class UpdateActiveMembershipRequest implements Parsable
         $o = $this;
         return  [
             'membership_id' => fn(ParseNode $n) => $o->setMembershipId($n->getStringValue()),
+            'org_id' => fn(ParseNode $n) => $o->setOrgId($n->getStringValue()),
             'user' => fn(ParseNode $n) => $o->setUser($n->getObjectValue([UserOrgRequest::class, 'createFromDiscriminatorValue'])),
         ];
     }
@@ -45,6 +51,14 @@ class UpdateActiveMembershipRequest implements Parsable
     */
     public function getMembershipId(): ?string {
         return $this->membership_id;
+    }
+
+    /**
+     * Gets the org_id property value. The org_id property
+     * @return string|null
+    */
+    public function getOrgId(): ?string {
+        return $this->org_id;
     }
 
     /**
@@ -61,6 +75,7 @@ class UpdateActiveMembershipRequest implements Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeStringValue('membership_id', $this->getMembershipId());
+        $writer->writeStringValue('org_id', $this->getOrgId());
         $writer->writeObjectValue('user', $this->getUser());
     }
 
@@ -70,6 +85,14 @@ class UpdateActiveMembershipRequest implements Parsable
     */
     public function setMembershipId(?string $value): void {
         $this->membership_id = $value;
+    }
+
+    /**
+     * Sets the org_id property value. The org_id property
+     * @param string|null $value Value to set for the org_id property.
+    */
+    public function setOrgId(?string $value): void {
+        $this->org_id = $value;
     }
 
     /**

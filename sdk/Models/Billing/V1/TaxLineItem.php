@@ -9,6 +9,11 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class TaxLineItem implements Parsable 
 {
     /**
+     * @var int|null $amount The amount property
+    */
+    private ?int $amount = null;
+    
+    /**
      * @var string|null $reference The reference property
     */
     private ?string $reference = null;
@@ -28,12 +33,21 @@ class TaxLineItem implements Parsable
     }
 
     /**
+     * Gets the amount property value. The amount property
+     * @return int|null
+    */
+    public function getAmount(): ?int {
+        return $this->amount;
+    }
+
+    /**
      * The deserialization information for the current model
      * @return array<string, callable(ParseNode): void>
     */
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
+            'amount' => fn(ParseNode $n) => $o->setAmount($n->getIntegerValue()),
             'reference' => fn(ParseNode $n) => $o->setReference($n->getStringValue()),
             'tax_code' => fn(ParseNode $n) => $o->setTaxCode($n->getStringValue()),
         ];
@@ -60,8 +74,17 @@ class TaxLineItem implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
+        $writer->writeIntegerValue('amount', $this->getAmount());
         $writer->writeStringValue('reference', $this->getReference());
         $writer->writeStringValue('tax_code', $this->getTaxCode());
+    }
+
+    /**
+     * Sets the amount property value. The amount property
+     * @param int|null $value Value to set for the amount property.
+    */
+    public function setAmount(?int $value): void {
+        $this->amount = $value;
     }
 
     /**

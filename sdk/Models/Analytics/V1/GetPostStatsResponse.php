@@ -14,6 +14,16 @@ class GetPostStatsResponse implements Parsable
     private ?string $post_id = null;
     
     /**
+     * @var int|null $total_views The total_views property
+    */
+    private ?int $total_views = null;
+    
+    /**
+     * @var int|null $unique_viewers The unique_viewers property
+    */
+    private ?int $unique_viewers = null;
+    
+    /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object
      * @return GetPostStatsResponse
@@ -30,6 +40,8 @@ class GetPostStatsResponse implements Parsable
         $o = $this;
         return  [
             'post_id' => fn(ParseNode $n) => $o->setPostId($n->getStringValue()),
+            'total_views' => fn(ParseNode $n) => $o->setTotalViews($n->getIntegerValue()),
+            'unique_viewers' => fn(ParseNode $n) => $o->setUniqueViewers($n->getIntegerValue()),
         ];
     }
 
@@ -42,11 +54,29 @@ class GetPostStatsResponse implements Parsable
     }
 
     /**
+     * Gets the total_views property value. The total_views property
+     * @return int|null
+    */
+    public function getTotalViews(): ?int {
+        return $this->total_views;
+    }
+
+    /**
+     * Gets the unique_viewers property value. The unique_viewers property
+     * @return int|null
+    */
+    public function getUniqueViewers(): ?int {
+        return $this->unique_viewers;
+    }
+
+    /**
      * Serializes information the current object
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeStringValue('post_id', $this->getPostId());
+        $writer->writeIntegerValue('total_views', $this->getTotalViews());
+        $writer->writeIntegerValue('unique_viewers', $this->getUniqueViewers());
     }
 
     /**
@@ -55,6 +85,22 @@ class GetPostStatsResponse implements Parsable
     */
     public function setPostId(?string $value): void {
         $this->post_id = $value;
+    }
+
+    /**
+     * Sets the total_views property value. The total_views property
+     * @param int|null $value Value to set for the total_views property.
+    */
+    public function setTotalViews(?int $value): void {
+        $this->total_views = $value;
+    }
+
+    /**
+     * Sets the unique_viewers property value. The unique_viewers property
+     * @param int|null $value Value to set for the unique_viewers property.
+    */
+    public function setUniqueViewers(?int $value): void {
+        $this->unique_viewers = $value;
     }
 
 }

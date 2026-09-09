@@ -15,11 +15,6 @@ class RolePatchRequestBody implements Parsable
     private ?MembershipRole $role = null;
     
     /**
-     * @var string|null $user_id The user_id property
-    */
-    private ?string $user_id = null;
-    
-    /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object
      * @return RolePatchRequestBody
@@ -36,7 +31,6 @@ class RolePatchRequestBody implements Parsable
         $o = $this;
         return  [
             'role' => fn(ParseNode $n) => $o->setRole($n->getEnumValue(MembershipRole::class)),
-            'user_id' => fn(ParseNode $n) => $o->setUserId($n->getStringValue()),
         ];
     }
 
@@ -49,20 +43,11 @@ class RolePatchRequestBody implements Parsable
     }
 
     /**
-     * Gets the user_id property value. The user_id property
-     * @return string|null
-    */
-    public function getUserId(): ?string {
-        return $this->user_id;
-    }
-
-    /**
      * Serializes information the current object
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeEnumValue('role', $this->getRole());
-        $writer->writeStringValue('user_id', $this->getUserId());
     }
 
     /**
@@ -71,14 +56,6 @@ class RolePatchRequestBody implements Parsable
     */
     public function setRole(?MembershipRole $value): void {
         $this->role = $value;
-    }
-
-    /**
-     * Sets the user_id property value. The user_id property
-     * @param string|null $value Value to set for the user_id property.
-    */
-    public function setUserId(?string $value): void {
-        $this->user_id = $value;
     }
 
 }

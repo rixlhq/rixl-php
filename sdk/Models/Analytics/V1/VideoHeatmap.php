@@ -15,6 +15,11 @@ class VideoHeatmap implements Parsable
     private ?array $data = null;
     
     /**
+     * @var int|null $total_duration_ms The total_duration_ms property
+    */
+    private ?int $total_duration_ms = null;
+    
+    /**
      * @var string|null $video_id The video_id property
     */
     private ?string $video_id = null;
@@ -51,8 +56,17 @@ class VideoHeatmap implements Parsable
                 /** @var array<float>|null $val */
                 $this->setData($val);
             },
+            'total_duration_ms' => fn(ParseNode $n) => $o->setTotalDurationMs($n->getIntegerValue()),
             'video_id' => fn(ParseNode $n) => $o->setVideoId($n->getStringValue()),
         ];
+    }
+
+    /**
+     * Gets the total_duration_ms property value. The total_duration_ms property
+     * @return int|null
+    */
+    public function getTotalDurationMs(): ?int {
+        return $this->total_duration_ms;
     }
 
     /**
@@ -69,6 +83,7 @@ class VideoHeatmap implements Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeCollectionOfPrimitiveValues('data', $this->getData());
+        $writer->writeIntegerValue('total_duration_ms', $this->getTotalDurationMs());
         $writer->writeStringValue('video_id', $this->getVideoId());
     }
 
@@ -78,6 +93,14 @@ class VideoHeatmap implements Parsable
     */
     public function setData(?array $value): void {
         $this->data = $value;
+    }
+
+    /**
+     * Sets the total_duration_ms property value. The total_duration_ms property
+     * @param int|null $value Value to set for the total_duration_ms property.
+    */
+    public function setTotalDurationMs(?int $value): void {
+        $this->total_duration_ms = $value;
     }
 
     /**

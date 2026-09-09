@@ -14,6 +14,16 @@ class PaymentMethodDetails implements Parsable
     private ?string $brand = null;
     
     /**
+     * @var int|null $exp_month The exp_month property
+    */
+    private ?int $exp_month = null;
+    
+    /**
+     * @var int|null $exp_year The exp_year property
+    */
+    private ?int $exp_year = null;
+    
+    /**
      * @var string|null $id The id property
     */
     private ?string $id = null;
@@ -51,6 +61,22 @@ class PaymentMethodDetails implements Parsable
     }
 
     /**
+     * Gets the exp_month property value. The exp_month property
+     * @return int|null
+    */
+    public function getExpMonth(): ?int {
+        return $this->exp_month;
+    }
+
+    /**
+     * Gets the exp_year property value. The exp_year property
+     * @return int|null
+    */
+    public function getExpYear(): ?int {
+        return $this->exp_year;
+    }
+
+    /**
      * The deserialization information for the current model
      * @return array<string, callable(ParseNode): void>
     */
@@ -58,6 +84,8 @@ class PaymentMethodDetails implements Parsable
         $o = $this;
         return  [
             'brand' => fn(ParseNode $n) => $o->setBrand($n->getStringValue()),
+            'exp_month' => fn(ParseNode $n) => $o->setExpMonth($n->getIntegerValue()),
+            'exp_year' => fn(ParseNode $n) => $o->setExpYear($n->getIntegerValue()),
             'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
             'is_default' => fn(ParseNode $n) => $o->setIsDefault($n->getBooleanValue()),
             'last4' => fn(ParseNode $n) => $o->setLast4($n->getStringValue()),
@@ -103,6 +131,8 @@ class PaymentMethodDetails implements Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeStringValue('brand', $this->getBrand());
+        $writer->writeIntegerValue('exp_month', $this->getExpMonth());
+        $writer->writeIntegerValue('exp_year', $this->getExpYear());
         $writer->writeStringValue('id', $this->getId());
         $writer->writeBooleanValue('is_default', $this->getIsDefault());
         $writer->writeStringValue('last4', $this->getLast4());
@@ -115,6 +145,22 @@ class PaymentMethodDetails implements Parsable
     */
     public function setBrand(?string $value): void {
         $this->brand = $value;
+    }
+
+    /**
+     * Sets the exp_month property value. The exp_month property
+     * @param int|null $value Value to set for the exp_month property.
+    */
+    public function setExpMonth(?int $value): void {
+        $this->exp_month = $value;
+    }
+
+    /**
+     * Sets the exp_year property value. The exp_year property
+     * @param int|null $value Value to set for the exp_year property.
+    */
+    public function setExpYear(?int $value): void {
+        $this->exp_year = $value;
     }
 
     /**

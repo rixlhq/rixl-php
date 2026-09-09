@@ -10,6 +10,16 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class PlanTaxCalculationResponse implements Parsable 
 {
     /**
+     * @var int|null $amount_total The amount_total property
+    */
+    private ?int $amount_total = null;
+    
+    /**
+     * @var int|null $base_amount The base_amount property
+    */
+    private ?int $base_amount = null;
+    
+    /**
      * @var BillingAddress|null $billing_address The billing_address property
     */
     private ?BillingAddress $billing_address = null;
@@ -45,6 +55,16 @@ class PlanTaxCalculationResponse implements Parsable
     private ?string $plan_name = null;
     
     /**
+     * @var int|null $tax_amount_exclusive The tax_amount_exclusive property
+    */
+    private ?int $tax_amount_exclusive = null;
+    
+    /**
+     * @var int|null $tax_amount_inclusive The tax_amount_inclusive property
+    */
+    private ?int $tax_amount_inclusive = null;
+    
+    /**
      * @var float|null $tax_percentage The tax_percentage property
     */
     private ?float $tax_percentage = null;
@@ -56,6 +76,22 @@ class PlanTaxCalculationResponse implements Parsable
     */
     public static function createFromDiscriminatorValue(ParseNode $parseNode): PlanTaxCalculationResponse {
         return new PlanTaxCalculationResponse();
+    }
+
+    /**
+     * Gets the amount_total property value. The amount_total property
+     * @return int|null
+    */
+    public function getAmountTotal(): ?int {
+        return $this->amount_total;
+    }
+
+    /**
+     * Gets the base_amount property value. The base_amount property
+     * @return int|null
+    */
+    public function getBaseAmount(): ?int {
+        return $this->base_amount;
     }
 
     /**
@@ -105,6 +141,8 @@ class PlanTaxCalculationResponse implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
+            'amount_total' => fn(ParseNode $n) => $o->setAmountTotal($n->getIntegerValue()),
+            'base_amount' => fn(ParseNode $n) => $o->setBaseAmount($n->getIntegerValue()),
             'billing_address' => fn(ParseNode $n) => $o->setBillingAddress($n->getObjectValue([BillingAddress::class, 'createFromDiscriminatorValue'])),
             'billing_cycle' => fn(ParseNode $n) => $o->setBillingCycle($n->getEnumValue(BillingCycle::class)),
             'calculated_at' => fn(ParseNode $n) => $o->setCalculatedAt($n->getDateTimeValue()),
@@ -112,6 +150,8 @@ class PlanTaxCalculationResponse implements Parsable
             'currency' => fn(ParseNode $n) => $o->setCurrency($n->getStringValue()),
             'plan_id' => fn(ParseNode $n) => $o->setPlanId($n->getStringValue()),
             'plan_name' => fn(ParseNode $n) => $o->setPlanName($n->getStringValue()),
+            'tax_amount_exclusive' => fn(ParseNode $n) => $o->setTaxAmountExclusive($n->getIntegerValue()),
+            'tax_amount_inclusive' => fn(ParseNode $n) => $o->setTaxAmountInclusive($n->getIntegerValue()),
             'tax_percentage' => fn(ParseNode $n) => $o->setTaxPercentage($n->getFloatValue()),
         ];
     }
@@ -133,6 +173,22 @@ class PlanTaxCalculationResponse implements Parsable
     }
 
     /**
+     * Gets the tax_amount_exclusive property value. The tax_amount_exclusive property
+     * @return int|null
+    */
+    public function getTaxAmountExclusive(): ?int {
+        return $this->tax_amount_exclusive;
+    }
+
+    /**
+     * Gets the tax_amount_inclusive property value. The tax_amount_inclusive property
+     * @return int|null
+    */
+    public function getTaxAmountInclusive(): ?int {
+        return $this->tax_amount_inclusive;
+    }
+
+    /**
      * Gets the tax_percentage property value. The tax_percentage property
      * @return float|null
     */
@@ -145,6 +201,8 @@ class PlanTaxCalculationResponse implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
+        $writer->writeIntegerValue('amount_total', $this->getAmountTotal());
+        $writer->writeIntegerValue('base_amount', $this->getBaseAmount());
         $writer->writeObjectValue('billing_address', $this->getBillingAddress());
         $writer->writeEnumValue('billing_cycle', $this->getBillingCycle());
         $writer->writeDateTimeValue('calculated_at', $this->getCalculatedAt());
@@ -152,7 +210,25 @@ class PlanTaxCalculationResponse implements Parsable
         $writer->writeStringValue('currency', $this->getCurrency());
         $writer->writeStringValue('plan_id', $this->getPlanId());
         $writer->writeStringValue('plan_name', $this->getPlanName());
+        $writer->writeIntegerValue('tax_amount_exclusive', $this->getTaxAmountExclusive());
+        $writer->writeIntegerValue('tax_amount_inclusive', $this->getTaxAmountInclusive());
         $writer->writeFloatValue('tax_percentage', $this->getTaxPercentage());
+    }
+
+    /**
+     * Sets the amount_total property value. The amount_total property
+     * @param int|null $value Value to set for the amount_total property.
+    */
+    public function setAmountTotal(?int $value): void {
+        $this->amount_total = $value;
+    }
+
+    /**
+     * Sets the base_amount property value. The base_amount property
+     * @param int|null $value Value to set for the base_amount property.
+    */
+    public function setBaseAmount(?int $value): void {
+        $this->base_amount = $value;
     }
 
     /**
@@ -209,6 +285,22 @@ class PlanTaxCalculationResponse implements Parsable
     */
     public function setPlanName(?string $value): void {
         $this->plan_name = $value;
+    }
+
+    /**
+     * Sets the tax_amount_exclusive property value. The tax_amount_exclusive property
+     * @param int|null $value Value to set for the tax_amount_exclusive property.
+    */
+    public function setTaxAmountExclusive(?int $value): void {
+        $this->tax_amount_exclusive = $value;
+    }
+
+    /**
+     * Sets the tax_amount_inclusive property value. The tax_amount_inclusive property
+     * @param int|null $value Value to set for the tax_amount_inclusive property.
+    */
+    public function setTaxAmountInclusive(?int $value): void {
+        $this->tax_amount_inclusive = $value;
     }
 
     /**

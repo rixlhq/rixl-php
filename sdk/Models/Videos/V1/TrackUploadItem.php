@@ -29,6 +29,11 @@ class TrackUploadItem implements Parsable
     private ?string $language_code = null;
     
     /**
+     * @var int|null $size The size property
+    */
+    private ?int $size = null;
+    
+    /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object
      * @return TrackUploadItem
@@ -48,6 +53,7 @@ class TrackUploadItem implements Parsable
             'format' => fn(ParseNode $n) => $o->setFormat($n->getStringValue()),
             'label' => fn(ParseNode $n) => $o->setLabel($n->getStringValue()),
             'language_code' => fn(ParseNode $n) => $o->setLanguageCode($n->getStringValue()),
+            'size' => fn(ParseNode $n) => $o->setSize($n->getIntegerValue()),
         ];
     }
 
@@ -84,6 +90,14 @@ class TrackUploadItem implements Parsable
     }
 
     /**
+     * Gets the size property value. The size property
+     * @return int|null
+    */
+    public function getSize(): ?int {
+        return $this->size;
+    }
+
+    /**
      * Serializes information the current object
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
@@ -92,6 +106,7 @@ class TrackUploadItem implements Parsable
         $writer->writeStringValue('format', $this->getFormat());
         $writer->writeStringValue('label', $this->getLabel());
         $writer->writeStringValue('language_code', $this->getLanguageCode());
+        $writer->writeIntegerValue('size', $this->getSize());
     }
 
     /**
@@ -124,6 +139,14 @@ class TrackUploadItem implements Parsable
     */
     public function setLanguageCode(?string $value): void {
         $this->language_code = $value;
+    }
+
+    /**
+     * Sets the size property value. The size property
+     * @param int|null $value Value to set for the size property.
+    */
+    public function setSize(?int $value): void {
+        $this->size = $value;
     }
 
 }

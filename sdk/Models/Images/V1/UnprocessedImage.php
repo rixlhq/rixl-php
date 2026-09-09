@@ -35,6 +35,11 @@ class UnprocessedImage implements Parsable
     private ?string $s3_path = null;
     
     /**
+     * @var int|null $size The size property
+    */
+    private ?int $size = null;
+    
+    /**
      * @var FileStatus|null $status The status property
     */
     private ?FileStatus $status = null;
@@ -60,6 +65,7 @@ class UnprocessedImage implements Parsable
             'name' => fn(ParseNode $n) => $o->setName($n->getStringValue()),
             'project_id' => fn(ParseNode $n) => $o->setProjectId($n->getStringValue()),
             's3_path' => fn(ParseNode $n) => $o->setS3Path($n->getStringValue()),
+            'size' => fn(ParseNode $n) => $o->setSize($n->getIntegerValue()),
             'status' => fn(ParseNode $n) => $o->setStatus($n->getEnumValue(FileStatus::class)),
         ];
     }
@@ -105,6 +111,14 @@ class UnprocessedImage implements Parsable
     }
 
     /**
+     * Gets the size property value. The size property
+     * @return int|null
+    */
+    public function getSize(): ?int {
+        return $this->size;
+    }
+
+    /**
      * Gets the status property value. The status property
      * @return FileStatus|null
     */
@@ -122,6 +136,7 @@ class UnprocessedImage implements Parsable
         $writer->writeStringValue('name', $this->getName());
         $writer->writeStringValue('project_id', $this->getProjectId());
         $writer->writeStringValue('s3_path', $this->getS3Path());
+        $writer->writeIntegerValue('size', $this->getSize());
         $writer->writeEnumValue('status', $this->getStatus());
     }
 
@@ -163,6 +178,14 @@ class UnprocessedImage implements Parsable
     */
     public function setS3Path(?string $value): void {
         $this->s3_path = $value;
+    }
+
+    /**
+     * Sets the size property value. The size property
+     * @param int|null $value Value to set for the size property.
+    */
+    public function setSize(?int $value): void {
+        $this->size = $value;
     }
 
     /**

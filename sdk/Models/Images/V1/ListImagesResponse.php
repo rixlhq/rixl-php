@@ -34,6 +34,11 @@ class ListImagesResponse implements Parsable
     private ?string $sort_field = null;
     
     /**
+     * @var int|null $total The total property
+    */
+    private ?int $total = null;
+    
+    /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object
      * @return ListImagesResponse
@@ -54,6 +59,7 @@ class ListImagesResponse implements Parsable
             'offset' => fn(ParseNode $n) => $o->setOffset($n->getIntegerValue()),
             'sort_direction' => fn(ParseNode $n) => $o->setSortDirection($n->getStringValue()),
             'sort_field' => fn(ParseNode $n) => $o->setSortField($n->getStringValue()),
+            'total' => fn(ParseNode $n) => $o->setTotal($n->getIntegerValue()),
         ];
     }
 
@@ -98,6 +104,14 @@ class ListImagesResponse implements Parsable
     }
 
     /**
+     * Gets the total property value. The total property
+     * @return int|null
+    */
+    public function getTotal(): ?int {
+        return $this->total;
+    }
+
+    /**
      * Serializes information the current object
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
@@ -107,6 +121,7 @@ class ListImagesResponse implements Parsable
         $writer->writeIntegerValue('offset', $this->getOffset());
         $writer->writeStringValue('sort_direction', $this->getSortDirection());
         $writer->writeStringValue('sort_field', $this->getSortField());
+        $writer->writeIntegerValue('total', $this->getTotal());
     }
 
     /**
@@ -147,6 +162,14 @@ class ListImagesResponse implements Parsable
     */
     public function setSortField(?string $value): void {
         $this->sort_field = $value;
+    }
+
+    /**
+     * Sets the total property value. The total property
+     * @param int|null $value Value to set for the total property.
+    */
+    public function setTotal(?int $value): void {
+        $this->total = $value;
     }
 
 }

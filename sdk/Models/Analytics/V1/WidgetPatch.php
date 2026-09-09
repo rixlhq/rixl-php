@@ -19,14 +19,14 @@ class WidgetPatch implements Parsable
     private ?string $dataset = null;
     
     /**
-     * @var WidgetPatch_filters|null $filters The filters property
+     * @var Filters|null $filters The filters property
     */
-    private ?WidgetPatch_filters $filters = null;
+    private ?Filters $filters = null;
     
     /**
-     * @var WidgetPatch_group_by|null $group_by The group_by property
+     * @var GroupBy|null $group_by The group_by property
     */
-    private ?WidgetPatch_group_by $group_by = null;
+    private ?GroupBy $group_by = null;
     
     /**
      * @var string|null $interval The interval property
@@ -82,8 +82,8 @@ class WidgetPatch implements Parsable
         return  [
             'chart_type' => fn(ParseNode $n) => $o->setChartType($n->getStringValue()),
             'dataset' => fn(ParseNode $n) => $o->setDataset($n->getStringValue()),
-            'filters' => fn(ParseNode $n) => $o->setFilters($n->getObjectValue([WidgetPatch_filters::class, 'createFromDiscriminatorValue'])),
-            'group_by' => fn(ParseNode $n) => $o->setGroupBy($n->getObjectValue([WidgetPatch_group_by::class, 'createFromDiscriminatorValue'])),
+            'filters' => fn(ParseNode $n) => $o->setFilters($n->getObjectValue([Filters::class, 'createFromDiscriminatorValue'])),
+            'group_by' => fn(ParseNode $n) => $o->setGroupBy($n->getObjectValue([GroupBy::class, 'createFromDiscriminatorValue'])),
             'interval' => fn(ParseNode $n) => $o->setInterval($n->getStringValue()),
             'limit' => fn(ParseNode $n) => $o->setLimit($n->getIntegerValue()),
             'metric' => fn(ParseNode $n) => $o->setMetric($n->getStringValue()),
@@ -93,17 +93,17 @@ class WidgetPatch implements Parsable
 
     /**
      * Gets the filters property value. The filters property
-     * @return WidgetPatch_filters|null
+     * @return Filters|null
     */
-    public function getFilters(): ?WidgetPatch_filters {
+    public function getFilters(): ?Filters {
         return $this->filters;
     }
 
     /**
      * Gets the group_by property value. The group_by property
-     * @return WidgetPatch_group_by|null
+     * @return GroupBy|null
     */
-    public function getGroupBy(): ?WidgetPatch_group_by {
+    public function getGroupBy(): ?GroupBy {
         return $this->group_by;
     }
 
@@ -172,17 +172,17 @@ class WidgetPatch implements Parsable
 
     /**
      * Sets the filters property value. The filters property
-     * @param WidgetPatch_filters|null $value Value to set for the filters property.
+     * @param Filters|null $value Value to set for the filters property.
     */
-    public function setFilters(?WidgetPatch_filters $value): void {
+    public function setFilters(?Filters $value): void {
         $this->filters = $value;
     }
 
     /**
      * Sets the group_by property value. The group_by property
-     * @param WidgetPatch_group_by|null $value Value to set for the group_by property.
+     * @param GroupBy|null $value Value to set for the group_by property.
     */
-    public function setGroupBy(?WidgetPatch_group_by $value): void {
+    public function setGroupBy(?GroupBy $value): void {
         $this->group_by = $value;
     }
 

@@ -26,11 +26,6 @@ class UploadPostRequestBody implements Parsable
     private ?string $description = null;
     
     /**
-     * @var string|null $feed_id The feed_id property
-    */
-    private ?string $feed_id = null;
-    
-    /**
      * @var string|null $file_name The file_name property
     */
     private ?string $file_name = null;
@@ -39,11 +34,6 @@ class UploadPostRequestBody implements Parsable
      * @var string|null $org_id The org_id property
     */
     private ?string $org_id = null;
-    
-    /**
-     * @var string|null $project_id The project_id property
-    */
-    private ?string $project_id = null;
     
     /**
      * @var VideoQuality|null $video_quality The video_quality property
@@ -84,14 +74,6 @@ class UploadPostRequestBody implements Parsable
     }
 
     /**
-     * Gets the feed_id property value. The feed_id property
-     * @return string|null
-    */
-    public function getFeedId(): ?string {
-        return $this->feed_id;
-    }
-
-    /**
      * The deserialization information for the current model
      * @return array<string, callable(ParseNode): void>
     */
@@ -101,10 +83,8 @@ class UploadPostRequestBody implements Parsable
             'content_type' => fn(ParseNode $n) => $o->setContentType($n->getEnumValue(MediaType::class)),
             'creator_id' => fn(ParseNode $n) => $o->setCreatorId($n->getStringValue()),
             'description' => fn(ParseNode $n) => $o->setDescription($n->getStringValue()),
-            'feed_id' => fn(ParseNode $n) => $o->setFeedId($n->getStringValue()),
             'file_name' => fn(ParseNode $n) => $o->setFileName($n->getStringValue()),
             'org_id' => fn(ParseNode $n) => $o->setOrgId($n->getStringValue()),
-            'project_id' => fn(ParseNode $n) => $o->setProjectId($n->getStringValue()),
             'video_quality' => fn(ParseNode $n) => $o->setVideoQuality($n->getEnumValue(VideoQuality::class)),
         ];
     }
@@ -126,14 +106,6 @@ class UploadPostRequestBody implements Parsable
     }
 
     /**
-     * Gets the project_id property value. The project_id property
-     * @return string|null
-    */
-    public function getProjectId(): ?string {
-        return $this->project_id;
-    }
-
-    /**
      * Gets the video_quality property value. The video_quality property
      * @return VideoQuality|null
     */
@@ -149,10 +121,8 @@ class UploadPostRequestBody implements Parsable
         $writer->writeEnumValue('content_type', $this->getContentType());
         $writer->writeStringValue('creator_id', $this->getCreatorId());
         $writer->writeStringValue('description', $this->getDescription());
-        $writer->writeStringValue('feed_id', $this->getFeedId());
         $writer->writeStringValue('file_name', $this->getFileName());
         $writer->writeStringValue('org_id', $this->getOrgId());
-        $writer->writeStringValue('project_id', $this->getProjectId());
         $writer->writeEnumValue('video_quality', $this->getVideoQuality());
     }
 
@@ -181,14 +151,6 @@ class UploadPostRequestBody implements Parsable
     }
 
     /**
-     * Sets the feed_id property value. The feed_id property
-     * @param string|null $value Value to set for the feed_id property.
-    */
-    public function setFeedId(?string $value): void {
-        $this->feed_id = $value;
-    }
-
-    /**
      * Sets the file_name property value. The file_name property
      * @param string|null $value Value to set for the file_name property.
     */
@@ -202,14 +164,6 @@ class UploadPostRequestBody implements Parsable
     */
     public function setOrgId(?string $value): void {
         $this->org_id = $value;
-    }
-
-    /**
-     * Sets the project_id property value. The project_id property
-     * @param string|null $value Value to set for the project_id property.
-    */
-    public function setProjectId(?string $value): void {
-        $this->project_id = $value;
     }
 
     /**

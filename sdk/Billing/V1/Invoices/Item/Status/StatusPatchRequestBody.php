@@ -10,11 +10,6 @@ use Rixl\Sdk\Models\Billing\V1\InvoiceStatus;
 class StatusPatchRequestBody implements Parsable 
 {
     /**
-     * @var string|null $invoice_id The invoice_id property
-    */
-    private ?string $invoice_id = null;
-    
-    /**
      * @var InvoiceStatus|null $status The status property
     */
     private ?InvoiceStatus $status = null;
@@ -35,17 +30,8 @@ class StatusPatchRequestBody implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'invoice_id' => fn(ParseNode $n) => $o->setInvoiceId($n->getStringValue()),
             'status' => fn(ParseNode $n) => $o->setStatus($n->getEnumValue(InvoiceStatus::class)),
         ];
-    }
-
-    /**
-     * Gets the invoice_id property value. The invoice_id property
-     * @return string|null
-    */
-    public function getInvoiceId(): ?string {
-        return $this->invoice_id;
     }
 
     /**
@@ -61,16 +47,7 @@ class StatusPatchRequestBody implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('invoice_id', $this->getInvoiceId());
         $writer->writeEnumValue('status', $this->getStatus());
-    }
-
-    /**
-     * Sets the invoice_id property value. The invoice_id property
-     * @param string|null $value Value to set for the invoice_id property.
-    */
-    public function setInvoiceId(?string $value): void {
-        $this->invoice_id = $value;
     }
 
     /**

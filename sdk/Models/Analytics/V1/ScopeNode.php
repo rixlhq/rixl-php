@@ -34,6 +34,11 @@ class ScopeNode implements Parsable
     private ?string $label = null;
     
     /**
+     * @var int|null $views The views property
+    */
+    private ?int $views = null;
+    
+    /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object
      * @return ScopeNode
@@ -54,6 +59,7 @@ class ScopeNode implements Parsable
             'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
             'kind' => fn(ParseNode $n) => $o->setKind($n->getStringValue()),
             'label' => fn(ParseNode $n) => $o->setLabel($n->getStringValue()),
+            'views' => fn(ParseNode $n) => $o->setViews($n->getIntegerValue()),
         ];
     }
 
@@ -98,6 +104,14 @@ class ScopeNode implements Parsable
     }
 
     /**
+     * Gets the views property value. The views property
+     * @return int|null
+    */
+    public function getViews(): ?int {
+        return $this->views;
+    }
+
+    /**
      * Serializes information the current object
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
@@ -107,6 +121,7 @@ class ScopeNode implements Parsable
         $writer->writeStringValue('id', $this->getId());
         $writer->writeStringValue('kind', $this->getKind());
         $writer->writeStringValue('label', $this->getLabel());
+        $writer->writeIntegerValue('views', $this->getViews());
     }
 
     /**
@@ -147,6 +162,14 @@ class ScopeNode implements Parsable
     */
     public function setLabel(?string $value): void {
         $this->label = $value;
+    }
+
+    /**
+     * Sets the views property value. The views property
+     * @param int|null $value Value to set for the views property.
+    */
+    public function setViews(?int $value): void {
+        $this->views = $value;
     }
 
 }

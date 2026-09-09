@@ -35,6 +35,11 @@ class File implements Parsable
     private ?string $project_id = null;
     
     /**
+     * @var int|null $size size is the uploaded source's byte size for usage accounting; it is not updated when packaging replaces the artifact, so it does not describe the object at url.
+    */
+    private ?int $size = null;
+    
+    /**
      * @var FileStatus|null $status The status property
     */
     private ?FileStatus $status = null;
@@ -78,6 +83,7 @@ class File implements Parsable
             'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
             'name' => fn(ParseNode $n) => $o->setName($n->getStringValue()),
             'project_id' => fn(ParseNode $n) => $o->setProjectId($n->getStringValue()),
+            'size' => fn(ParseNode $n) => $o->setSize($n->getIntegerValue()),
             'status' => fn(ParseNode $n) => $o->setStatus($n->getEnumValue(FileStatus::class)),
             'updated_at' => fn(ParseNode $n) => $o->setUpdatedAt($n->getDateTimeValue()),
             'url' => fn(ParseNode $n) => $o->setUrl($n->getStringValue()),
@@ -117,6 +123,14 @@ class File implements Parsable
     }
 
     /**
+     * Gets the size property value. size is the uploaded source's byte size for usage accounting; it is not updated when packaging replaces the artifact, so it does not describe the object at url.
+     * @return int|null
+    */
+    public function getSize(): ?int {
+        return $this->size;
+    }
+
+    /**
      * Gets the status property value. The status property
      * @return FileStatus|null
     */
@@ -150,6 +164,7 @@ class File implements Parsable
         $writer->writeStringValue('id', $this->getId());
         $writer->writeStringValue('name', $this->getName());
         $writer->writeStringValue('project_id', $this->getProjectId());
+        $writer->writeIntegerValue('size', $this->getSize());
         $writer->writeEnumValue('status', $this->getStatus());
         $writer->writeDateTimeValue('updated_at', $this->getUpdatedAt());
         $writer->writeStringValue('url', $this->getUrl());
@@ -193,6 +208,14 @@ class File implements Parsable
     */
     public function setProjectId(?string $value): void {
         $this->project_id = $value;
+    }
+
+    /**
+     * Sets the size property value. size is the uploaded source's byte size for usage accounting; it is not updated when packaging replaces the artifact, so it does not describe the object at url.
+     * @param int|null $value Value to set for the size property.
+    */
+    public function setSize(?int $value): void {
+        $this->size = $value;
     }
 
     /**

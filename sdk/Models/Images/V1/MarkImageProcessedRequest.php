@@ -14,6 +14,11 @@ class MarkImageProcessedRequest implements Parsable
     private ?string $file_id = null;
     
     /**
+     * @var int|null $size The size property
+    */
+    private ?int $size = null;
+    
+    /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object
      * @return MarkImageProcessedRequest
@@ -30,6 +35,7 @@ class MarkImageProcessedRequest implements Parsable
         $o = $this;
         return  [
             'file_id' => fn(ParseNode $n) => $o->setFileId($n->getStringValue()),
+            'size' => fn(ParseNode $n) => $o->setSize($n->getIntegerValue()),
         ];
     }
 
@@ -42,11 +48,20 @@ class MarkImageProcessedRequest implements Parsable
     }
 
     /**
+     * Gets the size property value. The size property
+     * @return int|null
+    */
+    public function getSize(): ?int {
+        return $this->size;
+    }
+
+    /**
      * Serializes information the current object
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeStringValue('file_id', $this->getFileId());
+        $writer->writeIntegerValue('size', $this->getSize());
     }
 
     /**
@@ -55,6 +70,14 @@ class MarkImageProcessedRequest implements Parsable
     */
     public function setFileId(?string $value): void {
         $this->file_id = $value;
+    }
+
+    /**
+     * Sets the size property value. The size property
+     * @param int|null $value Value to set for the size property.
+    */
+    public function setSize(?int $value): void {
+        $this->size = $value;
     }
 
 }

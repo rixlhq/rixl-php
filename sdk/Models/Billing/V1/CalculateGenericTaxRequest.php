@@ -9,6 +9,11 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class CalculateGenericTaxRequest implements Parsable 
 {
     /**
+     * @var int|null $amount The amount property
+    */
+    private ?int $amount = null;
+    
+    /**
      * @var BillingAddress|null $billing_address The billing_address property
     */
     private ?BillingAddress $billing_address = null;
@@ -38,6 +43,14 @@ class CalculateGenericTaxRequest implements Parsable
     }
 
     /**
+     * Gets the amount property value. The amount property
+     * @return int|null
+    */
+    public function getAmount(): ?int {
+        return $this->amount;
+    }
+
+    /**
      * Gets the billing_address property value. The billing_address property
      * @return BillingAddress|null
     */
@@ -60,6 +73,7 @@ class CalculateGenericTaxRequest implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
+            'amount' => fn(ParseNode $n) => $o->setAmount($n->getIntegerValue()),
             'billing_address' => fn(ParseNode $n) => $o->setBillingAddress($n->getObjectValue([BillingAddress::class, 'createFromDiscriminatorValue'])),
             'currency' => fn(ParseNode $n) => $o->setCurrency($n->getStringValue()),
             'line_items' => fn(ParseNode $n) => $o->setLineItems($n->getCollectionOfObjectValues([TaxLineItem::class, 'createFromDiscriminatorValue'])),
@@ -88,10 +102,19 @@ class CalculateGenericTaxRequest implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
+        $writer->writeIntegerValue('amount', $this->getAmount());
         $writer->writeObjectValue('billing_address', $this->getBillingAddress());
         $writer->writeStringValue('currency', $this->getCurrency());
         $writer->writeCollectionOfObjectValues('line_items', $this->getLineItems());
         $writer->writeStringValue('org_id', $this->getOrgId());
+    }
+
+    /**
+     * Sets the amount property value. The amount property
+     * @param int|null $value Value to set for the amount property.
+    */
+    public function setAmount(?int $value): void {
+        $this->amount = $value;
     }
 
     /**

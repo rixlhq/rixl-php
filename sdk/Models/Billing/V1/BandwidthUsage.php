@@ -20,6 +20,16 @@ class BandwidthUsage implements Parsable
     private ?string $data_source = null;
     
     /**
+     * @var int|null $image_bandwidth_bytes The image_bandwidth_bytes property
+    */
+    private ?int $image_bandwidth_bytes = null;
+    
+    /**
+     * @var int|null $image_requests The image_requests property
+    */
+    private ?int $image_requests = null;
+    
+    /**
      * @var string|null $org_id The org_id property
     */
     private ?string $org_id = null;
@@ -33,6 +43,31 @@ class BandwidthUsage implements Parsable
      * @var string|null $snapshot_type The snapshot_type property
     */
     private ?string $snapshot_type = null;
+    
+    /**
+     * @var int|null $total_bandwidth_bytes The total_bandwidth_bytes property
+    */
+    private ?int $total_bandwidth_bytes = null;
+    
+    /**
+     * @var int|null $total_requests The total_requests property
+    */
+    private ?int $total_requests = null;
+    
+    /**
+     * @var int|null $unique_visitors The unique_visitors property
+    */
+    private ?int $unique_visitors = null;
+    
+    /**
+     * @var int|null $video_bandwidth_bytes The video_bandwidth_bytes property
+    */
+    private ?int $video_bandwidth_bytes = null;
+    
+    /**
+     * @var int|null $video_requests The video_requests property
+    */
+    private ?int $video_requests = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -68,10 +103,33 @@ class BandwidthUsage implements Parsable
         return  [
             'created_at' => fn(ParseNode $n) => $o->setCreatedAt($n->getDateTimeValue()),
             'data_source' => fn(ParseNode $n) => $o->setDataSource($n->getStringValue()),
+            'image_bandwidth_bytes' => fn(ParseNode $n) => $o->setImageBandwidthBytes($n->getIntegerValue()),
+            'image_requests' => fn(ParseNode $n) => $o->setImageRequests($n->getIntegerValue()),
             'org_id' => fn(ParseNode $n) => $o->setOrgId($n->getStringValue()),
             'snapshot_date' => fn(ParseNode $n) => $o->setSnapshotDate($n->getDateTimeValue()),
             'snapshot_type' => fn(ParseNode $n) => $o->setSnapshotType($n->getStringValue()),
+            'total_bandwidth_bytes' => fn(ParseNode $n) => $o->setTotalBandwidthBytes($n->getIntegerValue()),
+            'total_requests' => fn(ParseNode $n) => $o->setTotalRequests($n->getIntegerValue()),
+            'unique_visitors' => fn(ParseNode $n) => $o->setUniqueVisitors($n->getIntegerValue()),
+            'video_bandwidth_bytes' => fn(ParseNode $n) => $o->setVideoBandwidthBytes($n->getIntegerValue()),
+            'video_requests' => fn(ParseNode $n) => $o->setVideoRequests($n->getIntegerValue()),
         ];
+    }
+
+    /**
+     * Gets the image_bandwidth_bytes property value. The image_bandwidth_bytes property
+     * @return int|null
+    */
+    public function getImageBandwidthBytes(): ?int {
+        return $this->image_bandwidth_bytes;
+    }
+
+    /**
+     * Gets the image_requests property value. The image_requests property
+     * @return int|null
+    */
+    public function getImageRequests(): ?int {
+        return $this->image_requests;
     }
 
     /**
@@ -99,15 +157,62 @@ class BandwidthUsage implements Parsable
     }
 
     /**
+     * Gets the total_bandwidth_bytes property value. The total_bandwidth_bytes property
+     * @return int|null
+    */
+    public function getTotalBandwidthBytes(): ?int {
+        return $this->total_bandwidth_bytes;
+    }
+
+    /**
+     * Gets the total_requests property value. The total_requests property
+     * @return int|null
+    */
+    public function getTotalRequests(): ?int {
+        return $this->total_requests;
+    }
+
+    /**
+     * Gets the unique_visitors property value. The unique_visitors property
+     * @return int|null
+    */
+    public function getUniqueVisitors(): ?int {
+        return $this->unique_visitors;
+    }
+
+    /**
+     * Gets the video_bandwidth_bytes property value. The video_bandwidth_bytes property
+     * @return int|null
+    */
+    public function getVideoBandwidthBytes(): ?int {
+        return $this->video_bandwidth_bytes;
+    }
+
+    /**
+     * Gets the video_requests property value. The video_requests property
+     * @return int|null
+    */
+    public function getVideoRequests(): ?int {
+        return $this->video_requests;
+    }
+
+    /**
      * Serializes information the current object
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeDateTimeValue('created_at', $this->getCreatedAt());
         $writer->writeStringValue('data_source', $this->getDataSource());
+        $writer->writeIntegerValue('image_bandwidth_bytes', $this->getImageBandwidthBytes());
+        $writer->writeIntegerValue('image_requests', $this->getImageRequests());
         $writer->writeStringValue('org_id', $this->getOrgId());
         $writer->writeDateTimeValue('snapshot_date', $this->getSnapshotDate());
         $writer->writeStringValue('snapshot_type', $this->getSnapshotType());
+        $writer->writeIntegerValue('total_bandwidth_bytes', $this->getTotalBandwidthBytes());
+        $writer->writeIntegerValue('total_requests', $this->getTotalRequests());
+        $writer->writeIntegerValue('unique_visitors', $this->getUniqueVisitors());
+        $writer->writeIntegerValue('video_bandwidth_bytes', $this->getVideoBandwidthBytes());
+        $writer->writeIntegerValue('video_requests', $this->getVideoRequests());
     }
 
     /**
@@ -124,6 +229,22 @@ class BandwidthUsage implements Parsable
     */
     public function setDataSource(?string $value): void {
         $this->data_source = $value;
+    }
+
+    /**
+     * Sets the image_bandwidth_bytes property value. The image_bandwidth_bytes property
+     * @param int|null $value Value to set for the image_bandwidth_bytes property.
+    */
+    public function setImageBandwidthBytes(?int $value): void {
+        $this->image_bandwidth_bytes = $value;
+    }
+
+    /**
+     * Sets the image_requests property value. The image_requests property
+     * @param int|null $value Value to set for the image_requests property.
+    */
+    public function setImageRequests(?int $value): void {
+        $this->image_requests = $value;
     }
 
     /**
@@ -148,6 +269,46 @@ class BandwidthUsage implements Parsable
     */
     public function setSnapshotType(?string $value): void {
         $this->snapshot_type = $value;
+    }
+
+    /**
+     * Sets the total_bandwidth_bytes property value. The total_bandwidth_bytes property
+     * @param int|null $value Value to set for the total_bandwidth_bytes property.
+    */
+    public function setTotalBandwidthBytes(?int $value): void {
+        $this->total_bandwidth_bytes = $value;
+    }
+
+    /**
+     * Sets the total_requests property value. The total_requests property
+     * @param int|null $value Value to set for the total_requests property.
+    */
+    public function setTotalRequests(?int $value): void {
+        $this->total_requests = $value;
+    }
+
+    /**
+     * Sets the unique_visitors property value. The unique_visitors property
+     * @param int|null $value Value to set for the unique_visitors property.
+    */
+    public function setUniqueVisitors(?int $value): void {
+        $this->unique_visitors = $value;
+    }
+
+    /**
+     * Sets the video_bandwidth_bytes property value. The video_bandwidth_bytes property
+     * @param int|null $value Value to set for the video_bandwidth_bytes property.
+    */
+    public function setVideoBandwidthBytes(?int $value): void {
+        $this->video_bandwidth_bytes = $value;
+    }
+
+    /**
+     * Sets the video_requests property value. The video_requests property
+     * @param int|null $value Value to set for the video_requests property.
+    */
+    public function setVideoRequests(?int $value): void {
+        $this->video_requests = $value;
     }
 
 }
