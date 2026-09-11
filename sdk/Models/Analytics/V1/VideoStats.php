@@ -19,19 +19,19 @@ class VideoStats implements Parsable
     private ?float $completion_rate = null;
     
     /**
-     * @var int|null $completions The completions property
+     * @var string|null $completions The completions property
     */
-    private ?int $completions = null;
+    private ?string $completions = null;
     
     /**
-     * @var int|null $starts The starts property
+     * @var string|null $starts The starts property
     */
-    private ?int $starts = null;
+    private ?string $starts = null;
     
     /**
-     * @var int|null $total_views The total_views property
+     * @var string|null $total_views The total_views property
     */
-    private ?int $total_views = null;
+    private ?string $total_views = null;
     
     /**
      * @var float|null $total_watch_time_ms The total_watch_time_ms property
@@ -39,9 +39,9 @@ class VideoStats implements Parsable
     private ?float $total_watch_time_ms = null;
     
     /**
-     * @var int|null $unique_viewers The unique_viewers property
+     * @var string|null $unique_viewers The unique_viewers property
     */
-    private ?int $unique_viewers = null;
+    private ?string $unique_viewers = null;
     
     /**
      * @var string|null $video_id The video_id property
@@ -49,9 +49,9 @@ class VideoStats implements Parsable
     private ?string $video_id = null;
     
     /**
-     * @var int|null $watches The watches property
+     * @var string|null $watches The watches property
     */
-    private ?int $watches = null;
+    private ?string $watches = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -80,9 +80,9 @@ class VideoStats implements Parsable
 
     /**
      * Gets the completions property value. The completions property
-     * @return int|null
+     * @return string|null
     */
-    public function getCompletions(): ?int {
+    public function getCompletions(): ?string {
         return $this->completions;
     }
 
@@ -95,29 +95,29 @@ class VideoStats implements Parsable
         return  [
             'avg_watch_time_ms' => fn(ParseNode $n) => $o->setAvgWatchTimeMs($n->getFloatValue()),
             'completion_rate' => fn(ParseNode $n) => $o->setCompletionRate($n->getFloatValue()),
-            'completions' => fn(ParseNode $n) => $o->setCompletions($n->getIntegerValue()),
-            'starts' => fn(ParseNode $n) => $o->setStarts($n->getIntegerValue()),
-            'total_views' => fn(ParseNode $n) => $o->setTotalViews($n->getIntegerValue()),
+            'completions' => fn(ParseNode $n) => $o->setCompletions($n->getStringValue()),
+            'starts' => fn(ParseNode $n) => $o->setStarts($n->getStringValue()),
+            'total_views' => fn(ParseNode $n) => $o->setTotalViews($n->getStringValue()),
             'total_watch_time_ms' => fn(ParseNode $n) => $o->setTotalWatchTimeMs($n->getFloatValue()),
-            'unique_viewers' => fn(ParseNode $n) => $o->setUniqueViewers($n->getIntegerValue()),
+            'unique_viewers' => fn(ParseNode $n) => $o->setUniqueViewers($n->getStringValue()),
             'video_id' => fn(ParseNode $n) => $o->setVideoId($n->getStringValue()),
-            'watches' => fn(ParseNode $n) => $o->setWatches($n->getIntegerValue()),
+            'watches' => fn(ParseNode $n) => $o->setWatches($n->getStringValue()),
         ];
     }
 
     /**
      * Gets the starts property value. The starts property
-     * @return int|null
+     * @return string|null
     */
-    public function getStarts(): ?int {
+    public function getStarts(): ?string {
         return $this->starts;
     }
 
     /**
      * Gets the total_views property value. The total_views property
-     * @return int|null
+     * @return string|null
     */
-    public function getTotalViews(): ?int {
+    public function getTotalViews(): ?string {
         return $this->total_views;
     }
 
@@ -131,9 +131,9 @@ class VideoStats implements Parsable
 
     /**
      * Gets the unique_viewers property value. The unique_viewers property
-     * @return int|null
+     * @return string|null
     */
-    public function getUniqueViewers(): ?int {
+    public function getUniqueViewers(): ?string {
         return $this->unique_viewers;
     }
 
@@ -147,9 +147,9 @@ class VideoStats implements Parsable
 
     /**
      * Gets the watches property value. The watches property
-     * @return int|null
+     * @return string|null
     */
-    public function getWatches(): ?int {
+    public function getWatches(): ?string {
         return $this->watches;
     }
 
@@ -159,14 +159,14 @@ class VideoStats implements Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeFloatValue('avg_watch_time_ms', $this->getAvgWatchTimeMs());
-        $writer->writeIntegerValue('completions', $this->getCompletions());
+        $writer->writeStringValue('completions', $this->getCompletions());
         $writer->writeFloatValue('completion_rate', $this->getCompletionRate());
-        $writer->writeIntegerValue('starts', $this->getStarts());
-        $writer->writeIntegerValue('total_views', $this->getTotalViews());
+        $writer->writeStringValue('starts', $this->getStarts());
+        $writer->writeStringValue('total_views', $this->getTotalViews());
         $writer->writeFloatValue('total_watch_time_ms', $this->getTotalWatchTimeMs());
-        $writer->writeIntegerValue('unique_viewers', $this->getUniqueViewers());
+        $writer->writeStringValue('unique_viewers', $this->getUniqueViewers());
         $writer->writeStringValue('video_id', $this->getVideoId());
-        $writer->writeIntegerValue('watches', $this->getWatches());
+        $writer->writeStringValue('watches', $this->getWatches());
     }
 
     /**
@@ -187,25 +187,25 @@ class VideoStats implements Parsable
 
     /**
      * Sets the completions property value. The completions property
-     * @param int|null $value Value to set for the completions property.
+     * @param string|null $value Value to set for the completions property.
     */
-    public function setCompletions(?int $value): void {
+    public function setCompletions(?string $value): void {
         $this->completions = $value;
     }
 
     /**
      * Sets the starts property value. The starts property
-     * @param int|null $value Value to set for the starts property.
+     * @param string|null $value Value to set for the starts property.
     */
-    public function setStarts(?int $value): void {
+    public function setStarts(?string $value): void {
         $this->starts = $value;
     }
 
     /**
      * Sets the total_views property value. The total_views property
-     * @param int|null $value Value to set for the total_views property.
+     * @param string|null $value Value to set for the total_views property.
     */
-    public function setTotalViews(?int $value): void {
+    public function setTotalViews(?string $value): void {
         $this->total_views = $value;
     }
 
@@ -219,9 +219,9 @@ class VideoStats implements Parsable
 
     /**
      * Sets the unique_viewers property value. The unique_viewers property
-     * @param int|null $value Value to set for the unique_viewers property.
+     * @param string|null $value Value to set for the unique_viewers property.
     */
-    public function setUniqueViewers(?int $value): void {
+    public function setUniqueViewers(?string $value): void {
         $this->unique_viewers = $value;
     }
 
@@ -235,9 +235,9 @@ class VideoStats implements Parsable
 
     /**
      * Sets the watches property value. The watches property
-     * @param int|null $value Value to set for the watches property.
+     * @param string|null $value Value to set for the watches property.
     */
-    public function setWatches(?int $value): void {
+    public function setWatches(?string $value): void {
         $this->watches = $value;
     }
 

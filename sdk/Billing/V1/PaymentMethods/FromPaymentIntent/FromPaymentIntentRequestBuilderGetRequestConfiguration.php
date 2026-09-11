@@ -28,7 +28,7 @@ class FromPaymentIntentRequestBuilderGetRequestConfiguration extends BaseRequest
 
     /**
      * Instantiates a new FromPaymentIntentRequestBuilderGetQueryParameters.
-     * @param string|null $payment_intent_id 
+     * @param string|null $payment_intent_id The payment_intent_id query parameter.
      * @return FromPaymentIntentRequestBuilderGetQueryParameters
     */
     public static function createQueryParameters(?string $payment_intent_id = null): FromPaymentIntentRequestBuilderGetQueryParameters {

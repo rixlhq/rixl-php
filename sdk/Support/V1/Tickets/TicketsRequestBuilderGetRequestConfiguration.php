@@ -4,7 +4,6 @@ namespace Rixl\Sdk\Support\V1\Tickets;
 
 use Microsoft\Kiota\Abstractions\BaseRequestConfiguration;
 use Microsoft\Kiota\Abstractions\RequestOption;
-use Rixl\Sdk\Models\Support\V1\TicketStatus;
 
 /**
  * Configuration for the request such as headers, query parameters, and middleware options.
@@ -31,10 +30,10 @@ class TicketsRequestBuilderGetRequestConfiguration extends BaseRequestConfigurat
      * Instantiates a new TicketsRequestBuilderGetQueryParameters.
      * @param int|null $paginationLimit Maximum number of items to return.
      * @param int|null $paginationOffset Number of items to skip before collecting the result set.
-     * @param TicketStatus|null $status 
+     * @param string|null $status The status query parameter.
      * @return TicketsRequestBuilderGetQueryParameters
     */
-    public static function createQueryParameters(?int $paginationLimit = null, ?int $paginationOffset = null, ?TicketStatus $status = null): TicketsRequestBuilderGetQueryParameters {
+    public static function createQueryParameters(?int $paginationLimit = null, ?int $paginationOffset = null, ?string $status = null): TicketsRequestBuilderGetQueryParameters {
         return new TicketsRequestBuilderGetQueryParameters($paginationLimit, $paginationOffset, $status);
     }
 

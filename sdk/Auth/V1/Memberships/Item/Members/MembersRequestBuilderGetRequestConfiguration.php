@@ -28,8 +28,8 @@ class MembersRequestBuilderGetRequestConfiguration extends BaseRequestConfigurat
 
     /**
      * Instantiates a new MembersRequestBuilderGetQueryParameters.
-     * @param int|null $limit 
-     * @param int|null $offset 
+     * @param int|null $limit The limit query parameter.
+     * @param int|null $offset The offset query parameter.
      * @return MembersRequestBuilderGetQueryParameters
     */
     public static function createQueryParameters(?int $limit = null, ?int $offset = null): MembersRequestBuilderGetQueryParameters {

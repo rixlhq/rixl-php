@@ -28,7 +28,7 @@ class PostsRequestBuilderGetRequestConfiguration extends BaseRequestConfiguratio
 
     /**
      * Instantiates a new PostsRequestBuilderGetQueryParameters.
-     * @param string|null $creator_id 
+     * @param string|null $creator_id The creator_id query parameter.
      * @param int|null $paginationLimit Maximum number of items to return.
      * @param int|null $paginationOffset Number of items to skip before collecting the result set.
      * @return PostsRequestBuilderGetQueryParameters

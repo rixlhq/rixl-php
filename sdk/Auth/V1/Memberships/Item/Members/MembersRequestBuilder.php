@@ -18,7 +18,7 @@ class MembersRequestBuilder extends BaseRequestBuilder
 {
     /**
      * Gets an item from the Rixl/Sdk.auth.v1.memberships.item.members.item collection
-     * @param string $member_Id Unique identifier of the item
+     * @param string $member_Id The user_id path parameter.
      * @return Member_ItemRequestBuilder
     */
     public function byMember_Id(string $member_Id): Member_ItemRequestBuilder {

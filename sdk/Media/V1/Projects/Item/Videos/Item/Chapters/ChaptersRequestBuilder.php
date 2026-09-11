@@ -18,10 +18,10 @@ class ChaptersRequestBuilder extends BaseRequestBuilder
 {
     /**
      * Gets an item from the Rixl/Sdk.media.v1.projects.item.videos.item.chapters.item collection
-     * @param int $start_time_sec Unique identifier of the item
+     * @param string $start_time_sec The start_time_sec path parameter.
      * @return WithStart_time_secItemRequestBuilder
     */
-    public function byStart_time_sec(int $start_time_sec): WithStart_time_secItemRequestBuilder {
+    public function byStart_time_sec(string $start_time_sec): WithStart_time_secItemRequestBuilder {
         $urlTplParams = $this->pathParameters;
         $urlTplParams['start_time_sec'] = $start_time_sec;
         return new WithStart_time_secItemRequestBuilder($urlTplParams, $this->requestAdapter);

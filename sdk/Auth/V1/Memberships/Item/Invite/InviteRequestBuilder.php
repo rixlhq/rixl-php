@@ -26,7 +26,7 @@ class InviteRequestBuilder extends BaseRequestBuilder
     
     /**
      * Gets an item from the Rixl/Sdk.auth.v1.memberships.item.invite.item collection
-     * @param string $user_id Unique identifier of the item
+     * @param string $user_id The user_id path parameter.
      * @return WithUser_ItemRequestBuilder
     */
     public function byUser_id(string $user_id): WithUser_ItemRequestBuilder {
