@@ -10,11 +10,6 @@ use Rixl\Sdk\Models\Analytics\V1\ExportFormat;
 class ExportPostRequestBody implements Parsable 
 {
     /**
-     * @var string|null $dashboard_id The dashboard_id property
-    */
-    private ?string $dashboard_id = null;
-    
-    /**
      * @var ExportFormat|null $format The format property
     */
     private ?ExportFormat $format = null;
@@ -39,21 +34,12 @@ class ExportPostRequestBody implements Parsable
     }
 
     /**
-     * Gets the dashboard_id property value. The dashboard_id property
-     * @return string|null
-    */
-    public function getDashboardId(): ?string {
-        return $this->dashboard_id;
-    }
-
-    /**
      * The deserialization information for the current model
      * @return array<string, callable(ParseNode): void>
     */
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'dashboard_id' => fn(ParseNode $n) => $o->setDashboardId($n->getStringValue()),
             'format' => fn(ParseNode $n) => $o->setFormat($n->getEnumValue(ExportFormat::class)),
             'time_end' => fn(ParseNode $n) => $o->setTimeEnd($n->getStringValue()),
             'time_start' => fn(ParseNode $n) => $o->setTimeStart($n->getStringValue()),
@@ -89,18 +75,9 @@ class ExportPostRequestBody implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('dashboard_id', $this->getDashboardId());
         $writer->writeEnumValue('format', $this->getFormat());
         $writer->writeStringValue('time_end', $this->getTimeEnd());
         $writer->writeStringValue('time_start', $this->getTimeStart());
-    }
-
-    /**
-     * Sets the dashboard_id property value. The dashboard_id property
-     * @param string|null $value Value to set for the dashboard_id property.
-    */
-    public function setDashboardId(?string $value): void {
-        $this->dashboard_id = $value;
     }
 
     /**

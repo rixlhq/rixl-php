@@ -13,7 +13,7 @@ class ProjectsRequestBuilder extends BaseRequestBuilder
 {
     /**
      * Gets an item from the Rixl/Sdk.posts.v1.projects.item collection
-     * @param string $project_id Unique identifier of the item
+     * @param string $project_id The project_id path parameter.
      * @return WithProject_ItemRequestBuilder
     */
     public function byProject_id(string $project_id): WithProject_ItemRequestBuilder {

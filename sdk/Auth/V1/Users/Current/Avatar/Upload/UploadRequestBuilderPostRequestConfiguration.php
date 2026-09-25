@@ -28,7 +28,7 @@ class UploadRequestBuilderPostRequestConfiguration extends BaseRequestConfigurat
 
     /**
      * Instantiates a new UploadRequestBuilderPostQueryParameters.
-     * @param string|null $user_id 
+     * @param string|null $user_id The user_id query parameter.
      * @return UploadRequestBuilderPostQueryParameters
     */
     public static function createQueryParameters(?string $user_id = null): UploadRequestBuilderPostQueryParameters {

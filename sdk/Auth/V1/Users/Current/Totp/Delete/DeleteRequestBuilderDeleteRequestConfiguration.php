@@ -28,7 +28,7 @@ class DeleteRequestBuilderDeleteRequestConfiguration extends BaseRequestConfigur
 
     /**
      * Instantiates a new DeleteRequestBuilderDeleteQueryParameters.
-     * @param string|null $user_id 
+     * @param string|null $user_id The user_id query parameter.
      * @return DeleteRequestBuilderDeleteQueryParameters
     */
     public static function createQueryParameters(?string $user_id = null): DeleteRequestBuilderDeleteQueryParameters {

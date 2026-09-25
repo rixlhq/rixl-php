@@ -26,7 +26,7 @@ class ProvidersRequestBuilder extends BaseRequestBuilder
     
     /**
      * Gets an item from the Rixl/Sdk.auth.v1.providers.item collection
-     * @param string $provider Unique identifier of the item
+     * @param string $provider The provider path parameter.
      * @return WithProviderItemRequestBuilder
     */
     public function byProvider(string $provider): WithProviderItemRequestBuilder {

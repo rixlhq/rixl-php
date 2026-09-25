@@ -28,7 +28,7 @@ class UnsubscribeRequestBuilderPostRequestConfiguration extends BaseRequestConfi
 
     /**
      * Instantiates a new UnsubscribeRequestBuilderPostQueryParameters.
-     * @param string|null $user_id 
+     * @param string|null $user_id The user_id query parameter.
      * @return UnsubscribeRequestBuilderPostQueryParameters
     */
     public static function createQueryParameters(?string $user_id = null): UnsubscribeRequestBuilderPostQueryParameters {

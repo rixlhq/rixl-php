@@ -20,7 +20,7 @@ class TicketsRequestBuilder extends BaseRequestBuilder
 {
     /**
      * Gets an item from the Rixl/Sdk.support.v1.tickets.item collection
-     * @param string $ticket_id Unique identifier of the item
+     * @param string $ticket_id The ticket_id path parameter.
      * @return WithTicket_ItemRequestBuilder
     */
     public function byTicket_id(string $ticket_id): WithTicket_ItemRequestBuilder {

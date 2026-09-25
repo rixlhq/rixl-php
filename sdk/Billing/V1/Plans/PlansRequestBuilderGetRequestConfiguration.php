@@ -28,9 +28,9 @@ class PlansRequestBuilderGetRequestConfiguration extends BaseRequestConfiguratio
 
     /**
      * Instantiates a new PlansRequestBuilderGetQueryParameters.
-     * @param string|null $currency 
-     * @param string|null $free 
-     * @param string|null $interval 
+     * @param string|null $currency The currency query parameter.
+     * @param string|null $free The free query parameter.
+     * @param string|null $interval The interval query parameter.
      * @return PlansRequestBuilderGetQueryParameters
     */
     public static function createQueryParameters(?string $currency = null, ?string $free = null, ?string $interval = null): PlansRequestBuilderGetQueryParameters {

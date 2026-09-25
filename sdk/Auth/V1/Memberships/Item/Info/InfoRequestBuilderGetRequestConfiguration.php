@@ -28,7 +28,7 @@ class InfoRequestBuilderGetRequestConfiguration extends BaseRequestConfiguration
 
     /**
      * Instantiates a new InfoRequestBuilderGetQueryParameters.
-     * @param string|null $user_id 
+     * @param string|null $user_id The user_id query parameter.
      * @return InfoRequestBuilderGetQueryParameters
     */
     public static function createQueryParameters(?string $user_id = null): InfoRequestBuilderGetQueryParameters {

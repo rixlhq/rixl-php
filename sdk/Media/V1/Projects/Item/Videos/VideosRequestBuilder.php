@@ -26,7 +26,7 @@ class VideosRequestBuilder extends BaseRequestBuilder
     
     /**
      * Gets an item from the Rixl/Sdk.media.v1.projects.item.videos.item collection
-     * @param string $video_id Unique identifier of the item
+     * @param string $video_id The video_id path parameter.
      * @return WithVideo_ItemRequestBuilder
     */
     public function byVideo_id(string $video_id): WithVideo_ItemRequestBuilder {

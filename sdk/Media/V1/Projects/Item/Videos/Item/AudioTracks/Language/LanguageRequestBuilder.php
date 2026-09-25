@@ -13,7 +13,7 @@ class LanguageRequestBuilder extends BaseRequestBuilder
 {
     /**
      * Gets an item from the Rixl/Sdk.media.v1.projects.item.videos.item.audioTracks.language.item collection
-     * @param string $language_code Unique identifier of the item
+     * @param string $language_code The language_code path parameter.
      * @return WithLanguage_codeItemRequestBuilder
     */
     public function byLanguage_code(string $language_code): WithLanguage_codeItemRequestBuilder {

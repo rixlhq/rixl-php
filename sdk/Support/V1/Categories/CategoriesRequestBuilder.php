@@ -18,7 +18,7 @@ class CategoriesRequestBuilder extends BaseRequestBuilder
 {
     /**
      * Gets an item from the Rixl/Sdk.support.v1.categories.item collection
-     * @param string $category_id Unique identifier of the item
+     * @param string $category_id The category_id path parameter.
      * @return WithCategory_ItemRequestBuilder
     */
     public function byCategory_id(string $category_id): WithCategory_ItemRequestBuilder {

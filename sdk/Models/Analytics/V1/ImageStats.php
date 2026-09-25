@@ -14,9 +14,9 @@ class ImageStats implements Parsable
     private ?float $avg_view_duration_ms = null;
     
     /**
-     * @var int|null $feed_views The feed_views property
+     * @var string|null $feed_views The feed_views property
     */
-    private ?int $feed_views = null;
+    private ?string $feed_views = null;
     
     /**
      * @var string|null $image_id The image_id property
@@ -24,9 +24,9 @@ class ImageStats implements Parsable
     private ?string $image_id = null;
     
     /**
-     * @var int|null $standalone_views The standalone_views property
+     * @var string|null $standalone_views The standalone_views property
     */
-    private ?int $standalone_views = null;
+    private ?string $standalone_views = null;
     
     /**
      * @var float|null $total_view_duration_ms The total_view_duration_ms property
@@ -34,14 +34,14 @@ class ImageStats implements Parsable
     private ?float $total_view_duration_ms = null;
     
     /**
-     * @var int|null $total_views The total_views property
+     * @var string|null $total_views The total_views property
     */
-    private ?int $total_views = null;
+    private ?string $total_views = null;
     
     /**
-     * @var int|null $unique_viewers The unique_viewers property
+     * @var string|null $unique_viewers The unique_viewers property
     */
-    private ?int $unique_viewers = null;
+    private ?string $unique_viewers = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -62,9 +62,9 @@ class ImageStats implements Parsable
 
     /**
      * Gets the feed_views property value. The feed_views property
-     * @return int|null
+     * @return string|null
     */
-    public function getFeedViews(): ?int {
+    public function getFeedViews(): ?string {
         return $this->feed_views;
     }
 
@@ -76,12 +76,12 @@ class ImageStats implements Parsable
         $o = $this;
         return  [
             'avg_view_duration_ms' => fn(ParseNode $n) => $o->setAvgViewDurationMs($n->getFloatValue()),
-            'feed_views' => fn(ParseNode $n) => $o->setFeedViews($n->getIntegerValue()),
+            'feed_views' => fn(ParseNode $n) => $o->setFeedViews($n->getStringValue()),
             'image_id' => fn(ParseNode $n) => $o->setImageId($n->getStringValue()),
-            'standalone_views' => fn(ParseNode $n) => $o->setStandaloneViews($n->getIntegerValue()),
+            'standalone_views' => fn(ParseNode $n) => $o->setStandaloneViews($n->getStringValue()),
             'total_view_duration_ms' => fn(ParseNode $n) => $o->setTotalViewDurationMs($n->getFloatValue()),
-            'total_views' => fn(ParseNode $n) => $o->setTotalViews($n->getIntegerValue()),
-            'unique_viewers' => fn(ParseNode $n) => $o->setUniqueViewers($n->getIntegerValue()),
+            'total_views' => fn(ParseNode $n) => $o->setTotalViews($n->getStringValue()),
+            'unique_viewers' => fn(ParseNode $n) => $o->setUniqueViewers($n->getStringValue()),
         ];
     }
 
@@ -95,9 +95,9 @@ class ImageStats implements Parsable
 
     /**
      * Gets the standalone_views property value. The standalone_views property
-     * @return int|null
+     * @return string|null
     */
-    public function getStandaloneViews(): ?int {
+    public function getStandaloneViews(): ?string {
         return $this->standalone_views;
     }
 
@@ -111,17 +111,17 @@ class ImageStats implements Parsable
 
     /**
      * Gets the total_views property value. The total_views property
-     * @return int|null
+     * @return string|null
     */
-    public function getTotalViews(): ?int {
+    public function getTotalViews(): ?string {
         return $this->total_views;
     }
 
     /**
      * Gets the unique_viewers property value. The unique_viewers property
-     * @return int|null
+     * @return string|null
     */
-    public function getUniqueViewers(): ?int {
+    public function getUniqueViewers(): ?string {
         return $this->unique_viewers;
     }
 
@@ -131,12 +131,12 @@ class ImageStats implements Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeFloatValue('avg_view_duration_ms', $this->getAvgViewDurationMs());
-        $writer->writeIntegerValue('feed_views', $this->getFeedViews());
+        $writer->writeStringValue('feed_views', $this->getFeedViews());
         $writer->writeStringValue('image_id', $this->getImageId());
-        $writer->writeIntegerValue('standalone_views', $this->getStandaloneViews());
-        $writer->writeIntegerValue('total_views', $this->getTotalViews());
+        $writer->writeStringValue('standalone_views', $this->getStandaloneViews());
+        $writer->writeStringValue('total_views', $this->getTotalViews());
         $writer->writeFloatValue('total_view_duration_ms', $this->getTotalViewDurationMs());
-        $writer->writeIntegerValue('unique_viewers', $this->getUniqueViewers());
+        $writer->writeStringValue('unique_viewers', $this->getUniqueViewers());
     }
 
     /**
@@ -149,9 +149,9 @@ class ImageStats implements Parsable
 
     /**
      * Sets the feed_views property value. The feed_views property
-     * @param int|null $value Value to set for the feed_views property.
+     * @param string|null $value Value to set for the feed_views property.
     */
-    public function setFeedViews(?int $value): void {
+    public function setFeedViews(?string $value): void {
         $this->feed_views = $value;
     }
 
@@ -165,9 +165,9 @@ class ImageStats implements Parsable
 
     /**
      * Sets the standalone_views property value. The standalone_views property
-     * @param int|null $value Value to set for the standalone_views property.
+     * @param string|null $value Value to set for the standalone_views property.
     */
-    public function setStandaloneViews(?int $value): void {
+    public function setStandaloneViews(?string $value): void {
         $this->standalone_views = $value;
     }
 
@@ -181,17 +181,17 @@ class ImageStats implements Parsable
 
     /**
      * Sets the total_views property value. The total_views property
-     * @param int|null $value Value to set for the total_views property.
+     * @param string|null $value Value to set for the total_views property.
     */
-    public function setTotalViews(?int $value): void {
+    public function setTotalViews(?string $value): void {
         $this->total_views = $value;
     }
 
     /**
      * Sets the unique_viewers property value. The unique_viewers property
-     * @param int|null $value Value to set for the unique_viewers property.
+     * @param string|null $value Value to set for the unique_viewers property.
     */
-    public function setUniqueViewers(?int $value): void {
+    public function setUniqueViewers(?string $value): void {
         $this->unique_viewers = $value;
     }
 

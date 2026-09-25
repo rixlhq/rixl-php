@@ -29,9 +29,9 @@ class ListVideosResponse implements Parsable
     private ?string $sort_field = null;
     
     /**
-     * @var int|null $total The total property
+     * @var string|null $total The total property
     */
-    private ?int $total = null;
+    private ?string $total = null;
     
     /**
      * @var array<Video>|null $videos The videos property
@@ -58,7 +58,7 @@ class ListVideosResponse implements Parsable
             'offset' => fn(ParseNode $n) => $o->setOffset($n->getIntegerValue()),
             'sort_direction' => fn(ParseNode $n) => $o->setSortDirection($n->getStringValue()),
             'sort_field' => fn(ParseNode $n) => $o->setSortField($n->getStringValue()),
-            'total' => fn(ParseNode $n) => $o->setTotal($n->getIntegerValue()),
+            'total' => fn(ParseNode $n) => $o->setTotal($n->getStringValue()),
             'videos' => fn(ParseNode $n) => $o->setVideos($n->getCollectionOfObjectValues([Video::class, 'createFromDiscriminatorValue'])),
         ];
     }
@@ -97,9 +97,9 @@ class ListVideosResponse implements Parsable
 
     /**
      * Gets the total property value. The total property
-     * @return int|null
+     * @return string|null
     */
-    public function getTotal(): ?int {
+    public function getTotal(): ?string {
         return $this->total;
     }
 
@@ -120,7 +120,7 @@ class ListVideosResponse implements Parsable
         $writer->writeIntegerValue('offset', $this->getOffset());
         $writer->writeStringValue('sort_direction', $this->getSortDirection());
         $writer->writeStringValue('sort_field', $this->getSortField());
-        $writer->writeIntegerValue('total', $this->getTotal());
+        $writer->writeStringValue('total', $this->getTotal());
         $writer->writeCollectionOfObjectValues('videos', $this->getVideos());
     }
 
@@ -158,9 +158,9 @@ class ListVideosResponse implements Parsable
 
     /**
      * Sets the total property value. The total property
-     * @param int|null $value Value to set for the total property.
+     * @param string|null $value Value to set for the total property.
     */
-    public function setTotal(?int $value): void {
+    public function setTotal(?string $value): void {
         $this->total = $value;
     }
 

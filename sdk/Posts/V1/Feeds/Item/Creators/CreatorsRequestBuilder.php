@@ -13,7 +13,7 @@ class CreatorsRequestBuilder extends BaseRequestBuilder
 {
     /**
      * Gets an item from the Rixl/Sdk.posts.v1.feeds.item.creators.item collection
-     * @param string $creator_id Unique identifier of the item
+     * @param string $creator_id The creator_id path parameter.
      * @return WithCreator_ItemRequestBuilder
     */
     public function byCreator_id(string $creator_id): WithCreator_ItemRequestBuilder {
