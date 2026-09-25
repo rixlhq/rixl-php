@@ -9,9 +9,9 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class CalculateGenericTaxRequest implements Parsable 
 {
     /**
-     * @var string|null $amount The amount property
+     * @var int|null $amount The amount property
     */
-    private ?string $amount = null;
+    private ?int $amount = null;
     
     /**
      * @var BillingAddress|null $billing_address The billing_address property
@@ -44,9 +44,9 @@ class CalculateGenericTaxRequest implements Parsable
 
     /**
      * Gets the amount property value. The amount property
-     * @return string|null
+     * @return int|null
     */
-    public function getAmount(): ?string {
+    public function getAmount(): ?int {
         return $this->amount;
     }
 
@@ -73,7 +73,7 @@ class CalculateGenericTaxRequest implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'amount' => fn(ParseNode $n) => $o->setAmount($n->getStringValue()),
+            'amount' => fn(ParseNode $n) => $o->setAmount($n->getIntegerValue()),
             'billing_address' => fn(ParseNode $n) => $o->setBillingAddress($n->getObjectValue([BillingAddress::class, 'createFromDiscriminatorValue'])),
             'currency' => fn(ParseNode $n) => $o->setCurrency($n->getStringValue()),
             'line_items' => fn(ParseNode $n) => $o->setLineItems($n->getCollectionOfObjectValues([TaxLineItem::class, 'createFromDiscriminatorValue'])),
@@ -102,7 +102,7 @@ class CalculateGenericTaxRequest implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('amount', $this->getAmount());
+        $writer->writeIntegerValue('amount', $this->getAmount());
         $writer->writeObjectValue('billing_address', $this->getBillingAddress());
         $writer->writeStringValue('currency', $this->getCurrency());
         $writer->writeCollectionOfObjectValues('line_items', $this->getLineItems());
@@ -111,9 +111,9 @@ class CalculateGenericTaxRequest implements Parsable
 
     /**
      * Sets the amount property value. The amount property
-     * @param string|null $value Value to set for the amount property.
+     * @param int|null $value Value to set for the amount property.
     */
-    public function setAmount(?string $value): void {
+    public function setAmount(?int $value): void {
         $this->amount = $value;
     }
 

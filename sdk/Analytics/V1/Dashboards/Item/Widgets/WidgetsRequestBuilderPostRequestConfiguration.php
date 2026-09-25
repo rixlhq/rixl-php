@@ -28,7 +28,7 @@ class WidgetsRequestBuilderPostRequestConfiguration extends BaseRequestConfigura
 
     /**
      * Instantiates a new WidgetsRequestBuilderPostQueryParameters.
-     * @param int|null $expected_revision The expected_revision query parameter.
+     * @param int|null $expected_revision 
      * @return WidgetsRequestBuilderPostQueryParameters
     */
     public static function createQueryParameters(?int $expected_revision = null): WidgetsRequestBuilderPostQueryParameters {

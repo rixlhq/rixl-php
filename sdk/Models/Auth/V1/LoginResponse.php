@@ -25,9 +25,9 @@ class LoginResponse implements Parsable
     private ?string $email = null;
     
     /**
-     * @var string|null $expires_in The expires_in property
+     * @var int|null $expires_in The expires_in property
     */
-    private ?string $expires_in = null;
+    private ?int $expires_in = null;
     
     /**
      * @var StreamInterface|null $passkey_options passkey_options is the WebAuthn PublicKeyCredentialRequestOptions as JSON, present only when "passkey" is one of the authentication methods.
@@ -94,9 +94,9 @@ class LoginResponse implements Parsable
 
     /**
      * Gets the expires_in property value. The expires_in property
-     * @return string|null
+     * @return int|null
     */
-    public function getExpiresIn(): ?string {
+    public function getExpiresIn(): ?int {
         return $this->expires_in;
     }
 
@@ -110,7 +110,7 @@ class LoginResponse implements Parsable
             'access_token' => fn(ParseNode $n) => $o->setAccessToken($n->getStringValue()),
             'authentication' => fn(ParseNode $n) => $o->setAuthentication($n->getCollectionOfEnumValues(AuthMethod::class)),
             'email' => fn(ParseNode $n) => $o->setEmail($n->getStringValue()),
-            'expires_in' => fn(ParseNode $n) => $o->setExpiresIn($n->getStringValue()),
+            'expires_in' => fn(ParseNode $n) => $o->setExpiresIn($n->getIntegerValue()),
             'passkey_options' => fn(ParseNode $n) => $o->setPasskeyOptions($n->getBinaryContent()),
             'refresh_token' => fn(ParseNode $n) => $o->setRefreshToken($n->getStringValue()),
             'requires_action' => fn(ParseNode $n) => $o->setRequiresAction($n->getStringValue()),
@@ -176,7 +176,7 @@ class LoginResponse implements Parsable
         $writer->writeStringValue('access_token', $this->getAccessToken());
         $writer->writeCollectionOfEnumValues('authentication', $this->getAuthentication());
         $writer->writeStringValue('email', $this->getEmail());
-        $writer->writeStringValue('expires_in', $this->getExpiresIn());
+        $writer->writeIntegerValue('expires_in', $this->getExpiresIn());
         $writer->writeBinaryContent('passkey_options', $this->getPasskeyOptions());
         $writer->writeStringValue('refresh_token', $this->getRefreshToken());
         $writer->writeStringValue('requires_action', $this->getRequiresAction());
@@ -211,9 +211,9 @@ class LoginResponse implements Parsable
 
     /**
      * Sets the expires_in property value. The expires_in property
-     * @param string|null $value Value to set for the expires_in property.
+     * @param int|null $value Value to set for the expires_in property.
     */
-    public function setExpiresIn(?string $value): void {
+    public function setExpiresIn(?int $value): void {
         $this->expires_in = $value;
     }
 

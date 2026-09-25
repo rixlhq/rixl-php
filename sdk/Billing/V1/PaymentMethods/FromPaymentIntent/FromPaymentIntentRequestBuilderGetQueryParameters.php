@@ -9,13 +9,13 @@ class FromPaymentIntentRequestBuilderGetQueryParameters
 {
     /**
      * @QueryParameter("payment_intent_id")
-     * @var string|null $paymentIntentId The payment_intent_id query parameter.
+     * @var string|null $paymentIntentId 
     */
     public ?string $paymentIntentId = null;
     
     /**
      * Instantiates a new FromPaymentIntentRequestBuilderGetQueryParameters and sets the default values.
-     * @param string|null $payment_intent_id The payment_intent_id query parameter.
+     * @param string|null $payment_intent_id 
     */
     public function __construct(?string $payment_intent_id = null) {
         $this->paymentIntentId = $payment_intent_id;

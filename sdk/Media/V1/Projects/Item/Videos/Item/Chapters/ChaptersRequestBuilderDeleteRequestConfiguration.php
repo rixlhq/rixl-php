@@ -28,8 +28,8 @@ class ChaptersRequestBuilderDeleteRequestConfiguration extends BaseRequestConfig
 
     /**
      * Instantiates a new ChaptersRequestBuilderDeleteQueryParameters.
-     * @param float|null $chaptersStart_time_sec The chapters.start_time_sec query parameter.
-     * @param string|null $chaptersTitle The chapters.title query parameter.
+     * @param float|null $chaptersStart_time_sec 
+     * @param string|null $chaptersTitle 
      * @return ChaptersRequestBuilderDeleteQueryParameters
     */
     public static function createQueryParameters(?float $chaptersStart_time_sec = null, ?string $chaptersTitle = null): ChaptersRequestBuilderDeleteQueryParameters {

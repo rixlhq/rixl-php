@@ -23,7 +23,7 @@ class WithCreator_ItemRequestBuilderGetQueryParameters
     
     /**
      * @QueryParameter("project_id")
-     * @var string|null $projectId The project_id query parameter.
+     * @var string|null $projectId 
     */
     public ?string $projectId = null;
     
@@ -31,7 +31,7 @@ class WithCreator_ItemRequestBuilderGetQueryParameters
      * Instantiates a new WithCreator_ItemRequestBuilderGetQueryParameters and sets the default values.
      * @param int|null $paginationLimit Maximum number of items to return.
      * @param int|null $paginationOffset Number of items to skip before collecting the result set.
-     * @param string|null $project_id The project_id query parameter.
+     * @param string|null $project_id 
     */
     public function __construct(?int $paginationLimit = null, ?int $paginationOffset = null, ?string $project_id = null) {
         $this->paginationLimit = $paginationLimit;

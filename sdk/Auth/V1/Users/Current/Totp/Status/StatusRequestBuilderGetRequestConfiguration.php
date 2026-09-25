@@ -28,7 +28,7 @@ class StatusRequestBuilderGetRequestConfiguration extends BaseRequestConfigurati
 
     /**
      * Instantiates a new StatusRequestBuilderGetQueryParameters.
-     * @param string|null $user_id The user_id query parameter.
+     * @param string|null $user_id 
      * @return StatusRequestBuilderGetQueryParameters
     */
     public static function createQueryParameters(?string $user_id = null): StatusRequestBuilderGetQueryParameters {

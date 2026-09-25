@@ -4,6 +4,7 @@ namespace Rixl\Sdk\Auth\V1\MembershipApplications;
 
 use Microsoft\Kiota\Abstractions\BaseRequestConfiguration;
 use Microsoft\Kiota\Abstractions\RequestOption;
+use Rixl\Sdk\Models\Auth\V1\MembershipApplicationState;
 
 /**
  * Configuration for the request such as headers, query parameters, and middleware options.
@@ -28,13 +29,13 @@ class MembershipApplicationsRequestBuilderGetRequestConfiguration extends BaseRe
 
     /**
      * Instantiates a new MembershipApplicationsRequestBuilderGetQueryParameters.
-     * @param int|null $limit The limit query parameter.
-     * @param int|null $offset The offset query parameter.
-     * @param string|null $state The state query parameter.
-     * @param string|null $userUser_id The user.user_id query parameter.
+     * @param int|null $limit 
+     * @param int|null $offset 
+     * @param MembershipApplicationState|null $state 
+     * @param string|null $userUser_id 
      * @return MembershipApplicationsRequestBuilderGetQueryParameters
     */
-    public static function createQueryParameters(?int $limit = null, ?int $offset = null, ?string $state = null, ?string $userUser_id = null): MembershipApplicationsRequestBuilderGetQueryParameters {
+    public static function createQueryParameters(?int $limit = null, ?int $offset = null, ?MembershipApplicationState $state = null, ?string $userUser_id = null): MembershipApplicationsRequestBuilderGetQueryParameters {
         return new MembershipApplicationsRequestBuilderGetQueryParameters($limit, $offset, $state, $userUser_id);
     }
 

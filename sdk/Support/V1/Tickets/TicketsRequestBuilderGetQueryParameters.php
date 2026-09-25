@@ -3,6 +3,7 @@
 namespace Rixl\Sdk\Support\V1\Tickets;
 
 use Microsoft\Kiota\Abstractions\QueryParameter;
+use Rixl\Sdk\Models\Support\V1\TicketStatus;
 
 /**
  * ListTickets
@@ -22,17 +23,17 @@ class TicketsRequestBuilderGetQueryParameters
     public ?int $paginationOffset = null;
     
     /**
-     * @var string|null $status The status query parameter.
+     * @var TicketStatus|null $status 
     */
-    public ?string $status = null;
+    public ?TicketStatus $status = null;
     
     /**
      * Instantiates a new TicketsRequestBuilderGetQueryParameters and sets the default values.
      * @param int|null $paginationLimit Maximum number of items to return.
      * @param int|null $paginationOffset Number of items to skip before collecting the result set.
-     * @param string|null $status The status query parameter.
+     * @param TicketStatus|null $status 
     */
-    public function __construct(?int $paginationLimit = null, ?int $paginationOffset = null, ?string $status = null) {
+    public function __construct(?int $paginationLimit = null, ?int $paginationOffset = null, ?TicketStatus $status = null) {
         $this->paginationLimit = $paginationLimit;
         $this->paginationOffset = $paginationOffset;
         $this->status = $status;

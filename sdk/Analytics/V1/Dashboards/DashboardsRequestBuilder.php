@@ -28,7 +28,7 @@ class DashboardsRequestBuilder extends BaseRequestBuilder
     
     /**
      * Gets an item from the Rixl/Sdk.analytics.v1.dashboards.item collection
-     * @param string $dashboard_Id The id path parameter.
+     * @param string $dashboard_Id Unique identifier of the item
      * @return Dashboard_ItemRequestBuilder
     */
     public function byDashboard_Id(string $dashboard_Id): Dashboard_ItemRequestBuilder {

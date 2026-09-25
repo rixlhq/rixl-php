@@ -6,6 +6,7 @@ use Microsoft\Kiota\Abstractions\Serialization\Parsable;
 use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
 use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 use Microsoft\Kiota\Abstractions\Types\TypeUtils;
+use Rixl\Sdk\Models\Auth\V1\UserOrgRequest;
 
 class PoliciesPostRequestBody implements Parsable 
 {
@@ -23,6 +24,11 @@ class PoliciesPostRequestBody implements Parsable
      * @var array<string>|null $permissions The permissions property
     */
     private ?array $permissions = null;
+    
+    /**
+     * @var UserOrgRequest|null $user The user property
+    */
+    private ?UserOrgRequest $user = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -58,6 +64,7 @@ class PoliciesPostRequestBody implements Parsable
                 /** @var array<string>|null $val */
                 $this->setPermissions($val);
             },
+            'user' => fn(ParseNode $n) => $o->setUser($n->getObjectValue([UserOrgRequest::class, 'createFromDiscriminatorValue'])),
         ];
     }
 
@@ -78,6 +85,14 @@ class PoliciesPostRequestBody implements Parsable
     }
 
     /**
+     * Gets the user property value. The user property
+     * @return UserOrgRequest|null
+    */
+    public function getUser(): ?UserOrgRequest {
+        return $this->user;
+    }
+
+    /**
      * Serializes information the current object
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
@@ -85,6 +100,7 @@ class PoliciesPostRequestBody implements Parsable
         $writer->writeStringValue('description', $this->getDescription());
         $writer->writeStringValue('name', $this->getName());
         $writer->writeCollectionOfPrimitiveValues('permissions', $this->getPermissions());
+        $writer->writeObjectValue('user', $this->getUser());
     }
 
     /**
@@ -109,6 +125,14 @@ class PoliciesPostRequestBody implements Parsable
     */
     public function setPermissions(?array $value): void {
         $this->permissions = $value;
+    }
+
+    /**
+     * Sets the user property value. The user property
+     * @param UserOrgRequest|null $value Value to set for the user property.
+    */
+    public function setUser(?UserOrgRequest $value): void {
+        $this->user = $value;
     }
 
 }

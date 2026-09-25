@@ -10,6 +10,16 @@ use Rixl\Sdk\Models\Common\V1\VideoQuality;
 class VideoQualityPatchRequestBody implements Parsable 
 {
     /**
+     * @var string|null $org_id The org_id property
+    */
+    private ?string $org_id = null;
+    
+    /**
+     * @var string|null $project_id The project_id property
+    */
+    private ?string $project_id = null;
+    
+    /**
      * @var VideoQuality|null $video_quality The video_quality property
     */
     private ?VideoQuality $video_quality = null;
@@ -30,8 +40,26 @@ class VideoQualityPatchRequestBody implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
+            'org_id' => fn(ParseNode $n) => $o->setOrgId($n->getStringValue()),
+            'project_id' => fn(ParseNode $n) => $o->setProjectId($n->getStringValue()),
             'video_quality' => fn(ParseNode $n) => $o->setVideoQuality($n->getEnumValue(VideoQuality::class)),
         ];
+    }
+
+    /**
+     * Gets the org_id property value. The org_id property
+     * @return string|null
+    */
+    public function getOrgId(): ?string {
+        return $this->org_id;
+    }
+
+    /**
+     * Gets the project_id property value. The project_id property
+     * @return string|null
+    */
+    public function getProjectId(): ?string {
+        return $this->project_id;
     }
 
     /**
@@ -47,7 +75,25 @@ class VideoQualityPatchRequestBody implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
+        $writer->writeStringValue('org_id', $this->getOrgId());
+        $writer->writeStringValue('project_id', $this->getProjectId());
         $writer->writeEnumValue('video_quality', $this->getVideoQuality());
+    }
+
+    /**
+     * Sets the org_id property value. The org_id property
+     * @param string|null $value Value to set for the org_id property.
+    */
+    public function setOrgId(?string $value): void {
+        $this->org_id = $value;
+    }
+
+    /**
+     * Sets the project_id property value. The project_id property
+     * @param string|null $value Value to set for the project_id property.
+    */
+    public function setProjectId(?string $value): void {
+        $this->project_id = $value;
     }
 
     /**

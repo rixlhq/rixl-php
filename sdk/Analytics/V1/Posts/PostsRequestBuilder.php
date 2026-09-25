@@ -13,7 +13,7 @@ class PostsRequestBuilder extends BaseRequestBuilder
 {
     /**
      * Gets an item from the Rixl/Sdk.analytics.v1.posts.item collection
-     * @param string $post_id The post_id path parameter.
+     * @param string $post_id Unique identifier of the item
      * @return WithPost_ItemRequestBuilder
     */
     public function byPost_id(string $post_id): WithPost_ItemRequestBuilder {

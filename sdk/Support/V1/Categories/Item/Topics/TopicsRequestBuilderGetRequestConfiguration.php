@@ -28,7 +28,7 @@ class TopicsRequestBuilderGetRequestConfiguration extends BaseRequestConfigurati
 
     /**
      * Instantiates a new TopicsRequestBuilderGetQueryParameters.
-     * @param string|null $query The query query parameter.
+     * @param string|null $query 
      * @return TopicsRequestBuilderGetQueryParameters
     */
     public static function createQueryParameters(?string $query = null): TopicsRequestBuilderGetQueryParameters {

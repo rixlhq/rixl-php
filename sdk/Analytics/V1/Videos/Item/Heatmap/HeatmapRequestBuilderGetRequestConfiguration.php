@@ -28,9 +28,9 @@ class HeatmapRequestBuilderGetRequestConfiguration extends BaseRequestConfigurat
 
     /**
      * Instantiates a new HeatmapRequestBuilderGetQueryParameters.
-     * @param int|null $buckets The buckets query parameter.
-     * @param string|null $rangeEnd The range.end query parameter.
-     * @param string|null $rangeStart The range.start query parameter.
+     * @param int|null $buckets 
+     * @param string|null $rangeEnd 
+     * @param string|null $rangeStart 
      * @return HeatmapRequestBuilderGetQueryParameters
     */
     public static function createQueryParameters(?int $buckets = null, ?string $rangeEnd = null, ?string $rangeStart = null): HeatmapRequestBuilderGetQueryParameters {

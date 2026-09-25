@@ -20,7 +20,7 @@ class CredentialsRequestBuilder extends BaseRequestBuilder
 {
     /**
      * Gets an item from the Rixl/Sdk.platform.clientauth.v1.credentials.item collection
-     * @param string $credential_id The credential_id path parameter.
+     * @param string $credential_id Unique identifier of the item
      * @return WithCredential_ItemRequestBuilder
     */
     public function byCredential_id(string $credential_id): WithCredential_ItemRequestBuilder {

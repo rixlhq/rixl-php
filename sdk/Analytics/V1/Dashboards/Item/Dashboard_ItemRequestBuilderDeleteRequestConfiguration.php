@@ -28,7 +28,7 @@ class Dashboard_ItemRequestBuilderDeleteRequestConfiguration extends BaseRequest
 
     /**
      * Instantiates a new Dashboard_ItemRequestBuilderDeleteQueryParameters.
-     * @param int|null $expected_revision The expected_revision query parameter.
+     * @param int|null $expected_revision 
      * @return Dashboard_ItemRequestBuilderDeleteQueryParameters
     */
     public static function createQueryParameters(?int $expected_revision = null): Dashboard_ItemRequestBuilderDeleteQueryParameters {

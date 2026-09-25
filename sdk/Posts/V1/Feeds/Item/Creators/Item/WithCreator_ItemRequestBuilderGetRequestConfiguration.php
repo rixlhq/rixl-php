@@ -30,7 +30,7 @@ class WithCreator_ItemRequestBuilderGetRequestConfiguration extends BaseRequestC
      * Instantiates a new WithCreator_ItemRequestBuilderGetQueryParameters.
      * @param int|null $paginationLimit Maximum number of items to return.
      * @param int|null $paginationOffset Number of items to skip before collecting the result set.
-     * @param string|null $project_id The project_id query parameter.
+     * @param string|null $project_id 
      * @return WithCreator_ItemRequestBuilderGetQueryParameters
     */
     public static function createQueryParameters(?int $paginationLimit = null, ?int $paginationOffset = null, ?string $project_id = null): WithCreator_ItemRequestBuilderGetQueryParameters {
