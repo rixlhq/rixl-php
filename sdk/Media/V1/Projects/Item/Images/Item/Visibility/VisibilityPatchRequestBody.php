@@ -10,17 +10,7 @@ use Rixl\Sdk\Models\Common\V1\Visibility;
 class VisibilityPatchRequestBody implements Parsable 
 {
     /**
-     * @var string|null $image_id The image_id property
-    */
-    private ?string $image_id = null;
-    
-    /**
-     * @var string|null $project_id The project_id property
-    */
-    private ?string $project_id = null;
-    
-    /**
-     * @var Visibility|null $visibility The visibility property
+     * @var Visibility|null $visibility enum.defined_only = true
     */
     private ?Visibility $visibility = null;
     
@@ -40,30 +30,12 @@ class VisibilityPatchRequestBody implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'image_id' => fn(ParseNode $n) => $o->setImageId($n->getStringValue()),
-            'project_id' => fn(ParseNode $n) => $o->setProjectId($n->getStringValue()),
             'visibility' => fn(ParseNode $n) => $o->setVisibility($n->getEnumValue(Visibility::class)),
         ];
     }
 
     /**
-     * Gets the image_id property value. The image_id property
-     * @return string|null
-    */
-    public function getImageId(): ?string {
-        return $this->image_id;
-    }
-
-    /**
-     * Gets the project_id property value. The project_id property
-     * @return string|null
-    */
-    public function getProjectId(): ?string {
-        return $this->project_id;
-    }
-
-    /**
-     * Gets the visibility property value. The visibility property
+     * Gets the visibility property value. enum.defined_only = true
      * @return Visibility|null
     */
     public function getVisibility(): ?Visibility {
@@ -75,29 +47,11 @@ class VisibilityPatchRequestBody implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('image_id', $this->getImageId());
-        $writer->writeStringValue('project_id', $this->getProjectId());
         $writer->writeEnumValue('visibility', $this->getVisibility());
     }
 
     /**
-     * Sets the image_id property value. The image_id property
-     * @param string|null $value Value to set for the image_id property.
-    */
-    public function setImageId(?string $value): void {
-        $this->image_id = $value;
-    }
-
-    /**
-     * Sets the project_id property value. The project_id property
-     * @param string|null $value Value to set for the project_id property.
-    */
-    public function setProjectId(?string $value): void {
-        $this->project_id = $value;
-    }
-
-    /**
-     * Sets the visibility property value. The visibility property
+     * Sets the visibility property value. enum.defined_only = true
      * @param Visibility|null $value Value to set for the visibility property.
     */
     public function setVisibility(?Visibility $value): void {

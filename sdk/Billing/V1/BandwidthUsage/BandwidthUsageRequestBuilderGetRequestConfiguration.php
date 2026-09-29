@@ -28,7 +28,7 @@ class BandwidthUsageRequestBuilderGetRequestConfiguration extends BaseRequestCon
 
     /**
      * Instantiates a new BandwidthUsageRequestBuilderGetQueryParameters.
-     * @param string|null $org_id 
+     * @param string|null $org_id The org_id query parameter.
      * @return BandwidthUsageRequestBuilderGetQueryParameters
     */
     public static function createQueryParameters(?string $org_id = null): BandwidthUsageRequestBuilderGetQueryParameters {

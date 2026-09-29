@@ -14,9 +14,9 @@ class ListFeedsResponse implements Parsable
     private ?array $feeds = null;
     
     /**
-     * @var int|null $total The total property
+     * @var string|null $total The total property
     */
-    private ?int $total = null;
+    private ?string $total = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -43,15 +43,15 @@ class ListFeedsResponse implements Parsable
         $o = $this;
         return  [
             'feeds' => fn(ParseNode $n) => $o->setFeeds($n->getCollectionOfObjectValues([Feed::class, 'createFromDiscriminatorValue'])),
-            'total' => fn(ParseNode $n) => $o->setTotal($n->getIntegerValue()),
+            'total' => fn(ParseNode $n) => $o->setTotal($n->getStringValue()),
         ];
     }
 
     /**
      * Gets the total property value. The total property
-     * @return int|null
+     * @return string|null
     */
-    public function getTotal(): ?int {
+    public function getTotal(): ?string {
         return $this->total;
     }
 
@@ -61,7 +61,7 @@ class ListFeedsResponse implements Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeCollectionOfObjectValues('feeds', $this->getFeeds());
-        $writer->writeIntegerValue('total', $this->getTotal());
+        $writer->writeStringValue('total', $this->getTotal());
     }
 
     /**
@@ -74,9 +74,9 @@ class ListFeedsResponse implements Parsable
 
     /**
      * Sets the total property value. The total property
-     * @param int|null $value Value to set for the total property.
+     * @param string|null $value Value to set for the total property.
     */
-    public function setTotal(?int $value): void {
+    public function setTotal(?string $value): void {
         $this->total = $value;
     }
 

@@ -10,7 +10,7 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class BandwidthUsage implements Parsable 
 {
     /**
-     * @var DateTime|null $created_at A Timestamp represents a point in time independent of any time zone or local calendar, encoded as a count of seconds and fractions of seconds at nanosecond resolution. The count is relative to an epoch at UTC midnight on January 1, 1970, in the proleptic Gregorian calendar which extends the Gregorian calendar backwards to year one. All minutes are 60 seconds long. Leap seconds are "smeared" so that no leap second table is needed for interpretation, using a [24-hour linear smear](https://developers.google.com/time/smear). The range is from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59.999999999Z. By restricting to that range, we ensure that we can convert to and from [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) date strings. # Examples Example 1: Compute Timestamp from POSIX `time()`.     Timestamp timestamp;     timestamp.set_seconds(time(NULL));     timestamp.set_nanos(0); Example 2: Compute Timestamp from POSIX `gettimeofday()`.     struct timeval tv;     gettimeofday(&tv, NULL);     Timestamp timestamp;     timestamp.set_seconds(tv.tv_sec);     timestamp.set_nanos(tv.tv_usec * 1000); Example 3: Compute Timestamp from Win32 `GetSystemTimeAsFileTime()`.     FILETIME ft;     GetSystemTimeAsFileTime(&ft);     UINT64 ticks = (((UINT64)ft.dwHighDateTime) << 32) | ft.dwLowDateTime;     // A Windows tick is 100 nanoseconds. Windows epoch 1601-01-01T00:00:00Z     // is 11644473600 seconds before Unix epoch 1970-01-01T00:00:00Z.     Timestamp timestamp;     timestamp.set_seconds((INT64) ((ticks / 10000000) - 11644473600LL));     timestamp.set_nanos((INT32) ((ticks % 10000000) * 100)); Example 4: Compute Timestamp from Java `System.currentTimeMillis()`.     long millis = System.currentTimeMillis();     Timestamp timestamp = Timestamp.newBuilder().setSeconds(millis / 1000)         .setNanos((int) ((millis % 1000) * 1000000)).build(); Example 5: Compute Timestamp from Java `Instant.now()`.     Instant now = Instant.now();     Timestamp timestamp =         Timestamp.newBuilder().setSeconds(now.getEpochSecond())             .setNanos(now.getNano()).build(); Example 6: Compute Timestamp from current time in Python.     timestamp = Timestamp()     timestamp.GetCurrentTime() # JSON Mapping In JSON format, the Timestamp type is encoded as a string in the [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format. That is, the format is "{year}-{month}-{day}T{hour}:{min}:{sec}[.{frac_sec}]Z" where {year} is always expressed using four digits while {month}, {day}, {hour}, {min}, and {sec} are zero-padded to two digits each. The fractional seconds, which can go up to 9 digits (i.e. up to 1 nanosecond resolution), are optional. The "Z" suffix indicates the timezone ("UTC"); the timezone is required. A proto3 JSON serializer should always use UTC (as indicated by "Z") when printing the Timestamp type and a proto3 JSON parser should be able to accept both UTC and other timezones (as indicated by an offset). For example, "2017-01-15T01:30:15.01Z" encodes 15.01 seconds past 01:30 UTC on January 15, 2017. In JavaScript, one can convert a Date object to this format using the standard [toISOString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString) method. In Python, a standard `datetime.datetime` object can be converted to this format using [`strftime`](https://docs.python.org/2/library/time.html#time.strftime) with the time format spec '%Y-%m-%dT%H:%M:%S.%fZ'. Likewise, in Java, one can use the Joda Time's [`ISODateTimeFormat.dateTime()`]( http://joda-time.sourceforge.net/apidocs/org/joda/time/format/ISODateTimeFormat.html#dateTime() ) to obtain a formatter capable of generating timestamps in this format.
+     * @var DateTime|null $created_at The created_at property
     */
     private ?DateTime $created_at = null;
     
@@ -20,14 +20,14 @@ class BandwidthUsage implements Parsable
     private ?string $data_source = null;
     
     /**
-     * @var int|null $image_bandwidth_bytes The image_bandwidth_bytes property
+     * @var string|null $image_bandwidth_bytes The image_bandwidth_bytes property
     */
-    private ?int $image_bandwidth_bytes = null;
+    private ?string $image_bandwidth_bytes = null;
     
     /**
-     * @var int|null $image_requests The image_requests property
+     * @var string|null $image_requests The image_requests property
     */
-    private ?int $image_requests = null;
+    private ?string $image_requests = null;
     
     /**
      * @var string|null $org_id The org_id property
@@ -35,7 +35,7 @@ class BandwidthUsage implements Parsable
     private ?string $org_id = null;
     
     /**
-     * @var DateTime|null $snapshot_date A Timestamp represents a point in time independent of any time zone or local calendar, encoded as a count of seconds and fractions of seconds at nanosecond resolution. The count is relative to an epoch at UTC midnight on January 1, 1970, in the proleptic Gregorian calendar which extends the Gregorian calendar backwards to year one. All minutes are 60 seconds long. Leap seconds are "smeared" so that no leap second table is needed for interpretation, using a [24-hour linear smear](https://developers.google.com/time/smear). The range is from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59.999999999Z. By restricting to that range, we ensure that we can convert to and from [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) date strings. # Examples Example 1: Compute Timestamp from POSIX `time()`.     Timestamp timestamp;     timestamp.set_seconds(time(NULL));     timestamp.set_nanos(0); Example 2: Compute Timestamp from POSIX `gettimeofday()`.     struct timeval tv;     gettimeofday(&tv, NULL);     Timestamp timestamp;     timestamp.set_seconds(tv.tv_sec);     timestamp.set_nanos(tv.tv_usec * 1000); Example 3: Compute Timestamp from Win32 `GetSystemTimeAsFileTime()`.     FILETIME ft;     GetSystemTimeAsFileTime(&ft);     UINT64 ticks = (((UINT64)ft.dwHighDateTime) << 32) | ft.dwLowDateTime;     // A Windows tick is 100 nanoseconds. Windows epoch 1601-01-01T00:00:00Z     // is 11644473600 seconds before Unix epoch 1970-01-01T00:00:00Z.     Timestamp timestamp;     timestamp.set_seconds((INT64) ((ticks / 10000000) - 11644473600LL));     timestamp.set_nanos((INT32) ((ticks % 10000000) * 100)); Example 4: Compute Timestamp from Java `System.currentTimeMillis()`.     long millis = System.currentTimeMillis();     Timestamp timestamp = Timestamp.newBuilder().setSeconds(millis / 1000)         .setNanos((int) ((millis % 1000) * 1000000)).build(); Example 5: Compute Timestamp from Java `Instant.now()`.     Instant now = Instant.now();     Timestamp timestamp =         Timestamp.newBuilder().setSeconds(now.getEpochSecond())             .setNanos(now.getNano()).build(); Example 6: Compute Timestamp from current time in Python.     timestamp = Timestamp()     timestamp.GetCurrentTime() # JSON Mapping In JSON format, the Timestamp type is encoded as a string in the [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format. That is, the format is "{year}-{month}-{day}T{hour}:{min}:{sec}[.{frac_sec}]Z" where {year} is always expressed using four digits while {month}, {day}, {hour}, {min}, and {sec} are zero-padded to two digits each. The fractional seconds, which can go up to 9 digits (i.e. up to 1 nanosecond resolution), are optional. The "Z" suffix indicates the timezone ("UTC"); the timezone is required. A proto3 JSON serializer should always use UTC (as indicated by "Z") when printing the Timestamp type and a proto3 JSON parser should be able to accept both UTC and other timezones (as indicated by an offset). For example, "2017-01-15T01:30:15.01Z" encodes 15.01 seconds past 01:30 UTC on January 15, 2017. In JavaScript, one can convert a Date object to this format using the standard [toISOString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString) method. In Python, a standard `datetime.datetime` object can be converted to this format using [`strftime`](https://docs.python.org/2/library/time.html#time.strftime) with the time format spec '%Y-%m-%dT%H:%M:%S.%fZ'. Likewise, in Java, one can use the Joda Time's [`ISODateTimeFormat.dateTime()`]( http://joda-time.sourceforge.net/apidocs/org/joda/time/format/ISODateTimeFormat.html#dateTime() ) to obtain a formatter capable of generating timestamps in this format.
+     * @var DateTime|null $snapshot_date The snapshot_date property
     */
     private ?DateTime $snapshot_date = null;
     
@@ -45,29 +45,29 @@ class BandwidthUsage implements Parsable
     private ?string $snapshot_type = null;
     
     /**
-     * @var int|null $total_bandwidth_bytes The total_bandwidth_bytes property
+     * @var string|null $total_bandwidth_bytes The total_bandwidth_bytes property
     */
-    private ?int $total_bandwidth_bytes = null;
+    private ?string $total_bandwidth_bytes = null;
     
     /**
-     * @var int|null $total_requests The total_requests property
+     * @var string|null $total_requests The total_requests property
     */
-    private ?int $total_requests = null;
+    private ?string $total_requests = null;
     
     /**
-     * @var int|null $unique_visitors The unique_visitors property
+     * @var string|null $unique_visitors The unique_visitors property
     */
-    private ?int $unique_visitors = null;
+    private ?string $unique_visitors = null;
     
     /**
-     * @var int|null $video_bandwidth_bytes The video_bandwidth_bytes property
+     * @var string|null $video_bandwidth_bytes The video_bandwidth_bytes property
     */
-    private ?int $video_bandwidth_bytes = null;
+    private ?string $video_bandwidth_bytes = null;
     
     /**
-     * @var int|null $video_requests The video_requests property
+     * @var string|null $video_requests The video_requests property
     */
-    private ?int $video_requests = null;
+    private ?string $video_requests = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -79,7 +79,7 @@ class BandwidthUsage implements Parsable
     }
 
     /**
-     * Gets the created_at property value. A Timestamp represents a point in time independent of any time zone or local calendar, encoded as a count of seconds and fractions of seconds at nanosecond resolution. The count is relative to an epoch at UTC midnight on January 1, 1970, in the proleptic Gregorian calendar which extends the Gregorian calendar backwards to year one. All minutes are 60 seconds long. Leap seconds are "smeared" so that no leap second table is needed for interpretation, using a [24-hour linear smear](https://developers.google.com/time/smear). The range is from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59.999999999Z. By restricting to that range, we ensure that we can convert to and from [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) date strings. # Examples Example 1: Compute Timestamp from POSIX `time()`.     Timestamp timestamp;     timestamp.set_seconds(time(NULL));     timestamp.set_nanos(0); Example 2: Compute Timestamp from POSIX `gettimeofday()`.     struct timeval tv;     gettimeofday(&tv, NULL);     Timestamp timestamp;     timestamp.set_seconds(tv.tv_sec);     timestamp.set_nanos(tv.tv_usec * 1000); Example 3: Compute Timestamp from Win32 `GetSystemTimeAsFileTime()`.     FILETIME ft;     GetSystemTimeAsFileTime(&ft);     UINT64 ticks = (((UINT64)ft.dwHighDateTime) << 32) | ft.dwLowDateTime;     // A Windows tick is 100 nanoseconds. Windows epoch 1601-01-01T00:00:00Z     // is 11644473600 seconds before Unix epoch 1970-01-01T00:00:00Z.     Timestamp timestamp;     timestamp.set_seconds((INT64) ((ticks / 10000000) - 11644473600LL));     timestamp.set_nanos((INT32) ((ticks % 10000000) * 100)); Example 4: Compute Timestamp from Java `System.currentTimeMillis()`.     long millis = System.currentTimeMillis();     Timestamp timestamp = Timestamp.newBuilder().setSeconds(millis / 1000)         .setNanos((int) ((millis % 1000) * 1000000)).build(); Example 5: Compute Timestamp from Java `Instant.now()`.     Instant now = Instant.now();     Timestamp timestamp =         Timestamp.newBuilder().setSeconds(now.getEpochSecond())             .setNanos(now.getNano()).build(); Example 6: Compute Timestamp from current time in Python.     timestamp = Timestamp()     timestamp.GetCurrentTime() # JSON Mapping In JSON format, the Timestamp type is encoded as a string in the [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format. That is, the format is "{year}-{month}-{day}T{hour}:{min}:{sec}[.{frac_sec}]Z" where {year} is always expressed using four digits while {month}, {day}, {hour}, {min}, and {sec} are zero-padded to two digits each. The fractional seconds, which can go up to 9 digits (i.e. up to 1 nanosecond resolution), are optional. The "Z" suffix indicates the timezone ("UTC"); the timezone is required. A proto3 JSON serializer should always use UTC (as indicated by "Z") when printing the Timestamp type and a proto3 JSON parser should be able to accept both UTC and other timezones (as indicated by an offset). For example, "2017-01-15T01:30:15.01Z" encodes 15.01 seconds past 01:30 UTC on January 15, 2017. In JavaScript, one can convert a Date object to this format using the standard [toISOString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString) method. In Python, a standard `datetime.datetime` object can be converted to this format using [`strftime`](https://docs.python.org/2/library/time.html#time.strftime) with the time format spec '%Y-%m-%dT%H:%M:%S.%fZ'. Likewise, in Java, one can use the Joda Time's [`ISODateTimeFormat.dateTime()`]( http://joda-time.sourceforge.net/apidocs/org/joda/time/format/ISODateTimeFormat.html#dateTime() ) to obtain a formatter capable of generating timestamps in this format.
+     * Gets the created_at property value. The created_at property
      * @return DateTime|null
     */
     public function getCreatedAt(): ?DateTime {
@@ -103,32 +103,32 @@ class BandwidthUsage implements Parsable
         return  [
             'created_at' => fn(ParseNode $n) => $o->setCreatedAt($n->getDateTimeValue()),
             'data_source' => fn(ParseNode $n) => $o->setDataSource($n->getStringValue()),
-            'image_bandwidth_bytes' => fn(ParseNode $n) => $o->setImageBandwidthBytes($n->getIntegerValue()),
-            'image_requests' => fn(ParseNode $n) => $o->setImageRequests($n->getIntegerValue()),
+            'image_bandwidth_bytes' => fn(ParseNode $n) => $o->setImageBandwidthBytes($n->getStringValue()),
+            'image_requests' => fn(ParseNode $n) => $o->setImageRequests($n->getStringValue()),
             'org_id' => fn(ParseNode $n) => $o->setOrgId($n->getStringValue()),
             'snapshot_date' => fn(ParseNode $n) => $o->setSnapshotDate($n->getDateTimeValue()),
             'snapshot_type' => fn(ParseNode $n) => $o->setSnapshotType($n->getStringValue()),
-            'total_bandwidth_bytes' => fn(ParseNode $n) => $o->setTotalBandwidthBytes($n->getIntegerValue()),
-            'total_requests' => fn(ParseNode $n) => $o->setTotalRequests($n->getIntegerValue()),
-            'unique_visitors' => fn(ParseNode $n) => $o->setUniqueVisitors($n->getIntegerValue()),
-            'video_bandwidth_bytes' => fn(ParseNode $n) => $o->setVideoBandwidthBytes($n->getIntegerValue()),
-            'video_requests' => fn(ParseNode $n) => $o->setVideoRequests($n->getIntegerValue()),
+            'total_bandwidth_bytes' => fn(ParseNode $n) => $o->setTotalBandwidthBytes($n->getStringValue()),
+            'total_requests' => fn(ParseNode $n) => $o->setTotalRequests($n->getStringValue()),
+            'unique_visitors' => fn(ParseNode $n) => $o->setUniqueVisitors($n->getStringValue()),
+            'video_bandwidth_bytes' => fn(ParseNode $n) => $o->setVideoBandwidthBytes($n->getStringValue()),
+            'video_requests' => fn(ParseNode $n) => $o->setVideoRequests($n->getStringValue()),
         ];
     }
 
     /**
      * Gets the image_bandwidth_bytes property value. The image_bandwidth_bytes property
-     * @return int|null
+     * @return string|null
     */
-    public function getImageBandwidthBytes(): ?int {
+    public function getImageBandwidthBytes(): ?string {
         return $this->image_bandwidth_bytes;
     }
 
     /**
      * Gets the image_requests property value. The image_requests property
-     * @return int|null
+     * @return string|null
     */
-    public function getImageRequests(): ?int {
+    public function getImageRequests(): ?string {
         return $this->image_requests;
     }
 
@@ -141,7 +141,7 @@ class BandwidthUsage implements Parsable
     }
 
     /**
-     * Gets the snapshot_date property value. A Timestamp represents a point in time independent of any time zone or local calendar, encoded as a count of seconds and fractions of seconds at nanosecond resolution. The count is relative to an epoch at UTC midnight on January 1, 1970, in the proleptic Gregorian calendar which extends the Gregorian calendar backwards to year one. All minutes are 60 seconds long. Leap seconds are "smeared" so that no leap second table is needed for interpretation, using a [24-hour linear smear](https://developers.google.com/time/smear). The range is from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59.999999999Z. By restricting to that range, we ensure that we can convert to and from [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) date strings. # Examples Example 1: Compute Timestamp from POSIX `time()`.     Timestamp timestamp;     timestamp.set_seconds(time(NULL));     timestamp.set_nanos(0); Example 2: Compute Timestamp from POSIX `gettimeofday()`.     struct timeval tv;     gettimeofday(&tv, NULL);     Timestamp timestamp;     timestamp.set_seconds(tv.tv_sec);     timestamp.set_nanos(tv.tv_usec * 1000); Example 3: Compute Timestamp from Win32 `GetSystemTimeAsFileTime()`.     FILETIME ft;     GetSystemTimeAsFileTime(&ft);     UINT64 ticks = (((UINT64)ft.dwHighDateTime) << 32) | ft.dwLowDateTime;     // A Windows tick is 100 nanoseconds. Windows epoch 1601-01-01T00:00:00Z     // is 11644473600 seconds before Unix epoch 1970-01-01T00:00:00Z.     Timestamp timestamp;     timestamp.set_seconds((INT64) ((ticks / 10000000) - 11644473600LL));     timestamp.set_nanos((INT32) ((ticks % 10000000) * 100)); Example 4: Compute Timestamp from Java `System.currentTimeMillis()`.     long millis = System.currentTimeMillis();     Timestamp timestamp = Timestamp.newBuilder().setSeconds(millis / 1000)         .setNanos((int) ((millis % 1000) * 1000000)).build(); Example 5: Compute Timestamp from Java `Instant.now()`.     Instant now = Instant.now();     Timestamp timestamp =         Timestamp.newBuilder().setSeconds(now.getEpochSecond())             .setNanos(now.getNano()).build(); Example 6: Compute Timestamp from current time in Python.     timestamp = Timestamp()     timestamp.GetCurrentTime() # JSON Mapping In JSON format, the Timestamp type is encoded as a string in the [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format. That is, the format is "{year}-{month}-{day}T{hour}:{min}:{sec}[.{frac_sec}]Z" where {year} is always expressed using four digits while {month}, {day}, {hour}, {min}, and {sec} are zero-padded to two digits each. The fractional seconds, which can go up to 9 digits (i.e. up to 1 nanosecond resolution), are optional. The "Z" suffix indicates the timezone ("UTC"); the timezone is required. A proto3 JSON serializer should always use UTC (as indicated by "Z") when printing the Timestamp type and a proto3 JSON parser should be able to accept both UTC and other timezones (as indicated by an offset). For example, "2017-01-15T01:30:15.01Z" encodes 15.01 seconds past 01:30 UTC on January 15, 2017. In JavaScript, one can convert a Date object to this format using the standard [toISOString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString) method. In Python, a standard `datetime.datetime` object can be converted to this format using [`strftime`](https://docs.python.org/2/library/time.html#time.strftime) with the time format spec '%Y-%m-%dT%H:%M:%S.%fZ'. Likewise, in Java, one can use the Joda Time's [`ISODateTimeFormat.dateTime()`]( http://joda-time.sourceforge.net/apidocs/org/joda/time/format/ISODateTimeFormat.html#dateTime() ) to obtain a formatter capable of generating timestamps in this format.
+     * Gets the snapshot_date property value. The snapshot_date property
      * @return DateTime|null
     */
     public function getSnapshotDate(): ?DateTime {
@@ -158,41 +158,41 @@ class BandwidthUsage implements Parsable
 
     /**
      * Gets the total_bandwidth_bytes property value. The total_bandwidth_bytes property
-     * @return int|null
+     * @return string|null
     */
-    public function getTotalBandwidthBytes(): ?int {
+    public function getTotalBandwidthBytes(): ?string {
         return $this->total_bandwidth_bytes;
     }
 
     /**
      * Gets the total_requests property value. The total_requests property
-     * @return int|null
+     * @return string|null
     */
-    public function getTotalRequests(): ?int {
+    public function getTotalRequests(): ?string {
         return $this->total_requests;
     }
 
     /**
      * Gets the unique_visitors property value. The unique_visitors property
-     * @return int|null
+     * @return string|null
     */
-    public function getUniqueVisitors(): ?int {
+    public function getUniqueVisitors(): ?string {
         return $this->unique_visitors;
     }
 
     /**
      * Gets the video_bandwidth_bytes property value. The video_bandwidth_bytes property
-     * @return int|null
+     * @return string|null
     */
-    public function getVideoBandwidthBytes(): ?int {
+    public function getVideoBandwidthBytes(): ?string {
         return $this->video_bandwidth_bytes;
     }
 
     /**
      * Gets the video_requests property value. The video_requests property
-     * @return int|null
+     * @return string|null
     */
-    public function getVideoRequests(): ?int {
+    public function getVideoRequests(): ?string {
         return $this->video_requests;
     }
 
@@ -203,20 +203,20 @@ class BandwidthUsage implements Parsable
     public function serialize(SerializationWriter $writer): void {
         $writer->writeDateTimeValue('created_at', $this->getCreatedAt());
         $writer->writeStringValue('data_source', $this->getDataSource());
-        $writer->writeIntegerValue('image_bandwidth_bytes', $this->getImageBandwidthBytes());
-        $writer->writeIntegerValue('image_requests', $this->getImageRequests());
+        $writer->writeStringValue('image_bandwidth_bytes', $this->getImageBandwidthBytes());
+        $writer->writeStringValue('image_requests', $this->getImageRequests());
         $writer->writeStringValue('org_id', $this->getOrgId());
         $writer->writeDateTimeValue('snapshot_date', $this->getSnapshotDate());
         $writer->writeStringValue('snapshot_type', $this->getSnapshotType());
-        $writer->writeIntegerValue('total_bandwidth_bytes', $this->getTotalBandwidthBytes());
-        $writer->writeIntegerValue('total_requests', $this->getTotalRequests());
-        $writer->writeIntegerValue('unique_visitors', $this->getUniqueVisitors());
-        $writer->writeIntegerValue('video_bandwidth_bytes', $this->getVideoBandwidthBytes());
-        $writer->writeIntegerValue('video_requests', $this->getVideoRequests());
+        $writer->writeStringValue('total_bandwidth_bytes', $this->getTotalBandwidthBytes());
+        $writer->writeStringValue('total_requests', $this->getTotalRequests());
+        $writer->writeStringValue('unique_visitors', $this->getUniqueVisitors());
+        $writer->writeStringValue('video_bandwidth_bytes', $this->getVideoBandwidthBytes());
+        $writer->writeStringValue('video_requests', $this->getVideoRequests());
     }
 
     /**
-     * Sets the created_at property value. A Timestamp represents a point in time independent of any time zone or local calendar, encoded as a count of seconds and fractions of seconds at nanosecond resolution. The count is relative to an epoch at UTC midnight on January 1, 1970, in the proleptic Gregorian calendar which extends the Gregorian calendar backwards to year one. All minutes are 60 seconds long. Leap seconds are "smeared" so that no leap second table is needed for interpretation, using a [24-hour linear smear](https://developers.google.com/time/smear). The range is from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59.999999999Z. By restricting to that range, we ensure that we can convert to and from [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) date strings. # Examples Example 1: Compute Timestamp from POSIX `time()`.     Timestamp timestamp;     timestamp.set_seconds(time(NULL));     timestamp.set_nanos(0); Example 2: Compute Timestamp from POSIX `gettimeofday()`.     struct timeval tv;     gettimeofday(&tv, NULL);     Timestamp timestamp;     timestamp.set_seconds(tv.tv_sec);     timestamp.set_nanos(tv.tv_usec * 1000); Example 3: Compute Timestamp from Win32 `GetSystemTimeAsFileTime()`.     FILETIME ft;     GetSystemTimeAsFileTime(&ft);     UINT64 ticks = (((UINT64)ft.dwHighDateTime) << 32) | ft.dwLowDateTime;     // A Windows tick is 100 nanoseconds. Windows epoch 1601-01-01T00:00:00Z     // is 11644473600 seconds before Unix epoch 1970-01-01T00:00:00Z.     Timestamp timestamp;     timestamp.set_seconds((INT64) ((ticks / 10000000) - 11644473600LL));     timestamp.set_nanos((INT32) ((ticks % 10000000) * 100)); Example 4: Compute Timestamp from Java `System.currentTimeMillis()`.     long millis = System.currentTimeMillis();     Timestamp timestamp = Timestamp.newBuilder().setSeconds(millis / 1000)         .setNanos((int) ((millis % 1000) * 1000000)).build(); Example 5: Compute Timestamp from Java `Instant.now()`.     Instant now = Instant.now();     Timestamp timestamp =         Timestamp.newBuilder().setSeconds(now.getEpochSecond())             .setNanos(now.getNano()).build(); Example 6: Compute Timestamp from current time in Python.     timestamp = Timestamp()     timestamp.GetCurrentTime() # JSON Mapping In JSON format, the Timestamp type is encoded as a string in the [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format. That is, the format is "{year}-{month}-{day}T{hour}:{min}:{sec}[.{frac_sec}]Z" where {year} is always expressed using four digits while {month}, {day}, {hour}, {min}, and {sec} are zero-padded to two digits each. The fractional seconds, which can go up to 9 digits (i.e. up to 1 nanosecond resolution), are optional. The "Z" suffix indicates the timezone ("UTC"); the timezone is required. A proto3 JSON serializer should always use UTC (as indicated by "Z") when printing the Timestamp type and a proto3 JSON parser should be able to accept both UTC and other timezones (as indicated by an offset). For example, "2017-01-15T01:30:15.01Z" encodes 15.01 seconds past 01:30 UTC on January 15, 2017. In JavaScript, one can convert a Date object to this format using the standard [toISOString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString) method. In Python, a standard `datetime.datetime` object can be converted to this format using [`strftime`](https://docs.python.org/2/library/time.html#time.strftime) with the time format spec '%Y-%m-%dT%H:%M:%S.%fZ'. Likewise, in Java, one can use the Joda Time's [`ISODateTimeFormat.dateTime()`]( http://joda-time.sourceforge.net/apidocs/org/joda/time/format/ISODateTimeFormat.html#dateTime() ) to obtain a formatter capable of generating timestamps in this format.
+     * Sets the created_at property value. The created_at property
      * @param DateTime|null $value Value to set for the created_at property.
     */
     public function setCreatedAt(?DateTime $value): void {
@@ -233,17 +233,17 @@ class BandwidthUsage implements Parsable
 
     /**
      * Sets the image_bandwidth_bytes property value. The image_bandwidth_bytes property
-     * @param int|null $value Value to set for the image_bandwidth_bytes property.
+     * @param string|null $value Value to set for the image_bandwidth_bytes property.
     */
-    public function setImageBandwidthBytes(?int $value): void {
+    public function setImageBandwidthBytes(?string $value): void {
         $this->image_bandwidth_bytes = $value;
     }
 
     /**
      * Sets the image_requests property value. The image_requests property
-     * @param int|null $value Value to set for the image_requests property.
+     * @param string|null $value Value to set for the image_requests property.
     */
-    public function setImageRequests(?int $value): void {
+    public function setImageRequests(?string $value): void {
         $this->image_requests = $value;
     }
 
@@ -256,7 +256,7 @@ class BandwidthUsage implements Parsable
     }
 
     /**
-     * Sets the snapshot_date property value. A Timestamp represents a point in time independent of any time zone or local calendar, encoded as a count of seconds and fractions of seconds at nanosecond resolution. The count is relative to an epoch at UTC midnight on January 1, 1970, in the proleptic Gregorian calendar which extends the Gregorian calendar backwards to year one. All minutes are 60 seconds long. Leap seconds are "smeared" so that no leap second table is needed for interpretation, using a [24-hour linear smear](https://developers.google.com/time/smear). The range is from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59.999999999Z. By restricting to that range, we ensure that we can convert to and from [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) date strings. # Examples Example 1: Compute Timestamp from POSIX `time()`.     Timestamp timestamp;     timestamp.set_seconds(time(NULL));     timestamp.set_nanos(0); Example 2: Compute Timestamp from POSIX `gettimeofday()`.     struct timeval tv;     gettimeofday(&tv, NULL);     Timestamp timestamp;     timestamp.set_seconds(tv.tv_sec);     timestamp.set_nanos(tv.tv_usec * 1000); Example 3: Compute Timestamp from Win32 `GetSystemTimeAsFileTime()`.     FILETIME ft;     GetSystemTimeAsFileTime(&ft);     UINT64 ticks = (((UINT64)ft.dwHighDateTime) << 32) | ft.dwLowDateTime;     // A Windows tick is 100 nanoseconds. Windows epoch 1601-01-01T00:00:00Z     // is 11644473600 seconds before Unix epoch 1970-01-01T00:00:00Z.     Timestamp timestamp;     timestamp.set_seconds((INT64) ((ticks / 10000000) - 11644473600LL));     timestamp.set_nanos((INT32) ((ticks % 10000000) * 100)); Example 4: Compute Timestamp from Java `System.currentTimeMillis()`.     long millis = System.currentTimeMillis();     Timestamp timestamp = Timestamp.newBuilder().setSeconds(millis / 1000)         .setNanos((int) ((millis % 1000) * 1000000)).build(); Example 5: Compute Timestamp from Java `Instant.now()`.     Instant now = Instant.now();     Timestamp timestamp =         Timestamp.newBuilder().setSeconds(now.getEpochSecond())             .setNanos(now.getNano()).build(); Example 6: Compute Timestamp from current time in Python.     timestamp = Timestamp()     timestamp.GetCurrentTime() # JSON Mapping In JSON format, the Timestamp type is encoded as a string in the [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format. That is, the format is "{year}-{month}-{day}T{hour}:{min}:{sec}[.{frac_sec}]Z" where {year} is always expressed using four digits while {month}, {day}, {hour}, {min}, and {sec} are zero-padded to two digits each. The fractional seconds, which can go up to 9 digits (i.e. up to 1 nanosecond resolution), are optional. The "Z" suffix indicates the timezone ("UTC"); the timezone is required. A proto3 JSON serializer should always use UTC (as indicated by "Z") when printing the Timestamp type and a proto3 JSON parser should be able to accept both UTC and other timezones (as indicated by an offset). For example, "2017-01-15T01:30:15.01Z" encodes 15.01 seconds past 01:30 UTC on January 15, 2017. In JavaScript, one can convert a Date object to this format using the standard [toISOString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString) method. In Python, a standard `datetime.datetime` object can be converted to this format using [`strftime`](https://docs.python.org/2/library/time.html#time.strftime) with the time format spec '%Y-%m-%dT%H:%M:%S.%fZ'. Likewise, in Java, one can use the Joda Time's [`ISODateTimeFormat.dateTime()`]( http://joda-time.sourceforge.net/apidocs/org/joda/time/format/ISODateTimeFormat.html#dateTime() ) to obtain a formatter capable of generating timestamps in this format.
+     * Sets the snapshot_date property value. The snapshot_date property
      * @param DateTime|null $value Value to set for the snapshot_date property.
     */
     public function setSnapshotDate(?DateTime $value): void {
@@ -273,41 +273,41 @@ class BandwidthUsage implements Parsable
 
     /**
      * Sets the total_bandwidth_bytes property value. The total_bandwidth_bytes property
-     * @param int|null $value Value to set for the total_bandwidth_bytes property.
+     * @param string|null $value Value to set for the total_bandwidth_bytes property.
     */
-    public function setTotalBandwidthBytes(?int $value): void {
+    public function setTotalBandwidthBytes(?string $value): void {
         $this->total_bandwidth_bytes = $value;
     }
 
     /**
      * Sets the total_requests property value. The total_requests property
-     * @param int|null $value Value to set for the total_requests property.
+     * @param string|null $value Value to set for the total_requests property.
     */
-    public function setTotalRequests(?int $value): void {
+    public function setTotalRequests(?string $value): void {
         $this->total_requests = $value;
     }
 
     /**
      * Sets the unique_visitors property value. The unique_visitors property
-     * @param int|null $value Value to set for the unique_visitors property.
+     * @param string|null $value Value to set for the unique_visitors property.
     */
-    public function setUniqueVisitors(?int $value): void {
+    public function setUniqueVisitors(?string $value): void {
         $this->unique_visitors = $value;
     }
 
     /**
      * Sets the video_bandwidth_bytes property value. The video_bandwidth_bytes property
-     * @param int|null $value Value to set for the video_bandwidth_bytes property.
+     * @param string|null $value Value to set for the video_bandwidth_bytes property.
     */
-    public function setVideoBandwidthBytes(?int $value): void {
+    public function setVideoBandwidthBytes(?string $value): void {
         $this->video_bandwidth_bytes = $value;
     }
 
     /**
      * Sets the video_requests property value. The video_requests property
-     * @param int|null $value Value to set for the video_requests property.
+     * @param string|null $value Value to set for the video_requests property.
     */
-    public function setVideoRequests(?int $value): void {
+    public function setVideoRequests(?string $value): void {
         $this->video_requests = $value;
     }
 

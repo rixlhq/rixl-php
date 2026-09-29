@@ -28,9 +28,9 @@ class ImagesRequestBuilderGetRequestConfiguration extends BaseRequestConfigurati
 
     /**
      * Instantiates a new ImagesRequestBuilderGetQueryParameters.
-     * @param int|null $limit 
-     * @param string|null $rangeEnd 
-     * @param string|null $rangeStart 
+     * @param int|null $limit The limit query parameter.
+     * @param string|null $rangeEnd The range.end query parameter.
+     * @param string|null $rangeStart The range.start query parameter.
      * @return ImagesRequestBuilderGetQueryParameters
     */
     public static function createQueryParameters(?int $limit = null, ?string $rangeEnd = null, ?string $rangeStart = null): ImagesRequestBuilderGetQueryParameters {

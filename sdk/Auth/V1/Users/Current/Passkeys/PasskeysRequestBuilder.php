@@ -26,7 +26,7 @@ class PasskeysRequestBuilder extends BaseRequestBuilder
     
     /**
      * Gets an item from the Rixl/Sdk.auth.v1.users.current.passkeys.item collection
-     * @param string $id Unique identifier of the item
+     * @param string $id The id path parameter.
      * @return PasskeysItemRequestBuilder
     */
     public function byId(string $id): PasskeysItemRequestBuilder {

@@ -26,7 +26,7 @@ class WithFeed_ItemRequestBuilder extends BaseRequestBuilder
     
     /**
      * Gets an item from the Rixl/Sdk.posts.v1.feeds.item.item collection
-     * @param string $post_id Unique identifier of the item
+     * @param string $post_id The post_id path parameter.
      * @return WithPost_ItemRequestBuilder
     */
     public function byPost_id(string $post_id): WithPost_ItemRequestBuilder {

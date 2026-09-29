@@ -19,7 +19,7 @@ class CreateTicketRequest implements Parsable
     private ?string $message = null;
     
     /**
-     * @var TicketPriority|null $priority The priority property
+     * @var TicketPriority|null $priority enum.defined_only = true
     */
     private ?TicketPriority $priority = null;
     
@@ -80,7 +80,7 @@ class CreateTicketRequest implements Parsable
     }
 
     /**
-     * Gets the priority property value. The priority property
+     * Gets the priority property value. enum.defined_only = true
      * @return TicketPriority|null
     */
     public function getPriority(): ?TicketPriority {
@@ -141,7 +141,7 @@ class CreateTicketRequest implements Parsable
     }
 
     /**
-     * Sets the priority property value. The priority property
+     * Sets the priority property value. enum.defined_only = true
      * @param TicketPriority|null $value Value to set for the priority property.
     */
     public function setPriority(?TicketPriority $value): void {

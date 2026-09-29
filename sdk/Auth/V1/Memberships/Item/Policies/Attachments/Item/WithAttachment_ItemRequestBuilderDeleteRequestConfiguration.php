@@ -11,28 +11,12 @@ use Microsoft\Kiota\Abstractions\RequestOption;
 class WithAttachment_ItemRequestBuilderDeleteRequestConfiguration extends BaseRequestConfiguration 
 {
     /**
-     * @var WithAttachment_ItemRequestBuilderDeleteQueryParameters|null $queryParameters Request query parameters
-    */
-    public ?WithAttachment_ItemRequestBuilderDeleteQueryParameters $queryParameters = null;
-    
-    /**
      * Instantiates a new WithAttachment_ItemRequestBuilderDeleteRequestConfiguration and sets the default values.
      * @param array<string, array<string>|string>|null $headers Request headers
      * @param array<RequestOption>|null $options Request options
-     * @param WithAttachment_ItemRequestBuilderDeleteQueryParameters|null $queryParameters Request query parameters
     */
-    public function __construct(?array $headers = null, ?array $options = null, ?WithAttachment_ItemRequestBuilderDeleteQueryParameters $queryParameters = null) {
+    public function __construct(?array $headers = null, ?array $options = null) {
         parent::__construct($headers ?? [], $options ?? []);
-        $this->queryParameters = $queryParameters;
-    }
-
-    /**
-     * Instantiates a new WithAttachment_ItemRequestBuilderDeleteQueryParameters.
-     * @param string|null $userUser_id 
-     * @return WithAttachment_ItemRequestBuilderDeleteQueryParameters
-    */
-    public static function createQueryParameters(?string $userUser_id = null): WithAttachment_ItemRequestBuilderDeleteQueryParameters {
-        return new WithAttachment_ItemRequestBuilderDeleteQueryParameters($userUser_id);
     }
 
 }

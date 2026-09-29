@@ -20,9 +20,9 @@ class PostStats implements Parsable
     private ?float $completion_rate = null;
     
     /**
-     * @var int|null $completions The completions property
+     * @var string|null $completions The completions property
     */
-    private ?int $completions = null;
+    private ?string $completions = null;
     
     /**
      * @var MediaType|null $content_type The content_type property
@@ -40,24 +40,24 @@ class PostStats implements Parsable
     private ?string $post_id = null;
     
     /**
-     * @var int|null $starts The starts property
+     * @var string|null $starts The starts property
     */
-    private ?int $starts = null;
+    private ?string $starts = null;
     
     /**
-     * @var int|null $total_views The total_views property
+     * @var string|null $total_views The total_views property
     */
-    private ?int $total_views = null;
+    private ?string $total_views = null;
     
     /**
-     * @var int|null $total_watch_time_ms The total_watch_time_ms property
+     * @var string|null $total_watch_time_ms The total_watch_time_ms property
     */
-    private ?int $total_watch_time_ms = null;
+    private ?string $total_watch_time_ms = null;
     
     /**
-     * @var int|null $unique_viewers The unique_viewers property
+     * @var string|null $unique_viewers The unique_viewers property
     */
-    private ?int $unique_viewers = null;
+    private ?string $unique_viewers = null;
     
     /**
      * @var PostStats_views_by_page|null $views_by_page The views_by_page property
@@ -91,9 +91,9 @@ class PostStats implements Parsable
 
     /**
      * Gets the completions property value. The completions property
-     * @return int|null
+     * @return string|null
     */
-    public function getCompletions(): ?int {
+    public function getCompletions(): ?string {
         return $this->completions;
     }
 
@@ -122,14 +122,14 @@ class PostStats implements Parsable
         return  [
             'avg_watch_time_ms' => fn(ParseNode $n) => $o->setAvgWatchTimeMs($n->getFloatValue()),
             'completion_rate' => fn(ParseNode $n) => $o->setCompletionRate($n->getFloatValue()),
-            'completions' => fn(ParseNode $n) => $o->setCompletions($n->getIntegerValue()),
+            'completions' => fn(ParseNode $n) => $o->setCompletions($n->getStringValue()),
             'content_type' => fn(ParseNode $n) => $o->setContentType($n->getEnumValue(MediaType::class)),
             'feed_id' => fn(ParseNode $n) => $o->setFeedId($n->getStringValue()),
             'post_id' => fn(ParseNode $n) => $o->setPostId($n->getStringValue()),
-            'starts' => fn(ParseNode $n) => $o->setStarts($n->getIntegerValue()),
-            'total_views' => fn(ParseNode $n) => $o->setTotalViews($n->getIntegerValue()),
-            'total_watch_time_ms' => fn(ParseNode $n) => $o->setTotalWatchTimeMs($n->getIntegerValue()),
-            'unique_viewers' => fn(ParseNode $n) => $o->setUniqueViewers($n->getIntegerValue()),
+            'starts' => fn(ParseNode $n) => $o->setStarts($n->getStringValue()),
+            'total_views' => fn(ParseNode $n) => $o->setTotalViews($n->getStringValue()),
+            'total_watch_time_ms' => fn(ParseNode $n) => $o->setTotalWatchTimeMs($n->getStringValue()),
+            'unique_viewers' => fn(ParseNode $n) => $o->setUniqueViewers($n->getStringValue()),
             'views_by_page' => fn(ParseNode $n) => $o->setViewsByPage($n->getObjectValue([PostStats_views_by_page::class, 'createFromDiscriminatorValue'])),
         ];
     }
@@ -144,33 +144,33 @@ class PostStats implements Parsable
 
     /**
      * Gets the starts property value. The starts property
-     * @return int|null
+     * @return string|null
     */
-    public function getStarts(): ?int {
+    public function getStarts(): ?string {
         return $this->starts;
     }
 
     /**
      * Gets the total_views property value. The total_views property
-     * @return int|null
+     * @return string|null
     */
-    public function getTotalViews(): ?int {
+    public function getTotalViews(): ?string {
         return $this->total_views;
     }
 
     /**
      * Gets the total_watch_time_ms property value. The total_watch_time_ms property
-     * @return int|null
+     * @return string|null
     */
-    public function getTotalWatchTimeMs(): ?int {
+    public function getTotalWatchTimeMs(): ?string {
         return $this->total_watch_time_ms;
     }
 
     /**
      * Gets the unique_viewers property value. The unique_viewers property
-     * @return int|null
+     * @return string|null
     */
-    public function getUniqueViewers(): ?int {
+    public function getUniqueViewers(): ?string {
         return $this->unique_viewers;
     }
 
@@ -188,15 +188,15 @@ class PostStats implements Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeFloatValue('avg_watch_time_ms', $this->getAvgWatchTimeMs());
-        $writer->writeIntegerValue('completions', $this->getCompletions());
+        $writer->writeStringValue('completions', $this->getCompletions());
         $writer->writeFloatValue('completion_rate', $this->getCompletionRate());
         $writer->writeEnumValue('content_type', $this->getContentType());
         $writer->writeStringValue('feed_id', $this->getFeedId());
         $writer->writeStringValue('post_id', $this->getPostId());
-        $writer->writeIntegerValue('starts', $this->getStarts());
-        $writer->writeIntegerValue('total_views', $this->getTotalViews());
-        $writer->writeIntegerValue('total_watch_time_ms', $this->getTotalWatchTimeMs());
-        $writer->writeIntegerValue('unique_viewers', $this->getUniqueViewers());
+        $writer->writeStringValue('starts', $this->getStarts());
+        $writer->writeStringValue('total_views', $this->getTotalViews());
+        $writer->writeStringValue('total_watch_time_ms', $this->getTotalWatchTimeMs());
+        $writer->writeStringValue('unique_viewers', $this->getUniqueViewers());
         $writer->writeObjectValue('views_by_page', $this->getViewsByPage());
     }
 
@@ -218,9 +218,9 @@ class PostStats implements Parsable
 
     /**
      * Sets the completions property value. The completions property
-     * @param int|null $value Value to set for the completions property.
+     * @param string|null $value Value to set for the completions property.
     */
-    public function setCompletions(?int $value): void {
+    public function setCompletions(?string $value): void {
         $this->completions = $value;
     }
 
@@ -250,33 +250,33 @@ class PostStats implements Parsable
 
     /**
      * Sets the starts property value. The starts property
-     * @param int|null $value Value to set for the starts property.
+     * @param string|null $value Value to set for the starts property.
     */
-    public function setStarts(?int $value): void {
+    public function setStarts(?string $value): void {
         $this->starts = $value;
     }
 
     /**
      * Sets the total_views property value. The total_views property
-     * @param int|null $value Value to set for the total_views property.
+     * @param string|null $value Value to set for the total_views property.
     */
-    public function setTotalViews(?int $value): void {
+    public function setTotalViews(?string $value): void {
         $this->total_views = $value;
     }
 
     /**
      * Sets the total_watch_time_ms property value. The total_watch_time_ms property
-     * @param int|null $value Value to set for the total_watch_time_ms property.
+     * @param string|null $value Value to set for the total_watch_time_ms property.
     */
-    public function setTotalWatchTimeMs(?int $value): void {
+    public function setTotalWatchTimeMs(?string $value): void {
         $this->total_watch_time_ms = $value;
     }
 
     /**
      * Sets the unique_viewers property value. The unique_viewers property
-     * @param int|null $value Value to set for the unique_viewers property.
+     * @param string|null $value Value to set for the unique_viewers property.
     */
-    public function setUniqueViewers(?int $value): void {
+    public function setUniqueViewers(?string $value): void {
         $this->unique_viewers = $value;
     }
 
