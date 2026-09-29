@@ -5,6 +5,7 @@ namespace Rixl\Sdk\Auth\V1\Memberships\Item\Domain;
 use Microsoft\Kiota\Abstractions\Serialization\Parsable;
 use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
 use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
+use Rixl\Sdk\Models\Auth\V1\UserOrgRequest;
 
 class DomainPostRequestBody implements Parsable 
 {
@@ -12,6 +13,11 @@ class DomainPostRequestBody implements Parsable
      * @var string|null $domain The domain property
     */
     private ?string $domain = null;
+    
+    /**
+     * @var UserOrgRequest|null $user The user property
+    */
+    private ?UserOrgRequest $user = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -38,7 +44,16 @@ class DomainPostRequestBody implements Parsable
         $o = $this;
         return  [
             'domain' => fn(ParseNode $n) => $o->setDomain($n->getStringValue()),
+            'user' => fn(ParseNode $n) => $o->setUser($n->getObjectValue([UserOrgRequest::class, 'createFromDiscriminatorValue'])),
         ];
+    }
+
+    /**
+     * Gets the user property value. The user property
+     * @return UserOrgRequest|null
+    */
+    public function getUser(): ?UserOrgRequest {
+        return $this->user;
     }
 
     /**
@@ -47,6 +62,7 @@ class DomainPostRequestBody implements Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeStringValue('domain', $this->getDomain());
+        $writer->writeObjectValue('user', $this->getUser());
     }
 
     /**
@@ -55,6 +71,14 @@ class DomainPostRequestBody implements Parsable
     */
     public function setDomain(?string $value): void {
         $this->domain = $value;
+    }
+
+    /**
+     * Sets the user property value. The user property
+     * @param UserOrgRequest|null $value Value to set for the user property.
+    */
+    public function setUser(?UserOrgRequest $value): void {
+        $this->user = $value;
     }
 
 }

@@ -8,25 +8,25 @@ namespace Rixl\Sdk\Billing\V1\Plans;
 class PlansRequestBuilderGetQueryParameters 
 {
     /**
-     * @var string|null $currency The currency query parameter.
+     * @var string|null $currency 
     */
     public ?string $currency = null;
     
     /**
-     * @var string|null $free The free query parameter.
+     * @var string|null $free 
     */
     public ?string $free = null;
     
     /**
-     * @var string|null $interval The interval query parameter.
+     * @var string|null $interval 
     */
     public ?string $interval = null;
     
     /**
      * Instantiates a new PlansRequestBuilderGetQueryParameters and sets the default values.
-     * @param string|null $currency The currency query parameter.
-     * @param string|null $free The free query parameter.
-     * @param string|null $interval The interval query parameter.
+     * @param string|null $currency 
+     * @param string|null $free 
+     * @param string|null $interval 
     */
     public function __construct(?string $currency = null, ?string $free = null, ?string $interval = null) {
         $this->currency = $currency;

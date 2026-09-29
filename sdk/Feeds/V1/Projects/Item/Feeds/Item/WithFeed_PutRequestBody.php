@@ -24,6 +24,11 @@ class WithFeed_PutRequestBody implements Parsable
     private ?string $description = null;
     
     /**
+     * @var string|null $feed_id The feed_id property
+    */
+    private ?string $feed_id = null;
+    
+    /**
      * @var bool|null $has_comments The has_comments property
     */
     private ?bool $has_comments = null;
@@ -42,6 +47,11 @@ class WithFeed_PutRequestBody implements Parsable
      * @var string|null $name The name property
     */
     private ?string $name = null;
+    
+    /**
+     * @var string|null $project_id The project_id property
+    */
+    private ?string $project_id = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -77,6 +87,14 @@ class WithFeed_PutRequestBody implements Parsable
     }
 
     /**
+     * Gets the feed_id property value. The feed_id property
+     * @return string|null
+    */
+    public function getFeedId(): ?string {
+        return $this->feed_id;
+    }
+
+    /**
      * The deserialization information for the current model
      * @return array<string, callable(ParseNode): void>
     */
@@ -86,10 +104,12 @@ class WithFeed_PutRequestBody implements Parsable
             'allow_images' => fn(ParseNode $n) => $o->setAllowImages($n->getBooleanValue()),
             'allow_videos' => fn(ParseNode $n) => $o->setAllowVideos($n->getBooleanValue()),
             'description' => fn(ParseNode $n) => $o->setDescription($n->getStringValue()),
+            'feed_id' => fn(ParseNode $n) => $o->setFeedId($n->getStringValue()),
             'has_comments' => fn(ParseNode $n) => $o->setHasComments($n->getBooleanValue()),
             'has_likes' => fn(ParseNode $n) => $o->setHasLikes($n->getBooleanValue()),
             'has_shares' => fn(ParseNode $n) => $o->setHasShares($n->getBooleanValue()),
             'name' => fn(ParseNode $n) => $o->setName($n->getStringValue()),
+            'project_id' => fn(ParseNode $n) => $o->setProjectId($n->getStringValue()),
         ];
     }
 
@@ -126,6 +146,14 @@ class WithFeed_PutRequestBody implements Parsable
     }
 
     /**
+     * Gets the project_id property value. The project_id property
+     * @return string|null
+    */
+    public function getProjectId(): ?string {
+        return $this->project_id;
+    }
+
+    /**
      * Serializes information the current object
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
@@ -133,10 +161,12 @@ class WithFeed_PutRequestBody implements Parsable
         $writer->writeBooleanValue('allow_images', $this->getAllowImages());
         $writer->writeBooleanValue('allow_videos', $this->getAllowVideos());
         $writer->writeStringValue('description', $this->getDescription());
+        $writer->writeStringValue('feed_id', $this->getFeedId());
         $writer->writeBooleanValue('has_comments', $this->getHasComments());
         $writer->writeBooleanValue('has_likes', $this->getHasLikes());
         $writer->writeBooleanValue('has_shares', $this->getHasShares());
         $writer->writeStringValue('name', $this->getName());
+        $writer->writeStringValue('project_id', $this->getProjectId());
     }
 
     /**
@@ -161,6 +191,14 @@ class WithFeed_PutRequestBody implements Parsable
     */
     public function setDescription(?string $value): void {
         $this->description = $value;
+    }
+
+    /**
+     * Sets the feed_id property value. The feed_id property
+     * @param string|null $value Value to set for the feed_id property.
+    */
+    public function setFeedId(?string $value): void {
+        $this->feed_id = $value;
     }
 
     /**
@@ -193,6 +231,14 @@ class WithFeed_PutRequestBody implements Parsable
     */
     public function setName(?string $value): void {
         $this->name = $value;
+    }
+
+    /**
+     * Sets the project_id property value. The project_id property
+     * @param string|null $value Value to set for the project_id property.
+    */
+    public function setProjectId(?string $value): void {
+        $this->project_id = $value;
     }
 
 }

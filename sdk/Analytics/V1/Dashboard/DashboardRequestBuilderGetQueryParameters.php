@@ -11,82 +11,82 @@ class DashboardRequestBuilderGetQueryParameters
 {
     /**
      * @QueryParameter("filter%2Ebrowsers")
-     * @var array<string>|null $filterBrowsers The filter.browsers query parameter.
+     * @var array<string>|null $filterBrowsers 
     */
     public ?array $filterBrowsers = null;
     
     /**
      * @QueryParameter("filter%2Ecities")
-     * @var array<string>|null $filterCities The filter.cities query parameter.
+     * @var array<string>|null $filterCities 
     */
     public ?array $filterCities = null;
     
     /**
      * @QueryParameter("filter%2Ecountries")
-     * @var array<string>|null $filterCountries The filter.countries query parameter.
+     * @var array<string>|null $filterCountries 
     */
     public ?array $filterCountries = null;
     
     /**
      * @QueryParameter("filter%2Edevices")
-     * @var array<string>|null $filterDevices The filter.devices query parameter.
+     * @var array<string>|null $filterDevices 
     */
     public ?array $filterDevices = null;
     
     /**
      * @QueryParameter("filter%2Elanguages")
-     * @var array<string>|null $filterLanguages The filter.languages query parameter.
+     * @var array<string>|null $filterLanguages 
     */
     public ?array $filterLanguages = null;
     
     /**
      * @QueryParameter("filter%2Eos")
-     * @var array<string>|null $filterOs The filter.os query parameter.
+     * @var array<string>|null $filterOs 
     */
     public ?array $filterOs = null;
     
     /**
      * @QueryParameter("filter%2Eos_versions")
-     * @var array<string>|null $filterOsVersions The filter.os_versions query parameter.
+     * @var array<string>|null $filterOsVersions 
     */
     public ?array $filterOsVersions = null;
     
     /**
      * @QueryParameter("filter%2Eregions")
-     * @var array<string>|null $filterRegions The filter.regions query parameter.
+     * @var array<string>|null $filterRegions 
     */
     public ?array $filterRegions = null;
     
     /**
-     * @var string|null $interval The interval query parameter.
+     * @var string|null $interval 
     */
     public ?string $interval = null;
     
     /**
      * @QueryParameter("time_end")
-     * @var string|null $timeEnd The time_end query parameter.
+     * @var string|null $timeEnd 
     */
     public ?string $timeEnd = null;
     
     /**
      * @QueryParameter("time_start")
-     * @var string|null $timeStart The time_start query parameter.
+     * @var string|null $timeStart 
     */
     public ?string $timeStart = null;
     
     /**
      * Instantiates a new DashboardRequestBuilderGetQueryParameters and sets the default values.
-     * @param array<string>|null $filterBrowsers The filter.browsers query parameter.
-     * @param array<string>|null $filterCities The filter.cities query parameter.
-     * @param array<string>|null $filterCountries The filter.countries query parameter.
-     * @param array<string>|null $filterDevices The filter.devices query parameter.
-     * @param array<string>|null $filterLanguages The filter.languages query parameter.
-     * @param array<string>|null $filterOs The filter.os query parameter.
-     * @param array<string>|null $filterOs_versions The filter.os_versions query parameter.
-     * @param array<string>|null $filterRegions The filter.regions query parameter.
-     * @param string|null $interval The interval query parameter.
-     * @param string|null $time_end The time_end query parameter.
-     * @param string|null $time_start The time_start query parameter.
+     * @param array<string>|null $filterBrowsers 
+     * @param array<string>|null $filterCities 
+     * @param array<string>|null $filterCountries 
+     * @param array<string>|null $filterDevices 
+     * @param array<string>|null $filterLanguages 
+     * @param array<string>|null $filterOs 
+     * @param array<string>|null $filterOs_versions 
+     * @param array<string>|null $filterRegions 
+     * @param string|null $interval 
+     * @param string|null $time_end 
+     * @param string|null $time_start 
     */
     public function __construct(?array $filterBrowsers = null, ?array $filterCities = null, ?array $filterCountries = null, ?array $filterDevices = null, ?array $filterLanguages = null, ?array $filterOs = null, ?array $filterOs_versions = null, ?array $filterRegions = null, ?string $interval = null, ?string $time_end = null, ?string $time_start = null) {
         $this->filterBrowsers = $filterBrowsers;

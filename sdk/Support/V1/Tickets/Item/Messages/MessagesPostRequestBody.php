@@ -14,6 +14,11 @@ class MessagesPostRequestBody implements Parsable
     private ?string $body = null;
     
     /**
+     * @var string|null $ticket_id The ticket_id property
+    */
+    private ?string $ticket_id = null;
+    
+    /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object
      * @return MessagesPostRequestBody
@@ -38,7 +43,16 @@ class MessagesPostRequestBody implements Parsable
         $o = $this;
         return  [
             'body' => fn(ParseNode $n) => $o->setBody($n->getStringValue()),
+            'ticket_id' => fn(ParseNode $n) => $o->setTicketId($n->getStringValue()),
         ];
+    }
+
+    /**
+     * Gets the ticket_id property value. The ticket_id property
+     * @return string|null
+    */
+    public function getTicketId(): ?string {
+        return $this->ticket_id;
     }
 
     /**
@@ -47,6 +61,7 @@ class MessagesPostRequestBody implements Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeStringValue('body', $this->getBody());
+        $writer->writeStringValue('ticket_id', $this->getTicketId());
     }
 
     /**
@@ -55,6 +70,14 @@ class MessagesPostRequestBody implements Parsable
     */
     public function setBody(?string $value): void {
         $this->body = $value;
+    }
+
+    /**
+     * Sets the ticket_id property value. The ticket_id property
+     * @param string|null $value Value to set for the ticket_id property.
+    */
+    public function setTicketId(?string $value): void {
+        $this->ticket_id = $value;
     }
 
 }

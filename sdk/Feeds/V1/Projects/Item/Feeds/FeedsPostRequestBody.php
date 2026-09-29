@@ -44,6 +44,11 @@ class FeedsPostRequestBody implements Parsable
     private ?string $name = null;
     
     /**
+     * @var string|null $project_id The project_id property
+    */
+    private ?string $project_id = null;
+    
+    /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object
      * @return FeedsPostRequestBody
@@ -90,6 +95,7 @@ class FeedsPostRequestBody implements Parsable
             'has_likes' => fn(ParseNode $n) => $o->setHasLikes($n->getBooleanValue()),
             'has_shares' => fn(ParseNode $n) => $o->setHasShares($n->getBooleanValue()),
             'name' => fn(ParseNode $n) => $o->setName($n->getStringValue()),
+            'project_id' => fn(ParseNode $n) => $o->setProjectId($n->getStringValue()),
         ];
     }
 
@@ -126,6 +132,14 @@ class FeedsPostRequestBody implements Parsable
     }
 
     /**
+     * Gets the project_id property value. The project_id property
+     * @return string|null
+    */
+    public function getProjectId(): ?string {
+        return $this->project_id;
+    }
+
+    /**
      * Serializes information the current object
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
@@ -137,6 +151,7 @@ class FeedsPostRequestBody implements Parsable
         $writer->writeBooleanValue('has_likes', $this->getHasLikes());
         $writer->writeBooleanValue('has_shares', $this->getHasShares());
         $writer->writeStringValue('name', $this->getName());
+        $writer->writeStringValue('project_id', $this->getProjectId());
     }
 
     /**
@@ -193,6 +208,14 @@ class FeedsPostRequestBody implements Parsable
     */
     public function setName(?string $value): void {
         $this->name = $value;
+    }
+
+    /**
+     * Sets the project_id property value. The project_id property
+     * @param string|null $value Value to set for the project_id property.
+    */
+    public function setProjectId(?string $value): void {
+        $this->project_id = $value;
     }
 
 }

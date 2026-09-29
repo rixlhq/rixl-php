@@ -20,6 +20,11 @@ class UploadPostRequestBody implements Parsable
     private ?string $org_id = null;
     
     /**
+     * @var string|null $project_id The project_id property
+    */
+    private ?string $project_id = null;
+    
+    /**
      * @var VideoQuality|null $video_quality The video_quality property
     */
     private ?VideoQuality $video_quality = null;
@@ -42,6 +47,7 @@ class UploadPostRequestBody implements Parsable
         return  [
             'name' => fn(ParseNode $n) => $o->setName($n->getStringValue()),
             'org_id' => fn(ParseNode $n) => $o->setOrgId($n->getStringValue()),
+            'project_id' => fn(ParseNode $n) => $o->setProjectId($n->getStringValue()),
             'video_quality' => fn(ParseNode $n) => $o->setVideoQuality($n->getEnumValue(VideoQuality::class)),
         ];
     }
@@ -63,6 +69,14 @@ class UploadPostRequestBody implements Parsable
     }
 
     /**
+     * Gets the project_id property value. The project_id property
+     * @return string|null
+    */
+    public function getProjectId(): ?string {
+        return $this->project_id;
+    }
+
+    /**
      * Gets the video_quality property value. The video_quality property
      * @return VideoQuality|null
     */
@@ -77,6 +91,7 @@ class UploadPostRequestBody implements Parsable
     public function serialize(SerializationWriter $writer): void {
         $writer->writeStringValue('name', $this->getName());
         $writer->writeStringValue('org_id', $this->getOrgId());
+        $writer->writeStringValue('project_id', $this->getProjectId());
         $writer->writeEnumValue('video_quality', $this->getVideoQuality());
     }
 
@@ -94,6 +109,14 @@ class UploadPostRequestBody implements Parsable
     */
     public function setOrgId(?string $value): void {
         $this->org_id = $value;
+    }
+
+    /**
+     * Sets the project_id property value. The project_id property
+     * @param string|null $value Value to set for the project_id property.
+    */
+    public function setProjectId(?string $value): void {
+        $this->project_id = $value;
     }
 
     /**

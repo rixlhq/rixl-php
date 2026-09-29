@@ -24,9 +24,9 @@ class ListDashboardsResponse implements Parsable
     private ?int $page_size = null;
     
     /**
-     * @var string|null $total The total property
+     * @var int|null $total The total property
     */
-    private ?string $total = null;
+    private ?int $total = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -55,7 +55,7 @@ class ListDashboardsResponse implements Parsable
             'dashboards' => fn(ParseNode $n) => $o->setDashboards($n->getCollectionOfObjectValues([Dashboard::class, 'createFromDiscriminatorValue'])),
             'page' => fn(ParseNode $n) => $o->setPage($n->getIntegerValue()),
             'page_size' => fn(ParseNode $n) => $o->setPageSize($n->getIntegerValue()),
-            'total' => fn(ParseNode $n) => $o->setTotal($n->getStringValue()),
+            'total' => fn(ParseNode $n) => $o->setTotal($n->getIntegerValue()),
         ];
     }
 
@@ -77,9 +77,9 @@ class ListDashboardsResponse implements Parsable
 
     /**
      * Gets the total property value. The total property
-     * @return string|null
+     * @return int|null
     */
-    public function getTotal(): ?string {
+    public function getTotal(): ?int {
         return $this->total;
     }
 
@@ -91,7 +91,7 @@ class ListDashboardsResponse implements Parsable
         $writer->writeCollectionOfObjectValues('dashboards', $this->getDashboards());
         $writer->writeIntegerValue('page', $this->getPage());
         $writer->writeIntegerValue('page_size', $this->getPageSize());
-        $writer->writeStringValue('total', $this->getTotal());
+        $writer->writeIntegerValue('total', $this->getTotal());
     }
 
     /**
@@ -120,9 +120,9 @@ class ListDashboardsResponse implements Parsable
 
     /**
      * Sets the total property value. The total property
-     * @param string|null $value Value to set for the total property.
+     * @param int|null $value Value to set for the total property.
     */
-    public function setTotal(?string $value): void {
+    public function setTotal(?int $value): void {
         $this->total = $value;
     }
 

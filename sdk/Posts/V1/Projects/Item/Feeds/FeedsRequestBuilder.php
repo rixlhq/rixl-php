@@ -13,7 +13,7 @@ class FeedsRequestBuilder extends BaseRequestBuilder
 {
     /**
      * Gets an item from the Rixl/Sdk.posts.v1.projects.item.feeds.item collection
-     * @param string $feed_id The feed_id path parameter.
+     * @param string $feed_id Unique identifier of the item
      * @return WithFeed_ItemRequestBuilder
     */
     public function byFeed_id(string $feed_id): WithFeed_ItemRequestBuilder {

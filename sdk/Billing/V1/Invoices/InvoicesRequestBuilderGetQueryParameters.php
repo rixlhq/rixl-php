@@ -11,7 +11,7 @@ class InvoicesRequestBuilderGetQueryParameters
 {
     /**
      * @QueryParameter("org_id")
-     * @var string|null $orgId The org_id query parameter.
+     * @var string|null $orgId 
     */
     public ?string $orgId = null;
     
@@ -29,7 +29,7 @@ class InvoicesRequestBuilderGetQueryParameters
     
     /**
      * Instantiates a new InvoicesRequestBuilderGetQueryParameters and sets the default values.
-     * @param string|null $org_id The org_id query parameter.
+     * @param string|null $org_id 
      * @param int|null $paginationLimit Maximum number of items to return.
      * @param int|null $paginationOffset Number of items to skip before collecting the result set.
     */

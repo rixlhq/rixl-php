@@ -11,20 +11,20 @@ class HotSegmentsRequestBuilderGetQueryParameters
 {
     /**
      * @QueryParameter("range%2Eend")
-     * @var string|null $rangeEnd The range.end query parameter.
+     * @var string|null $rangeEnd 
     */
     public ?string $rangeEnd = null;
     
     /**
      * @QueryParameter("range%2Estart")
-     * @var string|null $rangeStart The range.start query parameter.
+     * @var string|null $rangeStart 
     */
     public ?string $rangeStart = null;
     
     /**
      * Instantiates a new HotSegmentsRequestBuilderGetQueryParameters and sets the default values.
-     * @param string|null $rangeEnd The range.end query parameter.
-     * @param string|null $rangeStart The range.start query parameter.
+     * @param string|null $rangeEnd 
+     * @param string|null $rangeStart 
     */
     public function __construct(?string $rangeEnd = null, ?string $rangeStart = null) {
         $this->rangeEnd = $rangeEnd;

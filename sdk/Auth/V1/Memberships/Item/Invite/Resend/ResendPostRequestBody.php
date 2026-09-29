@@ -5,9 +5,15 @@ namespace Rixl\Sdk\Auth\V1\Memberships\Item\Invite\Resend;
 use Microsoft\Kiota\Abstractions\Serialization\Parsable;
 use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
 use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
+use Rixl\Sdk\Models\Auth\V1\ActorOrgRequest;
 
 class ResendPostRequestBody implements Parsable 
 {
+    /**
+     * @var ActorOrgRequest|null $user The user property
+    */
+    private ?ActorOrgRequest $user = null;
+    
     /**
      * @var string|null $user_id The user_id property
     */
@@ -29,8 +35,17 @@ class ResendPostRequestBody implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
+            'user' => fn(ParseNode $n) => $o->setUser($n->getObjectValue([ActorOrgRequest::class, 'createFromDiscriminatorValue'])),
             'user_id' => fn(ParseNode $n) => $o->setUserId($n->getStringValue()),
         ];
+    }
+
+    /**
+     * Gets the user property value. The user property
+     * @return ActorOrgRequest|null
+    */
+    public function getUser(): ?ActorOrgRequest {
+        return $this->user;
     }
 
     /**
@@ -46,7 +61,16 @@ class ResendPostRequestBody implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
+        $writer->writeObjectValue('user', $this->getUser());
         $writer->writeStringValue('user_id', $this->getUserId());
+    }
+
+    /**
+     * Sets the user property value. The user property
+     * @param ActorOrgRequest|null $value Value to set for the user property.
+    */
+    public function setUser(?ActorOrgRequest $value): void {
+        $this->user = $value;
     }
 
     /**

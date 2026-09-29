@@ -13,7 +13,7 @@ class OrganizationsRequestBuilder extends BaseRequestBuilder
 {
     /**
      * Gets an item from the Rixl/Sdk.organizations.item collection
-     * @param string $org_id The org_id path parameter.
+     * @param string $org_id Unique identifier of the item
      * @return WithOrg_ItemRequestBuilder
     */
     public function byOrg_id(string $org_id): WithOrg_ItemRequestBuilder {

@@ -16,6 +16,11 @@ class V1PostRequestBody implements Parsable
     private ?string $name = null;
     
     /**
+     * @var string|null $org_id The org_id property
+    */
+    private ?string $org_id = null;
+    
+    /**
      * @var array<string>|null $regions The regions property
     */
     private ?array $regions = null;
@@ -42,6 +47,7 @@ class V1PostRequestBody implements Parsable
         $o = $this;
         return  [
             'name' => fn(ParseNode $n) => $o->setName($n->getStringValue()),
+            'org_id' => fn(ParseNode $n) => $o->setOrgId($n->getStringValue()),
             'regions' => function (ParseNode $n) {
                 $val = $n->getCollectionOfPrimitiveValues();
                 if (is_array($val)) {
@@ -60,6 +66,14 @@ class V1PostRequestBody implements Parsable
     */
     public function getName(): ?string {
         return $this->name;
+    }
+
+    /**
+     * Gets the org_id property value. The org_id property
+     * @return string|null
+    */
+    public function getOrgId(): ?string {
+        return $this->org_id;
     }
 
     /**
@@ -84,6 +98,7 @@ class V1PostRequestBody implements Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeStringValue('name', $this->getName());
+        $writer->writeStringValue('org_id', $this->getOrgId());
         $writer->writeCollectionOfPrimitiveValues('regions', $this->getRegions());
         $writer->writeEnumValue('video_quality', $this->getVideoQuality());
     }
@@ -94,6 +109,14 @@ class V1PostRequestBody implements Parsable
     */
     public function setName(?string $value): void {
         $this->name = $value;
+    }
+
+    /**
+     * Sets the org_id property value. The org_id property
+     * @param string|null $value Value to set for the org_id property.
+    */
+    public function setOrgId(?string $value): void {
+        $this->org_id = $value;
     }
 
     /**

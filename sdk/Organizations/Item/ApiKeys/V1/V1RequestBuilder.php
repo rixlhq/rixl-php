@@ -19,7 +19,7 @@ class V1RequestBuilder extends BaseRequestBuilder
 {
     /**
      * Gets an item from the Rixl/Sdk.organizations.item.apiKeys.v1.item collection
-     * @param string $key_id The key_id path parameter.
+     * @param string $key_id Unique identifier of the item
      * @return WithKey_ItemRequestBuilder
     */
     public function byKey_id(string $key_id): WithKey_ItemRequestBuilder {

@@ -18,7 +18,7 @@ class InvoicesRequestBuilder extends BaseRequestBuilder
 {
     /**
      * Gets an item from the Rixl/Sdk.billing.v1.invoices.item collection
-     * @param string $invoice_id The invoice_id path parameter.
+     * @param string $invoice_id Unique identifier of the item
      * @return WithInvoice_ItemRequestBuilder
     */
     public function byInvoice_id(string $invoice_id): WithInvoice_ItemRequestBuilder {

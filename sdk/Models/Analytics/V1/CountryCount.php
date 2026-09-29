@@ -9,9 +9,9 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class CountryCount implements Parsable 
 {
     /**
-     * @var string|null $count The count property
+     * @var int|null $count The count property
     */
-    private ?string $count = null;
+    private ?int $count = null;
     
     /**
      * @var string|null $country The country property
@@ -29,9 +29,9 @@ class CountryCount implements Parsable
 
     /**
      * Gets the count property value. The count property
-     * @return string|null
+     * @return int|null
     */
-    public function getCount(): ?string {
+    public function getCount(): ?int {
         return $this->count;
     }
 
@@ -50,7 +50,7 @@ class CountryCount implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'count' => fn(ParseNode $n) => $o->setCount($n->getStringValue()),
+            'count' => fn(ParseNode $n) => $o->setCount($n->getIntegerValue()),
             'country' => fn(ParseNode $n) => $o->setCountry($n->getStringValue()),
         ];
     }
@@ -60,15 +60,15 @@ class CountryCount implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('count', $this->getCount());
+        $writer->writeIntegerValue('count', $this->getCount());
         $writer->writeStringValue('country', $this->getCountry());
     }
 
     /**
      * Sets the count property value. The count property
-     * @param string|null $value Value to set for the count property.
+     * @param int|null $value Value to set for the count property.
     */
-    public function setCount(?string $value): void {
+    public function setCount(?int $value): void {
         $this->count = $value;
     }
 

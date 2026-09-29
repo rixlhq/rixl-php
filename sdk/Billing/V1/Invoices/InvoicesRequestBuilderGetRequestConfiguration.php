@@ -28,7 +28,7 @@ class InvoicesRequestBuilderGetRequestConfiguration extends BaseRequestConfigura
 
     /**
      * Instantiates a new InvoicesRequestBuilderGetQueryParameters.
-     * @param string|null $org_id The org_id query parameter.
+     * @param string|null $org_id 
      * @param int|null $paginationLimit Maximum number of items to return.
      * @param int|null $paginationOffset Number of items to skip before collecting the result set.
      * @return InvoicesRequestBuilderGetQueryParameters

@@ -9,19 +9,19 @@ class PaymentMethodsRequestBuilderGetQueryParameters
 {
     /**
      * @QueryParameter("org_id")
-     * @var string|null $orgId The org_id query parameter.
+     * @var string|null $orgId 
     */
     public ?string $orgId = null;
     
     /**
-     * @var bool|null $refresh The refresh query parameter.
+     * @var bool|null $refresh 
     */
     public ?bool $refresh = null;
     
     /**
      * Instantiates a new PaymentMethodsRequestBuilderGetQueryParameters and sets the default values.
-     * @param string|null $org_id The org_id query parameter.
-     * @param bool|null $refresh The refresh query parameter.
+     * @param string|null $org_id 
+     * @param bool|null $refresh 
     */
     public function __construct(?string $org_id = null, ?bool $refresh = null) {
         $this->orgId = $org_id;

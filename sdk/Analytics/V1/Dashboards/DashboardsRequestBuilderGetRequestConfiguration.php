@@ -28,8 +28,8 @@ class DashboardsRequestBuilderGetRequestConfiguration extends BaseRequestConfigu
 
     /**
      * Instantiates a new DashboardsRequestBuilderGetQueryParameters.
-     * @param int|null $page The page query parameter.
-     * @param int|null $page_size The page_size query parameter.
+     * @param int|null $page 
+     * @param int|null $page_size 
      * @return DashboardsRequestBuilderGetQueryParameters
     */
     public static function createQueryParameters(?int $page = null, ?int $page_size = null): DashboardsRequestBuilderGetQueryParameters {

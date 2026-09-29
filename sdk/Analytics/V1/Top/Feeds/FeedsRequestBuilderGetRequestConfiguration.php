@@ -28,9 +28,9 @@ class FeedsRequestBuilderGetRequestConfiguration extends BaseRequestConfiguratio
 
     /**
      * Instantiates a new FeedsRequestBuilderGetQueryParameters.
-     * @param int|null $limit The limit query parameter.
-     * @param string|null $rangeEnd The range.end query parameter.
-     * @param string|null $rangeStart The range.start query parameter.
+     * @param int|null $limit 
+     * @param string|null $rangeEnd 
+     * @param string|null $rangeStart 
      * @return FeedsRequestBuilderGetQueryParameters
     */
     public static function createQueryParameters(?int $limit = null, ?string $rangeEnd = null, ?string $rangeStart = null): FeedsRequestBuilderGetQueryParameters {

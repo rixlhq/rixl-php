@@ -14,14 +14,14 @@ class DashboardPoint implements Parsable
     private ?string $timestamp = null;
     
     /**
-     * @var string|null $unique_users The unique_users property
+     * @var int|null $unique_users The unique_users property
     */
-    private ?string $unique_users = null;
+    private ?int $unique_users = null;
     
     /**
-     * @var string|null $views The views property
+     * @var int|null $views The views property
     */
-    private ?string $views = null;
+    private ?int $views = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -40,8 +40,8 @@ class DashboardPoint implements Parsable
         $o = $this;
         return  [
             'timestamp' => fn(ParseNode $n) => $o->setTimestamp($n->getStringValue()),
-            'unique_users' => fn(ParseNode $n) => $o->setUniqueUsers($n->getStringValue()),
-            'views' => fn(ParseNode $n) => $o->setViews($n->getStringValue()),
+            'unique_users' => fn(ParseNode $n) => $o->setUniqueUsers($n->getIntegerValue()),
+            'views' => fn(ParseNode $n) => $o->setViews($n->getIntegerValue()),
         ];
     }
 
@@ -55,17 +55,17 @@ class DashboardPoint implements Parsable
 
     /**
      * Gets the unique_users property value. The unique_users property
-     * @return string|null
+     * @return int|null
     */
-    public function getUniqueUsers(): ?string {
+    public function getUniqueUsers(): ?int {
         return $this->unique_users;
     }
 
     /**
      * Gets the views property value. The views property
-     * @return string|null
+     * @return int|null
     */
-    public function getViews(): ?string {
+    public function getViews(): ?int {
         return $this->views;
     }
 
@@ -75,8 +75,8 @@ class DashboardPoint implements Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeStringValue('timestamp', $this->getTimestamp());
-        $writer->writeStringValue('unique_users', $this->getUniqueUsers());
-        $writer->writeStringValue('views', $this->getViews());
+        $writer->writeIntegerValue('unique_users', $this->getUniqueUsers());
+        $writer->writeIntegerValue('views', $this->getViews());
     }
 
     /**
@@ -89,17 +89,17 @@ class DashboardPoint implements Parsable
 
     /**
      * Sets the unique_users property value. The unique_users property
-     * @param string|null $value Value to set for the unique_users property.
+     * @param int|null $value Value to set for the unique_users property.
     */
-    public function setUniqueUsers(?string $value): void {
+    public function setUniqueUsers(?int $value): void {
         $this->unique_users = $value;
     }
 
     /**
      * Sets the views property value. The views property
-     * @param string|null $value Value to set for the views property.
+     * @param int|null $value Value to set for the views property.
     */
-    public function setViews(?string $value): void {
+    public function setViews(?int $value): void {
         $this->views = $value;
     }
 
