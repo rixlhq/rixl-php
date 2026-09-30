@@ -8,6 +8,7 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
+use Rixl\Sdk\Auth\V1\MembershipApplications\Item\WithOrg_ItemRequestBuilder;
 use Rixl\Sdk\Models\Auth\V1\ListMembershipApplicationsResponse;
 
 /**
@@ -15,6 +16,17 @@ use Rixl\Sdk\Models\Auth\V1\ListMembershipApplicationsResponse;
 */
 class MembershipApplicationsRequestBuilder extends BaseRequestBuilder 
 {
+    /**
+     * Gets an item from the Rixl/Sdk.auth.v1.membershipApplications.item collection
+     * @param string $org_id The org_id path parameter.
+     * @return WithOrg_ItemRequestBuilder
+    */
+    public function byOrg_id(string $org_id): WithOrg_ItemRequestBuilder {
+        $urlTplParams = $this->pathParameters;
+        $urlTplParams['org_id'] = $org_id;
+        return new WithOrg_ItemRequestBuilder($urlTplParams, $this->requestAdapter);
+    }
+
     /**
      * Instantiates a new MembershipApplicationsRequestBuilder and sets the default values.
      * @param array<string, mixed>|string $pathParametersOrRawUrl Path parameters for the request or a String representing the raw URL.
