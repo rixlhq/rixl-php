@@ -28,7 +28,7 @@ class ProvidersRequestBuilderGetRequestConfiguration extends BaseRequestConfigur
 
     /**
      * Instantiates a new ProvidersRequestBuilderGetQueryParameters.
-     * @param string|null $user_id 
+     * @param string|null $user_id The user_id query parameter.
      * @return ProvidersRequestBuilderGetQueryParameters
     */
     public static function createQueryParameters(?string $user_id = null): ProvidersRequestBuilderGetQueryParameters {

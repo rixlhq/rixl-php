@@ -23,7 +23,7 @@ class TicketsRequestBuilderGetQueryParameters
     public ?int $paginationOffset = null;
     
     /**
-     * @var TicketStatus|null $status 
+     * @var TicketStatus|null $status enum.defined_only = true
     */
     public ?TicketStatus $status = null;
     
@@ -31,7 +31,7 @@ class TicketsRequestBuilderGetQueryParameters
      * Instantiates a new TicketsRequestBuilderGetQueryParameters and sets the default values.
      * @param int|null $paginationLimit Maximum number of items to return.
      * @param int|null $paginationOffset Number of items to skip before collecting the result set.
-     * @param TicketStatus|null $status 
+     * @param TicketStatus|null $status enum.defined_only = true
     */
     public function __construct(?int $paginationLimit = null, ?int $paginationOffset = null, ?TicketStatus $status = null) {
         $this->paginationLimit = $paginationLimit;

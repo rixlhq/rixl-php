@@ -28,8 +28,8 @@ class HotSegmentsRequestBuilderGetRequestConfiguration extends BaseRequestConfig
 
     /**
      * Instantiates a new HotSegmentsRequestBuilderGetQueryParameters.
-     * @param string|null $rangeEnd 
-     * @param string|null $rangeStart 
+     * @param string|null $rangeEnd The range.end query parameter.
+     * @param string|null $rangeStart The range.start query parameter.
      * @return HotSegmentsRequestBuilderGetQueryParameters
     */
     public static function createQueryParameters(?string $rangeEnd = null, ?string $rangeStart = null): HotSegmentsRequestBuilderGetQueryParameters {

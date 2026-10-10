@@ -28,7 +28,7 @@ class PasskeysItemRequestBuilderDeleteRequestConfiguration extends BaseRequestCo
 
     /**
      * Instantiates a new PasskeysItemRequestBuilderDeleteQueryParameters.
-     * @param string|null $user_id 
+     * @param string|null $user_id The user_id query parameter.
      * @return PasskeysItemRequestBuilderDeleteQueryParameters
     */
     public static function createQueryParameters(?string $user_id = null): PasskeysItemRequestBuilderDeleteQueryParameters {

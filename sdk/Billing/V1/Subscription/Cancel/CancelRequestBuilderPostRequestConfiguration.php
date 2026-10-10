@@ -28,7 +28,7 @@ class CancelRequestBuilderPostRequestConfiguration extends BaseRequestConfigurat
 
     /**
      * Instantiates a new CancelRequestBuilderPostQueryParameters.
-     * @param string|null $org_id 
+     * @param string|null $org_id The org_id query parameter.
      * @return CancelRequestBuilderPostQueryParameters
     */
     public static function createQueryParameters(?string $org_id = null): CancelRequestBuilderPostQueryParameters {

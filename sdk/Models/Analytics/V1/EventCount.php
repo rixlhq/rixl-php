@@ -9,9 +9,9 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class EventCount implements Parsable 
 {
     /**
-     * @var int|null $count The count property
+     * @var string|null $count The count property
     */
-    private ?int $count = null;
+    private ?string $count = null;
     
     /**
      * @var string|null $event_type The event_type property
@@ -29,9 +29,9 @@ class EventCount implements Parsable
 
     /**
      * Gets the count property value. The count property
-     * @return int|null
+     * @return string|null
     */
-    public function getCount(): ?int {
+    public function getCount(): ?string {
         return $this->count;
     }
 
@@ -50,7 +50,7 @@ class EventCount implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'count' => fn(ParseNode $n) => $o->setCount($n->getIntegerValue()),
+            'count' => fn(ParseNode $n) => $o->setCount($n->getStringValue()),
             'event_type' => fn(ParseNode $n) => $o->setEventType($n->getStringValue()),
         ];
     }
@@ -60,15 +60,15 @@ class EventCount implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeIntegerValue('count', $this->getCount());
+        $writer->writeStringValue('count', $this->getCount());
         $writer->writeStringValue('event_type', $this->getEventType());
     }
 
     /**
      * Sets the count property value. The count property
-     * @param int|null $value Value to set for the count property.
+     * @param string|null $value Value to set for the count property.
     */
-    public function setCount(?int $value): void {
+    public function setCount(?string $value): void {
         $this->count = $value;
     }
 

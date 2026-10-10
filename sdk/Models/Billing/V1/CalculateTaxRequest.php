@@ -19,7 +19,7 @@ class CalculateTaxRequest implements Parsable
     private ?BillingAddress $billing_address = null;
     
     /**
-     * @var BillingCycle|null $billing_cycle The billing_cycle property
+     * @var BillingCycle|null $billing_cycle enum.defined_only = true
     */
     private ?BillingCycle $billing_cycle = null;
     
@@ -29,9 +29,9 @@ class CalculateTaxRequest implements Parsable
     private ?string $currency = null;
     
     /**
-     * @var int|null $interval_count The interval_count property
+     * @var string|null $interval_count The interval_count property
     */
-    private ?int $interval_count = null;
+    private ?string $interval_count = null;
     
     /**
      * @var array<TaxLineItem>|null $line_items The line_items property
@@ -84,7 +84,7 @@ class CalculateTaxRequest implements Parsable
     }
 
     /**
-     * Gets the billing_cycle property value. The billing_cycle property
+     * Gets the billing_cycle property value. enum.defined_only = true
      * @return BillingCycle|null
     */
     public function getBillingCycle(): ?BillingCycle {
@@ -110,7 +110,7 @@ class CalculateTaxRequest implements Parsable
             'billing_address' => fn(ParseNode $n) => $o->setBillingAddress($n->getObjectValue([BillingAddress::class, 'createFromDiscriminatorValue'])),
             'billing_cycle' => fn(ParseNode $n) => $o->setBillingCycle($n->getEnumValue(BillingCycle::class)),
             'currency' => fn(ParseNode $n) => $o->setCurrency($n->getStringValue()),
-            'interval_count' => fn(ParseNode $n) => $o->setIntervalCount($n->getIntegerValue()),
+            'interval_count' => fn(ParseNode $n) => $o->setIntervalCount($n->getStringValue()),
             'line_items' => fn(ParseNode $n) => $o->setLineItems($n->getCollectionOfObjectValues([TaxLineItem::class, 'createFromDiscriminatorValue'])),
             'metadata' => fn(ParseNode $n) => $o->setMetadata($n->getObjectValue([CalculateTaxRequest_metadata::class, 'createFromDiscriminatorValue'])),
             'org_id' => fn(ParseNode $n) => $o->setOrgId($n->getStringValue()),
@@ -121,9 +121,9 @@ class CalculateTaxRequest implements Parsable
 
     /**
      * Gets the interval_count property value. The interval_count property
-     * @return int|null
+     * @return string|null
     */
-    public function getIntervalCount(): ?int {
+    public function getIntervalCount(): ?string {
         return $this->interval_count;
     }
 
@@ -176,7 +176,7 @@ class CalculateTaxRequest implements Parsable
         $writer->writeObjectValue('billing_address', $this->getBillingAddress());
         $writer->writeEnumValue('billing_cycle', $this->getBillingCycle());
         $writer->writeStringValue('currency', $this->getCurrency());
-        $writer->writeIntegerValue('interval_count', $this->getIntervalCount());
+        $writer->writeStringValue('interval_count', $this->getIntervalCount());
         $writer->writeCollectionOfObjectValues('line_items', $this->getLineItems());
         $writer->writeObjectValue('metadata', $this->getMetadata());
         $writer->writeStringValue('org_id', $this->getOrgId());
@@ -201,7 +201,7 @@ class CalculateTaxRequest implements Parsable
     }
 
     /**
-     * Sets the billing_cycle property value. The billing_cycle property
+     * Sets the billing_cycle property value. enum.defined_only = true
      * @param BillingCycle|null $value Value to set for the billing_cycle property.
     */
     public function setBillingCycle(?BillingCycle $value): void {
@@ -218,9 +218,9 @@ class CalculateTaxRequest implements Parsable
 
     /**
      * Sets the interval_count property value. The interval_count property
-     * @param int|null $value Value to set for the interval_count property.
+     * @param string|null $value Value to set for the interval_count property.
     */
-    public function setIntervalCount(?int $value): void {
+    public function setIntervalCount(?string $value): void {
         $this->interval_count = $value;
     }
 

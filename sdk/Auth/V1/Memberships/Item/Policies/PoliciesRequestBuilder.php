@@ -35,7 +35,7 @@ class PoliciesRequestBuilder extends BaseRequestBuilder
     
     /**
      * Gets an item from the Rixl/Sdk.auth.v1.memberships.item.policies.item collection
-     * @param string $policy_id Unique identifier of the item
+     * @param string $policy_id The policy_id path parameter.
      * @return WithPolicy_ItemRequestBuilder
     */
     public function byPolicy_id(string $policy_id): WithPolicy_ItemRequestBuilder {

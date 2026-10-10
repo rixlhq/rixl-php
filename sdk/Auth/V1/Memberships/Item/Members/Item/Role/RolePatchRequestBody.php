@@ -5,7 +5,6 @@ namespace Rixl\Sdk\Auth\V1\Memberships\Item\Members\Item\Role;
 use Microsoft\Kiota\Abstractions\Serialization\Parsable;
 use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
 use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
-use Rixl\Sdk\Models\Auth\V1\ActorOrgRequest;
 use Rixl\Sdk\Models\Auth\V1\MembershipRole;
 
 class RolePatchRequestBody implements Parsable 
@@ -14,16 +13,6 @@ class RolePatchRequestBody implements Parsable
      * @var MembershipRole|null $role The role property
     */
     private ?MembershipRole $role = null;
-    
-    /**
-     * @var ActorOrgRequest|null $user The user property
-    */
-    private ?ActorOrgRequest $user = null;
-    
-    /**
-     * @var string|null $user_id The user_id property
-    */
-    private ?string $user_id = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -42,8 +31,6 @@ class RolePatchRequestBody implements Parsable
         $o = $this;
         return  [
             'role' => fn(ParseNode $n) => $o->setRole($n->getEnumValue(MembershipRole::class)),
-            'user' => fn(ParseNode $n) => $o->setUser($n->getObjectValue([ActorOrgRequest::class, 'createFromDiscriminatorValue'])),
-            'user_id' => fn(ParseNode $n) => $o->setUserId($n->getStringValue()),
         ];
     }
 
@@ -56,29 +43,11 @@ class RolePatchRequestBody implements Parsable
     }
 
     /**
-     * Gets the user property value. The user property
-     * @return ActorOrgRequest|null
-    */
-    public function getUser(): ?ActorOrgRequest {
-        return $this->user;
-    }
-
-    /**
-     * Gets the user_id property value. The user_id property
-     * @return string|null
-    */
-    public function getUserId(): ?string {
-        return $this->user_id;
-    }
-
-    /**
      * Serializes information the current object
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeEnumValue('role', $this->getRole());
-        $writer->writeObjectValue('user', $this->getUser());
-        $writer->writeStringValue('user_id', $this->getUserId());
     }
 
     /**
@@ -87,22 +56,6 @@ class RolePatchRequestBody implements Parsable
     */
     public function setRole(?MembershipRole $value): void {
         $this->role = $value;
-    }
-
-    /**
-     * Sets the user property value. The user property
-     * @param ActorOrgRequest|null $value Value to set for the user property.
-    */
-    public function setUser(?ActorOrgRequest $value): void {
-        $this->user = $value;
-    }
-
-    /**
-     * Sets the user_id property value. The user_id property
-     * @param string|null $value Value to set for the user_id property.
-    */
-    public function setUserId(?string $value): void {
-        $this->user_id = $value;
     }
 
 }

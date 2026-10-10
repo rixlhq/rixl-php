@@ -28,7 +28,7 @@ class AutoJoinRequestBuilderGetRequestConfiguration extends BaseRequestConfigura
 
     /**
      * Instantiates a new AutoJoinRequestBuilderGetQueryParameters.
-     * @param string|null $user_id 
+     * @param string|null $user_id The user_id query parameter.
      * @return AutoJoinRequestBuilderGetQueryParameters
     */
     public static function createQueryParameters(?string $user_id = null): AutoJoinRequestBuilderGetQueryParameters {

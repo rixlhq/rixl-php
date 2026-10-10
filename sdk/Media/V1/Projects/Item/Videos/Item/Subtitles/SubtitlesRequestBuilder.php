@@ -34,7 +34,7 @@ class SubtitlesRequestBuilder extends BaseRequestBuilder
     
     /**
      * Gets an item from the Rixl/Sdk.media.v1.projects.item.videos.item.subtitles.item collection
-     * @param string $subtitle_id Unique identifier of the item
+     * @param string $subtitle_id The subtitle_id path parameter.
      * @return WithSubtitle_ItemRequestBuilder
     */
     public function bySubtitle_id(string $subtitle_id): WithSubtitle_ItemRequestBuilder {

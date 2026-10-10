@@ -25,7 +25,7 @@ class GetPlanResponse implements Parsable
     private ?string $description = null;
     
     /**
-     * @var Struct|null $features `Struct` represents a structured data value, consisting of fields which map to dynamically typed values. In some languages, `Struct` might be supported by a native representation. For example, in scripting languages like JS a struct is represented as an object. The details of that representation are described together with the proto support for the language. The JSON representation for `Struct` is JSON object.
+     * @var Struct|null $features The features property
     */
     private ?Struct $features = null;
     
@@ -113,7 +113,7 @@ class GetPlanResponse implements Parsable
     }
 
     /**
-     * Gets the features property value. `Struct` represents a structured data value, consisting of fields which map to dynamically typed values. In some languages, `Struct` might be supported by a native representation. For example, in scripting languages like JS a struct is represented as an object. The details of that representation are described together with the proto support for the language. The JSON representation for `Struct` is JSON object.
+     * Gets the features property value. The features property
      * @return Struct|null
     */
     public function getFeatures(): ?Struct {
@@ -270,7 +270,7 @@ class GetPlanResponse implements Parsable
     }
 
     /**
-     * Sets the features property value. `Struct` represents a structured data value, consisting of fields which map to dynamically typed values. In some languages, `Struct` might be supported by a native representation. For example, in scripting languages like JS a struct is represented as an object. The details of that representation are described together with the proto support for the language. The JSON representation for `Struct` is JSON object.
+     * Sets the features property value. The features property
      * @param Struct|null $value Value to set for the features property.
     */
     public function setFeatures(?Struct $value): void {

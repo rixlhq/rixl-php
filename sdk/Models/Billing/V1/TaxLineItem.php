@@ -9,9 +9,9 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class TaxLineItem implements Parsable 
 {
     /**
-     * @var int|null $amount The amount property
+     * @var string|null $amount The amount property
     */
-    private ?int $amount = null;
+    private ?string $amount = null;
     
     /**
      * @var string|null $reference The reference property
@@ -34,9 +34,9 @@ class TaxLineItem implements Parsable
 
     /**
      * Gets the amount property value. The amount property
-     * @return int|null
+     * @return string|null
     */
-    public function getAmount(): ?int {
+    public function getAmount(): ?string {
         return $this->amount;
     }
 
@@ -47,7 +47,7 @@ class TaxLineItem implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'amount' => fn(ParseNode $n) => $o->setAmount($n->getIntegerValue()),
+            'amount' => fn(ParseNode $n) => $o->setAmount($n->getStringValue()),
             'reference' => fn(ParseNode $n) => $o->setReference($n->getStringValue()),
             'tax_code' => fn(ParseNode $n) => $o->setTaxCode($n->getStringValue()),
         ];
@@ -74,16 +74,16 @@ class TaxLineItem implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeIntegerValue('amount', $this->getAmount());
+        $writer->writeStringValue('amount', $this->getAmount());
         $writer->writeStringValue('reference', $this->getReference());
         $writer->writeStringValue('tax_code', $this->getTaxCode());
     }
 
     /**
      * Sets the amount property value. The amount property
-     * @param int|null $value Value to set for the amount property.
+     * @param string|null $value Value to set for the amount property.
     */
-    public function setAmount(?int $value): void {
+    public function setAmount(?string $value): void {
         $this->amount = $value;
     }
 

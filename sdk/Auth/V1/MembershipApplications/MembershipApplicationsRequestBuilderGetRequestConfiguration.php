@@ -29,10 +29,10 @@ class MembershipApplicationsRequestBuilderGetRequestConfiguration extends BaseRe
 
     /**
      * Instantiates a new MembershipApplicationsRequestBuilderGetQueryParameters.
-     * @param int|null $limit 
-     * @param int|null $offset 
-     * @param MembershipApplicationState|null $state 
-     * @param string|null $userUser_id 
+     * @param int|null $limit The limit query parameter.
+     * @param int|null $offset The offset query parameter.
+     * @param MembershipApplicationState|null $state The state query parameter.
+     * @param string|null $userUser_id The user.user_id query parameter.
      * @return MembershipApplicationsRequestBuilderGetQueryParameters
     */
     public static function createQueryParameters(?int $limit = null, ?int $offset = null, ?MembershipApplicationState $state = null, ?string $userUser_id = null): MembershipApplicationsRequestBuilderGetQueryParameters {

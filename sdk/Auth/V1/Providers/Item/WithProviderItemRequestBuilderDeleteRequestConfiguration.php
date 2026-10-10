@@ -28,7 +28,7 @@ class WithProviderItemRequestBuilderDeleteRequestConfiguration extends BaseReque
 
     /**
      * Instantiates a new WithProviderItemRequestBuilderDeleteQueryParameters.
-     * @param string|null $userUser_id 
+     * @param string|null $userUser_id The user.user_id query parameter.
      * @return WithProviderItemRequestBuilderDeleteQueryParameters
     */
     public static function createQueryParameters(?string $userUser_id = null): WithProviderItemRequestBuilderDeleteQueryParameters {

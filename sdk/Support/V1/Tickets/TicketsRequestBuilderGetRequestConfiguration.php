@@ -31,7 +31,7 @@ class TicketsRequestBuilderGetRequestConfiguration extends BaseRequestConfigurat
      * Instantiates a new TicketsRequestBuilderGetQueryParameters.
      * @param int|null $paginationLimit Maximum number of items to return.
      * @param int|null $paginationOffset Number of items to skip before collecting the result set.
-     * @param TicketStatus|null $status 
+     * @param TicketStatus|null $status enum.defined_only = true
      * @return TicketsRequestBuilderGetQueryParameters
     */
     public static function createQueryParameters(?int $paginationLimit = null, ?int $paginationOffset = null, ?TicketStatus $status = null): TicketsRequestBuilderGetQueryParameters {

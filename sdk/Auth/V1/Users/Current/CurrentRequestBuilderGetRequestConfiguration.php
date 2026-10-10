@@ -28,7 +28,7 @@ class CurrentRequestBuilderGetRequestConfiguration extends BaseRequestConfigurat
 
     /**
      * Instantiates a new CurrentRequestBuilderGetQueryParameters.
-     * @param string|null $user_id 
+     * @param string|null $user_id The user_id query parameter.
      * @return CurrentRequestBuilderGetQueryParameters
     */
     public static function createQueryParameters(?string $user_id = null): CurrentRequestBuilderGetQueryParameters {

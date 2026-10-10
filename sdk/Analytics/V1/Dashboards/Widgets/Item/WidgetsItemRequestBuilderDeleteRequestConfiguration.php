@@ -28,7 +28,7 @@ class WidgetsItemRequestBuilderDeleteRequestConfiguration extends BaseRequestCon
 
     /**
      * Instantiates a new WidgetsItemRequestBuilderDeleteQueryParameters.
-     * @param int|null $expected_revision 
+     * @param int|null $expected_revision The expected_revision query parameter.
      * @return WidgetsItemRequestBuilderDeleteQueryParameters
     */
     public static function createQueryParameters(?int $expected_revision = null): WidgetsItemRequestBuilderDeleteQueryParameters {

@@ -9,14 +9,14 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class RealtimeStats implements Parsable 
 {
     /**
-     * @var int|null $active_users The active_users property
+     * @var string|null $active_users The active_users property
     */
-    private ?int $active_users = null;
+    private ?string $active_users = null;
     
     /**
-     * @var int|null $events_per_minute The events_per_minute property
+     * @var string|null $events_per_minute The events_per_minute property
     */
-    private ?int $events_per_minute = null;
+    private ?string $events_per_minute = null;
     
     /**
      * @var array<RecentEvent>|null $recent_events The recent_events property
@@ -49,17 +49,17 @@ class RealtimeStats implements Parsable
 
     /**
      * Gets the active_users property value. The active_users property
-     * @return int|null
+     * @return string|null
     */
-    public function getActiveUsers(): ?int {
+    public function getActiveUsers(): ?string {
         return $this->active_users;
     }
 
     /**
      * Gets the events_per_minute property value. The events_per_minute property
-     * @return int|null
+     * @return string|null
     */
-    public function getEventsPerMinute(): ?int {
+    public function getEventsPerMinute(): ?string {
         return $this->events_per_minute;
     }
 
@@ -70,8 +70,8 @@ class RealtimeStats implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'active_users' => fn(ParseNode $n) => $o->setActiveUsers($n->getIntegerValue()),
-            'events_per_minute' => fn(ParseNode $n) => $o->setEventsPerMinute($n->getIntegerValue()),
+            'active_users' => fn(ParseNode $n) => $o->setActiveUsers($n->getStringValue()),
+            'events_per_minute' => fn(ParseNode $n) => $o->setEventsPerMinute($n->getStringValue()),
             'recent_events' => fn(ParseNode $n) => $o->setRecentEvents($n->getCollectionOfObjectValues([RecentEvent::class, 'createFromDiscriminatorValue'])),
             'timestamp' => fn(ParseNode $n) => $o->setTimestamp($n->getStringValue()),
             'top_countries' => fn(ParseNode $n) => $o->setTopCountries($n->getCollectionOfObjectValues([CountryCount::class, 'createFromDiscriminatorValue'])),
@@ -116,8 +116,8 @@ class RealtimeStats implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeIntegerValue('active_users', $this->getActiveUsers());
-        $writer->writeIntegerValue('events_per_minute', $this->getEventsPerMinute());
+        $writer->writeStringValue('active_users', $this->getActiveUsers());
+        $writer->writeStringValue('events_per_minute', $this->getEventsPerMinute());
         $writer->writeCollectionOfObjectValues('recent_events', $this->getRecentEvents());
         $writer->writeStringValue('timestamp', $this->getTimestamp());
         $writer->writeCollectionOfObjectValues('top_countries', $this->getTopCountries());
@@ -126,17 +126,17 @@ class RealtimeStats implements Parsable
 
     /**
      * Sets the active_users property value. The active_users property
-     * @param int|null $value Value to set for the active_users property.
+     * @param string|null $value Value to set for the active_users property.
     */
-    public function setActiveUsers(?int $value): void {
+    public function setActiveUsers(?string $value): void {
         $this->active_users = $value;
     }
 
     /**
      * Sets the events_per_minute property value. The events_per_minute property
-     * @param int|null $value Value to set for the events_per_minute property.
+     * @param string|null $value Value to set for the events_per_minute property.
     */
-    public function setEventsPerMinute(?int $value): void {
+    public function setEventsPerMinute(?string $value): void {
         $this->events_per_minute = $value;
     }
 

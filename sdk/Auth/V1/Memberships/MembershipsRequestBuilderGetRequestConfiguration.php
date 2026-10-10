@@ -29,10 +29,10 @@ class MembershipsRequestBuilderGetRequestConfiguration extends BaseRequestConfig
 
     /**
      * Instantiates a new MembershipsRequestBuilderGetQueryParameters.
-     * @param int|null $limit 
-     * @param int|null $offset 
-     * @param MembershipState|null $state 
-     * @param string|null $userUser_id 
+     * @param int|null $limit The limit query parameter.
+     * @param int|null $offset The offset query parameter.
+     * @param MembershipState|null $state The state query parameter.
+     * @param string|null $userUser_id The user.user_id query parameter.
      * @return MembershipsRequestBuilderGetQueryParameters
     */
     public static function createQueryParameters(?int $limit = null, ?int $offset = null, ?MembershipState $state = null, ?string $userUser_id = null): MembershipsRequestBuilderGetQueryParameters {
