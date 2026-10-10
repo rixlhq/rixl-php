@@ -36,7 +36,7 @@ class PaymentMethodsRequestBuilder extends BaseRequestBuilder
     
     /**
      * Gets an item from the Rixl/Sdk.billing.v1.paymentMethods.item collection
-     * @param string $payment_method_id The payment_method_id path parameter.
+     * @param string $payment_method_id Unique identifier of the item
      * @return WithPayment_method_ItemRequestBuilder
     */
     public function byPayment_method_id(string $payment_method_id): WithPayment_method_ItemRequestBuilder {

@@ -10,6 +10,11 @@ use Rixl\Sdk\Models\Auth\V1\MembershipApplicationState;
 class StatePatchRequestBody implements Parsable 
 {
     /**
+     * @var string|null $org_id The org_id property
+    */
+    private ?string $org_id = null;
+    
+    /**
      * @var MembershipApplicationState|null $state The state property
     */
     private ?MembershipApplicationState $state = null;
@@ -30,8 +35,17 @@ class StatePatchRequestBody implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
+            'org_id' => fn(ParseNode $n) => $o->setOrgId($n->getStringValue()),
             'state' => fn(ParseNode $n) => $o->setState($n->getEnumValue(MembershipApplicationState::class)),
         ];
+    }
+
+    /**
+     * Gets the org_id property value. The org_id property
+     * @return string|null
+    */
+    public function getOrgId(): ?string {
+        return $this->org_id;
     }
 
     /**
@@ -47,7 +61,16 @@ class StatePatchRequestBody implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
+        $writer->writeStringValue('org_id', $this->getOrgId());
         $writer->writeEnumValue('state', $this->getState());
+    }
+
+    /**
+     * Sets the org_id property value. The org_id property
+     * @param string|null $value Value to set for the org_id property.
+    */
+    public function setOrgId(?string $value): void {
+        $this->org_id = $value;
     }
 
     /**

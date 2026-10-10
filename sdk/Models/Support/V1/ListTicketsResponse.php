@@ -24,9 +24,9 @@ class ListTicketsResponse implements Parsable
     private ?array $tickets = null;
     
     /**
-     * @var string|null $total The total property
+     * @var int|null $total The total property
     */
-    private ?string $total = null;
+    private ?int $total = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -47,7 +47,7 @@ class ListTicketsResponse implements Parsable
             'limit' => fn(ParseNode $n) => $o->setLimit($n->getIntegerValue()),
             'offset' => fn(ParseNode $n) => $o->setOffset($n->getIntegerValue()),
             'tickets' => fn(ParseNode $n) => $o->setTickets($n->getCollectionOfObjectValues([Ticket::class, 'createFromDiscriminatorValue'])),
-            'total' => fn(ParseNode $n) => $o->setTotal($n->getStringValue()),
+            'total' => fn(ParseNode $n) => $o->setTotal($n->getIntegerValue()),
         ];
     }
 
@@ -77,9 +77,9 @@ class ListTicketsResponse implements Parsable
 
     /**
      * Gets the total property value. The total property
-     * @return string|null
+     * @return int|null
     */
-    public function getTotal(): ?string {
+    public function getTotal(): ?int {
         return $this->total;
     }
 
@@ -91,7 +91,7 @@ class ListTicketsResponse implements Parsable
         $writer->writeIntegerValue('limit', $this->getLimit());
         $writer->writeIntegerValue('offset', $this->getOffset());
         $writer->writeCollectionOfObjectValues('tickets', $this->getTickets());
-        $writer->writeStringValue('total', $this->getTotal());
+        $writer->writeIntegerValue('total', $this->getTotal());
     }
 
     /**
@@ -120,9 +120,9 @@ class ListTicketsResponse implements Parsable
 
     /**
      * Sets the total property value. The total property
-     * @param string|null $value Value to set for the total property.
+     * @param int|null $value Value to set for the total property.
     */
-    public function setTotal(?string $value): void {
+    public function setTotal(?int $value): void {
         $this->total = $value;
     }
 

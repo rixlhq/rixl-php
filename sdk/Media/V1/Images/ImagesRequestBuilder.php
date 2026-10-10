@@ -13,7 +13,7 @@ class ImagesRequestBuilder extends BaseRequestBuilder
 {
     /**
      * Gets an item from the Rixl/Sdk.media.v1.images.item collection
-     * @param string $image_id The image_id path parameter.
+     * @param string $image_id Unique identifier of the item
      * @return WithImage_ItemRequestBuilder
     */
     public function byImage_id(string $image_id): WithImage_ItemRequestBuilder {

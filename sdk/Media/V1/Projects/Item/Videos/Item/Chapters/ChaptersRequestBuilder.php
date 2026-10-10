@@ -18,10 +18,10 @@ class ChaptersRequestBuilder extends BaseRequestBuilder
 {
     /**
      * Gets an item from the Rixl/Sdk.media.v1.projects.item.videos.item.chapters.item collection
-     * @param string $start_time_sec The start_time_sec path parameter.
+     * @param int $start_time_sec Unique identifier of the item
      * @return WithStart_time_secItemRequestBuilder
     */
-    public function byStart_time_sec(string $start_time_sec): WithStart_time_secItemRequestBuilder {
+    public function byStart_time_sec(int $start_time_sec): WithStart_time_secItemRequestBuilder {
         $urlTplParams = $this->pathParameters;
         $urlTplParams['start_time_sec'] = $start_time_sec;
         return new WithStart_time_secItemRequestBuilder($urlTplParams, $this->requestAdapter);
@@ -65,18 +65,6 @@ class ChaptersRequestBuilder extends BaseRequestBuilder
 
     /**
      * UpdateVideoChapters
-     * @param ChaptersPutRequestBody $body The request body
-     * @param ChaptersRequestBuilderPutRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
-     * @return Promise<VideoChapters|null>
-     * @throws Exception
-    */
-    public function put(ChaptersPutRequestBody $body, ?ChaptersRequestBuilderPutRequestConfiguration $requestConfiguration = null): Promise {
-        $requestInfo = $this->toPutRequestInformation($body, $requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [VideoChapters::class, 'createFromDiscriminatorValue'], null);
-    }
-
-    /**
-     * UpdateVideoChapters
      * @param ChaptersRequestBuilderDeleteRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
@@ -111,26 +99,6 @@ class ChaptersRequestBuilder extends BaseRequestBuilder
             $requestInfo->addRequestOptions(...$requestConfiguration->options);
         }
         $requestInfo->tryAddHeader('Accept', "application/json");
-        return $requestInfo;
-    }
-
-    /**
-     * UpdateVideoChapters
-     * @param ChaptersPutRequestBody $body The request body
-     * @param ChaptersRequestBuilderPutRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
-     * @return RequestInformation
-    */
-    public function toPutRequestInformation(ChaptersPutRequestBody $body, ?ChaptersRequestBuilderPutRequestConfiguration $requestConfiguration = null): RequestInformation {
-        $requestInfo = new RequestInformation();
-        $requestInfo->urlTemplate = $this->urlTemplate;
-        $requestInfo->pathParameters = $this->pathParameters;
-        $requestInfo->httpMethod = HttpMethod::PUT;
-        if ($requestConfiguration !== null) {
-            $requestInfo->addHeaders($requestConfiguration->headers);
-            $requestInfo->addRequestOptions(...$requestConfiguration->options);
-        }
-        $requestInfo->tryAddHeader('Accept', "application/json");
-        $requestInfo->setContentFromParsable($this->requestAdapter, "application/json", $body);
         return $requestInfo;
     }
 

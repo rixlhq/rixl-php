@@ -9,9 +9,9 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class TaxCalculationResponse implements Parsable 
 {
     /**
-     * @var string|null $amount_total The amount_total property
+     * @var int|null $amount_total The amount_total property
     */
-    private ?string $amount_total = null;
+    private ?int $amount_total = null;
     
     /**
      * @var string|null $calculation_id The calculation_id property
@@ -24,14 +24,14 @@ class TaxCalculationResponse implements Parsable
     private ?string $currency = null;
     
     /**
-     * @var string|null $tax_amount_exclusive The tax_amount_exclusive property
+     * @var int|null $tax_amount_exclusive The tax_amount_exclusive property
     */
-    private ?string $tax_amount_exclusive = null;
+    private ?int $tax_amount_exclusive = null;
     
     /**
-     * @var string|null $tax_amount_inclusive The tax_amount_inclusive property
+     * @var int|null $tax_amount_inclusive The tax_amount_inclusive property
     */
-    private ?string $tax_amount_inclusive = null;
+    private ?int $tax_amount_inclusive = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -44,9 +44,9 @@ class TaxCalculationResponse implements Parsable
 
     /**
      * Gets the amount_total property value. The amount_total property
-     * @return string|null
+     * @return int|null
     */
-    public function getAmountTotal(): ?string {
+    public function getAmountTotal(): ?int {
         return $this->amount_total;
     }
 
@@ -73,27 +73,27 @@ class TaxCalculationResponse implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'amount_total' => fn(ParseNode $n) => $o->setAmountTotal($n->getStringValue()),
+            'amount_total' => fn(ParseNode $n) => $o->setAmountTotal($n->getIntegerValue()),
             'calculation_id' => fn(ParseNode $n) => $o->setCalculationId($n->getStringValue()),
             'currency' => fn(ParseNode $n) => $o->setCurrency($n->getStringValue()),
-            'tax_amount_exclusive' => fn(ParseNode $n) => $o->setTaxAmountExclusive($n->getStringValue()),
-            'tax_amount_inclusive' => fn(ParseNode $n) => $o->setTaxAmountInclusive($n->getStringValue()),
+            'tax_amount_exclusive' => fn(ParseNode $n) => $o->setTaxAmountExclusive($n->getIntegerValue()),
+            'tax_amount_inclusive' => fn(ParseNode $n) => $o->setTaxAmountInclusive($n->getIntegerValue()),
         ];
     }
 
     /**
      * Gets the tax_amount_exclusive property value. The tax_amount_exclusive property
-     * @return string|null
+     * @return int|null
     */
-    public function getTaxAmountExclusive(): ?string {
+    public function getTaxAmountExclusive(): ?int {
         return $this->tax_amount_exclusive;
     }
 
     /**
      * Gets the tax_amount_inclusive property value. The tax_amount_inclusive property
-     * @return string|null
+     * @return int|null
     */
-    public function getTaxAmountInclusive(): ?string {
+    public function getTaxAmountInclusive(): ?int {
         return $this->tax_amount_inclusive;
     }
 
@@ -102,18 +102,18 @@ class TaxCalculationResponse implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('amount_total', $this->getAmountTotal());
+        $writer->writeIntegerValue('amount_total', $this->getAmountTotal());
         $writer->writeStringValue('calculation_id', $this->getCalculationId());
         $writer->writeStringValue('currency', $this->getCurrency());
-        $writer->writeStringValue('tax_amount_exclusive', $this->getTaxAmountExclusive());
-        $writer->writeStringValue('tax_amount_inclusive', $this->getTaxAmountInclusive());
+        $writer->writeIntegerValue('tax_amount_exclusive', $this->getTaxAmountExclusive());
+        $writer->writeIntegerValue('tax_amount_inclusive', $this->getTaxAmountInclusive());
     }
 
     /**
      * Sets the amount_total property value. The amount_total property
-     * @param string|null $value Value to set for the amount_total property.
+     * @param int|null $value Value to set for the amount_total property.
     */
-    public function setAmountTotal(?string $value): void {
+    public function setAmountTotal(?int $value): void {
         $this->amount_total = $value;
     }
 
@@ -135,17 +135,17 @@ class TaxCalculationResponse implements Parsable
 
     /**
      * Sets the tax_amount_exclusive property value. The tax_amount_exclusive property
-     * @param string|null $value Value to set for the tax_amount_exclusive property.
+     * @param int|null $value Value to set for the tax_amount_exclusive property.
     */
-    public function setTaxAmountExclusive(?string $value): void {
+    public function setTaxAmountExclusive(?int $value): void {
         $this->tax_amount_exclusive = $value;
     }
 
     /**
      * Sets the tax_amount_inclusive property value. The tax_amount_inclusive property
-     * @param string|null $value Value to set for the tax_amount_inclusive property.
+     * @param int|null $value Value to set for the tax_amount_inclusive property.
     */
-    public function setTaxAmountInclusive(?string $value): void {
+    public function setTaxAmountInclusive(?int $value): void {
         $this->tax_amount_inclusive = $value;
     }
 

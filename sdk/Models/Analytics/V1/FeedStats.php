@@ -19,14 +19,14 @@ class FeedStats implements Parsable
     private ?string $feed_id = null;
     
     /**
-     * @var string|null $total_posts The total_posts property
+     * @var int|null $total_posts The total_posts property
     */
-    private ?string $total_posts = null;
+    private ?int $total_posts = null;
     
     /**
-     * @var string|null $total_views The total_views property
+     * @var int|null $total_views The total_views property
     */
-    private ?string $total_views = null;
+    private ?int $total_views = null;
     
     /**
      * @var float|null $total_watch_time_ms The total_watch_time_ms property
@@ -34,9 +34,9 @@ class FeedStats implements Parsable
     private ?float $total_watch_time_ms = null;
     
     /**
-     * @var string|null $unique_viewers The unique_viewers property
+     * @var int|null $unique_viewers The unique_viewers property
     */
-    private ?string $unique_viewers = null;
+    private ?int $unique_viewers = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -72,26 +72,26 @@ class FeedStats implements Parsable
         return  [
             'avg_time_per_visit_ms' => fn(ParseNode $n) => $o->setAvgTimePerVisitMs($n->getFloatValue()),
             'feed_id' => fn(ParseNode $n) => $o->setFeedId($n->getStringValue()),
-            'total_posts' => fn(ParseNode $n) => $o->setTotalPosts($n->getStringValue()),
-            'total_views' => fn(ParseNode $n) => $o->setTotalViews($n->getStringValue()),
+            'total_posts' => fn(ParseNode $n) => $o->setTotalPosts($n->getIntegerValue()),
+            'total_views' => fn(ParseNode $n) => $o->setTotalViews($n->getIntegerValue()),
             'total_watch_time_ms' => fn(ParseNode $n) => $o->setTotalWatchTimeMs($n->getFloatValue()),
-            'unique_viewers' => fn(ParseNode $n) => $o->setUniqueViewers($n->getStringValue()),
+            'unique_viewers' => fn(ParseNode $n) => $o->setUniqueViewers($n->getIntegerValue()),
         ];
     }
 
     /**
      * Gets the total_posts property value. The total_posts property
-     * @return string|null
+     * @return int|null
     */
-    public function getTotalPosts(): ?string {
+    public function getTotalPosts(): ?int {
         return $this->total_posts;
     }
 
     /**
      * Gets the total_views property value. The total_views property
-     * @return string|null
+     * @return int|null
     */
-    public function getTotalViews(): ?string {
+    public function getTotalViews(): ?int {
         return $this->total_views;
     }
 
@@ -105,9 +105,9 @@ class FeedStats implements Parsable
 
     /**
      * Gets the unique_viewers property value. The unique_viewers property
-     * @return string|null
+     * @return int|null
     */
-    public function getUniqueViewers(): ?string {
+    public function getUniqueViewers(): ?int {
         return $this->unique_viewers;
     }
 
@@ -118,10 +118,10 @@ class FeedStats implements Parsable
     public function serialize(SerializationWriter $writer): void {
         $writer->writeFloatValue('avg_time_per_visit_ms', $this->getAvgTimePerVisitMs());
         $writer->writeStringValue('feed_id', $this->getFeedId());
-        $writer->writeStringValue('total_posts', $this->getTotalPosts());
-        $writer->writeStringValue('total_views', $this->getTotalViews());
+        $writer->writeIntegerValue('total_posts', $this->getTotalPosts());
+        $writer->writeIntegerValue('total_views', $this->getTotalViews());
         $writer->writeFloatValue('total_watch_time_ms', $this->getTotalWatchTimeMs());
-        $writer->writeStringValue('unique_viewers', $this->getUniqueViewers());
+        $writer->writeIntegerValue('unique_viewers', $this->getUniqueViewers());
     }
 
     /**
@@ -142,17 +142,17 @@ class FeedStats implements Parsable
 
     /**
      * Sets the total_posts property value. The total_posts property
-     * @param string|null $value Value to set for the total_posts property.
+     * @param int|null $value Value to set for the total_posts property.
     */
-    public function setTotalPosts(?string $value): void {
+    public function setTotalPosts(?int $value): void {
         $this->total_posts = $value;
     }
 
     /**
      * Sets the total_views property value. The total_views property
-     * @param string|null $value Value to set for the total_views property.
+     * @param int|null $value Value to set for the total_views property.
     */
-    public function setTotalViews(?string $value): void {
+    public function setTotalViews(?int $value): void {
         $this->total_views = $value;
     }
 
@@ -166,9 +166,9 @@ class FeedStats implements Parsable
 
     /**
      * Sets the unique_viewers property value. The unique_viewers property
-     * @param string|null $value Value to set for the unique_viewers property.
+     * @param int|null $value Value to set for the unique_viewers property.
     */
-    public function setUniqueViewers(?string $value): void {
+    public function setUniqueViewers(?int $value): void {
         $this->unique_viewers = $value;
     }
 

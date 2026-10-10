@@ -26,7 +26,7 @@ class MembershipsRequestBuilder extends BaseRequestBuilder
     
     /**
      * Gets an item from the Rixl/Sdk.auth.v1.memberships.item collection
-     * @param string $org_Id The org_id path parameter.
+     * @param string $org_Id Unique identifier of the item
      * @return Org_ItemRequestBuilder
     */
     public function byOrg_Id(string $org_Id): Org_ItemRequestBuilder {

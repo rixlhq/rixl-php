@@ -30,8 +30,8 @@ class VideosRequestBuilderGetRequestConfiguration extends BaseRequestConfigurati
      * Instantiates a new VideosRequestBuilderGetQueryParameters.
      * @param int|null $paginationLimit Maximum number of items to return.
      * @param int|null $paginationOffset Number of items to skip before collecting the result set.
-     * @param string|null $sort_direction The sort_direction query parameter.
-     * @param string|null $sort_field The sort_field query parameter.
+     * @param string|null $sort_direction 
+     * @param string|null $sort_field 
      * @return VideosRequestBuilderGetQueryParameters
     */
     public static function createQueryParameters(?int $paginationLimit = null, ?int $paginationOffset = null, ?string $sort_direction = null, ?string $sort_field = null): VideosRequestBuilderGetQueryParameters {

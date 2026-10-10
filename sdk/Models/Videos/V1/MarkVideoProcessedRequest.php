@@ -14,9 +14,9 @@ class MarkVideoProcessedRequest implements Parsable
     private ?string $file_id = null;
     
     /**
-     * @var string|null $size The size property
+     * @var int|null $size The size property
     */
-    private ?string $size = null;
+    private ?int $size = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -35,7 +35,7 @@ class MarkVideoProcessedRequest implements Parsable
         $o = $this;
         return  [
             'file_id' => fn(ParseNode $n) => $o->setFileId($n->getStringValue()),
-            'size' => fn(ParseNode $n) => $o->setSize($n->getStringValue()),
+            'size' => fn(ParseNode $n) => $o->setSize($n->getIntegerValue()),
         ];
     }
 
@@ -49,9 +49,9 @@ class MarkVideoProcessedRequest implements Parsable
 
     /**
      * Gets the size property value. The size property
-     * @return string|null
+     * @return int|null
     */
-    public function getSize(): ?string {
+    public function getSize(): ?int {
         return $this->size;
     }
 
@@ -61,7 +61,7 @@ class MarkVideoProcessedRequest implements Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeStringValue('file_id', $this->getFileId());
-        $writer->writeStringValue('size', $this->getSize());
+        $writer->writeIntegerValue('size', $this->getSize());
     }
 
     /**
@@ -74,9 +74,9 @@ class MarkVideoProcessedRequest implements Parsable
 
     /**
      * Sets the size property value. The size property
-     * @param string|null $value Value to set for the size property.
+     * @param int|null $value Value to set for the size property.
     */
-    public function setSize(?string $value): void {
+    public function setSize(?int $value): void {
         $this->size = $value;
     }
 

@@ -14,14 +14,14 @@ class GetPostStatsResponse implements Parsable
     private ?string $post_id = null;
     
     /**
-     * @var string|null $total_views The total_views property
+     * @var int|null $total_views The total_views property
     */
-    private ?string $total_views = null;
+    private ?int $total_views = null;
     
     /**
-     * @var string|null $unique_viewers The unique_viewers property
+     * @var int|null $unique_viewers The unique_viewers property
     */
-    private ?string $unique_viewers = null;
+    private ?int $unique_viewers = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -40,8 +40,8 @@ class GetPostStatsResponse implements Parsable
         $o = $this;
         return  [
             'post_id' => fn(ParseNode $n) => $o->setPostId($n->getStringValue()),
-            'total_views' => fn(ParseNode $n) => $o->setTotalViews($n->getStringValue()),
-            'unique_viewers' => fn(ParseNode $n) => $o->setUniqueViewers($n->getStringValue()),
+            'total_views' => fn(ParseNode $n) => $o->setTotalViews($n->getIntegerValue()),
+            'unique_viewers' => fn(ParseNode $n) => $o->setUniqueViewers($n->getIntegerValue()),
         ];
     }
 
@@ -55,17 +55,17 @@ class GetPostStatsResponse implements Parsable
 
     /**
      * Gets the total_views property value. The total_views property
-     * @return string|null
+     * @return int|null
     */
-    public function getTotalViews(): ?string {
+    public function getTotalViews(): ?int {
         return $this->total_views;
     }
 
     /**
      * Gets the unique_viewers property value. The unique_viewers property
-     * @return string|null
+     * @return int|null
     */
-    public function getUniqueViewers(): ?string {
+    public function getUniqueViewers(): ?int {
         return $this->unique_viewers;
     }
 
@@ -75,8 +75,8 @@ class GetPostStatsResponse implements Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeStringValue('post_id', $this->getPostId());
-        $writer->writeStringValue('total_views', $this->getTotalViews());
-        $writer->writeStringValue('unique_viewers', $this->getUniqueViewers());
+        $writer->writeIntegerValue('total_views', $this->getTotalViews());
+        $writer->writeIntegerValue('unique_viewers', $this->getUniqueViewers());
     }
 
     /**
@@ -89,17 +89,17 @@ class GetPostStatsResponse implements Parsable
 
     /**
      * Sets the total_views property value. The total_views property
-     * @param string|null $value Value to set for the total_views property.
+     * @param int|null $value Value to set for the total_views property.
     */
-    public function setTotalViews(?string $value): void {
+    public function setTotalViews(?int $value): void {
         $this->total_views = $value;
     }
 
     /**
      * Sets the unique_viewers property value. The unique_viewers property
-     * @param string|null $value Value to set for the unique_viewers property.
+     * @param int|null $value Value to set for the unique_viewers property.
     */
-    public function setUniqueViewers(?string $value): void {
+    public function setUniqueViewers(?int $value): void {
         $this->unique_viewers = $value;
     }
 

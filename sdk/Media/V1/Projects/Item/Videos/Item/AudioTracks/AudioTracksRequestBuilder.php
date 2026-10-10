@@ -34,7 +34,7 @@ class AudioTracksRequestBuilder extends BaseRequestBuilder
     
     /**
      * Gets an item from the Rixl/Sdk.media.v1.projects.item.videos.item.audioTracks.item collection
-     * @param string $track_id The track_id path parameter.
+     * @param string $track_id Unique identifier of the item
      * @return WithTrack_ItemRequestBuilder
     */
     public function byTrack_id(string $track_id): WithTrack_ItemRequestBuilder {
