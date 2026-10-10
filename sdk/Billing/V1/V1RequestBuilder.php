@@ -7,6 +7,7 @@ use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Rixl\Sdk\Billing\V1\Address\AddressRequestBuilder;
 use Rixl\Sdk\Billing\V1\BandwidthUsage\BandwidthUsageRequestBuilder;
 use Rixl\Sdk\Billing\V1\Checkout\CheckoutRequestBuilder;
+use Rixl\Sdk\Billing\V1\Config\ConfigRequestBuilder;
 use Rixl\Sdk\Billing\V1\ContactSales\ContactSalesRequestBuilder;
 use Rixl\Sdk\Billing\V1\Invoices\InvoicesRequestBuilder;
 use Rixl\Sdk\Billing\V1\PaymentMethods\PaymentMethodsRequestBuilder;
@@ -40,6 +41,13 @@ class V1RequestBuilder extends BaseRequestBuilder
     */
     public function checkout(): CheckoutRequestBuilder {
         return new CheckoutRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
+     * The config property
+    */
+    public function config(): ConfigRequestBuilder {
+        return new ConfigRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
     
     /**
