@@ -9,6 +9,11 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class RefreshTokenRequest implements Parsable 
 {
     /**
+     * @var string|null $code_verifier The code_verifier property
+    */
+    private ?string $code_verifier = null;
+    
+    /**
      * @var string|null $country_code The country_code property
     */
     private ?string $country_code = null;
@@ -17,6 +22,11 @@ class RefreshTokenRequest implements Parsable
      * @var string|null $origin The origin property
     */
     private ?string $origin = null;
+    
+    /**
+     * @var string|null $redirect_uri The redirect_uri property
+    */
+    private ?string $redirect_uri = null;
     
     /**
      * @var string|null $refresh_token The refresh_token property
@@ -38,6 +48,14 @@ class RefreshTokenRequest implements Parsable
     }
 
     /**
+     * Gets the code_verifier property value. The code_verifier property
+     * @return string|null
+    */
+    public function getCodeVerifier(): ?string {
+        return $this->code_verifier;
+    }
+
+    /**
      * Gets the country_code property value. The country_code property
      * @return string|null
     */
@@ -52,8 +70,10 @@ class RefreshTokenRequest implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
+            'code_verifier' => fn(ParseNode $n) => $o->setCodeVerifier($n->getStringValue()),
             'country_code' => fn(ParseNode $n) => $o->setCountryCode($n->getStringValue()),
             'origin' => fn(ParseNode $n) => $o->setOrigin($n->getStringValue()),
+            'redirect_uri' => fn(ParseNode $n) => $o->setRedirectUri($n->getStringValue()),
             'refresh_token' => fn(ParseNode $n) => $o->setRefreshToken($n->getStringValue()),
             'token_type' => fn(ParseNode $n) => $o->setTokenType($n->getStringValue()),
         ];
@@ -65,6 +85,14 @@ class RefreshTokenRequest implements Parsable
     */
     public function getOrigin(): ?string {
         return $this->origin;
+    }
+
+    /**
+     * Gets the redirect_uri property value. The redirect_uri property
+     * @return string|null
+    */
+    public function getRedirectUri(): ?string {
+        return $this->redirect_uri;
     }
 
     /**
@@ -88,10 +116,20 @@ class RefreshTokenRequest implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
+        $writer->writeStringValue('code_verifier', $this->getCodeVerifier());
         $writer->writeStringValue('country_code', $this->getCountryCode());
         $writer->writeStringValue('origin', $this->getOrigin());
+        $writer->writeStringValue('redirect_uri', $this->getRedirectUri());
         $writer->writeStringValue('refresh_token', $this->getRefreshToken());
         $writer->writeStringValue('token_type', $this->getTokenType());
+    }
+
+    /**
+     * Sets the code_verifier property value. The code_verifier property
+     * @param string|null $value Value to set for the code_verifier property.
+    */
+    public function setCodeVerifier(?string $value): void {
+        $this->code_verifier = $value;
     }
 
     /**
@@ -108,6 +146,14 @@ class RefreshTokenRequest implements Parsable
     */
     public function setOrigin(?string $value): void {
         $this->origin = $value;
+    }
+
+    /**
+     * Sets the redirect_uri property value. The redirect_uri property
+     * @param string|null $value Value to set for the redirect_uri property.
+    */
+    public function setRedirectUri(?string $value): void {
+        $this->redirect_uri = $value;
     }
 
     /**

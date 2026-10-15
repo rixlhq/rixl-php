@@ -9,6 +9,11 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class ConnectProviderRequest implements Parsable 
 {
     /**
+     * @var string|null $code_verifier The code_verifier property
+    */
+    private ?string $code_verifier = null;
+    
+    /**
      * @var string|null $country_code The country_code property
     */
     private ?string $country_code = null;
@@ -22,6 +27,11 @@ class ConnectProviderRequest implements Parsable
      * @var ExternalAccountProvider|null $provider The provider property
     */
     private ?ExternalAccountProvider $provider = null;
+    
+    /**
+     * @var string|null $redirect_uri The redirect_uri property
+    */
+    private ?string $redirect_uri = null;
     
     /**
      * @var string|null $token The token property
@@ -43,6 +53,14 @@ class ConnectProviderRequest implements Parsable
     }
 
     /**
+     * Gets the code_verifier property value. The code_verifier property
+     * @return string|null
+    */
+    public function getCodeVerifier(): ?string {
+        return $this->code_verifier;
+    }
+
+    /**
      * Gets the country_code property value. The country_code property
      * @return string|null
     */
@@ -57,9 +75,11 @@ class ConnectProviderRequest implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
+            'code_verifier' => fn(ParseNode $n) => $o->setCodeVerifier($n->getStringValue()),
             'country_code' => fn(ParseNode $n) => $o->setCountryCode($n->getStringValue()),
             'origin' => fn(ParseNode $n) => $o->setOrigin($n->getStringValue()),
             'provider' => fn(ParseNode $n) => $o->setProvider($n->getEnumValue(ExternalAccountProvider::class)),
+            'redirect_uri' => fn(ParseNode $n) => $o->setRedirectUri($n->getStringValue()),
             'token' => fn(ParseNode $n) => $o->setToken($n->getStringValue()),
             'user' => fn(ParseNode $n) => $o->setUser($n->getObjectValue([UserRequest::class, 'createFromDiscriminatorValue'])),
         ];
@@ -79,6 +99,14 @@ class ConnectProviderRequest implements Parsable
     */
     public function getProvider(): ?ExternalAccountProvider {
         return $this->provider;
+    }
+
+    /**
+     * Gets the redirect_uri property value. The redirect_uri property
+     * @return string|null
+    */
+    public function getRedirectUri(): ?string {
+        return $this->redirect_uri;
     }
 
     /**
@@ -102,11 +130,21 @@ class ConnectProviderRequest implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
+        $writer->writeStringValue('code_verifier', $this->getCodeVerifier());
         $writer->writeStringValue('country_code', $this->getCountryCode());
         $writer->writeStringValue('origin', $this->getOrigin());
         $writer->writeEnumValue('provider', $this->getProvider());
+        $writer->writeStringValue('redirect_uri', $this->getRedirectUri());
         $writer->writeStringValue('token', $this->getToken());
         $writer->writeObjectValue('user', $this->getUser());
+    }
+
+    /**
+     * Sets the code_verifier property value. The code_verifier property
+     * @param string|null $value Value to set for the code_verifier property.
+    */
+    public function setCodeVerifier(?string $value): void {
+        $this->code_verifier = $value;
     }
 
     /**
@@ -131,6 +169,14 @@ class ConnectProviderRequest implements Parsable
     */
     public function setProvider(?ExternalAccountProvider $value): void {
         $this->provider = $value;
+    }
+
+    /**
+     * Sets the redirect_uri property value. The redirect_uri property
+     * @param string|null $value Value to set for the redirect_uri property.
+    */
+    public function setRedirectUri(?string $value): void {
+        $this->redirect_uri = $value;
     }
 
     /**
