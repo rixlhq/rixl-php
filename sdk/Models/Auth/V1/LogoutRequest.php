@@ -9,6 +9,11 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class LogoutRequest implements Parsable 
 {
     /**
+     * @var string|null $refresh_token The refresh_token property
+    */
+    private ?string $refresh_token = null;
+    
+    /**
      * @var string|null $token The token property
     */
     private ?string $token = null;
@@ -29,8 +34,17 @@ class LogoutRequest implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
+            'refresh_token' => fn(ParseNode $n) => $o->setRefreshToken($n->getStringValue()),
             'token' => fn(ParseNode $n) => $o->setToken($n->getStringValue()),
         ];
+    }
+
+    /**
+     * Gets the refresh_token property value. The refresh_token property
+     * @return string|null
+    */
+    public function getRefreshToken(): ?string {
+        return $this->refresh_token;
     }
 
     /**
@@ -46,7 +60,16 @@ class LogoutRequest implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
+        $writer->writeStringValue('refresh_token', $this->getRefreshToken());
         $writer->writeStringValue('token', $this->getToken());
+    }
+
+    /**
+     * Sets the refresh_token property value. The refresh_token property
+     * @param string|null $value Value to set for the refresh_token property.
+    */
+    public function setRefreshToken(?string $value): void {
+        $this->refresh_token = $value;
     }
 
     /**
