@@ -22,6 +22,7 @@ use Rixl\Sdk\Organizations\OrganizationsRequestBuilder;
 use Rixl\Sdk\Platform\PlatformRequestBuilder;
 use Rixl\Sdk\Posts\PostsRequestBuilder;
 use Rixl\Sdk\Support\SupportRequestBuilder;
+use Rixl\Sdk\Webhooks\WebhooksRequestBuilder;
 
 /**
  * The main entry point of the SDK, exposes the configuration and the fluent API.
@@ -96,6 +97,13 @@ class RixlClient extends BaseRequestBuilder
     */
     public function support(): SupportRequestBuilder {
         return new SupportRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
+     * The webhooks property
+    */
+    public function webhooks(): WebhooksRequestBuilder {
+        return new WebhooksRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
     
     /**
