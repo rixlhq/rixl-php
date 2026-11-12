@@ -8,20 +8,20 @@ namespace Rixl\Sdk\Billing\V1\BandwidthUsage\History;
 class HistoryRequestBuilderGetQueryParameters 
 {
     /**
-     * @var int|null $days The days query parameter.
+     * @var int|null $days 
     */
     public ?int $days = null;
     
     /**
      * @QueryParameter("org_id")
-     * @var string|null $orgId The org_id query parameter.
+     * @var string|null $orgId 
     */
     public ?string $orgId = null;
     
     /**
      * Instantiates a new HistoryRequestBuilderGetQueryParameters and sets the default values.
-     * @param int|null $days The days query parameter.
-     * @param string|null $org_id The org_id query parameter.
+     * @param int|null $days 
+     * @param string|null $org_id 
     */
     public function __construct(?int $days = null, ?string $org_id = null) {
         $this->days = $days;

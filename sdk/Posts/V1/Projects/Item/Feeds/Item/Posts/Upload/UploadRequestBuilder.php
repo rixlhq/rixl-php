@@ -8,6 +8,7 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
+use Rixl\Sdk\Models\Google\Rpc\Status;
 use Rixl\Sdk\Models\Posts\V1\PostUpload;
 
 /**
@@ -38,7 +39,10 @@ class UploadRequestBuilder extends BaseRequestBuilder
     */
     public function post(UploadPostRequestBody $body, ?UploadRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [PostUpload::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [PostUpload::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**

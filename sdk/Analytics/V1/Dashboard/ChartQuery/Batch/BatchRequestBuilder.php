@@ -10,6 +10,7 @@ use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Models\Analytics\V1\BatchChartQueryRequest;
 use Rixl\Sdk\Models\Analytics\V1\BatchChartQueryResponse;
+use Rixl\Sdk\Models\Google\Rpc\Status;
 
 /**
  * Builds and executes requests for operations under /analytics/v1/dashboard/chart-query/batch
@@ -39,7 +40,10 @@ class BatchRequestBuilder extends BaseRequestBuilder
     */
     public function post(BatchChartQueryRequest $body, ?BatchRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [BatchChartQueryResponse::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [BatchChartQueryResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**

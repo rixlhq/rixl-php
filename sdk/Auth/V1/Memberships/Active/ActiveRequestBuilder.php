@@ -10,6 +10,7 @@ use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Models\Auth\V1\MembershipMutation;
 use Rixl\Sdk\Models\Auth\V1\UpdateActiveMembershipRequest;
+use Rixl\Sdk\Models\Google\Rpc\Status;
 
 /**
  * Builds and executes requests for operations under /auth/v1/memberships/active
@@ -39,7 +40,10 @@ class ActiveRequestBuilder extends BaseRequestBuilder
     */
     public function patch(UpdateActiveMembershipRequest $body, ?ActiveRequestBuilderPatchRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPatchRequestInformation($body, $requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [MembershipMutation::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [MembershipMutation::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**

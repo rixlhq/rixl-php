@@ -10,6 +10,7 @@ use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Models\Apikeys\V1\UpdateApiKeyResponse;
 use Rixl\Sdk\Models\Google\Protobuf\EscapedEmpty;
+use Rixl\Sdk\Models\Google\Rpc\Status;
 use Rixl\Sdk\Organizations\Item\ApiKeys\V1\Item\Rotate\RotateRequestBuilder;
 
 /**
@@ -46,7 +47,10 @@ class WithKey_ItemRequestBuilder extends BaseRequestBuilder
     */
     public function delete(?WithKey_ItemRequestBuilderDeleteRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toDeleteRequestInformation($requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [EscapedEmpty::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [EscapedEmpty::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**
@@ -58,7 +62,10 @@ class WithKey_ItemRequestBuilder extends BaseRequestBuilder
     */
     public function patch(WithKey_PatchRequestBody $body, ?WithKey_ItemRequestBuilderPatchRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPatchRequestInformation($body, $requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [UpdateApiKeyResponse::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [UpdateApiKeyResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**

@@ -9,6 +9,7 @@ use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Models\Auth\V1\AcceptInvitationResponse;
+use Rixl\Sdk\Models\Google\Rpc\Status;
 
 /**
  * Builds and executes requests for operations under /auth/v1/invitations/{token}/accept
@@ -37,7 +38,10 @@ class AcceptRequestBuilder extends BaseRequestBuilder
     */
     public function post(?AcceptRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [AcceptInvitationResponse::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [AcceptInvitationResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**

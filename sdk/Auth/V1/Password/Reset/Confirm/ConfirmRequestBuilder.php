@@ -10,6 +10,7 @@ use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Models\Auth\V1\ResetPasswordRequest;
 use Rixl\Sdk\Models\Google\Protobuf\EscapedEmpty;
+use Rixl\Sdk\Models\Google\Rpc\Status;
 
 /**
  * Builds and executes requests for operations under /auth/v1/password/reset/confirm
@@ -39,7 +40,10 @@ class ConfirmRequestBuilder extends BaseRequestBuilder
     */
     public function post(ResetPasswordRequest $body, ?ConfirmRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [EscapedEmpty::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [EscapedEmpty::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**

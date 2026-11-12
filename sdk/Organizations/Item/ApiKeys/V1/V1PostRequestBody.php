@@ -11,7 +11,7 @@ use Microsoft\Kiota\Abstractions\Types\TypeUtils;
 class V1PostRequestBody implements Parsable 
 {
     /**
-     * @var DateTime|null $expiring_at The expiring_at property
+     * @var DateTime|null $expiring_at A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
     */
     private ?DateTime $expiring_at = null;
     
@@ -40,7 +40,7 @@ class V1PostRequestBody implements Parsable
     }
 
     /**
-     * Gets the expiring_at property value. The expiring_at property
+     * Gets the expiring_at property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @return DateTime|null
     */
     public function getExpiringAt(): ?DateTime {
@@ -104,7 +104,7 @@ class V1PostRequestBody implements Parsable
     }
 
     /**
-     * Sets the expiring_at property value. The expiring_at property
+     * Sets the expiring_at property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @param DateTime|null $value Value to set for the expiring_at property.
     */
     public function setExpiringAt(?DateTime $value): void {

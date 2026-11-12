@@ -11,6 +11,7 @@ use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Billing\V1\StorageUsage\History\HistoryRequestBuilder;
 use Rixl\Sdk\Billing\V1\StorageUsage\Refresh\RefreshRequestBuilder;
 use Rixl\Sdk\Models\Billing\V1\StorageUsage;
+use Rixl\Sdk\Models\Google\Rpc\Status;
 
 /**
  * Builds and executes requests for operations under /billing/v1/storage-usage
@@ -53,7 +54,10 @@ class StorageUsageRequestBuilder extends BaseRequestBuilder
     */
     public function get(?StorageUsageRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [StorageUsage::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [StorageUsage::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**

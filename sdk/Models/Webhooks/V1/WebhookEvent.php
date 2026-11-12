@@ -14,12 +14,12 @@ use Rixl\Sdk\Models\Google\Protobuf\Struct;
 class WebhookEvent implements Parsable 
 {
     /**
-     * @var DateTime|null $created_at The created_at property
+     * @var DateTime|null $created_at A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
     */
     private ?DateTime $created_at = null;
     
     /**
-     * @var Struct|null $data The data property
+     * @var Struct|null $data A JSON object whose property values may be any JSON value.
     */
     private ?Struct $data = null;
     
@@ -48,7 +48,7 @@ class WebhookEvent implements Parsable
     }
 
     /**
-     * Gets the created_at property value. The created_at property
+     * Gets the created_at property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @return DateTime|null
     */
     public function getCreatedAt(): ?DateTime {
@@ -56,7 +56,7 @@ class WebhookEvent implements Parsable
     }
 
     /**
-     * Gets the data property value. The data property
+     * Gets the data property value. A JSON object whose property values may be any JSON value.
      * @return Struct|null
     */
     public function getData(): ?Struct {
@@ -115,7 +115,7 @@ class WebhookEvent implements Parsable
     }
 
     /**
-     * Sets the created_at property value. The created_at property
+     * Sets the created_at property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @param DateTime|null $value Value to set for the created_at property.
     */
     public function setCreatedAt(?DateTime $value): void {
@@ -123,7 +123,7 @@ class WebhookEvent implements Parsable
     }
 
     /**
-     * Sets the data property value. The data property
+     * Sets the data property value. A JSON object whose property values may be any JSON value.
      * @param Struct|null $value Value to set for the data property.
     */
     public function setData(?Struct $value): void {

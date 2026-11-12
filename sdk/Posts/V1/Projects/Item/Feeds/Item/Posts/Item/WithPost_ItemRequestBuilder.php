@@ -9,6 +9,7 @@ use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Models\Google\Protobuf\EscapedEmpty;
+use Rixl\Sdk\Models\Google\Rpc\Status;
 use Rixl\Sdk\Models\Posts\V1\GetPostResponse;
 
 /**
@@ -38,7 +39,10 @@ class WithPost_ItemRequestBuilder extends BaseRequestBuilder
     */
     public function delete(?WithPost_ItemRequestBuilderDeleteRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toDeleteRequestInformation($requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [EscapedEmpty::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [EscapedEmpty::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**
@@ -49,7 +53,10 @@ class WithPost_ItemRequestBuilder extends BaseRequestBuilder
     */
     public function get(?WithPost_ItemRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [GetPostResponse::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [GetPostResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**

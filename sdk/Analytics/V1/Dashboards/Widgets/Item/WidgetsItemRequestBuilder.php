@@ -10,6 +10,7 @@ use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Models\Analytics\V1\DeleteWidgetResponse;
 use Rixl\Sdk\Models\Analytics\V1\Widget;
+use Rixl\Sdk\Models\Google\Rpc\Status;
 
 /**
  * Builds and executes requests for operations under /analytics/v1/dashboards/widgets/{id}
@@ -38,7 +39,10 @@ class WidgetsItemRequestBuilder extends BaseRequestBuilder
     */
     public function delete(?WidgetsItemRequestBuilderDeleteRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toDeleteRequestInformation($requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [DeleteWidgetResponse::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [DeleteWidgetResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**
@@ -50,7 +54,10 @@ class WidgetsItemRequestBuilder extends BaseRequestBuilder
     */
     public function patch(WidgetsPatchRequestBody $body, ?WidgetsItemRequestBuilderPatchRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPatchRequestInformation($body, $requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [Widget::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [Widget::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**

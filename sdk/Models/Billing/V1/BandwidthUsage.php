@@ -10,7 +10,7 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class BandwidthUsage implements Parsable 
 {
     /**
-     * @var DateTime|null $created_at The created_at property
+     * @var DateTime|null $created_at A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
     */
     private ?DateTime $created_at = null;
     
@@ -35,7 +35,7 @@ class BandwidthUsage implements Parsable
     private ?string $org_id = null;
     
     /**
-     * @var DateTime|null $snapshot_date The snapshot_date property
+     * @var DateTime|null $snapshot_date A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
     */
     private ?DateTime $snapshot_date = null;
     
@@ -79,7 +79,7 @@ class BandwidthUsage implements Parsable
     }
 
     /**
-     * Gets the created_at property value. The created_at property
+     * Gets the created_at property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @return DateTime|null
     */
     public function getCreatedAt(): ?DateTime {
@@ -141,7 +141,7 @@ class BandwidthUsage implements Parsable
     }
 
     /**
-     * Gets the snapshot_date property value. The snapshot_date property
+     * Gets the snapshot_date property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @return DateTime|null
     */
     public function getSnapshotDate(): ?DateTime {
@@ -216,7 +216,7 @@ class BandwidthUsage implements Parsable
     }
 
     /**
-     * Sets the created_at property value. The created_at property
+     * Sets the created_at property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @param DateTime|null $value Value to set for the created_at property.
     */
     public function setCreatedAt(?DateTime $value): void {
@@ -256,7 +256,7 @@ class BandwidthUsage implements Parsable
     }
 
     /**
-     * Sets the snapshot_date property value. The snapshot_date property
+     * Sets the snapshot_date property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @param DateTime|null $value Value to set for the snapshot_date property.
     */
     public function setSnapshotDate(?DateTime $value): void {

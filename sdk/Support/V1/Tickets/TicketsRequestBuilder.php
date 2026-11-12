@@ -8,6 +8,7 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
+use Rixl\Sdk\Models\Google\Rpc\Status;
 use Rixl\Sdk\Models\Support\V1\CreateTicketRequest;
 use Rixl\Sdk\Models\Support\V1\CreateTicketResponse;
 use Rixl\Sdk\Models\Support\V1\ListTicketsResponse;
@@ -20,7 +21,7 @@ class TicketsRequestBuilder extends BaseRequestBuilder
 {
     /**
      * Gets an item from the Rixl/Sdk.support.v1.tickets.item collection
-     * @param string $ticket_id The ticket_id path parameter.
+     * @param string $ticket_id Unique identifier of the item
      * @return WithTicket_ItemRequestBuilder
     */
     public function byTicket_id(string $ticket_id): WithTicket_ItemRequestBuilder {
@@ -51,7 +52,10 @@ class TicketsRequestBuilder extends BaseRequestBuilder
     */
     public function get(?TicketsRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [ListTicketsResponse::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [ListTicketsResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**
@@ -63,7 +67,10 @@ class TicketsRequestBuilder extends BaseRequestBuilder
     */
     public function post(CreateTicketRequest $body, ?TicketsRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [CreateTicketResponse::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [CreateTicketResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**

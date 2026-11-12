@@ -20,7 +20,7 @@ class StorageUsage implements Parsable
     private ?string $image_storage_bytes = null;
     
     /**
-     * @var DateTime|null $last_updated The last_updated property
+     * @var DateTime|null $last_updated A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
     */
     private ?DateTime $last_updated = null;
     
@@ -50,7 +50,7 @@ class StorageUsage implements Parsable
     private ?int $project_count = null;
     
     /**
-     * @var DateTime|null $snapshot_date The snapshot_date property
+     * @var DateTime|null $snapshot_date A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
     */
     private ?DateTime $snapshot_date = null;
     
@@ -129,7 +129,7 @@ class StorageUsage implements Parsable
     }
 
     /**
-     * Gets the last_updated property value. The last_updated property
+     * Gets the last_updated property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @return DateTime|null
     */
     public function getLastUpdated(): ?DateTime {
@@ -177,7 +177,7 @@ class StorageUsage implements Parsable
     }
 
     /**
-     * Gets the snapshot_date property value. The snapshot_date property
+     * Gets the snapshot_date property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @return DateTime|null
     */
     public function getSnapshotDate(): ?DateTime {
@@ -262,7 +262,7 @@ class StorageUsage implements Parsable
     }
 
     /**
-     * Sets the last_updated property value. The last_updated property
+     * Sets the last_updated property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @param DateTime|null $value Value to set for the last_updated property.
     */
     public function setLastUpdated(?DateTime $value): void {
@@ -310,7 +310,7 @@ class StorageUsage implements Parsable
     }
 
     /**
-     * Sets the snapshot_date property value. The snapshot_date property
+     * Sets the snapshot_date property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @param DateTime|null $value Value to set for the snapshot_date property.
     */
     public function setSnapshotDate(?DateTime $value): void {

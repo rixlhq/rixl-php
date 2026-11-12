@@ -28,7 +28,7 @@ class PasskeysRequestBuilderGetRequestConfiguration extends BaseRequestConfigura
 
     /**
      * Instantiates a new PasskeysRequestBuilderGetQueryParameters.
-     * @param string|null $user_id The user_id query parameter.
+     * @param string|null $user_id 
      * @return PasskeysRequestBuilderGetQueryParameters
     */
     public static function createQueryParameters(?string $user_id = null): PasskeysRequestBuilderGetQueryParameters {

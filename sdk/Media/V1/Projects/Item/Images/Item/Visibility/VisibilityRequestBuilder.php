@@ -8,6 +8,7 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
+use Rixl\Sdk\Models\Google\Rpc\Status;
 use Rixl\Sdk\Models\Images\V1\UpdateImageVisibilityResponse;
 
 /**
@@ -38,7 +39,10 @@ class VisibilityRequestBuilder extends BaseRequestBuilder
     */
     public function patch(VisibilityPatchRequestBody $body, ?VisibilityRequestBuilderPatchRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPatchRequestInformation($body, $requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [UpdateImageVisibilityResponse::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [UpdateImageVisibilityResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**

@@ -13,6 +13,7 @@ use Rixl\Sdk\Auth\V1\Memberships\Item\Members\Item\Reactivate\ReactivateRequestB
 use Rixl\Sdk\Auth\V1\Memberships\Item\Members\Item\Role\RoleRequestBuilder;
 use Rixl\Sdk\Auth\V1\Memberships\Item\Members\Item\Suspend\SuspendRequestBuilder;
 use Rixl\Sdk\Models\Google\Protobuf\EscapedEmpty;
+use Rixl\Sdk\Models\Google\Rpc\Status;
 
 /**
  * Builds and executes requests for operations under /auth/v1/memberships/{org_-id}/members/{member_-id}
@@ -53,7 +54,7 @@ class Member_ItemRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/memberships/{org_%2Did}/members/{member_%2Did}');
+        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/memberships/{org_%2Did}/members/{member_%2Did}{?user%2Eactor_id*}');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
@@ -69,7 +70,10 @@ class Member_ItemRequestBuilder extends BaseRequestBuilder
     */
     public function delete(?Member_ItemRequestBuilderDeleteRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toDeleteRequestInformation($requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [EscapedEmpty::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [EscapedEmpty::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**
@@ -84,6 +88,9 @@ class Member_ItemRequestBuilder extends BaseRequestBuilder
         $requestInfo->httpMethod = HttpMethod::DELETE;
         if ($requestConfiguration !== null) {
             $requestInfo->addHeaders($requestConfiguration->headers);
+            if ($requestConfiguration->queryParameters !== null) {
+                $requestInfo->setQueryParameters($requestConfiguration->queryParameters);
+            }
             $requestInfo->addRequestOptions(...$requestConfiguration->options);
         }
         $requestInfo->tryAddHeader('Accept', "application/json");

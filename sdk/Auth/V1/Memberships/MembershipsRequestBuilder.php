@@ -11,6 +11,7 @@ use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Auth\V1\Memberships\Active\ActiveRequestBuilder;
 use Rixl\Sdk\Auth\V1\Memberships\Item\Org_ItemRequestBuilder;
 use Rixl\Sdk\Models\Auth\V1\ListMembershipsResponse;
+use Rixl\Sdk\Models\Google\Rpc\Status;
 
 /**
  * Builds and executes requests for operations under /auth/v1/memberships
@@ -26,7 +27,7 @@ class MembershipsRequestBuilder extends BaseRequestBuilder
     
     /**
      * Gets an item from the Rixl/Sdk.auth.v1.memberships.item collection
-     * @param string $org_Id The org_id path parameter.
+     * @param string $org_Id Unique identifier of the item
      * @return Org_ItemRequestBuilder
     */
     public function byOrg_Id(string $org_Id): Org_ItemRequestBuilder {
@@ -57,7 +58,10 @@ class MembershipsRequestBuilder extends BaseRequestBuilder
     */
     public function get(?MembershipsRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [ListMembershipsResponse::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [ListMembershipsResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**

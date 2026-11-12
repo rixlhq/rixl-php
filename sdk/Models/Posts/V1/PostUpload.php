@@ -35,7 +35,7 @@ class PostUpload implements Parsable
     private ?string $poster_upload_url = null;
     
     /**
-     * @var DateTime|null $upload_expires The upload_expires property
+     * @var DateTime|null $upload_expires A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
     */
     private ?DateTime $upload_expires = null;
     
@@ -105,7 +105,7 @@ class PostUpload implements Parsable
     }
 
     /**
-     * Gets the upload_expires property value. The upload_expires property
+     * Gets the upload_expires property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @return DateTime|null
     */
     public function getUploadExpires(): ?DateTime {
@@ -166,7 +166,7 @@ class PostUpload implements Parsable
     }
 
     /**
-     * Sets the upload_expires property value. The upload_expires property
+     * Sets the upload_expires property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @param DateTime|null $value Value to set for the upload_expires property.
     */
     public function setUploadExpires(?DateTime $value): void {

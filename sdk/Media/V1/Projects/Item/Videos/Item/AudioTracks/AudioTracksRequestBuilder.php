@@ -12,6 +12,7 @@ use Rixl\Sdk\Media\V1\Projects\Item\Videos\Item\AudioTracks\Item\WithTrack_ItemR
 use Rixl\Sdk\Media\V1\Projects\Item\Videos\Item\AudioTracks\Language\LanguageRequestBuilder;
 use Rixl\Sdk\Media\V1\Projects\Item\Videos\Item\AudioTracks\Upload\UploadRequestBuilder;
 use Rixl\Sdk\Models\Google\Protobuf\EscapedEmpty;
+use Rixl\Sdk\Models\Google\Rpc\Status;
 
 /**
  * Builds and executes requests for operations under /media/v1/projects/{project_id}/videos/{video_id}/audio-tracks
@@ -34,7 +35,7 @@ class AudioTracksRequestBuilder extends BaseRequestBuilder
     
     /**
      * Gets an item from the Rixl/Sdk.media.v1.projects.item.videos.item.audioTracks.item collection
-     * @param string $track_id The track_id path parameter.
+     * @param string $track_id Unique identifier of the item
      * @return WithTrack_ItemRequestBuilder
     */
     public function byTrack_id(string $track_id): WithTrack_ItemRequestBuilder {
@@ -65,7 +66,10 @@ class AudioTracksRequestBuilder extends BaseRequestBuilder
     */
     public function delete(?AudioTracksRequestBuilderDeleteRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toDeleteRequestInformation($requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [EscapedEmpty::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [EscapedEmpty::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**

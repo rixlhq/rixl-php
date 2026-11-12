@@ -9,6 +9,7 @@ use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Models\Billing\V1\StorageUsage;
+use Rixl\Sdk\Models\Google\Rpc\Status;
 
 /**
  * Builds and executes requests for operations under /billing/v1/storage-usage/refresh
@@ -37,7 +38,10 @@ class RefreshRequestBuilder extends BaseRequestBuilder
     */
     public function post(?RefreshRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [StorageUsage::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [StorageUsage::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**

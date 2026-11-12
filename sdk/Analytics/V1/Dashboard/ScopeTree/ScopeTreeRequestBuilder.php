@@ -10,6 +10,7 @@ use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Models\Analytics\V1\GetScopeTreeRequest;
 use Rixl\Sdk\Models\Analytics\V1\GetScopeTreeResponse;
+use Rixl\Sdk\Models\Google\Rpc\Status;
 
 /**
  * Builds and executes requests for operations under /analytics/v1/dashboard/scope-tree
@@ -39,7 +40,10 @@ class ScopeTreeRequestBuilder extends BaseRequestBuilder
     */
     public function post(GetScopeTreeRequest $body, ?ScopeTreeRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [GetScopeTreeResponse::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [GetScopeTreeResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**

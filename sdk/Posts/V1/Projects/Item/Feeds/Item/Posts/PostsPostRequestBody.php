@@ -2,26 +2,45 @@
 
 namespace Rixl\Sdk\Posts\V1\Projects\Item\Feeds\Item\Posts;
 
-use Microsoft\Kiota\Abstractions\Serialization\ComposedTypeWrapper;
 use Microsoft\Kiota\Abstractions\Serialization\Parsable;
 use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
-use Microsoft\Kiota\Abstractions\Serialization\ParseNodeHelper;
 use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
+use Rixl\Sdk\Models\Common\V1\MediaType;
 
 /**
- * Composed type wrapper for classes PostsPostRequestBodyMember1, PostsPostRequestBodyMember2
+ * At most one of `image_id`, `video_id` may be set.
 */
-class PostsPostRequestBody implements ComposedTypeWrapper, Parsable 
+class PostsPostRequestBody implements Parsable 
 {
     /**
-     * @var PostsPostRequestBodyMember1|null $postsPostRequestBodyMember1 Composed type representation for type PostsPostRequestBodyMember1
+     * @var string|null $creator_id The creator_id property
     */
-    private ?PostsPostRequestBodyMember1 $postsPostRequestBodyMember1 = null;
+    private ?string $creator_id = null;
     
     /**
-     * @var PostsPostRequestBodyMember2|null $postsPostRequestBodyMember2 Composed type representation for type PostsPostRequestBodyMember2
+     * @var string|null $description The description property
     */
-    private ?PostsPostRequestBodyMember2 $postsPostRequestBodyMember2 = null;
+    private ?string $description = null;
+    
+    /**
+     * @var string|null $image_id The image_id property
+    */
+    private ?string $image_id = null;
+    
+    /**
+     * @var string|null $org_id The org_id property
+    */
+    private ?string $org_id = null;
+    
+    /**
+     * @var MediaType|null $type The type property
+    */
+    private ?MediaType $type = null;
+    
+    /**
+     * @var string|null $video_id The video_id property
+    */
+    private ?string $video_id = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -29,10 +48,23 @@ class PostsPostRequestBody implements ComposedTypeWrapper, Parsable
      * @return PostsPostRequestBody
     */
     public static function createFromDiscriminatorValue(ParseNode $parseNode): PostsPostRequestBody {
-        $result = new PostsPostRequestBody();
-        $result->setPostsPostRequestBodyMember1(new PostsPostRequestBodyMember1());
-        $result->setPostsPostRequestBodyMember2(new PostsPostRequestBodyMember2());
-        return $result;
+        return new PostsPostRequestBody();
+    }
+
+    /**
+     * Gets the creator_id property value. The creator_id property
+     * @return string|null
+    */
+    public function getCreatorId(): ?string {
+        return $this->creator_id;
+    }
+
+    /**
+     * Gets the description property value. The description property
+     * @return string|null
+    */
+    public function getDescription(): ?string {
+        return $this->description;
     }
 
     /**
@@ -40,26 +72,47 @@ class PostsPostRequestBody implements ComposedTypeWrapper, Parsable
      * @return array<string, callable(ParseNode): void>
     */
     public function getFieldDeserializers(): array {
-        if ($this->getPostsPostRequestBodyMember1() !== null || $this->getPostsPostRequestBodyMember2() !== null) {
-            return ParseNodeHelper::mergeDeserializersForIntersectionWrapper($this->getPostsPostRequestBodyMember1(), $this->getPostsPostRequestBodyMember2());
-        }
-        return [];
+        $o = $this;
+        return  [
+            'creator_id' => fn(ParseNode $n) => $o->setCreatorId($n->getStringValue()),
+            'description' => fn(ParseNode $n) => $o->setDescription($n->getStringValue()),
+            'image_id' => fn(ParseNode $n) => $o->setImageId($n->getStringValue()),
+            'org_id' => fn(ParseNode $n) => $o->setOrgId($n->getStringValue()),
+            'type' => fn(ParseNode $n) => $o->setType($n->getEnumValue(MediaType::class)),
+            'video_id' => fn(ParseNode $n) => $o->setVideoId($n->getStringValue()),
+        ];
     }
 
     /**
-     * Gets the postsPostRequestBodyMember1 property value. Composed type representation for type PostsPostRequestBodyMember1
-     * @return PostsPostRequestBodyMember1|null
+     * Gets the image_id property value. The image_id property
+     * @return string|null
     */
-    public function getPostsPostRequestBodyMember1(): ?PostsPostRequestBodyMember1 {
-        return $this->postsPostRequestBodyMember1;
+    public function getImageId(): ?string {
+        return $this->image_id;
     }
 
     /**
-     * Gets the postsPostRequestBodyMember2 property value. Composed type representation for type PostsPostRequestBodyMember2
-     * @return PostsPostRequestBodyMember2|null
+     * Gets the org_id property value. The org_id property
+     * @return string|null
     */
-    public function getPostsPostRequestBodyMember2(): ?PostsPostRequestBodyMember2 {
-        return $this->postsPostRequestBodyMember2;
+    public function getOrgId(): ?string {
+        return $this->org_id;
+    }
+
+    /**
+     * Gets the type property value. The type property
+     * @return MediaType|null
+    */
+    public function getType(): ?MediaType {
+        return $this->type;
+    }
+
+    /**
+     * Gets the video_id property value. The video_id property
+     * @return string|null
+    */
+    public function getVideoId(): ?string {
+        return $this->video_id;
     }
 
     /**
@@ -67,23 +120,60 @@ class PostsPostRequestBody implements ComposedTypeWrapper, Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeObjectValue(null, $this->getPostsPostRequestBodyMember1(), $this->getPostsPostRequestBodyMember2());
+        $writer->writeStringValue('creator_id', $this->getCreatorId());
+        $writer->writeStringValue('description', $this->getDescription());
+        $writer->writeStringValue('image_id', $this->getImageId());
+        $writer->writeStringValue('org_id', $this->getOrgId());
+        $writer->writeEnumValue('type', $this->getType());
+        $writer->writeStringValue('video_id', $this->getVideoId());
     }
 
     /**
-     * Sets the postsPostRequestBodyMember1 property value. Composed type representation for type PostsPostRequestBodyMember1
-     * @param PostsPostRequestBodyMember1|null $value Value to set for the postsPostRequestBodyMember1 property.
+     * Sets the creator_id property value. The creator_id property
+     * @param string|null $value Value to set for the creator_id property.
     */
-    public function setPostsPostRequestBodyMember1(?PostsPostRequestBodyMember1 $value): void {
-        $this->postsPostRequestBodyMember1 = $value;
+    public function setCreatorId(?string $value): void {
+        $this->creator_id = $value;
     }
 
     /**
-     * Sets the postsPostRequestBodyMember2 property value. Composed type representation for type PostsPostRequestBodyMember2
-     * @param PostsPostRequestBodyMember2|null $value Value to set for the postsPostRequestBodyMember2 property.
+     * Sets the description property value. The description property
+     * @param string|null $value Value to set for the description property.
     */
-    public function setPostsPostRequestBodyMember2(?PostsPostRequestBodyMember2 $value): void {
-        $this->postsPostRequestBodyMember2 = $value;
+    public function setDescription(?string $value): void {
+        $this->description = $value;
+    }
+
+    /**
+     * Sets the image_id property value. The image_id property
+     * @param string|null $value Value to set for the image_id property.
+    */
+    public function setImageId(?string $value): void {
+        $this->image_id = $value;
+    }
+
+    /**
+     * Sets the org_id property value. The org_id property
+     * @param string|null $value Value to set for the org_id property.
+    */
+    public function setOrgId(?string $value): void {
+        $this->org_id = $value;
+    }
+
+    /**
+     * Sets the type property value. The type property
+     * @param MediaType|null $value Value to set for the type property.
+    */
+    public function setType(?MediaType $value): void {
+        $this->type = $value;
+    }
+
+    /**
+     * Sets the video_id property value. The video_id property
+     * @param string|null $value Value to set for the video_id property.
+    */
+    public function setVideoId(?string $value): void {
+        $this->video_id = $value;
     }
 
 }

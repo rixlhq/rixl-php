@@ -11,6 +11,7 @@ use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Feeds\V1\Projects\Item\Feeds\Item\WithFeed_ItemRequestBuilder;
 use Rixl\Sdk\Models\Feeds\V1\Feed;
 use Rixl\Sdk\Models\Feeds\V1\ListFeedsResponse;
+use Rixl\Sdk\Models\Google\Rpc\Status;
 
 /**
  * Builds and executes requests for operations under /feeds/v1/projects/{project_id}/feeds
@@ -19,7 +20,7 @@ class FeedsRequestBuilder extends BaseRequestBuilder
 {
     /**
      * Gets an item from the Rixl/Sdk.feeds.v1.projects.item.feeds.item collection
-     * @param string $feed_id The feed_id path parameter.
+     * @param string $feed_id Unique identifier of the item
      * @return WithFeed_ItemRequestBuilder
     */
     public function byFeed_id(string $feed_id): WithFeed_ItemRequestBuilder {
@@ -50,7 +51,10 @@ class FeedsRequestBuilder extends BaseRequestBuilder
     */
     public function get(?FeedsRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [ListFeedsResponse::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [ListFeedsResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**
@@ -62,7 +66,10 @@ class FeedsRequestBuilder extends BaseRequestBuilder
     */
     public function post(FeedsPostRequestBody $body, ?FeedsRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [Feed::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [Feed::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**

@@ -10,6 +10,7 @@ use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Billing\V1\Plans\Item\WithPlan_ItemRequestBuilder;
 use Rixl\Sdk\Models\Billing\V1\ListPlansResponse;
+use Rixl\Sdk\Models\Google\Rpc\Status;
 
 /**
  * Builds and executes requests for operations under /billing/v1/plans
@@ -49,7 +50,10 @@ class PlansRequestBuilder extends BaseRequestBuilder
     */
     public function get(?PlansRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [ListPlansResponse::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [ListPlansResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**

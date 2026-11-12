@@ -19,7 +19,7 @@ class CalculateTaxRequest implements Parsable
     private ?BillingAddress $billing_address = null;
     
     /**
-     * @var BillingCycle|null $billing_cycle enum.defined_only = true
+     * @var BillingCycle|null $billing_cycle The billing_cycle property
     */
     private ?BillingCycle $billing_cycle = null;
     
@@ -84,7 +84,7 @@ class CalculateTaxRequest implements Parsable
     }
 
     /**
-     * Gets the billing_cycle property value. enum.defined_only = true
+     * Gets the billing_cycle property value. The billing_cycle property
      * @return BillingCycle|null
     */
     public function getBillingCycle(): ?BillingCycle {
@@ -201,7 +201,7 @@ class CalculateTaxRequest implements Parsable
     }
 
     /**
-     * Sets the billing_cycle property value. enum.defined_only = true
+     * Sets the billing_cycle property value. The billing_cycle property
      * @param BillingCycle|null $value Value to set for the billing_cycle property.
     */
     public function setBillingCycle(?BillingCycle $value): void {

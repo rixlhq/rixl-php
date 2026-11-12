@@ -28,7 +28,7 @@ class RevokeRequestBuilderPostRequestConfiguration extends BaseRequestConfigurat
 
     /**
      * Instantiates a new RevokeRequestBuilderPostQueryParameters.
-     * @param string|null $org_id The org_id query parameter.
+     * @param string|null $org_id 
      * @return RevokeRequestBuilderPostQueryParameters
     */
     public static function createQueryParameters(?string $org_id = null): RevokeRequestBuilderPostQueryParameters {

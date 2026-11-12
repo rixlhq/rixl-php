@@ -20,7 +20,7 @@ class Subscription implements Parsable
     private ?string $currency = null;
     
     /**
-     * @var DateTime|null $current_period_end The current_period_end property
+     * @var DateTime|null $current_period_end A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
     */
     private ?DateTime $current_period_end = null;
     
@@ -95,7 +95,7 @@ class Subscription implements Parsable
     }
 
     /**
-     * Gets the current_period_end property value. The current_period_end property
+     * Gets the current_period_end property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @return DateTime|null
     */
     public function getCurrentPeriodEnd(): ?DateTime {
@@ -232,7 +232,7 @@ class Subscription implements Parsable
     }
 
     /**
-     * Sets the current_period_end property value. The current_period_end property
+     * Sets the current_period_end property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @param DateTime|null $value Value to set for the current_period_end property.
     */
     public function setCurrentPeriodEnd(?DateTime $value): void {

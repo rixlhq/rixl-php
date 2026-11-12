@@ -15,7 +15,7 @@ class MintClientTokenResponse implements Parsable
     private ?string $access_token = null;
     
     /**
-     * @var DateTime|null $expires_at The expires_at property
+     * @var DateTime|null $expires_at A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
     */
     private ?DateTime $expires_at = null;
     
@@ -47,7 +47,7 @@ class MintClientTokenResponse implements Parsable
     }
 
     /**
-     * Gets the expires_at property value. The expires_at property
+     * Gets the expires_at property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @return DateTime|null
     */
     public function getExpiresAt(): ?DateTime {
@@ -104,7 +104,7 @@ class MintClientTokenResponse implements Parsable
     }
 
     /**
-     * Sets the expires_at property value. The expires_at property
+     * Sets the expires_at property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @param DateTime|null $value Value to set for the expires_at property.
     */
     public function setExpiresAt(?DateTime $value): void {

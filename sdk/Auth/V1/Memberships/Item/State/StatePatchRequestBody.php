@@ -15,6 +15,11 @@ class StatePatchRequestBody implements Parsable
     private ?MembershipApplicationState $state = null;
     
     /**
+     * @var StatePatchRequestBody_user|null $user The user property
+    */
+    private ?StatePatchRequestBody_user $user = null;
+    
+    /**
      * @var string|null $user_id The user_id property
     */
     private ?string $user_id = null;
@@ -36,6 +41,7 @@ class StatePatchRequestBody implements Parsable
         $o = $this;
         return  [
             'state' => fn(ParseNode $n) => $o->setState($n->getEnumValue(MembershipApplicationState::class)),
+            'user' => fn(ParseNode $n) => $o->setUser($n->getObjectValue([StatePatchRequestBody_user::class, 'createFromDiscriminatorValue'])),
             'user_id' => fn(ParseNode $n) => $o->setUserId($n->getStringValue()),
         ];
     }
@@ -46,6 +52,14 @@ class StatePatchRequestBody implements Parsable
     */
     public function getState(): ?MembershipApplicationState {
         return $this->state;
+    }
+
+    /**
+     * Gets the user property value. The user property
+     * @return StatePatchRequestBody_user|null
+    */
+    public function getUser(): ?StatePatchRequestBody_user {
+        return $this->user;
     }
 
     /**
@@ -62,6 +76,7 @@ class StatePatchRequestBody implements Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeEnumValue('state', $this->getState());
+        $writer->writeObjectValue('user', $this->getUser());
         $writer->writeStringValue('user_id', $this->getUserId());
     }
 
@@ -71,6 +86,14 @@ class StatePatchRequestBody implements Parsable
     */
     public function setState(?MembershipApplicationState $value): void {
         $this->state = $value;
+    }
+
+    /**
+     * Sets the user property value. The user property
+     * @param StatePatchRequestBody_user|null $value Value to set for the user property.
+    */
+    public function setUser(?StatePatchRequestBody_user $value): void {
+        $this->user = $value;
     }
 
     /**

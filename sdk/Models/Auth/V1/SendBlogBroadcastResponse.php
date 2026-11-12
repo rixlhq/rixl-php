@@ -15,12 +15,12 @@ class SendBlogBroadcastResponse implements Parsable
     private ?string $broadcast_id = null;
     
     /**
-     * @var DateTime|null $scheduled_at The scheduled_at property
+     * @var DateTime|null $scheduled_at A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
     */
     private ?DateTime $scheduled_at = null;
     
     /**
-     * @var DateTime|null $sent_at The sent_at property
+     * @var DateTime|null $sent_at A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
     */
     private ?DateTime $sent_at = null;
     
@@ -55,7 +55,7 @@ class SendBlogBroadcastResponse implements Parsable
     }
 
     /**
-     * Gets the scheduled_at property value. The scheduled_at property
+     * Gets the scheduled_at property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @return DateTime|null
     */
     public function getScheduledAt(): ?DateTime {
@@ -63,7 +63,7 @@ class SendBlogBroadcastResponse implements Parsable
     }
 
     /**
-     * Gets the sent_at property value. The sent_at property
+     * Gets the sent_at property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @return DateTime|null
     */
     public function getSentAt(): ?DateTime {
@@ -89,7 +89,7 @@ class SendBlogBroadcastResponse implements Parsable
     }
 
     /**
-     * Sets the scheduled_at property value. The scheduled_at property
+     * Sets the scheduled_at property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @param DateTime|null $value Value to set for the scheduled_at property.
     */
     public function setScheduledAt(?DateTime $value): void {
@@ -97,7 +97,7 @@ class SendBlogBroadcastResponse implements Parsable
     }
 
     /**
-     * Sets the sent_at property value. The sent_at property
+     * Sets the sent_at property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @param DateTime|null $value Value to set for the sent_at property.
     */
     public function setSentAt(?DateTime $value): void {

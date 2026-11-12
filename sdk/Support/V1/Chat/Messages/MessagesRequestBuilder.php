@@ -8,6 +8,7 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
+use Rixl\Sdk\Models\Google\Rpc\Status;
 use Rixl\Sdk\Models\Support\V1\ListChatMessagesResponse;
 use Rixl\Sdk\Models\Support\V1\SendChatMessageRequest;
 use Rixl\Sdk\Models\Support\V1\SendChatMessageResponse;
@@ -39,7 +40,10 @@ class MessagesRequestBuilder extends BaseRequestBuilder
     */
     public function get(?MessagesRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [ListChatMessagesResponse::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [ListChatMessagesResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**
@@ -51,7 +55,10 @@ class MessagesRequestBuilder extends BaseRequestBuilder
     */
     public function post(SendChatMessageRequest $body, ?MessagesRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [SendChatMessageResponse::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [SendChatMessageResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**

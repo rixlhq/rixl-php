@@ -9,6 +9,11 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class ResendPostRequestBody implements Parsable 
 {
     /**
+     * @var ResendPostRequestBody_user|null $user The user property
+    */
+    private ?ResendPostRequestBody_user $user = null;
+    
+    /**
      * @var string|null $user_id The user_id property
     */
     private ?string $user_id = null;
@@ -29,8 +34,17 @@ class ResendPostRequestBody implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
+            'user' => fn(ParseNode $n) => $o->setUser($n->getObjectValue([ResendPostRequestBody_user::class, 'createFromDiscriminatorValue'])),
             'user_id' => fn(ParseNode $n) => $o->setUserId($n->getStringValue()),
         ];
+    }
+
+    /**
+     * Gets the user property value. The user property
+     * @return ResendPostRequestBody_user|null
+    */
+    public function getUser(): ?ResendPostRequestBody_user {
+        return $this->user;
     }
 
     /**
@@ -46,7 +60,16 @@ class ResendPostRequestBody implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
+        $writer->writeObjectValue('user', $this->getUser());
         $writer->writeStringValue('user_id', $this->getUserId());
+    }
+
+    /**
+     * Sets the user property value. The user property
+     * @param ResendPostRequestBody_user|null $value Value to set for the user property.
+    */
+    public function setUser(?ResendPostRequestBody_user $value): void {
+        $this->user = $value;
     }
 
     /**

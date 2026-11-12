@@ -11,7 +11,7 @@ use Rixl\Sdk\Models\Common\V1\VideoQuality;
 class UploadPostRequestBody implements Parsable 
 {
     /**
-     * @var MediaType|null $content_type enum.defined_only = true
+     * @var MediaType|null $content_type The content_type property
     */
     private ?MediaType $content_type = null;
     
@@ -50,7 +50,7 @@ class UploadPostRequestBody implements Parsable
     }
 
     /**
-     * Gets the content_type property value. enum.defined_only = true
+     * Gets the content_type property value. The content_type property
      * @return MediaType|null
     */
     public function getContentType(): ?MediaType {
@@ -127,7 +127,7 @@ class UploadPostRequestBody implements Parsable
     }
 
     /**
-     * Sets the content_type property value. enum.defined_only = true
+     * Sets the content_type property value. The content_type property
      * @param MediaType|null $value Value to set for the content_type property.
     */
     public function setContentType(?MediaType $value): void {

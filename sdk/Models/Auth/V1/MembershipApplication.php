@@ -10,12 +10,12 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class MembershipApplication implements Parsable 
 {
     /**
-     * @var DateTime|null $created_at The created_at property
+     * @var DateTime|null $created_at A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
     */
     private ?DateTime $created_at = null;
     
     /**
-     * @var DateTime|null $decided_at The decided_at property
+     * @var DateTime|null $decided_at A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
     */
     private ?DateTime $decided_at = null;
     
@@ -25,7 +25,7 @@ class MembershipApplication implements Parsable
     private ?string $id = null;
     
     /**
-     * @var DateTime|null $invitation_expires_at The invitation_expires_at property
+     * @var DateTime|null $invitation_expires_at A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
     */
     private ?DateTime $invitation_expires_at = null;
     
@@ -74,7 +74,7 @@ class MembershipApplication implements Parsable
     }
 
     /**
-     * Gets the created_at property value. The created_at property
+     * Gets the created_at property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @return DateTime|null
     */
     public function getCreatedAt(): ?DateTime {
@@ -82,7 +82,7 @@ class MembershipApplication implements Parsable
     }
 
     /**
-     * Gets the decided_at property value. The decided_at property
+     * Gets the decided_at property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @return DateTime|null
     */
     public function getDecidedAt(): ?DateTime {
@@ -119,7 +119,7 @@ class MembershipApplication implements Parsable
     }
 
     /**
-     * Gets the invitation_expires_at property value. The invitation_expires_at property
+     * Gets the invitation_expires_at property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @return DateTime|null
     */
     public function getInvitationExpiresAt(): ?DateTime {
@@ -201,7 +201,7 @@ class MembershipApplication implements Parsable
     }
 
     /**
-     * Sets the created_at property value. The created_at property
+     * Sets the created_at property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @param DateTime|null $value Value to set for the created_at property.
     */
     public function setCreatedAt(?DateTime $value): void {
@@ -209,7 +209,7 @@ class MembershipApplication implements Parsable
     }
 
     /**
-     * Sets the decided_at property value. The decided_at property
+     * Sets the decided_at property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @param DateTime|null $value Value to set for the decided_at property.
     */
     public function setDecidedAt(?DateTime $value): void {
@@ -225,7 +225,7 @@ class MembershipApplication implements Parsable
     }
 
     /**
-     * Sets the invitation_expires_at property value. The invitation_expires_at property
+     * Sets the invitation_expires_at property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @param DateTime|null $value Value to set for the invitation_expires_at property.
     */
     public function setInvitationExpiresAt(?DateTime $value): void {

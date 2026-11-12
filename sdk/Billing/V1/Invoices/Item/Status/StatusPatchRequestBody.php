@@ -10,7 +10,7 @@ use Rixl\Sdk\Models\Billing\V1\InvoiceStatus;
 class StatusPatchRequestBody implements Parsable 
 {
     /**
-     * @var InvoiceStatus|null $status enum.defined_only = true
+     * @var InvoiceStatus|null $status The status property
     */
     private ?InvoiceStatus $status = null;
     
@@ -35,7 +35,7 @@ class StatusPatchRequestBody implements Parsable
     }
 
     /**
-     * Gets the status property value. enum.defined_only = true
+     * Gets the status property value. The status property
      * @return InvoiceStatus|null
     */
     public function getStatus(): ?InvoiceStatus {
@@ -51,7 +51,7 @@ class StatusPatchRequestBody implements Parsable
     }
 
     /**
-     * Sets the status property value. enum.defined_only = true
+     * Sets the status property value. The status property
      * @param InvoiceStatus|null $value Value to set for the status property.
     */
     public function setStatus(?InvoiceStatus $value): void {

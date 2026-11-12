@@ -13,7 +13,7 @@ class EventsRequestBuilder extends BaseRequestBuilder
 {
     /**
      * Gets an item from the Rixl/Sdk.webhooks.v1.projects.item.endpoints.item.events.item collection
-     * @param string $event_id The event_id path parameter.
+     * @param string $event_id Unique identifier of the item
      * @return WithEvent_ItemRequestBuilder
     */
     public function byEvent_id(string $event_id): WithEvent_ItemRequestBuilder {

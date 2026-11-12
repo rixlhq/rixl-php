@@ -28,13 +28,14 @@ class PermissionsRequestBuilderGetRequestConfiguration extends BaseRequestConfig
 
     /**
      * Instantiates a new PermissionsRequestBuilderGetQueryParameters.
-     * @param int|null $limit The limit query parameter.
-     * @param int|null $offset The offset query parameter.
-     * @param array<string>|null $types The types query parameter.
+     * @param int|null $limit 
+     * @param int|null $offset 
+     * @param array<string>|null $types 
+     * @param string|null $userUser_id 
      * @return PermissionsRequestBuilderGetQueryParameters
     */
-    public static function createQueryParameters(?int $limit = null, ?int $offset = null, ?array $types = null): PermissionsRequestBuilderGetQueryParameters {
-        return new PermissionsRequestBuilderGetQueryParameters($limit, $offset, $types);
+    public static function createQueryParameters(?int $limit = null, ?int $offset = null, ?array $types = null, ?string $userUser_id = null): PermissionsRequestBuilderGetQueryParameters {
+        return new PermissionsRequestBuilderGetQueryParameters($limit, $offset, $types, $userUser_id);
     }
 
 }

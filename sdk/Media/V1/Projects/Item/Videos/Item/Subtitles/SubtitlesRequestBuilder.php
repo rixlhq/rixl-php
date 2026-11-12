@@ -12,6 +12,7 @@ use Rixl\Sdk\Media\V1\Projects\Item\Videos\Item\Subtitles\Item\WithSubtitle_Item
 use Rixl\Sdk\Media\V1\Projects\Item\Videos\Item\Subtitles\Language\LanguageRequestBuilder;
 use Rixl\Sdk\Media\V1\Projects\Item\Videos\Item\Subtitles\Upload\UploadRequestBuilder;
 use Rixl\Sdk\Models\Google\Protobuf\EscapedEmpty;
+use Rixl\Sdk\Models\Google\Rpc\Status;
 
 /**
  * Builds and executes requests for operations under /media/v1/projects/{project_id}/videos/{video_id}/subtitles
@@ -34,7 +35,7 @@ class SubtitlesRequestBuilder extends BaseRequestBuilder
     
     /**
      * Gets an item from the Rixl/Sdk.media.v1.projects.item.videos.item.subtitles.item collection
-     * @param string $subtitle_id The subtitle_id path parameter.
+     * @param string $subtitle_id Unique identifier of the item
      * @return WithSubtitle_ItemRequestBuilder
     */
     public function bySubtitle_id(string $subtitle_id): WithSubtitle_ItemRequestBuilder {
@@ -65,7 +66,10 @@ class SubtitlesRequestBuilder extends BaseRequestBuilder
     */
     public function delete(?SubtitlesRequestBuilderDeleteRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toDeleteRequestInformation($requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [EscapedEmpty::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [EscapedEmpty::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**

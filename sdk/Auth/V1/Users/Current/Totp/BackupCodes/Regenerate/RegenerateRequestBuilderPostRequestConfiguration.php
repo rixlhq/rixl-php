@@ -28,7 +28,7 @@ class RegenerateRequestBuilderPostRequestConfiguration extends BaseRequestConfig
 
     /**
      * Instantiates a new RegenerateRequestBuilderPostQueryParameters.
-     * @param string|null $user_id The user_id query parameter.
+     * @param string|null $user_id 
      * @return RegenerateRequestBuilderPostQueryParameters
     */
     public static function createQueryParameters(?string $user_id = null): RegenerateRequestBuilderPostQueryParameters {

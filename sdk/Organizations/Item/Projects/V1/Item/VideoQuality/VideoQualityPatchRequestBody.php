@@ -10,7 +10,7 @@ use Rixl\Sdk\Models\Common\V1\VideoQuality;
 class VideoQualityPatchRequestBody implements Parsable 
 {
     /**
-     * @var VideoQuality|null $video_quality enum.defined_only = true
+     * @var VideoQuality|null $video_quality The video_quality property
     */
     private ?VideoQuality $video_quality = null;
     
@@ -35,7 +35,7 @@ class VideoQualityPatchRequestBody implements Parsable
     }
 
     /**
-     * Gets the video_quality property value. enum.defined_only = true
+     * Gets the video_quality property value. The video_quality property
      * @return VideoQuality|null
     */
     public function getVideoQuality(): ?VideoQuality {
@@ -51,7 +51,7 @@ class VideoQualityPatchRequestBody implements Parsable
     }
 
     /**
-     * Sets the video_quality property value. enum.defined_only = true
+     * Sets the video_quality property value. The video_quality property
      * @param VideoQuality|null $value Value to set for the video_quality property.
     */
     public function setVideoQuality(?VideoQuality $value): void {

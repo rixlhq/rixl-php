@@ -8,6 +8,7 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
+use Rixl\Sdk\Models\Google\Rpc\Status;
 use Rixl\Sdk\Models\Posts\V1\CreatePostResponse;
 use Rixl\Sdk\Models\Posts\V1\ListPostsResponse;
 use Rixl\Sdk\Posts\V1\Projects\Item\Feeds\Item\Posts\Creators\CreatorsRequestBuilder;
@@ -35,7 +36,7 @@ class PostsRequestBuilder extends BaseRequestBuilder
     
     /**
      * Gets an item from the Rixl/Sdk.posts.v1.projects.item.feeds.item.posts.item collection
-     * @param string $post_id The post_id path parameter.
+     * @param string $post_id Unique identifier of the item
      * @return WithPost_ItemRequestBuilder
     */
     public function byPost_id(string $post_id): WithPost_ItemRequestBuilder {
@@ -66,19 +67,25 @@ class PostsRequestBuilder extends BaseRequestBuilder
     */
     public function get(?PostsRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [ListPostsResponse::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [ListPostsResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**
      * CreatePost
-     * @param PostsPostRequestBody $body The request body
+     * @param PostsPostRequestBody $body At most one of `image_id`, `video_id` may be set.
      * @param PostsRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<CreatePostResponse|null>
      * @throws Exception
     */
     public function post(PostsPostRequestBody $body, ?PostsRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [CreatePostResponse::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [CreatePostResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**
@@ -104,7 +111,7 @@ class PostsRequestBuilder extends BaseRequestBuilder
 
     /**
      * CreatePost
-     * @param PostsPostRequestBody $body The request body
+     * @param PostsPostRequestBody $body At most one of `image_id`, `video_id` may be set.
      * @param PostsRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */

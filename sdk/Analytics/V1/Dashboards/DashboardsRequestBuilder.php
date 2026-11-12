@@ -13,6 +13,7 @@ use Rixl\Sdk\Analytics\V1\Dashboards\Widgets\WidgetsRequestBuilder;
 use Rixl\Sdk\Models\Analytics\V1\CreateDashboardRequest;
 use Rixl\Sdk\Models\Analytics\V1\Dashboard;
 use Rixl\Sdk\Models\Analytics\V1\ListDashboardsResponse;
+use Rixl\Sdk\Models\Google\Rpc\Status;
 
 /**
  * Builds and executes requests for operations under /analytics/v1/dashboards
@@ -28,7 +29,7 @@ class DashboardsRequestBuilder extends BaseRequestBuilder
     
     /**
      * Gets an item from the Rixl/Sdk.analytics.v1.dashboards.item collection
-     * @param string $dashboard_Id The id path parameter.
+     * @param string $dashboard_Id Unique identifier of the item
      * @return Dashboard_ItemRequestBuilder
     */
     public function byDashboard_Id(string $dashboard_Id): Dashboard_ItemRequestBuilder {
@@ -59,7 +60,10 @@ class DashboardsRequestBuilder extends BaseRequestBuilder
     */
     public function get(?DashboardsRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [ListDashboardsResponse::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [ListDashboardsResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**
@@ -71,7 +75,10 @@ class DashboardsRequestBuilder extends BaseRequestBuilder
     */
     public function post(CreateDashboardRequest $body, ?DashboardsRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [Dashboard::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [Dashboard::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**

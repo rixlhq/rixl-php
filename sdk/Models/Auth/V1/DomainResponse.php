@@ -24,7 +24,7 @@ class DomainResponse implements Parsable
     private ?bool $present = null;
     
     /**
-     * @var DomainStatus|null $status The status property
+     * @var DomainStatus|null $status At most one of `verified`, `pending` may be set.
     */
     private ?DomainStatus $status = null;
     
@@ -76,7 +76,7 @@ class DomainResponse implements Parsable
     }
 
     /**
-     * Gets the status property value. The status property
+     * Gets the status property value. At most one of `verified`, `pending` may be set.
      * @return DomainStatus|null
     */
     public function getStatus(): ?DomainStatus {
@@ -119,7 +119,7 @@ class DomainResponse implements Parsable
     }
 
     /**
-     * Sets the status property value. The status property
+     * Sets the status property value. At most one of `verified`, `pending` may be set.
      * @param DomainStatus|null $value Value to set for the status property.
     */
     public function setStatus(?DomainStatus $value): void {

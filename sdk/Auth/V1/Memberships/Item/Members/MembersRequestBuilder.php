@@ -10,6 +10,7 @@ use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Auth\V1\Memberships\Item\Members\Item\Member_ItemRequestBuilder;
 use Rixl\Sdk\Models\Auth\V1\ListOrgMembersResponse;
+use Rixl\Sdk\Models\Google\Rpc\Status;
 
 /**
  * Builds and executes requests for operations under /auth/v1/memberships/{org_-id}/members
@@ -18,7 +19,7 @@ class MembersRequestBuilder extends BaseRequestBuilder
 {
     /**
      * Gets an item from the Rixl/Sdk.auth.v1.memberships.item.members.item collection
-     * @param string $member_Id The user_id path parameter.
+     * @param string $member_Id Unique identifier of the item
      * @return Member_ItemRequestBuilder
     */
     public function byMember_Id(string $member_Id): Member_ItemRequestBuilder {
@@ -33,7 +34,7 @@ class MembersRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/memberships/{org_%2Did}/members{?limit*,offset*}');
+        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/memberships/{org_%2Did}/members{?limit*,offset*,user%2Euser_id*}');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
@@ -49,7 +50,10 @@ class MembersRequestBuilder extends BaseRequestBuilder
     */
     public function get(?MembersRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [ListOrgMembersResponse::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [ListOrgMembersResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**

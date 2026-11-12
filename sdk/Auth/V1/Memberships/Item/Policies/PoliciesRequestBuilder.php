@@ -13,6 +13,7 @@ use Rixl\Sdk\Auth\V1\Memberships\Item\Policies\Item\WithPolicy_ItemRequestBuilde
 use Rixl\Sdk\Auth\V1\Memberships\Item\Policies\Permissions\PermissionsRequestBuilder;
 use Rixl\Sdk\Models\Auth\V1\ListPoliciesResponse;
 use Rixl\Sdk\Models\Auth\V1\Policy;
+use Rixl\Sdk\Models\Google\Rpc\Status;
 
 /**
  * Builds and executes requests for operations under /auth/v1/memberships/{org_-id}/policies
@@ -35,7 +36,7 @@ class PoliciesRequestBuilder extends BaseRequestBuilder
     
     /**
      * Gets an item from the Rixl/Sdk.auth.v1.memberships.item.policies.item collection
-     * @param string $policy_id The policy_id path parameter.
+     * @param string $policy_id Unique identifier of the item
      * @return WithPolicy_ItemRequestBuilder
     */
     public function byPolicy_id(string $policy_id): WithPolicy_ItemRequestBuilder {
@@ -66,7 +67,10 @@ class PoliciesRequestBuilder extends BaseRequestBuilder
     */
     public function get(?PoliciesRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [ListPoliciesResponse::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [ListPoliciesResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**
@@ -78,7 +82,10 @@ class PoliciesRequestBuilder extends BaseRequestBuilder
     */
     public function post(PoliciesPostRequestBody $body, ?PoliciesRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [Policy::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [Policy::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**

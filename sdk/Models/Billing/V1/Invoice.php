@@ -15,7 +15,7 @@ class Invoice implements Parsable
     private ?string $amount = null;
     
     /**
-     * @var DateTime|null $created_at The created_at property
+     * @var DateTime|null $created_at A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
     */
     private ?DateTime $created_at = null;
     
@@ -30,7 +30,7 @@ class Invoice implements Parsable
     private ?string $description = null;
     
     /**
-     * @var DateTime|null $due_date The due_date property
+     * @var DateTime|null $due_date A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
     */
     private ?DateTime $due_date = null;
     
@@ -45,7 +45,7 @@ class Invoice implements Parsable
     private ?string $org_id = null;
     
     /**
-     * @var DateTime|null $paid_at The paid_at property
+     * @var DateTime|null $paid_at A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
     */
     private ?DateTime $paid_at = null;
     
@@ -77,7 +77,7 @@ class Invoice implements Parsable
     }
 
     /**
-     * Gets the created_at property value. The created_at property
+     * Gets the created_at property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @return DateTime|null
     */
     public function getCreatedAt(): ?DateTime {
@@ -101,7 +101,7 @@ class Invoice implements Parsable
     }
 
     /**
-     * Gets the due_date property value. The due_date property
+     * Gets the due_date property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @return DateTime|null
     */
     public function getDueDate(): ?DateTime {
@@ -145,7 +145,7 @@ class Invoice implements Parsable
     }
 
     /**
-     * Gets the paid_at property value. The paid_at property
+     * Gets the paid_at property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @return DateTime|null
     */
     public function getPaidAt(): ?DateTime {
@@ -194,7 +194,7 @@ class Invoice implements Parsable
     }
 
     /**
-     * Sets the created_at property value. The created_at property
+     * Sets the created_at property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @param DateTime|null $value Value to set for the created_at property.
     */
     public function setCreatedAt(?DateTime $value): void {
@@ -218,7 +218,7 @@ class Invoice implements Parsable
     }
 
     /**
-     * Sets the due_date property value. The due_date property
+     * Sets the due_date property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @param DateTime|null $value Value to set for the due_date property.
     */
     public function setDueDate(?DateTime $value): void {
@@ -242,7 +242,7 @@ class Invoice implements Parsable
     }
 
     /**
-     * Sets the paid_at property value. The paid_at property
+     * Sets the paid_at property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @param DateTime|null $value Value to set for the paid_at property.
     */
     public function setPaidAt(?DateTime $value): void {

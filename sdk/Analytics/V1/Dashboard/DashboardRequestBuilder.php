@@ -13,6 +13,7 @@ use Rixl\Sdk\Analytics\V1\Dashboard\Datasets\DatasetsRequestBuilder;
 use Rixl\Sdk\Analytics\V1\Dashboard\FilterOptions\FilterOptionsRequestBuilder;
 use Rixl\Sdk\Analytics\V1\Dashboard\ScopeTree\ScopeTreeRequestBuilder;
 use Rixl\Sdk\Models\Analytics\V1\DashboardStatsResponse;
+use Rixl\Sdk\Models\Google\Rpc\Status;
 
 /**
  * Builds and executes requests for operations under /analytics/v1/dashboard
@@ -69,7 +70,10 @@ class DashboardRequestBuilder extends BaseRequestBuilder
     */
     public function get(?DashboardRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [DashboardStatsResponse::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [DashboardStatsResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**

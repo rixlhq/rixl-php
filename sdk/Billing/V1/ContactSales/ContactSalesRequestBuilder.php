@@ -10,6 +10,7 @@ use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Models\Billing\V1\ContactSalesRequest;
 use Rixl\Sdk\Models\Billing\V1\SalesLead;
+use Rixl\Sdk\Models\Google\Rpc\Status;
 
 /**
  * Builds and executes requests for operations under /billing/v1/contact-sales
@@ -39,7 +40,10 @@ class ContactSalesRequestBuilder extends BaseRequestBuilder
     */
     public function post(ContactSalesRequest $body, ?ContactSalesRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [SalesLead::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [SalesLead::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**

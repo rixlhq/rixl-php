@@ -13,7 +13,7 @@ class WidgetsRequestBuilder extends BaseRequestBuilder
 {
     /**
      * Gets an item from the Rixl/Sdk.analytics.v1.dashboards.widgets.item collection
-     * @param string $id The id path parameter.
+     * @param string $id Unique identifier of the item
      * @return WidgetsItemRequestBuilder
     */
     public function byId(string $id): WidgetsItemRequestBuilder {

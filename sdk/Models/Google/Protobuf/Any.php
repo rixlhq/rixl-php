@@ -1,13 +1,16 @@
 <?php
 
-namespace Rixl\Sdk\Posts\V1\Projects\Item\Feeds\Item\Posts;
+namespace Rixl\Sdk\Models\Google\Protobuf;
 
 use Microsoft\Kiota\Abstractions\Serialization\AdditionalDataHolder;
 use Microsoft\Kiota\Abstractions\Serialization\Parsable;
 use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
 use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 
-class PostsPostRequestBodyMember1 implements AdditionalDataHolder, Parsable 
+/**
+ * Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+*/
+class Any implements AdditionalDataHolder, Parsable 
 {
     /**
      * @var array<string, mixed>|null $additionalData Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
@@ -15,12 +18,12 @@ class PostsPostRequestBodyMember1 implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var string|null $image_id The image_id property
+     * @var string|null $type A URL/resource name that uniquely identifies the type of the serialized message.
     */
-    private ?string $image_id = null;
+    private ?string $type = null;
     
     /**
-     * Instantiates a new PostsPostRequestBodyMember1 and sets the default values.
+     * Instantiates a new Any and sets the default values.
     */
     public function __construct() {
         $this->setAdditionalData([]);
@@ -29,10 +32,10 @@ class PostsPostRequestBodyMember1 implements AdditionalDataHolder, Parsable
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object
-     * @return PostsPostRequestBodyMember1
+     * @return Any
     */
-    public static function createFromDiscriminatorValue(ParseNode $parseNode): PostsPostRequestBodyMember1 {
-        return new PostsPostRequestBodyMember1();
+    public static function createFromDiscriminatorValue(ParseNode $parseNode): Any {
+        return new Any();
     }
 
     /**
@@ -50,16 +53,16 @@ class PostsPostRequestBodyMember1 implements AdditionalDataHolder, Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'image_id' => fn(ParseNode $n) => $o->setImageId($n->getStringValue()),
+            '@type' => fn(ParseNode $n) => $o->setType($n->getStringValue()),
         ];
     }
 
     /**
-     * Gets the image_id property value. The image_id property
+     * Gets the @type property value. A URL/resource name that uniquely identifies the type of the serialized message.
      * @return string|null
     */
-    public function getImageId(): ?string {
-        return $this->image_id;
+    public function getType(): ?string {
+        return $this->type;
     }
 
     /**
@@ -67,7 +70,7 @@ class PostsPostRequestBodyMember1 implements AdditionalDataHolder, Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('image_id', $this->getImageId());
+        $writer->writeStringValue('@type', $this->getType());
         $writer->writeAdditionalData($this->getAdditionalData());
     }
 
@@ -80,11 +83,11 @@ class PostsPostRequestBodyMember1 implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the image_id property value. The image_id property
-     * @param string|null $value Value to set for the image_id property.
+     * Sets the @type property value. A URL/resource name that uniquely identifies the type of the serialized message.
+     * @param string|null $value Value to set for the @type property.
     */
-    public function setImageId(?string $value): void {
-        $this->image_id = $value;
+    public function setType(?string $value): void {
+        $this->type = $value;
     }
 
 }

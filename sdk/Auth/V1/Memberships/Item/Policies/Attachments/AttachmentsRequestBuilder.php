@@ -13,7 +13,7 @@ class AttachmentsRequestBuilder extends BaseRequestBuilder
 {
     /**
      * Gets an item from the Rixl/Sdk.auth.v1.memberships.item.policies.attachments.item collection
-     * @param string $attachment_id The attachment_id path parameter.
+     * @param string $attachment_id Unique identifier of the item
      * @return WithAttachment_ItemRequestBuilder
     */
     public function byAttachment_id(string $attachment_id): WithAttachment_ItemRequestBuilder {

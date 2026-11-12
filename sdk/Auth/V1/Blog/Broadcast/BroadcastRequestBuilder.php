@@ -10,6 +10,7 @@ use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Models\Auth\V1\SendBlogBroadcastRequest;
 use Rixl\Sdk\Models\Auth\V1\SendBlogBroadcastResponse;
+use Rixl\Sdk\Models\Google\Rpc\Status;
 
 /**
  * Builds and executes requests for operations under /auth/v1/blog/broadcast
@@ -39,7 +40,10 @@ class BroadcastRequestBuilder extends BaseRequestBuilder
     */
     public function post(SendBlogBroadcastRequest $body, ?BroadcastRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [SendBlogBroadcastResponse::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [SendBlogBroadcastResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**

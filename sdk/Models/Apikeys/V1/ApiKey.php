@@ -11,12 +11,12 @@ use Microsoft\Kiota\Abstractions\Types\TypeUtils;
 class ApiKey implements Parsable 
 {
     /**
-     * @var DateTime|null $created_at The created_at property
+     * @var DateTime|null $created_at A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
     */
     private ?DateTime $created_at = null;
     
     /**
-     * @var DateTime|null $expiring_at The expiring_at property
+     * @var DateTime|null $expiring_at A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
     */
     private ?DateTime $expiring_at = null;
     
@@ -26,7 +26,7 @@ class ApiKey implements Parsable
     private ?string $id = null;
     
     /**
-     * @var DateTime|null $last_used The last_used property
+     * @var DateTime|null $last_used A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
     */
     private ?DateTime $last_used = null;
     
@@ -75,7 +75,7 @@ class ApiKey implements Parsable
     }
 
     /**
-     * Gets the created_at property value. The created_at property
+     * Gets the created_at property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @return DateTime|null
     */
     public function getCreatedAt(): ?DateTime {
@@ -83,7 +83,7 @@ class ApiKey implements Parsable
     }
 
     /**
-     * Gets the expiring_at property value. The expiring_at property
+     * Gets the expiring_at property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @return DateTime|null
     */
     public function getExpiringAt(): ?DateTime {
@@ -134,7 +134,7 @@ class ApiKey implements Parsable
     }
 
     /**
-     * Gets the last_used property value. The last_used property
+     * Gets the last_used property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @return DateTime|null
     */
     public function getLastUsed(): ?DateTime {
@@ -216,7 +216,7 @@ class ApiKey implements Parsable
     }
 
     /**
-     * Sets the created_at property value. The created_at property
+     * Sets the created_at property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @param DateTime|null $value Value to set for the created_at property.
     */
     public function setCreatedAt(?DateTime $value): void {
@@ -224,7 +224,7 @@ class ApiKey implements Parsable
     }
 
     /**
-     * Sets the expiring_at property value. The expiring_at property
+     * Sets the expiring_at property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @param DateTime|null $value Value to set for the expiring_at property.
     */
     public function setExpiringAt(?DateTime $value): void {
@@ -240,7 +240,7 @@ class ApiKey implements Parsable
     }
 
     /**
-     * Sets the last_used property value. The last_used property
+     * Sets the last_used property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @param DateTime|null $value Value to set for the last_used property.
     */
     public function setLastUsed(?DateTime $value): void {

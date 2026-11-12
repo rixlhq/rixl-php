@@ -11,6 +11,7 @@ use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Models\Clientauth\V1\CreateClientCredentialRequest;
 use Rixl\Sdk\Models\Clientauth\V1\CreateClientCredentialResponse;
 use Rixl\Sdk\Models\Clientauth\V1\ListClientCredentialsResponse;
+use Rixl\Sdk\Models\Google\Rpc\Status;
 use Rixl\Sdk\Platform\Clientauth\V1\Credentials\Item\WithCredential_ItemRequestBuilder;
 
 /**
@@ -20,7 +21,7 @@ class CredentialsRequestBuilder extends BaseRequestBuilder
 {
     /**
      * Gets an item from the Rixl/Sdk.platform.clientauth.v1.credentials.item collection
-     * @param string $credential_id The credential_id path parameter.
+     * @param string $credential_id Unique identifier of the item
      * @return WithCredential_ItemRequestBuilder
     */
     public function byCredential_id(string $credential_id): WithCredential_ItemRequestBuilder {
@@ -51,7 +52,10 @@ class CredentialsRequestBuilder extends BaseRequestBuilder
     */
     public function get(?CredentialsRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [ListClientCredentialsResponse::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [ListClientCredentialsResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**
@@ -63,7 +67,10 @@ class CredentialsRequestBuilder extends BaseRequestBuilder
     */
     public function post(CreateClientCredentialRequest $body, ?CredentialsRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [CreateClientCredentialResponse::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [CreateClientCredentialResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**

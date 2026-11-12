@@ -10,6 +10,7 @@ use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Models\Auth\V1\UpdateNameRequest;
 use Rixl\Sdk\Models\Auth\V1\UpdateNameResponse;
+use Rixl\Sdk\Models\Google\Rpc\Status;
 
 /**
  * Builds and executes requests for operations under /auth/v1/users/current/name
@@ -39,7 +40,10 @@ class NameRequestBuilder extends BaseRequestBuilder
     */
     public function patch(UpdateNameRequest $body, ?NameRequestBuilderPatchRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPatchRequestInformation($body, $requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [UpdateNameResponse::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [UpdateNameResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**

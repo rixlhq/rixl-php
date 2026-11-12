@@ -25,6 +25,11 @@ class PoliciesPostRequestBody implements Parsable
     private ?array $permissions = null;
     
     /**
+     * @var PoliciesPostRequestBody_user|null $user The user property
+    */
+    private ?PoliciesPostRequestBody_user $user = null;
+    
+    /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object
      * @return PoliciesPostRequestBody
@@ -58,6 +63,7 @@ class PoliciesPostRequestBody implements Parsable
                 /** @var array<string>|null $val */
                 $this->setPermissions($val);
             },
+            'user' => fn(ParseNode $n) => $o->setUser($n->getObjectValue([PoliciesPostRequestBody_user::class, 'createFromDiscriminatorValue'])),
         ];
     }
 
@@ -78,6 +84,14 @@ class PoliciesPostRequestBody implements Parsable
     }
 
     /**
+     * Gets the user property value. The user property
+     * @return PoliciesPostRequestBody_user|null
+    */
+    public function getUser(): ?PoliciesPostRequestBody_user {
+        return $this->user;
+    }
+
+    /**
      * Serializes information the current object
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
@@ -85,6 +99,7 @@ class PoliciesPostRequestBody implements Parsable
         $writer->writeStringValue('description', $this->getDescription());
         $writer->writeStringValue('name', $this->getName());
         $writer->writeCollectionOfPrimitiveValues('permissions', $this->getPermissions());
+        $writer->writeObjectValue('user', $this->getUser());
     }
 
     /**
@@ -109,6 +124,14 @@ class PoliciesPostRequestBody implements Parsable
     */
     public function setPermissions(?array $value): void {
         $this->permissions = $value;
+    }
+
+    /**
+     * Sets the user property value. The user property
+     * @param PoliciesPostRequestBody_user|null $value Value to set for the user property.
+    */
+    public function setUser(?PoliciesPostRequestBody_user $value): void {
+        $this->user = $value;
     }
 
 }

@@ -8,6 +8,7 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
+use Rixl\Sdk\Models\Google\Rpc\Status;
 use Rixl\Sdk\Models\Project\V1\ListProjectsResponse;
 use Rixl\Sdk\Models\Project\V1\Project;
 use Rixl\Sdk\Organizations\Item\Projects\V1\Item\WithProject_ItemRequestBuilder;
@@ -19,7 +20,7 @@ class V1RequestBuilder extends BaseRequestBuilder
 {
     /**
      * Gets an item from the Rixl/Sdk.organizations.item.projects.v1.item collection
-     * @param string $project_id The project_id path parameter.
+     * @param string $project_id Unique identifier of the item
      * @return WithProject_ItemRequestBuilder
     */
     public function byProject_id(string $project_id): WithProject_ItemRequestBuilder {
@@ -50,7 +51,10 @@ class V1RequestBuilder extends BaseRequestBuilder
     */
     public function get(?V1RequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [ListProjectsResponse::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [ListProjectsResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**
@@ -62,7 +66,10 @@ class V1RequestBuilder extends BaseRequestBuilder
     */
     public function post(V1PostRequestBody $body, ?V1RequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [Project::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [Project::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**

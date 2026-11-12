@@ -25,7 +25,7 @@ class GetPlanResponse implements Parsable
     private ?string $description = null;
     
     /**
-     * @var Struct|null $features The features property
+     * @var Struct|null $features A JSON object whose property values may be any JSON value.
     */
     private ?Struct $features = null;
     
@@ -113,7 +113,7 @@ class GetPlanResponse implements Parsable
     }
 
     /**
-     * Gets the features property value. The features property
+     * Gets the features property value. A JSON object whose property values may be any JSON value.
      * @return Struct|null
     */
     public function getFeatures(): ?Struct {
@@ -270,7 +270,7 @@ class GetPlanResponse implements Parsable
     }
 
     /**
-     * Sets the features property value. The features property
+     * Sets the features property value. A JSON object whose property values may be any JSON value.
      * @param Struct|null $value Value to set for the features property.
     */
     public function setFeatures(?Struct $value): void {

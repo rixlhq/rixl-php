@@ -10,7 +10,7 @@ use Rixl\Sdk\Models\Common\V1\Visibility;
 class VisibilityPatchRequestBody implements Parsable 
 {
     /**
-     * @var Visibility|null $visibility enum.defined_only = true
+     * @var Visibility|null $visibility The visibility property
     */
     private ?Visibility $visibility = null;
     
@@ -35,7 +35,7 @@ class VisibilityPatchRequestBody implements Parsable
     }
 
     /**
-     * Gets the visibility property value. enum.defined_only = true
+     * Gets the visibility property value. The visibility property
      * @return Visibility|null
     */
     public function getVisibility(): ?Visibility {
@@ -51,7 +51,7 @@ class VisibilityPatchRequestBody implements Parsable
     }
 
     /**
-     * Sets the visibility property value. enum.defined_only = true
+     * Sets the visibility property value. The visibility property
      * @param Visibility|null $value Value to set for the visibility property.
     */
     public function setVisibility(?Visibility $value): void {

@@ -8,6 +8,7 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
+use Rixl\Sdk\Models\Google\Rpc\Status;
 use Rixl\Sdk\Models\Posts\V1\ListPostsResponse;
 use Rixl\Sdk\Posts\V1\Feeds\Item\Creators\CreatorsRequestBuilder;
 use Rixl\Sdk\Posts\V1\Feeds\Item\Item\WithPost_ItemRequestBuilder;
@@ -26,7 +27,7 @@ class WithFeed_ItemRequestBuilder extends BaseRequestBuilder
     
     /**
      * Gets an item from the Rixl/Sdk.posts.v1.feeds.item.item collection
-     * @param string $post_id The post_id path parameter.
+     * @param string $post_id Unique identifier of the item
      * @return WithPost_ItemRequestBuilder
     */
     public function byPost_id(string $post_id): WithPost_ItemRequestBuilder {
@@ -57,7 +58,10 @@ class WithFeed_ItemRequestBuilder extends BaseRequestBuilder
     */
     public function get(?WithFeed_ItemRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [ListPostsResponse::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [ListPostsResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**

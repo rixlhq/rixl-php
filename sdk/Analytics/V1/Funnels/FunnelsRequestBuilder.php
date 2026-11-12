@@ -10,6 +10,7 @@ use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Models\Analytics\V1\FunnelAnalytics;
 use Rixl\Sdk\Models\Analytics\V1\FunnelRequest;
+use Rixl\Sdk\Models\Google\Rpc\Status;
 
 /**
  * Builds and executes requests for operations under /analytics/v1/funnels
@@ -39,7 +40,10 @@ class FunnelsRequestBuilder extends BaseRequestBuilder
     */
     public function post(FunnelRequest $body, ?FunnelsRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [FunnelAnalytics::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [FunnelAnalytics::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**

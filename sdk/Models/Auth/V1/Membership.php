@@ -15,7 +15,7 @@ class Membership implements Parsable
     private ?string $id = null;
     
     /**
-     * @var DateTime|null $joined_at The joined_at property
+     * @var DateTime|null $joined_at A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
     */
     private ?DateTime $joined_at = null;
     
@@ -91,7 +91,7 @@ class Membership implements Parsable
     }
 
     /**
-     * Gets the joined_at property value. The joined_at property
+     * Gets the joined_at property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @return DateTime|null
     */
     public function getJoinedAt(): ?DateTime {
@@ -179,7 +179,7 @@ class Membership implements Parsable
     }
 
     /**
-     * Sets the joined_at property value. The joined_at property
+     * Sets the joined_at property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @param DateTime|null $value Value to set for the joined_at property.
     */
     public function setJoinedAt(?DateTime $value): void {

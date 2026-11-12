@@ -10,7 +10,7 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class VerifiedDomain implements Parsable 
 {
     /**
-     * @var DateTime|null $verified_at The verified_at property
+     * @var DateTime|null $verified_at A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
     */
     private ?DateTime $verified_at = null;
     
@@ -35,7 +35,7 @@ class VerifiedDomain implements Parsable
     }
 
     /**
-     * Gets the verified_at property value. The verified_at property
+     * Gets the verified_at property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @return DateTime|null
     */
     public function getVerifiedAt(): ?DateTime {
@@ -51,7 +51,7 @@ class VerifiedDomain implements Parsable
     }
 
     /**
-     * Sets the verified_at property value. The verified_at property
+     * Sets the verified_at property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @param DateTime|null $value Value to set for the verified_at property.
     */
     public function setVerifiedAt(?DateTime $value): void {

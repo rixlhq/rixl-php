@@ -2,7 +2,6 @@
 
 namespace Rixl\Sdk\Models\Analytics\V1;
 
-use DateInterval;
 use Microsoft\Kiota\Abstractions\Serialization\Parsable;
 use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
 use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
@@ -21,12 +20,12 @@ class Segment implements Parsable
     private ?string $chapter_title = null;
     
     /**
-     * @var DateInterval|null $end_ms The end_ms property
+     * @var string|null $end_ms A signed duration in seconds, with up to nine fractional digits and an `s` suffix (for example, `3s` or `-0.001s`).
     */
-    private ?DateInterval $end_ms = null;
+    private ?string $end_ms = null;
     
     /**
-     * @var VideoQuality|null $quality enum.defined_only = true
+     * @var VideoQuality|null $quality The quality property
     */
     private ?VideoQuality $quality = null;
     
@@ -36,9 +35,9 @@ class Segment implements Parsable
     private ?float $speed = null;
     
     /**
-     * @var DateInterval|null $start_ms The start_ms property
+     * @var string|null $start_ms A signed duration in seconds, with up to nine fractional digits and an `s` suffix (for example, `3s` or `-0.001s`).
     */
-    private ?DateInterval $start_ms = null;
+    private ?string $start_ms = null;
     
     /**
      * @var string|null $subtitle_language Unset fields inherit the value the view was opened with.
@@ -71,10 +70,10 @@ class Segment implements Parsable
     }
 
     /**
-     * Gets the end_ms property value. The end_ms property
-     * @return DateInterval|null
+     * Gets the end_ms property value. A signed duration in seconds, with up to nine fractional digits and an `s` suffix (for example, `3s` or `-0.001s`).
+     * @return string|null
     */
-    public function getEndMs(): ?DateInterval {
+    public function getEndMs(): ?string {
         return $this->end_ms;
     }
 
@@ -87,16 +86,16 @@ class Segment implements Parsable
         return  [
             'audio_language' => fn(ParseNode $n) => $o->setAudioLanguage($n->getStringValue()),
             'chapter_title' => fn(ParseNode $n) => $o->setChapterTitle($n->getStringValue()),
-            'end_ms' => fn(ParseNode $n) => $o->setEndMs($n->getDateIntervalValue()),
+            'end_ms' => fn(ParseNode $n) => $o->setEndMs($n->getStringValue()),
             'quality' => fn(ParseNode $n) => $o->setQuality($n->getEnumValue(VideoQuality::class)),
             'speed' => fn(ParseNode $n) => $o->setSpeed($n->getFloatValue()),
-            'start_ms' => fn(ParseNode $n) => $o->setStartMs($n->getDateIntervalValue()),
+            'start_ms' => fn(ParseNode $n) => $o->setStartMs($n->getStringValue()),
             'subtitle_language' => fn(ParseNode $n) => $o->setSubtitleLanguage($n->getStringValue()),
         ];
     }
 
     /**
-     * Gets the quality property value. enum.defined_only = true
+     * Gets the quality property value. The quality property
      * @return VideoQuality|null
     */
     public function getQuality(): ?VideoQuality {
@@ -112,10 +111,10 @@ class Segment implements Parsable
     }
 
     /**
-     * Gets the start_ms property value. The start_ms property
-     * @return DateInterval|null
+     * Gets the start_ms property value. A signed duration in seconds, with up to nine fractional digits and an `s` suffix (for example, `3s` or `-0.001s`).
+     * @return string|null
     */
-    public function getStartMs(): ?DateInterval {
+    public function getStartMs(): ?string {
         return $this->start_ms;
     }
 
@@ -134,10 +133,10 @@ class Segment implements Parsable
     public function serialize(SerializationWriter $writer): void {
         $writer->writeStringValue('audio_language', $this->getAudioLanguage());
         $writer->writeStringValue('chapter_title', $this->getChapterTitle());
-        $writer->writeDateIntervalValue('end_ms', $this->getEndMs());
+        $writer->writeStringValue('end_ms', $this->getEndMs());
         $writer->writeEnumValue('quality', $this->getQuality());
         $writer->writeFloatValue('speed', $this->getSpeed());
-        $writer->writeDateIntervalValue('start_ms', $this->getStartMs());
+        $writer->writeStringValue('start_ms', $this->getStartMs());
         $writer->writeStringValue('subtitle_language', $this->getSubtitleLanguage());
     }
 
@@ -158,15 +157,15 @@ class Segment implements Parsable
     }
 
     /**
-     * Sets the end_ms property value. The end_ms property
-     * @param DateInterval|null $value Value to set for the end_ms property.
+     * Sets the end_ms property value. A signed duration in seconds, with up to nine fractional digits and an `s` suffix (for example, `3s` or `-0.001s`).
+     * @param string|null $value Value to set for the end_ms property.
     */
-    public function setEndMs(?DateInterval $value): void {
+    public function setEndMs(?string $value): void {
         $this->end_ms = $value;
     }
 
     /**
-     * Sets the quality property value. enum.defined_only = true
+     * Sets the quality property value. The quality property
      * @param VideoQuality|null $value Value to set for the quality property.
     */
     public function setQuality(?VideoQuality $value): void {
@@ -182,10 +181,10 @@ class Segment implements Parsable
     }
 
     /**
-     * Sets the start_ms property value. The start_ms property
-     * @param DateInterval|null $value Value to set for the start_ms property.
+     * Sets the start_ms property value. A signed duration in seconds, with up to nine fractional digits and an `s` suffix (for example, `3s` or `-0.001s`).
+     * @param string|null $value Value to set for the start_ms property.
     */
-    public function setStartMs(?DateInterval $value): void {
+    public function setStartMs(?string $value): void {
         $this->start_ms = $value;
     }
 

@@ -10,6 +10,7 @@ use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Models\Auth\V1\ListAttachmentsResponse;
 use Rixl\Sdk\Models\Auth\V1\PolicyAttachment;
+use Rixl\Sdk\Models\Google\Rpc\Status;
 
 /**
  * Builds and executes requests for operations under /auth/v1/memberships/{org_-id}/policies/{policy_id}/attachments
@@ -22,7 +23,7 @@ class AttachmentsRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/memberships/{org_%2Did}/policies/{policy_id}/attachments');
+        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/memberships/{org_%2Did}/policies/{policy_id}/attachments{?user%2Euser_id*}');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
@@ -38,7 +39,10 @@ class AttachmentsRequestBuilder extends BaseRequestBuilder
     */
     public function get(?AttachmentsRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [ListAttachmentsResponse::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [ListAttachmentsResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**
@@ -50,7 +54,10 @@ class AttachmentsRequestBuilder extends BaseRequestBuilder
     */
     public function post(AttachmentsPostRequestBody $body, ?AttachmentsRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [PolicyAttachment::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [PolicyAttachment::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**
@@ -65,6 +72,9 @@ class AttachmentsRequestBuilder extends BaseRequestBuilder
         $requestInfo->httpMethod = HttpMethod::GET;
         if ($requestConfiguration !== null) {
             $requestInfo->addHeaders($requestConfiguration->headers);
+            if ($requestConfiguration->queryParameters !== null) {
+                $requestInfo->setQueryParameters($requestConfiguration->queryParameters);
+            }
             $requestInfo->addRequestOptions(...$requestConfiguration->options);
         }
         $requestInfo->tryAddHeader('Accept', "application/json");

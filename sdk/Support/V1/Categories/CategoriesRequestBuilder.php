@@ -8,6 +8,7 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
+use Rixl\Sdk\Models\Google\Rpc\Status;
 use Rixl\Sdk\Models\Support\V1\ListCategoriesResponse;
 use Rixl\Sdk\Support\V1\Categories\Item\WithCategory_ItemRequestBuilder;
 
@@ -18,7 +19,7 @@ class CategoriesRequestBuilder extends BaseRequestBuilder
 {
     /**
      * Gets an item from the Rixl/Sdk.support.v1.categories.item collection
-     * @param string $category_id The category_id path parameter.
+     * @param string $category_id Unique identifier of the item
      * @return WithCategory_ItemRequestBuilder
     */
     public function byCategory_id(string $category_id): WithCategory_ItemRequestBuilder {
@@ -49,7 +50,10 @@ class CategoriesRequestBuilder extends BaseRequestBuilder
     */
     public function get(?CategoriesRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [ListCategoriesResponse::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [ListCategoriesResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**

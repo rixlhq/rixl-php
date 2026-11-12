@@ -2,26 +2,29 @@
 
 namespace Rixl\Sdk\Models\Auth\V1;
 
-use Microsoft\Kiota\Abstractions\Serialization\ComposedTypeWrapper;
 use Microsoft\Kiota\Abstractions\Serialization\Parsable;
 use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
-use Microsoft\Kiota\Abstractions\Serialization\ParseNodeHelper;
 use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 
 /**
- * Composed type wrapper for classes DomainStatusMember1, DomainStatusMember2
+ * At most one of `verified`, `pending` may be set.
 */
-class DomainStatus implements ComposedTypeWrapper, Parsable 
+class DomainStatus implements Parsable 
 {
     /**
-     * @var DomainStatusMember1|null $domainStatusMember1 Composed type representation for type DomainStatusMember1
+     * @var bool|null $auto_join The auto_join property
     */
-    private ?DomainStatusMember1 $domainStatusMember1 = null;
+    private ?bool $auto_join = null;
     
     /**
-     * @var DomainStatusMember2|null $domainStatusMember2 Composed type representation for type DomainStatusMember2
+     * @var PendingDomain|null $pending The pending property
     */
-    private ?DomainStatusMember2 $domainStatusMember2 = null;
+    private ?PendingDomain $pending = null;
+    
+    /**
+     * @var VerifiedDomain|null $verified The verified property
+    */
+    private ?VerifiedDomain $verified = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -29,26 +32,15 @@ class DomainStatus implements ComposedTypeWrapper, Parsable
      * @return DomainStatus
     */
     public static function createFromDiscriminatorValue(ParseNode $parseNode): DomainStatus {
-        $result = new DomainStatus();
-        $result->setDomainStatusMember1(new DomainStatusMember1());
-        $result->setDomainStatusMember2(new DomainStatusMember2());
-        return $result;
+        return new DomainStatus();
     }
 
     /**
-     * Gets the DomainStatusMember1 property value. Composed type representation for type DomainStatusMember1
-     * @return DomainStatusMember1|null
+     * Gets the auto_join property value. The auto_join property
+     * @return bool|null
     */
-    public function getDomainStatusMember1(): ?DomainStatusMember1 {
-        return $this->domainStatusMember1;
-    }
-
-    /**
-     * Gets the DomainStatusMember2 property value. Composed type representation for type DomainStatusMember2
-     * @return DomainStatusMember2|null
-    */
-    public function getDomainStatusMember2(): ?DomainStatusMember2 {
-        return $this->domainStatusMember2;
+    public function getAutoJoin(): ?bool {
+        return $this->auto_join;
     }
 
     /**
@@ -56,10 +48,28 @@ class DomainStatus implements ComposedTypeWrapper, Parsable
      * @return array<string, callable(ParseNode): void>
     */
     public function getFieldDeserializers(): array {
-        if ($this->getDomainStatusMember1() !== null || $this->getDomainStatusMember2() !== null) {
-            return ParseNodeHelper::mergeDeserializersForIntersectionWrapper($this->getDomainStatusMember1(), $this->getDomainStatusMember2());
-        }
-        return [];
+        $o = $this;
+        return  [
+            'auto_join' => fn(ParseNode $n) => $o->setAutoJoin($n->getBooleanValue()),
+            'pending' => fn(ParseNode $n) => $o->setPending($n->getObjectValue([PendingDomain::class, 'createFromDiscriminatorValue'])),
+            'verified' => fn(ParseNode $n) => $o->setVerified($n->getObjectValue([VerifiedDomain::class, 'createFromDiscriminatorValue'])),
+        ];
+    }
+
+    /**
+     * Gets the pending property value. The pending property
+     * @return PendingDomain|null
+    */
+    public function getPending(): ?PendingDomain {
+        return $this->pending;
+    }
+
+    /**
+     * Gets the verified property value. The verified property
+     * @return VerifiedDomain|null
+    */
+    public function getVerified(): ?VerifiedDomain {
+        return $this->verified;
     }
 
     /**
@@ -67,23 +77,33 @@ class DomainStatus implements ComposedTypeWrapper, Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeObjectValue(null, $this->getDomainStatusMember1(), $this->getDomainStatusMember2());
+        $writer->writeBooleanValue('auto_join', $this->getAutoJoin());
+        $writer->writeObjectValue('pending', $this->getPending());
+        $writer->writeObjectValue('verified', $this->getVerified());
     }
 
     /**
-     * Sets the DomainStatusMember1 property value. Composed type representation for type DomainStatusMember1
-     * @param DomainStatusMember1|null $value Value to set for the DomainStatusMember1 property.
+     * Sets the auto_join property value. The auto_join property
+     * @param bool|null $value Value to set for the auto_join property.
     */
-    public function setDomainStatusMember1(?DomainStatusMember1 $value): void {
-        $this->domainStatusMember1 = $value;
+    public function setAutoJoin(?bool $value): void {
+        $this->auto_join = $value;
     }
 
     /**
-     * Sets the DomainStatusMember2 property value. Composed type representation for type DomainStatusMember2
-     * @param DomainStatusMember2|null $value Value to set for the DomainStatusMember2 property.
+     * Sets the pending property value. The pending property
+     * @param PendingDomain|null $value Value to set for the pending property.
     */
-    public function setDomainStatusMember2(?DomainStatusMember2 $value): void {
-        $this->domainStatusMember2 = $value;
+    public function setPending(?PendingDomain $value): void {
+        $this->pending = $value;
+    }
+
+    /**
+     * Sets the verified property value. The verified property
+     * @param VerifiedDomain|null $value Value to set for the verified property.
+    */
+    public function setVerified(?VerifiedDomain $value): void {
+        $this->verified = $value;
     }
 
 }

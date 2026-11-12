@@ -13,6 +13,7 @@ use Rixl\Sdk\Media\V1\Projects\Item\Videos\Item\Chapters\ChaptersRequestBuilder;
 use Rixl\Sdk\Media\V1\Projects\Item\Videos\Item\Subtitles\SubtitlesRequestBuilder;
 use Rixl\Sdk\Media\V1\Projects\Item\Videos\Item\Visibility\VisibilityRequestBuilder;
 use Rixl\Sdk\Models\Google\Protobuf\EscapedEmpty;
+use Rixl\Sdk\Models\Google\Rpc\Status;
 
 /**
  * Builds and executes requests for operations under /media/v1/projects/{project_id}/videos/{video_id}
@@ -69,7 +70,10 @@ class WithVideo_ItemRequestBuilder extends BaseRequestBuilder
     */
     public function delete(?WithVideo_ItemRequestBuilderDeleteRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toDeleteRequestInformation($requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [EscapedEmpty::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [EscapedEmpty::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**

@@ -8,6 +8,7 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
+use Rixl\Sdk\Models\Google\Rpc\Status;
 use Rixl\Sdk\Models\Support\V1\GetTicketResponse;
 use Rixl\Sdk\Support\V1\Tickets\Item\Close\CloseRequestBuilder;
 use Rixl\Sdk\Support\V1\Tickets\Item\Messages\MessagesRequestBuilder;
@@ -53,7 +54,10 @@ class WithTicket_ItemRequestBuilder extends BaseRequestBuilder
     */
     public function get(?WithTicket_ItemRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [GetTicketResponse::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [GetTicketResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**

@@ -10,6 +10,7 @@ use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Models\Auth\V1\ResendVerificationRequest;
 use Rixl\Sdk\Models\Auth\V1\ResendVerificationResponse;
+use Rixl\Sdk\Models\Google\Rpc\Status;
 
 /**
  * Builds and executes requests for operations under /auth/v1/email/verify/resend
@@ -39,7 +40,10 @@ class ResendRequestBuilder extends BaseRequestBuilder
     */
     public function post(ResendVerificationRequest $body, ?ResendRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [ResendVerificationResponse::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [ResendVerificationResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**

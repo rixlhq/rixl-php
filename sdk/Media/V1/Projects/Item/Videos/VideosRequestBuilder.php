@@ -10,6 +10,7 @@ use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Media\V1\Projects\Item\Videos\Item\WithVideo_ItemRequestBuilder;
 use Rixl\Sdk\Media\V1\Projects\Item\Videos\Upload\UploadRequestBuilder;
+use Rixl\Sdk\Models\Google\Rpc\Status;
 use Rixl\Sdk\Models\Videos\V1\ListVideosResponse;
 
 /**
@@ -26,7 +27,7 @@ class VideosRequestBuilder extends BaseRequestBuilder
     
     /**
      * Gets an item from the Rixl/Sdk.media.v1.projects.item.videos.item collection
-     * @param string $video_id The video_id path parameter.
+     * @param string $video_id Unique identifier of the item
      * @return WithVideo_ItemRequestBuilder
     */
     public function byVideo_id(string $video_id): WithVideo_ItemRequestBuilder {
@@ -57,7 +58,10 @@ class VideosRequestBuilder extends BaseRequestBuilder
     */
     public function get(?VideosRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [ListVideosResponse::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [ListVideosResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**

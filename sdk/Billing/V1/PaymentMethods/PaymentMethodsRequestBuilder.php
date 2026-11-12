@@ -14,6 +14,7 @@ use Rixl\Sdk\Billing\V1\PaymentMethods\Item\WithPayment_method_ItemRequestBuilde
 use Rixl\Sdk\Models\Billing\V1\ListPaymentMethodsResponse;
 use Rixl\Sdk\Models\Billing\V1\PaymentMethodDetails;
 use Rixl\Sdk\Models\Billing\V1\UpsertPaymentMethodRequest;
+use Rixl\Sdk\Models\Google\Rpc\Status;
 
 /**
  * Builds and executes requests for operations under /billing/v1/payment-methods
@@ -36,7 +37,7 @@ class PaymentMethodsRequestBuilder extends BaseRequestBuilder
     
     /**
      * Gets an item from the Rixl/Sdk.billing.v1.paymentMethods.item collection
-     * @param string $payment_method_id The payment_method_id path parameter.
+     * @param string $payment_method_id Unique identifier of the item
      * @return WithPayment_method_ItemRequestBuilder
     */
     public function byPayment_method_id(string $payment_method_id): WithPayment_method_ItemRequestBuilder {
@@ -67,7 +68,10 @@ class PaymentMethodsRequestBuilder extends BaseRequestBuilder
     */
     public function get(?PaymentMethodsRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [ListPaymentMethodsResponse::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [ListPaymentMethodsResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**
@@ -79,7 +83,10 @@ class PaymentMethodsRequestBuilder extends BaseRequestBuilder
     */
     public function put(UpsertPaymentMethodRequest $body, ?PaymentMethodsRequestBuilderPutRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPutRequestInformation($body, $requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [PaymentMethodDetails::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [PaymentMethodDetails::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**

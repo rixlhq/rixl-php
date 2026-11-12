@@ -15,6 +15,11 @@ class InvitePostRequestBody implements Parsable
     private ?MembershipRole $role = null;
     
     /**
+     * @var InvitePostRequestBody_user|null $user The user property
+    */
+    private ?InvitePostRequestBody_user $user = null;
+    
+    /**
      * @var string|null $username The username property
     */
     private ?string $username = null;
@@ -36,6 +41,7 @@ class InvitePostRequestBody implements Parsable
         $o = $this;
         return  [
             'role' => fn(ParseNode $n) => $o->setRole($n->getEnumValue(MembershipRole::class)),
+            'user' => fn(ParseNode $n) => $o->setUser($n->getObjectValue([InvitePostRequestBody_user::class, 'createFromDiscriminatorValue'])),
             'username' => fn(ParseNode $n) => $o->setUsername($n->getStringValue()),
         ];
     }
@@ -46,6 +52,14 @@ class InvitePostRequestBody implements Parsable
     */
     public function getRole(): ?MembershipRole {
         return $this->role;
+    }
+
+    /**
+     * Gets the user property value. The user property
+     * @return InvitePostRequestBody_user|null
+    */
+    public function getUser(): ?InvitePostRequestBody_user {
+        return $this->user;
     }
 
     /**
@@ -62,6 +76,7 @@ class InvitePostRequestBody implements Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeEnumValue('role', $this->getRole());
+        $writer->writeObjectValue('user', $this->getUser());
         $writer->writeStringValue('username', $this->getUsername());
     }
 
@@ -71,6 +86,14 @@ class InvitePostRequestBody implements Parsable
     */
     public function setRole(?MembershipRole $value): void {
         $this->role = $value;
+    }
+
+    /**
+     * Sets the user property value. The user property
+     * @param InvitePostRequestBody_user|null $value Value to set for the user property.
+    */
+    public function setUser(?InvitePostRequestBody_user $value): void {
+        $this->user = $value;
     }
 
     /**

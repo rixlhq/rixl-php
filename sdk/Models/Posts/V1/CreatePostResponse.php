@@ -9,7 +9,7 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class CreatePostResponse implements Parsable 
 {
     /**
-     * @var Post|null $post The post property
+     * @var Post|null $post At most one of `image`, `video` may be set.
     */
     private ?Post $post = null;
     
@@ -34,7 +34,7 @@ class CreatePostResponse implements Parsable
     }
 
     /**
-     * Gets the post property value. The post property
+     * Gets the post property value. At most one of `image`, `video` may be set.
      * @return Post|null
     */
     public function getPost(): ?Post {
@@ -50,7 +50,7 @@ class CreatePostResponse implements Parsable
     }
 
     /**
-     * Sets the post property value. The post property
+     * Sets the post property value. At most one of `image`, `video` may be set.
      * @param Post|null $value Value to set for the post property.
     */
     public function setPost(?Post $value): void {

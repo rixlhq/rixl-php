@@ -9,6 +9,7 @@ use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Media\V1\Projects\Item\Videos\Item\Chapters\Item\WithStart_time_secItemRequestBuilder;
+use Rixl\Sdk\Models\Google\Rpc\Status;
 use Rixl\Sdk\Models\Videos\V1\VideoChapters;
 
 /**
@@ -18,7 +19,7 @@ class ChaptersRequestBuilder extends BaseRequestBuilder
 {
     /**
      * Gets an item from the Rixl/Sdk.media.v1.projects.item.videos.item.chapters.item collection
-     * @param string $start_time_sec The start_time_sec path parameter.
+     * @param string $start_time_sec Unique identifier of the item
      * @return WithStart_time_secItemRequestBuilder
     */
     public function byStart_time_sec(string $start_time_sec): WithStart_time_secItemRequestBuilder {
@@ -49,7 +50,10 @@ class ChaptersRequestBuilder extends BaseRequestBuilder
     */
     public function delete(?ChaptersRequestBuilderDeleteRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toDeleteRequestInformation($requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [VideoChapters::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [VideoChapters::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**
@@ -60,7 +64,10 @@ class ChaptersRequestBuilder extends BaseRequestBuilder
     */
     public function get(?ChaptersRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [VideoChapters::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [VideoChapters::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**
@@ -72,7 +79,10 @@ class ChaptersRequestBuilder extends BaseRequestBuilder
     */
     public function put(ChaptersPutRequestBody $body, ?ChaptersRequestBuilderPutRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPutRequestInformation($body, $requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [VideoChapters::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [VideoChapters::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**

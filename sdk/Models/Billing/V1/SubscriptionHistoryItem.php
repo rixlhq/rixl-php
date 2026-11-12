@@ -15,7 +15,7 @@ class SubscriptionHistoryItem implements Parsable
     private ?bool $cancel_at_period_end = null;
     
     /**
-     * @var DateTime|null $created_at The created_at property
+     * @var DateTime|null $created_at A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
     */
     private ?DateTime $created_at = null;
     
@@ -25,12 +25,12 @@ class SubscriptionHistoryItem implements Parsable
     private ?string $currency = null;
     
     /**
-     * @var DateTime|null $current_period_end The current_period_end property
+     * @var DateTime|null $current_period_end A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
     */
     private ?DateTime $current_period_end = null;
     
     /**
-     * @var DateTime|null $end_date The end_date property
+     * @var DateTime|null $end_date A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
     */
     private ?DateTime $end_date = null;
     
@@ -60,7 +60,7 @@ class SubscriptionHistoryItem implements Parsable
     private ?string $price = null;
     
     /**
-     * @var DateTime|null $start_date The start_date property
+     * @var DateTime|null $start_date A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
     */
     private ?DateTime $start_date = null;
     
@@ -87,7 +87,7 @@ class SubscriptionHistoryItem implements Parsable
     }
 
     /**
-     * Gets the created_at property value. The created_at property
+     * Gets the created_at property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @return DateTime|null
     */
     public function getCreatedAt(): ?DateTime {
@@ -103,7 +103,7 @@ class SubscriptionHistoryItem implements Parsable
     }
 
     /**
-     * Gets the current_period_end property value. The current_period_end property
+     * Gets the current_period_end property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @return DateTime|null
     */
     public function getCurrentPeriodEnd(): ?DateTime {
@@ -111,7 +111,7 @@ class SubscriptionHistoryItem implements Parsable
     }
 
     /**
-     * Gets the end_date property value. The end_date property
+     * Gets the end_date property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @return DateTime|null
     */
     public function getEndDate(): ?DateTime {
@@ -181,7 +181,7 @@ class SubscriptionHistoryItem implements Parsable
     }
 
     /**
-     * Gets the start_date property value. The start_date property
+     * Gets the start_date property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @return DateTime|null
     */
     public function getStartDate(): ?DateTime {
@@ -224,7 +224,7 @@ class SubscriptionHistoryItem implements Parsable
     }
 
     /**
-     * Sets the created_at property value. The created_at property
+     * Sets the created_at property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @param DateTime|null $value Value to set for the created_at property.
     */
     public function setCreatedAt(?DateTime $value): void {
@@ -240,7 +240,7 @@ class SubscriptionHistoryItem implements Parsable
     }
 
     /**
-     * Sets the current_period_end property value. The current_period_end property
+     * Sets the current_period_end property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @param DateTime|null $value Value to set for the current_period_end property.
     */
     public function setCurrentPeriodEnd(?DateTime $value): void {
@@ -248,7 +248,7 @@ class SubscriptionHistoryItem implements Parsable
     }
 
     /**
-     * Sets the end_date property value. The end_date property
+     * Sets the end_date property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @param DateTime|null $value Value to set for the end_date property.
     */
     public function setEndDate(?DateTime $value): void {
@@ -296,7 +296,7 @@ class SubscriptionHistoryItem implements Parsable
     }
 
     /**
-     * Sets the start_date property value. The start_date property
+     * Sets the start_date property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @param DateTime|null $value Value to set for the start_date property.
     */
     public function setStartDate(?DateTime $value): void {

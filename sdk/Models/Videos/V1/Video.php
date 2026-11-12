@@ -2,7 +2,6 @@
 
 namespace Rixl\Sdk\Models\Videos\V1;
 
-use DateInterval;
 use Microsoft\Kiota\Abstractions\Serialization\Parsable;
 use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
 use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
@@ -23,9 +22,9 @@ class Video implements Parsable
     private ?string $codec = null;
     
     /**
-     * @var DateInterval|null $duration The duration property
+     * @var string|null $duration A signed duration in seconds, with up to nine fractional digits and an `s` suffix (for example, `3s` or `-0.001s`).
     */
-    private ?DateInterval $duration = null;
+    private ?string $duration = null;
     
     /**
      * @var File|null $file The file property
@@ -93,10 +92,10 @@ class Video implements Parsable
     }
 
     /**
-     * Gets the duration property value. The duration property
-     * @return DateInterval|null
+     * Gets the duration property value. A signed duration in seconds, with up to nine fractional digits and an `s` suffix (for example, `3s` or `-0.001s`).
+     * @return string|null
     */
-    public function getDuration(): ?DateInterval {
+    public function getDuration(): ?string {
         return $this->duration;
     }
 
@@ -109,7 +108,7 @@ class Video implements Parsable
         return  [
             'bitrate' => fn(ParseNode $n) => $o->setBitrate($n->getIntegerValue()),
             'codec' => fn(ParseNode $n) => $o->setCodec($n->getStringValue()),
-            'duration' => fn(ParseNode $n) => $o->setDuration($n->getDateIntervalValue()),
+            'duration' => fn(ParseNode $n) => $o->setDuration($n->getStringValue()),
             'file' => fn(ParseNode $n) => $o->setFile($n->getObjectValue([File::class, 'createFromDiscriminatorValue'])),
             'framerate' => fn(ParseNode $n) => $o->setFramerate($n->getStringValue()),
             'hdr' => fn(ParseNode $n) => $o->setHdr($n->getBooleanValue()),
@@ -192,7 +191,7 @@ class Video implements Parsable
     public function serialize(SerializationWriter $writer): void {
         $writer->writeIntegerValue('bitrate', $this->getBitrate());
         $writer->writeStringValue('codec', $this->getCodec());
-        $writer->writeDateIntervalValue('duration', $this->getDuration());
+        $writer->writeStringValue('duration', $this->getDuration());
         $writer->writeObjectValue('file', $this->getFile());
         $writer->writeStringValue('framerate', $this->getFramerate());
         $writer->writeBooleanValue('hdr', $this->getHdr());
@@ -220,10 +219,10 @@ class Video implements Parsable
     }
 
     /**
-     * Sets the duration property value. The duration property
-     * @param DateInterval|null $value Value to set for the duration property.
+     * Sets the duration property value. A signed duration in seconds, with up to nine fractional digits and an `s` suffix (for example, `3s` or `-0.001s`).
+     * @param string|null $value Value to set for the duration property.
     */
-    public function setDuration(?DateInterval $value): void {
+    public function setDuration(?string $value): void {
         $this->duration = $value;
     }
 

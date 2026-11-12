@@ -28,7 +28,7 @@ class RefreshRequestBuilderPostRequestConfiguration extends BaseRequestConfigura
 
     /**
      * Instantiates a new RefreshRequestBuilderPostQueryParameters.
-     * @param string|null $org_id The org_id query parameter.
+     * @param string|null $org_id 
      * @return RefreshRequestBuilderPostQueryParameters
     */
     public static function createQueryParameters(?string $org_id = null): RefreshRequestBuilderPostQueryParameters {

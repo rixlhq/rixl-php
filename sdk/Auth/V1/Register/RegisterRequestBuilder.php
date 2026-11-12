@@ -10,6 +10,7 @@ use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Models\Auth\V1\RegisterRequest;
 use Rixl\Sdk\Models\Auth\V1\RegisterResponse;
+use Rixl\Sdk\Models\Google\Rpc\Status;
 
 /**
  * Builds and executes requests for operations under /auth/v1/register
@@ -39,7 +40,10 @@ class RegisterRequestBuilder extends BaseRequestBuilder
     */
     public function post(RegisterRequest $body, ?RegisterRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [RegisterResponse::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [RegisterResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**

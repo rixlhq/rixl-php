@@ -12,7 +12,7 @@ use Rixl\Sdk\Models\Common\V1\VideoQuality;
 class Project implements Parsable 
 {
     /**
-     * @var DateTime|null $created_at The created_at property
+     * @var DateTime|null $created_at A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
     */
     private ?DateTime $created_at = null;
     
@@ -42,7 +42,7 @@ class Project implements Parsable
     private ?array $regions = null;
     
     /**
-     * @var DateTime|null $updated_at The updated_at property
+     * @var DateTime|null $updated_at A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
     */
     private ?DateTime $updated_at = null;
     
@@ -61,7 +61,7 @@ class Project implements Parsable
     }
 
     /**
-     * Gets the created_at property value. The created_at property
+     * Gets the created_at property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @return DateTime|null
     */
     public function getCreatedAt(): ?DateTime {
@@ -134,7 +134,7 @@ class Project implements Parsable
     }
 
     /**
-     * Gets the updated_at property value. The updated_at property
+     * Gets the updated_at property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @return DateTime|null
     */
     public function getUpdatedAt(): ?DateTime {
@@ -165,7 +165,7 @@ class Project implements Parsable
     }
 
     /**
-     * Sets the created_at property value. The created_at property
+     * Sets the created_at property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @param DateTime|null $value Value to set for the created_at property.
     */
     public function setCreatedAt(?DateTime $value): void {
@@ -213,7 +213,7 @@ class Project implements Parsable
     }
 
     /**
-     * Sets the updated_at property value. The updated_at property
+     * Sets the updated_at property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @param DateTime|null $value Value to set for the updated_at property.
     */
     public function setUpdatedAt(?DateTime $value): void {

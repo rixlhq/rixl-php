@@ -10,6 +10,7 @@ use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Models\Auth\V1\PasskeyBeginResponse;
 use Rixl\Sdk\Models\Auth\V1\PasskeyRegisterBeginRequest;
+use Rixl\Sdk\Models\Google\Rpc\Status;
 
 /**
  * Builds and executes requests for operations under /auth/v1/users/current/passkeys/register/begin
@@ -39,7 +40,10 @@ class BeginRequestBuilder extends BaseRequestBuilder
     */
     public function post(PasskeyRegisterBeginRequest $body, ?BeginRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [PasskeyBeginResponse::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [PasskeyBeginResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**

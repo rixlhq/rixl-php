@@ -10,6 +10,7 @@ use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Models\Billing\V1\BillingAddress;
 use Rixl\Sdk\Models\Billing\V1\UpsertBillingAddressRequest;
+use Rixl\Sdk\Models\Google\Rpc\Status;
 
 /**
  * Builds and executes requests for operations under /billing/v1/address
@@ -38,7 +39,10 @@ class AddressRequestBuilder extends BaseRequestBuilder
     */
     public function get(?AddressRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [BillingAddress::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [BillingAddress::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**
@@ -50,7 +54,10 @@ class AddressRequestBuilder extends BaseRequestBuilder
     */
     public function put(UpsertBillingAddressRequest $body, ?AddressRequestBuilderPutRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPutRequestInformation($body, $requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [BillingAddress::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [BillingAddress::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**

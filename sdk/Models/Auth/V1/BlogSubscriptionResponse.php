@@ -15,7 +15,7 @@ class BlogSubscriptionResponse implements Parsable
     private ?bool $subscribed = null;
     
     /**
-     * @var DateTime|null $subscribed_at The subscribed_at property
+     * @var DateTime|null $subscribed_at A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
     */
     private ?DateTime $subscribed_at = null;
     
@@ -49,7 +49,7 @@ class BlogSubscriptionResponse implements Parsable
     }
 
     /**
-     * Gets the subscribed_at property value. The subscribed_at property
+     * Gets the subscribed_at property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @return DateTime|null
     */
     public function getSubscribedAt(): ?DateTime {
@@ -74,7 +74,7 @@ class BlogSubscriptionResponse implements Parsable
     }
 
     /**
-     * Sets the subscribed_at property value. The subscribed_at property
+     * Sets the subscribed_at property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @param DateTime|null $value Value to set for the subscribed_at property.
     */
     public function setSubscribedAt(?DateTime $value): void {

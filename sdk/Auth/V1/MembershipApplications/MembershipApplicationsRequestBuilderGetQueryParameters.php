@@ -11,32 +11,32 @@ use Rixl\Sdk\Models\Auth\V1\MembershipApplicationState;
 class MembershipApplicationsRequestBuilderGetQueryParameters 
 {
     /**
-     * @var int|null $limit The limit query parameter.
+     * @var int|null $limit 
     */
     public ?int $limit = null;
     
     /**
-     * @var int|null $offset The offset query parameter.
+     * @var int|null $offset 
     */
     public ?int $offset = null;
     
     /**
-     * @var MembershipApplicationState|null $state The state query parameter.
+     * @var MembershipApplicationState|null $state 
     */
     public ?MembershipApplicationState $state = null;
     
     /**
      * @QueryParameter("user%2Euser_id")
-     * @var string|null $userUserId The user.user_id query parameter.
+     * @var string|null $userUserId 
     */
     public ?string $userUserId = null;
     
     /**
      * Instantiates a new MembershipApplicationsRequestBuilderGetQueryParameters and sets the default values.
-     * @param int|null $limit The limit query parameter.
-     * @param int|null $offset The offset query parameter.
-     * @param MembershipApplicationState|null $state The state query parameter.
-     * @param string|null $userUser_id The user.user_id query parameter.
+     * @param int|null $limit 
+     * @param int|null $offset 
+     * @param MembershipApplicationState|null $state 
+     * @param string|null $userUser_id 
     */
     public function __construct(?int $limit = null, ?int $offset = null, ?MembershipApplicationState $state = null, ?string $userUser_id = null) {
         $this->limit = $limit;

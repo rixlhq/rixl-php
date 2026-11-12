@@ -25,7 +25,7 @@ class SendBlogBroadcastRequest implements Parsable
     private ?string $description = null;
     
     /**
-     * @var DateTime|null $published_at The published_at property
+     * @var DateTime|null $published_at A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
     */
     private ?DateTime $published_at = null;
     
@@ -95,7 +95,7 @@ class SendBlogBroadcastRequest implements Parsable
     }
 
     /**
-     * Gets the published_at property value. The published_at property
+     * Gets the published_at property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @return DateTime|null
     */
     public function getPublishedAt(): ?DateTime {
@@ -165,7 +165,7 @@ class SendBlogBroadcastRequest implements Parsable
     }
 
     /**
-     * Sets the published_at property value. The published_at property
+     * Sets the published_at property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @param DateTime|null $value Value to set for the published_at property.
     */
     public function setPublishedAt(?DateTime $value): void {

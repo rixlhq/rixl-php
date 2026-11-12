@@ -30,7 +30,7 @@ class PlanTaxCalculationResponse implements Parsable
     private ?BillingCycle $billing_cycle = null;
     
     /**
-     * @var DateTime|null $calculated_at The calculated_at property
+     * @var DateTime|null $calculated_at A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
     */
     private ?DateTime $calculated_at = null;
     
@@ -65,9 +65,9 @@ class PlanTaxCalculationResponse implements Parsable
     private ?string $tax_amount_inclusive = null;
     
     /**
-     * @var float|null $tax_percentage The tax_percentage property
+     * @var PlanTaxCalculationResponse_tax_percentage|null $tax_percentage The tax_percentage property
     */
-    private ?float $tax_percentage = null;
+    private ?PlanTaxCalculationResponse_tax_percentage $tax_percentage = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -111,7 +111,7 @@ class PlanTaxCalculationResponse implements Parsable
     }
 
     /**
-     * Gets the calculated_at property value. The calculated_at property
+     * Gets the calculated_at property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @return DateTime|null
     */
     public function getCalculatedAt(): ?DateTime {
@@ -152,7 +152,7 @@ class PlanTaxCalculationResponse implements Parsable
             'plan_name' => fn(ParseNode $n) => $o->setPlanName($n->getStringValue()),
             'tax_amount_exclusive' => fn(ParseNode $n) => $o->setTaxAmountExclusive($n->getStringValue()),
             'tax_amount_inclusive' => fn(ParseNode $n) => $o->setTaxAmountInclusive($n->getStringValue()),
-            'tax_percentage' => fn(ParseNode $n) => $o->setTaxPercentage($n->getFloatValue()),
+            'tax_percentage' => fn(ParseNode $n) => $o->setTaxPercentage($n->getObjectValue([PlanTaxCalculationResponse_tax_percentage::class, 'createFromDiscriminatorValue'])),
         ];
     }
 
@@ -190,9 +190,9 @@ class PlanTaxCalculationResponse implements Parsable
 
     /**
      * Gets the tax_percentage property value. The tax_percentage property
-     * @return float|null
+     * @return PlanTaxCalculationResponse_tax_percentage|null
     */
-    public function getTaxPercentage(): ?float {
+    public function getTaxPercentage(): ?PlanTaxCalculationResponse_tax_percentage {
         return $this->tax_percentage;
     }
 
@@ -212,7 +212,7 @@ class PlanTaxCalculationResponse implements Parsable
         $writer->writeStringValue('plan_name', $this->getPlanName());
         $writer->writeStringValue('tax_amount_exclusive', $this->getTaxAmountExclusive());
         $writer->writeStringValue('tax_amount_inclusive', $this->getTaxAmountInclusive());
-        $writer->writeFloatValue('tax_percentage', $this->getTaxPercentage());
+        $writer->writeObjectValue('tax_percentage', $this->getTaxPercentage());
     }
 
     /**
@@ -248,7 +248,7 @@ class PlanTaxCalculationResponse implements Parsable
     }
 
     /**
-     * Sets the calculated_at property value. The calculated_at property
+     * Sets the calculated_at property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
      * @param DateTime|null $value Value to set for the calculated_at property.
     */
     public function setCalculatedAt(?DateTime $value): void {
@@ -305,9 +305,9 @@ class PlanTaxCalculationResponse implements Parsable
 
     /**
      * Sets the tax_percentage property value. The tax_percentage property
-     * @param float|null $value Value to set for the tax_percentage property.
+     * @param PlanTaxCalculationResponse_tax_percentage|null $value Value to set for the tax_percentage property.
     */
-    public function setTaxPercentage(?float $value): void {
+    public function setTaxPercentage(?PlanTaxCalculationResponse_tax_percentage $value): void {
         $this->tax_percentage = $value;
     }
 

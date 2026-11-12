@@ -28,8 +28,8 @@ class HistoryRequestBuilderGetRequestConfiguration extends BaseRequestConfigurat
 
     /**
      * Instantiates a new HistoryRequestBuilderGetQueryParameters.
-     * @param int|null $days The days query parameter.
-     * @param string|null $org_id The org_id query parameter.
+     * @param int|null $days 
+     * @param string|null $org_id 
      * @return HistoryRequestBuilderGetQueryParameters
     */
     public static function createQueryParameters(?int $days = null, ?string $org_id = null): HistoryRequestBuilderGetQueryParameters {

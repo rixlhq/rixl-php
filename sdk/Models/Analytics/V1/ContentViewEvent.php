@@ -2,7 +2,6 @@
 
 namespace Rixl\Sdk\Models\Analytics\V1;
 
-use DateInterval;
 use Microsoft\Kiota\Abstractions\Serialization\Parsable;
 use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
 use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
@@ -22,7 +21,7 @@ class ContentViewEvent implements Parsable
     private ?string $content_id = null;
     
     /**
-     * @var MediaType|null $content_type enum.defined_only = true
+     * @var MediaType|null $content_type The content_type property
     */
     private ?MediaType $content_type = null;
     
@@ -52,7 +51,7 @@ class ContentViewEvent implements Parsable
     private ?string $post_id = null;
     
     /**
-     * @var VideoQuality|null $quality enum.defined_only = true
+     * @var VideoQuality|null $quality The quality property
     */
     private ?VideoQuality $quality = null;
     
@@ -67,14 +66,14 @@ class ContentViewEvent implements Parsable
     private ?string $subtitle_language = null;
     
     /**
-     * @var DateInterval|null $video_position_ms The video_position_ms property
+     * @var string|null $video_position_ms A signed duration in seconds, with up to nine fractional digits and an `s` suffix (for example, `3s` or `-0.001s`).
     */
-    private ?DateInterval $video_position_ms = null;
+    private ?string $video_position_ms = null;
     
     /**
-     * @var DateInterval|null $video_total_duration_ms The video_total_duration_ms property
+     * @var string|null $video_total_duration_ms A signed duration in seconds, with up to nine fractional digits and an `s` suffix (for example, `3s` or `-0.001s`).
     */
-    private ?DateInterval $video_total_duration_ms = null;
+    private ?string $video_total_duration_ms = null;
     
     /**
      * @var ContentViewEvent_view_type|null $view_type The view_type property
@@ -82,9 +81,9 @@ class ContentViewEvent implements Parsable
     private ?ContentViewEvent_view_type $view_type = null;
     
     /**
-     * @var DateInterval|null $watch_duration_ms The watch_duration_ms property
+     * @var string|null $watch_duration_ms A signed duration in seconds, with up to nine fractional digits and an `s` suffix (for example, `3s` or `-0.001s`).
     */
-    private ?DateInterval $watch_duration_ms = null;
+    private ?string $watch_duration_ms = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -112,7 +111,7 @@ class ContentViewEvent implements Parsable
     }
 
     /**
-     * Gets the content_type property value. enum.defined_only = true
+     * Gets the content_type property value. The content_type property
      * @return MediaType|null
     */
     public function getContentType(): ?MediaType {
@@ -161,10 +160,10 @@ class ContentViewEvent implements Parsable
             'quality' => fn(ParseNode $n) => $o->setQuality($n->getEnumValue(VideoQuality::class)),
             'segments' => fn(ParseNode $n) => $o->setSegments($n->getCollectionOfObjectValues([Segment::class, 'createFromDiscriminatorValue'])),
             'subtitle_language' => fn(ParseNode $n) => $o->setSubtitleLanguage($n->getStringValue()),
-            'video_position_ms' => fn(ParseNode $n) => $o->setVideoPositionMs($n->getDateIntervalValue()),
-            'video_total_duration_ms' => fn(ParseNode $n) => $o->setVideoTotalDurationMs($n->getDateIntervalValue()),
+            'video_position_ms' => fn(ParseNode $n) => $o->setVideoPositionMs($n->getStringValue()),
+            'video_total_duration_ms' => fn(ParseNode $n) => $o->setVideoTotalDurationMs($n->getStringValue()),
             'view_type' => fn(ParseNode $n) => $o->setViewType($n->getEnumValue(ContentViewEvent_view_type::class)),
-            'watch_duration_ms' => fn(ParseNode $n) => $o->setWatchDurationMs($n->getDateIntervalValue()),
+            'watch_duration_ms' => fn(ParseNode $n) => $o->setWatchDurationMs($n->getStringValue()),
         ];
     }
 
@@ -185,7 +184,7 @@ class ContentViewEvent implements Parsable
     }
 
     /**
-     * Gets the quality property value. enum.defined_only = true
+     * Gets the quality property value. The quality property
      * @return VideoQuality|null
     */
     public function getQuality(): ?VideoQuality {
@@ -209,18 +208,18 @@ class ContentViewEvent implements Parsable
     }
 
     /**
-     * Gets the video_position_ms property value. The video_position_ms property
-     * @return DateInterval|null
+     * Gets the video_position_ms property value. A signed duration in seconds, with up to nine fractional digits and an `s` suffix (for example, `3s` or `-0.001s`).
+     * @return string|null
     */
-    public function getVideoPositionMs(): ?DateInterval {
+    public function getVideoPositionMs(): ?string {
         return $this->video_position_ms;
     }
 
     /**
-     * Gets the video_total_duration_ms property value. The video_total_duration_ms property
-     * @return DateInterval|null
+     * Gets the video_total_duration_ms property value. A signed duration in seconds, with up to nine fractional digits and an `s` suffix (for example, `3s` or `-0.001s`).
+     * @return string|null
     */
-    public function getVideoTotalDurationMs(): ?DateInterval {
+    public function getVideoTotalDurationMs(): ?string {
         return $this->video_total_duration_ms;
     }
 
@@ -233,10 +232,10 @@ class ContentViewEvent implements Parsable
     }
 
     /**
-     * Gets the watch_duration_ms property value. The watch_duration_ms property
-     * @return DateInterval|null
+     * Gets the watch_duration_ms property value. A signed duration in seconds, with up to nine fractional digits and an `s` suffix (for example, `3s` or `-0.001s`).
+     * @return string|null
     */
-    public function getWatchDurationMs(): ?DateInterval {
+    public function getWatchDurationMs(): ?string {
         return $this->watch_duration_ms;
     }
 
@@ -256,10 +255,10 @@ class ContentViewEvent implements Parsable
         $writer->writeEnumValue('quality', $this->getQuality());
         $writer->writeCollectionOfObjectValues('segments', $this->getSegments());
         $writer->writeStringValue('subtitle_language', $this->getSubtitleLanguage());
-        $writer->writeDateIntervalValue('video_position_ms', $this->getVideoPositionMs());
-        $writer->writeDateIntervalValue('video_total_duration_ms', $this->getVideoTotalDurationMs());
+        $writer->writeStringValue('video_position_ms', $this->getVideoPositionMs());
+        $writer->writeStringValue('video_total_duration_ms', $this->getVideoTotalDurationMs());
         $writer->writeEnumValue('view_type', $this->getViewType());
-        $writer->writeDateIntervalValue('watch_duration_ms', $this->getWatchDurationMs());
+        $writer->writeStringValue('watch_duration_ms', $this->getWatchDurationMs());
     }
 
     /**
@@ -279,7 +278,7 @@ class ContentViewEvent implements Parsable
     }
 
     /**
-     * Sets the content_type property value. enum.defined_only = true
+     * Sets the content_type property value. The content_type property
      * @param MediaType|null $value Value to set for the content_type property.
     */
     public function setContentType(?MediaType $value): void {
@@ -327,7 +326,7 @@ class ContentViewEvent implements Parsable
     }
 
     /**
-     * Sets the quality property value. enum.defined_only = true
+     * Sets the quality property value. The quality property
      * @param VideoQuality|null $value Value to set for the quality property.
     */
     public function setQuality(?VideoQuality $value): void {
@@ -351,18 +350,18 @@ class ContentViewEvent implements Parsable
     }
 
     /**
-     * Sets the video_position_ms property value. The video_position_ms property
-     * @param DateInterval|null $value Value to set for the video_position_ms property.
+     * Sets the video_position_ms property value. A signed duration in seconds, with up to nine fractional digits and an `s` suffix (for example, `3s` or `-0.001s`).
+     * @param string|null $value Value to set for the video_position_ms property.
     */
-    public function setVideoPositionMs(?DateInterval $value): void {
+    public function setVideoPositionMs(?string $value): void {
         $this->video_position_ms = $value;
     }
 
     /**
-     * Sets the video_total_duration_ms property value. The video_total_duration_ms property
-     * @param DateInterval|null $value Value to set for the video_total_duration_ms property.
+     * Sets the video_total_duration_ms property value. A signed duration in seconds, with up to nine fractional digits and an `s` suffix (for example, `3s` or `-0.001s`).
+     * @param string|null $value Value to set for the video_total_duration_ms property.
     */
-    public function setVideoTotalDurationMs(?DateInterval $value): void {
+    public function setVideoTotalDurationMs(?string $value): void {
         $this->video_total_duration_ms = $value;
     }
 
@@ -375,10 +374,10 @@ class ContentViewEvent implements Parsable
     }
 
     /**
-     * Sets the watch_duration_ms property value. The watch_duration_ms property
-     * @param DateInterval|null $value Value to set for the watch_duration_ms property.
+     * Sets the watch_duration_ms property value. A signed duration in seconds, with up to nine fractional digits and an `s` suffix (for example, `3s` or `-0.001s`).
+     * @param string|null $value Value to set for the watch_duration_ms property.
     */
-    public function setWatchDurationMs(?DateInterval $value): void {
+    public function setWatchDurationMs(?string $value): void {
         $this->watch_duration_ms = $value;
     }
 

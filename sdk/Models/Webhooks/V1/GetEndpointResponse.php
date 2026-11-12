@@ -9,7 +9,7 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class GetEndpointResponse implements Parsable 
 {
     /**
-     * @var WebhookEndpoint|null $endpoint The endpoint property
+     * @var WebhookEndpoint|null $endpoint WebhookEndpoint is a delivery target. Secrets are never returned; they are only shown once on create and rotate.
     */
     private ?WebhookEndpoint $endpoint = null;
     
@@ -23,7 +23,7 @@ class GetEndpointResponse implements Parsable
     }
 
     /**
-     * Gets the endpoint property value. The endpoint property
+     * Gets the endpoint property value. WebhookEndpoint is a delivery target. Secrets are never returned; they are only shown once on create and rotate.
      * @return WebhookEndpoint|null
     */
     public function getEndpoint(): ?WebhookEndpoint {
@@ -50,7 +50,7 @@ class GetEndpointResponse implements Parsable
     }
 
     /**
-     * Sets the endpoint property value. The endpoint property
+     * Sets the endpoint property value. WebhookEndpoint is a delivery target. Secrets are never returned; they are only shown once on create and rotate.
      * @param WebhookEndpoint|null $value Value to set for the endpoint property.
     */
     public function setEndpoint(?WebhookEndpoint $value): void {

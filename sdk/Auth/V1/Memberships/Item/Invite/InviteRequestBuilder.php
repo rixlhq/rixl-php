@@ -11,6 +11,7 @@ use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Auth\V1\Memberships\Item\Invite\Item\WithUser_ItemRequestBuilder;
 use Rixl\Sdk\Auth\V1\Memberships\Item\Invite\Resend\ResendRequestBuilder;
 use Rixl\Sdk\Models\Auth\V1\MembershipApplication;
+use Rixl\Sdk\Models\Google\Rpc\Status;
 
 /**
  * Builds and executes requests for operations under /auth/v1/memberships/{org_-id}/invite
@@ -26,7 +27,7 @@ class InviteRequestBuilder extends BaseRequestBuilder
     
     /**
      * Gets an item from the Rixl/Sdk.auth.v1.memberships.item.invite.item collection
-     * @param string $user_id The user_id path parameter.
+     * @param string $user_id Unique identifier of the item
      * @return WithUser_ItemRequestBuilder
     */
     public function byUser_id(string $user_id): WithUser_ItemRequestBuilder {
@@ -58,7 +59,10 @@ class InviteRequestBuilder extends BaseRequestBuilder
     */
     public function post(InvitePostRequestBody $body, ?InviteRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [MembershipApplication::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [MembershipApplication::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**

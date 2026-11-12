@@ -9,6 +9,7 @@ use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Models\Auth\V1\AutoJoinSetting;
+use Rixl\Sdk\Models\Google\Rpc\Status;
 
 /**
  * Builds and executes requests for operations under /auth/v1/memberships/{org_-id}/domain/auto-join
@@ -37,7 +38,10 @@ class AutoJoinRequestBuilder extends BaseRequestBuilder
     */
     public function get(?AutoJoinRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [AutoJoinSetting::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [AutoJoinSetting::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**
@@ -49,7 +53,10 @@ class AutoJoinRequestBuilder extends BaseRequestBuilder
     */
     public function put(AutoJoinPutRequestBody $body, ?AutoJoinRequestBuilderPutRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPutRequestInformation($body, $requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [AutoJoinSetting::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [AutoJoinSetting::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**

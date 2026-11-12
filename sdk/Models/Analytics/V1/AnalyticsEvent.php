@@ -2,41 +2,45 @@
 
 namespace Rixl\Sdk\Models\Analytics\V1;
 
-use Microsoft\Kiota\Abstractions\Serialization\ComposedTypeWrapper;
+use DateTime;
 use Microsoft\Kiota\Abstractions\Serialization\Parsable;
 use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
-use Microsoft\Kiota\Abstractions\Serialization\ParseNodeHelper;
 use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 
 /**
- * Composed type wrapper for classes AnalyticsEventMember1, AnalyticsEventMember2, AnalyticsEventMember3, AnalyticsEventMember4, AnalyticsEventMember5
+ * At most one of `session_start`, `content_view`, `engagement`, `interaction`, `error` may be set.
 */
-class AnalyticsEvent implements ComposedTypeWrapper, Parsable 
+class AnalyticsEvent implements Parsable 
 {
     /**
-     * @var AnalyticsEventMember1|null $analyticsEventMember1 Composed type representation for type AnalyticsEventMember1
+     * @var ContentViewEvent|null $content_view The content_view property
     */
-    private ?AnalyticsEventMember1 $analyticsEventMember1 = null;
+    private ?ContentViewEvent $content_view = null;
     
     /**
-     * @var AnalyticsEventMember2|null $analyticsEventMember2 Composed type representation for type AnalyticsEventMember2
+     * @var EngagementEvent|null $engagement The engagement property
     */
-    private ?AnalyticsEventMember2 $analyticsEventMember2 = null;
+    private ?EngagementEvent $engagement = null;
     
     /**
-     * @var AnalyticsEventMember3|null $analyticsEventMember3 Composed type representation for type AnalyticsEventMember3
+     * @var ErrorEvent|null $error The error property
     */
-    private ?AnalyticsEventMember3 $analyticsEventMember3 = null;
+    private ?ErrorEvent $error = null;
     
     /**
-     * @var AnalyticsEventMember4|null $analyticsEventMember4 Composed type representation for type AnalyticsEventMember4
+     * @var InteractionEvent|null $interaction The interaction property
     */
-    private ?AnalyticsEventMember4 $analyticsEventMember4 = null;
+    private ?InteractionEvent $interaction = null;
     
     /**
-     * @var AnalyticsEventMember5|null $analyticsEventMember5 Composed type representation for type AnalyticsEventMember5
+     * @var SessionStartEvent|null $session_start The session_start property
     */
-    private ?AnalyticsEventMember5 $analyticsEventMember5 = null;
+    private ?SessionStartEvent $session_start = null;
+    
+    /**
+     * @var DateTime|null $timestamp A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
+    */
+    private ?DateTime $timestamp = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -44,53 +48,31 @@ class AnalyticsEvent implements ComposedTypeWrapper, Parsable
      * @return AnalyticsEvent
     */
     public static function createFromDiscriminatorValue(ParseNode $parseNode): AnalyticsEvent {
-        $result = new AnalyticsEvent();
-        $result->setAnalyticsEventMember1(new AnalyticsEventMember1());
-        $result->setAnalyticsEventMember2(new AnalyticsEventMember2());
-        $result->setAnalyticsEventMember3(new AnalyticsEventMember3());
-        $result->setAnalyticsEventMember4(new AnalyticsEventMember4());
-        $result->setAnalyticsEventMember5(new AnalyticsEventMember5());
-        return $result;
+        return new AnalyticsEvent();
     }
 
     /**
-     * Gets the AnalyticsEventMember1 property value. Composed type representation for type AnalyticsEventMember1
-     * @return AnalyticsEventMember1|null
+     * Gets the content_view property value. The content_view property
+     * @return ContentViewEvent|null
     */
-    public function getAnalyticsEventMember1(): ?AnalyticsEventMember1 {
-        return $this->analyticsEventMember1;
+    public function getContentView(): ?ContentViewEvent {
+        return $this->content_view;
     }
 
     /**
-     * Gets the AnalyticsEventMember2 property value. Composed type representation for type AnalyticsEventMember2
-     * @return AnalyticsEventMember2|null
+     * Gets the engagement property value. The engagement property
+     * @return EngagementEvent|null
     */
-    public function getAnalyticsEventMember2(): ?AnalyticsEventMember2 {
-        return $this->analyticsEventMember2;
+    public function getEngagement(): ?EngagementEvent {
+        return $this->engagement;
     }
 
     /**
-     * Gets the AnalyticsEventMember3 property value. Composed type representation for type AnalyticsEventMember3
-     * @return AnalyticsEventMember3|null
+     * Gets the error property value. The error property
+     * @return ErrorEvent|null
     */
-    public function getAnalyticsEventMember3(): ?AnalyticsEventMember3 {
-        return $this->analyticsEventMember3;
-    }
-
-    /**
-     * Gets the AnalyticsEventMember4 property value. Composed type representation for type AnalyticsEventMember4
-     * @return AnalyticsEventMember4|null
-    */
-    public function getAnalyticsEventMember4(): ?AnalyticsEventMember4 {
-        return $this->analyticsEventMember4;
-    }
-
-    /**
-     * Gets the AnalyticsEventMember5 property value. Composed type representation for type AnalyticsEventMember5
-     * @return AnalyticsEventMember5|null
-    */
-    public function getAnalyticsEventMember5(): ?AnalyticsEventMember5 {
-        return $this->analyticsEventMember5;
+    public function getError(): ?ErrorEvent {
+        return $this->error;
     }
 
     /**
@@ -98,10 +80,39 @@ class AnalyticsEvent implements ComposedTypeWrapper, Parsable
      * @return array<string, callable(ParseNode): void>
     */
     public function getFieldDeserializers(): array {
-        if ($this->getAnalyticsEventMember1() !== null || $this->getAnalyticsEventMember2() !== null || $this->getAnalyticsEventMember3() !== null || $this->getAnalyticsEventMember4() !== null || $this->getAnalyticsEventMember5() !== null) {
-            return ParseNodeHelper::mergeDeserializersForIntersectionWrapper($this->getAnalyticsEventMember1(), $this->getAnalyticsEventMember2(), $this->getAnalyticsEventMember3(), $this->getAnalyticsEventMember4(), $this->getAnalyticsEventMember5());
-        }
-        return [];
+        $o = $this;
+        return  [
+            'content_view' => fn(ParseNode $n) => $o->setContentView($n->getObjectValue([ContentViewEvent::class, 'createFromDiscriminatorValue'])),
+            'engagement' => fn(ParseNode $n) => $o->setEngagement($n->getObjectValue([EngagementEvent::class, 'createFromDiscriminatorValue'])),
+            'error' => fn(ParseNode $n) => $o->setError($n->getObjectValue([ErrorEvent::class, 'createFromDiscriminatorValue'])),
+            'interaction' => fn(ParseNode $n) => $o->setInteraction($n->getObjectValue([InteractionEvent::class, 'createFromDiscriminatorValue'])),
+            'session_start' => fn(ParseNode $n) => $o->setSessionStart($n->getObjectValue([SessionStartEvent::class, 'createFromDiscriminatorValue'])),
+            'timestamp' => fn(ParseNode $n) => $o->setTimestamp($n->getDateTimeValue()),
+        ];
+    }
+
+    /**
+     * Gets the interaction property value. The interaction property
+     * @return InteractionEvent|null
+    */
+    public function getInteraction(): ?InteractionEvent {
+        return $this->interaction;
+    }
+
+    /**
+     * Gets the session_start property value. The session_start property
+     * @return SessionStartEvent|null
+    */
+    public function getSessionStart(): ?SessionStartEvent {
+        return $this->session_start;
+    }
+
+    /**
+     * Gets the timestamp property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
+     * @return DateTime|null
+    */
+    public function getTimestamp(): ?DateTime {
+        return $this->timestamp;
     }
 
     /**
@@ -109,47 +120,60 @@ class AnalyticsEvent implements ComposedTypeWrapper, Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeObjectValue(null, $this->getAnalyticsEventMember1(), $this->getAnalyticsEventMember2(), $this->getAnalyticsEventMember3(), $this->getAnalyticsEventMember4(), $this->getAnalyticsEventMember5());
+        $writer->writeObjectValue('content_view', $this->getContentView());
+        $writer->writeObjectValue('engagement', $this->getEngagement());
+        $writer->writeObjectValue('error', $this->getError());
+        $writer->writeObjectValue('interaction', $this->getInteraction());
+        $writer->writeObjectValue('session_start', $this->getSessionStart());
+        $writer->writeDateTimeValue('timestamp', $this->getTimestamp());
     }
 
     /**
-     * Sets the AnalyticsEventMember1 property value. Composed type representation for type AnalyticsEventMember1
-     * @param AnalyticsEventMember1|null $value Value to set for the AnalyticsEventMember1 property.
+     * Sets the content_view property value. The content_view property
+     * @param ContentViewEvent|null $value Value to set for the content_view property.
     */
-    public function setAnalyticsEventMember1(?AnalyticsEventMember1 $value): void {
-        $this->analyticsEventMember1 = $value;
+    public function setContentView(?ContentViewEvent $value): void {
+        $this->content_view = $value;
     }
 
     /**
-     * Sets the AnalyticsEventMember2 property value. Composed type representation for type AnalyticsEventMember2
-     * @param AnalyticsEventMember2|null $value Value to set for the AnalyticsEventMember2 property.
+     * Sets the engagement property value. The engagement property
+     * @param EngagementEvent|null $value Value to set for the engagement property.
     */
-    public function setAnalyticsEventMember2(?AnalyticsEventMember2 $value): void {
-        $this->analyticsEventMember2 = $value;
+    public function setEngagement(?EngagementEvent $value): void {
+        $this->engagement = $value;
     }
 
     /**
-     * Sets the AnalyticsEventMember3 property value. Composed type representation for type AnalyticsEventMember3
-     * @param AnalyticsEventMember3|null $value Value to set for the AnalyticsEventMember3 property.
+     * Sets the error property value. The error property
+     * @param ErrorEvent|null $value Value to set for the error property.
     */
-    public function setAnalyticsEventMember3(?AnalyticsEventMember3 $value): void {
-        $this->analyticsEventMember3 = $value;
+    public function setError(?ErrorEvent $value): void {
+        $this->error = $value;
     }
 
     /**
-     * Sets the AnalyticsEventMember4 property value. Composed type representation for type AnalyticsEventMember4
-     * @param AnalyticsEventMember4|null $value Value to set for the AnalyticsEventMember4 property.
+     * Sets the interaction property value. The interaction property
+     * @param InteractionEvent|null $value Value to set for the interaction property.
     */
-    public function setAnalyticsEventMember4(?AnalyticsEventMember4 $value): void {
-        $this->analyticsEventMember4 = $value;
+    public function setInteraction(?InteractionEvent $value): void {
+        $this->interaction = $value;
     }
 
     /**
-     * Sets the AnalyticsEventMember5 property value. Composed type representation for type AnalyticsEventMember5
-     * @param AnalyticsEventMember5|null $value Value to set for the AnalyticsEventMember5 property.
+     * Sets the session_start property value. The session_start property
+     * @param SessionStartEvent|null $value Value to set for the session_start property.
     */
-    public function setAnalyticsEventMember5(?AnalyticsEventMember5 $value): void {
-        $this->analyticsEventMember5 = $value;
+    public function setSessionStart(?SessionStartEvent $value): void {
+        $this->session_start = $value;
+    }
+
+    /**
+     * Sets the timestamp property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
+     * @param DateTime|null $value Value to set for the timestamp property.
+    */
+    public function setTimestamp(?DateTime $value): void {
+        $this->timestamp = $value;
     }
 
 }

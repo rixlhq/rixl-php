@@ -9,7 +9,7 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class CalculateGenericTaxRequest implements Parsable 
 {
     /**
-     * @var string|null $amount The amount property
+     * @var string|null $amount int64.gt = 0
     */
     private ?string $amount = null;
     
@@ -43,7 +43,7 @@ class CalculateGenericTaxRequest implements Parsable
     }
 
     /**
-     * Gets the amount property value. The amount property
+     * Gets the amount property value. int64.gt = 0
      * @return string|null
     */
     public function getAmount(): ?string {
@@ -110,7 +110,7 @@ class CalculateGenericTaxRequest implements Parsable
     }
 
     /**
-     * Sets the amount property value. The amount property
+     * Sets the amount property value. int64.gt = 0
      * @param string|null $value Value to set for the amount property.
     */
     public function setAmount(?string $value): void {

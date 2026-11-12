@@ -12,6 +12,7 @@ use Rixl\Sdk\Auth\V1\Users\Current\Emails\Change\ChangeRequestBuilder;
 use Rixl\Sdk\Auth\V1\Users\Current\Emails\Status\StatusRequestBuilder;
 use Rixl\Sdk\Models\Auth\V1\AddEmailRequest;
 use Rixl\Sdk\Models\Auth\V1\VerificationSentResponse;
+use Rixl\Sdk\Models\Google\Rpc\Status;
 
 /**
  * Builds and executes requests for operations under /auth/v1/users/current/emails
@@ -55,7 +56,10 @@ class EmailsRequestBuilder extends BaseRequestBuilder
     */
     public function post(AddEmailRequest $body, ?EmailsRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [VerificationSentResponse::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [VerificationSentResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**

@@ -14,6 +14,11 @@ class AutoJoinPutRequestBody implements Parsable
     private ?bool $enabled = null;
     
     /**
+     * @var AutoJoinPutRequestBody_user|null $user The user property
+    */
+    private ?AutoJoinPutRequestBody_user $user = null;
+    
+    /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object
      * @return AutoJoinPutRequestBody
@@ -38,7 +43,16 @@ class AutoJoinPutRequestBody implements Parsable
         $o = $this;
         return  [
             'enabled' => fn(ParseNode $n) => $o->setEnabled($n->getBooleanValue()),
+            'user' => fn(ParseNode $n) => $o->setUser($n->getObjectValue([AutoJoinPutRequestBody_user::class, 'createFromDiscriminatorValue'])),
         ];
+    }
+
+    /**
+     * Gets the user property value. The user property
+     * @return AutoJoinPutRequestBody_user|null
+    */
+    public function getUser(): ?AutoJoinPutRequestBody_user {
+        return $this->user;
     }
 
     /**
@@ -47,6 +61,7 @@ class AutoJoinPutRequestBody implements Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeBooleanValue('enabled', $this->getEnabled());
+        $writer->writeObjectValue('user', $this->getUser());
     }
 
     /**
@@ -55,6 +70,14 @@ class AutoJoinPutRequestBody implements Parsable
     */
     public function setEnabled(?bool $value): void {
         $this->enabled = $value;
+    }
+
+    /**
+     * Sets the user property value. The user property
+     * @param AutoJoinPutRequestBody_user|null $value Value to set for the user property.
+    */
+    public function setUser(?AutoJoinPutRequestBody_user $value): void {
+        $this->user = $value;
     }
 
 }

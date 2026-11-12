@@ -10,6 +10,7 @@ use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Models\Clientauth\V1\MintClientTokenRequest;
 use Rixl\Sdk\Models\Clientauth\V1\MintClientTokenResponse;
+use Rixl\Sdk\Models\Google\Rpc\Status;
 
 /**
  * Builds and executes requests for operations under /platform/clientauth/v1/token
@@ -39,7 +40,10 @@ class TokenRequestBuilder extends BaseRequestBuilder
     */
     public function post(MintClientTokenRequest $body, ?TokenRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [MintClientTokenResponse::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [MintClientTokenResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**

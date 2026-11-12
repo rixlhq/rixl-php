@@ -10,6 +10,7 @@ use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Models\Apikeys\V1\CreateApiKeyResponse;
 use Rixl\Sdk\Models\Apikeys\V1\ListApiKeysResponse;
+use Rixl\Sdk\Models\Google\Rpc\Status;
 use Rixl\Sdk\Organizations\Item\ApiKeys\V1\Item\WithKey_ItemRequestBuilder;
 
 /**
@@ -19,7 +20,7 @@ class V1RequestBuilder extends BaseRequestBuilder
 {
     /**
      * Gets an item from the Rixl/Sdk.organizations.item.apiKeys.v1.item collection
-     * @param string $key_id The key_id path parameter.
+     * @param string $key_id Unique identifier of the item
      * @return WithKey_ItemRequestBuilder
     */
     public function byKey_id(string $key_id): WithKey_ItemRequestBuilder {
@@ -50,7 +51,10 @@ class V1RequestBuilder extends BaseRequestBuilder
     */
     public function get(?V1RequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [ListApiKeysResponse::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [ListApiKeysResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**
@@ -62,7 +66,10 @@ class V1RequestBuilder extends BaseRequestBuilder
     */
     public function post(V1PostRequestBody $body, ?V1RequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [CreateApiKeyResponse::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [CreateApiKeyResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**
