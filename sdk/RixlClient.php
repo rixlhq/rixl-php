@@ -16,7 +16,6 @@ use Rixl\Sdk\Analytics\AnalyticsRequestBuilder;
 use Rixl\Sdk\Auth\AuthRequestBuilder;
 use Rixl\Sdk\Billing\BillingRequestBuilder;
 use Rixl\Sdk\Feeds\FeedsRequestBuilder;
-use Rixl\Sdk\Internal\InternalRequestBuilder;
 use Rixl\Sdk\Media\MediaRequestBuilder;
 use Rixl\Sdk\Organizations\OrganizationsRequestBuilder;
 use Rixl\Sdk\Platform\PlatformRequestBuilder;
@@ -55,13 +54,6 @@ class RixlClient extends BaseRequestBuilder
     */
     public function feeds(): FeedsRequestBuilder {
         return new FeedsRequestBuilder($this->pathParameters, $this->requestAdapter);
-    }
-    
-    /**
-     * The internal property
-    */
-    public function internal(): InternalRequestBuilder {
-        return new InternalRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
     
     /**
