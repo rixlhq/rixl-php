@@ -8,7 +8,7 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Analytics\V1\ExportDashboardResponse;
+use Rixl\Sdk\Models\Google\Api\HttpBody;
 use Rixl\Sdk\Models\Google\Rpc\Status;
 
 /**
@@ -34,7 +34,7 @@ class ExportRequestBuilder extends BaseRequestBuilder
      * ExportDashboard
      * @param ExportPostRequestBody $body The request body
      * @param ExportRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
-     * @return Promise<ExportDashboardResponse|null>
+     * @return Promise<HttpBody|null>
      * @throws Exception
     */
     public function post(ExportPostRequestBody $body, ?ExportRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
@@ -42,7 +42,7 @@ class ExportRequestBuilder extends BaseRequestBuilder
         $errorMappings = [
                 'XXX' => [Status::class, 'createFromDiscriminatorValue'],
         ];
-        return $this->requestAdapter->sendAsync($requestInfo, [ExportDashboardResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
+        return $this->requestAdapter->sendAsync($requestInfo, [HttpBody::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**
