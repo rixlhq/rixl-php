@@ -1,6 +1,6 @@
 {
     "name": "rixl/sdk",
-    "description": "PHP client for the RIXL API.",
+    "description": "PHP client for the Rixl API.",
     "type": "library",
     "license": "MIT",
     "homepage": "https://github.com/rixlhq/rixl-php",
