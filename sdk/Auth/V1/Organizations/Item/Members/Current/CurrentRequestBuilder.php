@@ -13,7 +13,7 @@ use Rixl\Sdk\Models\Google\Protobuf\EscapedEmpty;
 use Rixl\Sdk\Models\Google\Rpc\Status;
 
 /**
- * Builds and executes requests for operations under /auth/v1/organizations/{org_-id}/members/current
+ * Builds and executes requests for operations under /auth/v1/organizations/{org_id}/members/current
 */
 class CurrentRequestBuilder extends BaseRequestBuilder 
 {
@@ -30,7 +30,7 @@ class CurrentRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/organizations/{org_%2Did}/members/current{?user_id*}');
+        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/organizations/{org_id}/members/current{?user_id*}');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {

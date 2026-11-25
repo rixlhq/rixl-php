@@ -13,7 +13,7 @@ use Rixl\Sdk\Models\Auth\V1\PolicyAttachment;
 use Rixl\Sdk\Models\Google\Rpc\Status;
 
 /**
- * Builds and executes requests for operations under /auth/v1/organizations/{org_-id}/policies/{policy_id}/attachments
+ * Builds and executes requests for operations under /auth/v1/organizations/{org_id}/policies/{policy_id}/attachments
 */
 class AttachmentsRequestBuilder extends BaseRequestBuilder 
 {
@@ -23,7 +23,7 @@ class AttachmentsRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/organizations/{org_%2Did}/policies/{policy_id}/attachments{?user%2Euser_id*}');
+        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/organizations/{org_id}/policies/{policy_id}/attachments');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
@@ -72,9 +72,6 @@ class AttachmentsRequestBuilder extends BaseRequestBuilder
         $requestInfo->httpMethod = HttpMethod::GET;
         if ($requestConfiguration !== null) {
             $requestInfo->addHeaders($requestConfiguration->headers);
-            if ($requestConfiguration->queryParameters !== null) {
-                $requestInfo->setQueryParameters($requestConfiguration->queryParameters);
-            }
             $requestInfo->addRequestOptions(...$requestConfiguration->options);
         }
         $requestInfo->tryAddHeader('Accept', "application/json");

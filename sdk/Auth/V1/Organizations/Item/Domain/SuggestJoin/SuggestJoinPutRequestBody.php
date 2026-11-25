@@ -14,11 +14,6 @@ class SuggestJoinPutRequestBody implements Parsable
     private ?bool $enabled = null;
     
     /**
-     * @var SuggestJoinPutRequestBody_user|null $user The user property
-    */
-    private ?SuggestJoinPutRequestBody_user $user = null;
-    
-    /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object
      * @return SuggestJoinPutRequestBody
@@ -43,16 +38,7 @@ class SuggestJoinPutRequestBody implements Parsable
         $o = $this;
         return  [
             'enabled' => fn(ParseNode $n) => $o->setEnabled($n->getBooleanValue()),
-            'user' => fn(ParseNode $n) => $o->setUser($n->getObjectValue([SuggestJoinPutRequestBody_user::class, 'createFromDiscriminatorValue'])),
         ];
-    }
-
-    /**
-     * Gets the user property value. The user property
-     * @return SuggestJoinPutRequestBody_user|null
-    */
-    public function getUser(): ?SuggestJoinPutRequestBody_user {
-        return $this->user;
     }
 
     /**
@@ -61,7 +47,6 @@ class SuggestJoinPutRequestBody implements Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeBooleanValue('enabled', $this->getEnabled());
-        $writer->writeObjectValue('user', $this->getUser());
     }
 
     /**
@@ -70,14 +55,6 @@ class SuggestJoinPutRequestBody implements Parsable
     */
     public function setEnabled(?bool $value): void {
         $this->enabled = $value;
-    }
-
-    /**
-     * Sets the user property value. The user property
-     * @param SuggestJoinPutRequestBody_user|null $value Value to set for the user property.
-    */
-    public function setUser(?SuggestJoinPutRequestBody_user $value): void {
-        $this->user = $value;
     }
 
 }

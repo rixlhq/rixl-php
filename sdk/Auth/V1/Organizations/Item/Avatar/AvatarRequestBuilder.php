@@ -7,7 +7,7 @@ use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Rixl\Sdk\Auth\V1\Organizations\Item\Avatar\Upload\UploadRequestBuilder;
 
 /**
- * Builds and executes requests for operations under /auth/v1/organizations/{org_-id}/avatar
+ * Builds and executes requests for operations under /auth/v1/organizations/{org_id}/avatar
 */
 class AvatarRequestBuilder extends BaseRequestBuilder 
 {
@@ -24,7 +24,7 @@ class AvatarRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/organizations/{org_%2Did}/avatar');
+        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/organizations/{org_id}/avatar');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {

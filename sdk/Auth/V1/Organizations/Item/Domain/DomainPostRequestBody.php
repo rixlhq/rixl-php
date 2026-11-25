@@ -14,11 +14,6 @@ class DomainPostRequestBody implements Parsable
     private ?string $domain = null;
     
     /**
-     * @var DomainPostRequestBody_user|null $user The user property
-    */
-    private ?DomainPostRequestBody_user $user = null;
-    
-    /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object
      * @return DomainPostRequestBody
@@ -43,16 +38,7 @@ class DomainPostRequestBody implements Parsable
         $o = $this;
         return  [
             'domain' => fn(ParseNode $n) => $o->setDomain($n->getStringValue()),
-            'user' => fn(ParseNode $n) => $o->setUser($n->getObjectValue([DomainPostRequestBody_user::class, 'createFromDiscriminatorValue'])),
         ];
-    }
-
-    /**
-     * Gets the user property value. The user property
-     * @return DomainPostRequestBody_user|null
-    */
-    public function getUser(): ?DomainPostRequestBody_user {
-        return $this->user;
     }
 
     /**
@@ -61,7 +47,6 @@ class DomainPostRequestBody implements Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeStringValue('domain', $this->getDomain());
-        $writer->writeObjectValue('user', $this->getUser());
     }
 
     /**
@@ -70,14 +55,6 @@ class DomainPostRequestBody implements Parsable
     */
     public function setDomain(?string $value): void {
         $this->domain = $value;
-    }
-
-    /**
-     * Sets the user property value. The user property
-     * @param DomainPostRequestBody_user|null $value Value to set for the user property.
-    */
-    public function setUser(?DomainPostRequestBody_user $value): void {
-        $this->user = $value;
     }
 
 }

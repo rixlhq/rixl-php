@@ -13,7 +13,7 @@ use Rixl\Sdk\Models\Auth\V1\NotificationPreferences;
 use Rixl\Sdk\Models\Google\Rpc\Status;
 
 /**
- * Builds and executes requests for operations under /auth/v1/notifications/{org_-id}/preferences
+ * Builds and executes requests for operations under /auth/v1/notifications/{org_id}/preferences
 */
 class PreferencesRequestBuilder extends BaseRequestBuilder 
 {
@@ -23,7 +23,7 @@ class PreferencesRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/notifications/{org_%2Did}/preferences{?user_id*}');
+        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/notifications/{org_id}/preferences{?user_id*}');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
