@@ -22,7 +22,7 @@ class WithSign_in_ItemRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/sign-ins/{sign_in_id}{?user%2Euser_id*}');
+        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/sign-ins/{sign_in_id}');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
@@ -56,9 +56,6 @@ class WithSign_in_ItemRequestBuilder extends BaseRequestBuilder
         $requestInfo->httpMethod = HttpMethod::DELETE;
         if ($requestConfiguration !== null) {
             $requestInfo->addHeaders($requestConfiguration->headers);
-            if ($requestConfiguration->queryParameters !== null) {
-                $requestInfo->setQueryParameters($requestConfiguration->queryParameters);
-            }
             $requestInfo->addRequestOptions(...$requestConfiguration->options);
         }
         $requestInfo->tryAddHeader('Accept', "application/json");

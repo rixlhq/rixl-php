@@ -9,7 +9,7 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class PermissionRegistryResponse implements Parsable 
 {
     /**
-     * @var array<PermissionOffset>|null $permissions The permissions property
+     * @var array<RegisteredPermission>|null $permissions The permissions property
     */
     private ?array $permissions = null;
     
@@ -34,14 +34,14 @@ class PermissionRegistryResponse implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'permissions' => fn(ParseNode $n) => $o->setPermissions($n->getCollectionOfObjectValues([PermissionOffset::class, 'createFromDiscriminatorValue'])),
+            'permissions' => fn(ParseNode $n) => $o->setPermissions($n->getCollectionOfObjectValues([RegisteredPermission::class, 'createFromDiscriminatorValue'])),
             'total' => fn(ParseNode $n) => $o->setTotal($n->getIntegerValue()),
         ];
     }
 
     /**
      * Gets the permissions property value. The permissions property
-     * @return array<PermissionOffset>|null
+     * @return array<RegisteredPermission>|null
     */
     public function getPermissions(): ?array {
         return $this->permissions;
@@ -66,7 +66,7 @@ class PermissionRegistryResponse implements Parsable
 
     /**
      * Sets the permissions property value. The permissions property
-     * @param array<PermissionOffset>|null $value Value to set for the permissions property.
+     * @param array<RegisteredPermission>|null $value Value to set for the permissions property.
     */
     public function setPermissions(?array $value): void {
         $this->permissions = $value;
