@@ -15,6 +15,11 @@ class Organization implements Parsable
     private ?DateTime $created_at = null;
     
     /**
+     * @var DateTime|null $delete_time A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
+    */
+    private ?DateTime $delete_time = null;
+    
+    /**
      * @var string|null $id The id property
     */
     private ?string $id = null;
@@ -40,9 +45,19 @@ class Organization implements Parsable
     private ?bool $personal = null;
     
     /**
+     * @var DateTime|null $purge_time A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
+    */
+    private ?DateTime $purge_time = null;
+    
+    /**
      * @var string|null $slug The slug property
     */
     private ?string $slug = null;
+    
+    /**
+     * @var OrganizationState|null $state The state property
+    */
+    private ?OrganizationState $state = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -62,6 +77,14 @@ class Organization implements Parsable
     }
 
     /**
+     * Gets the delete_time property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
+     * @return DateTime|null
+    */
+    public function getDeleteTime(): ?DateTime {
+        return $this->delete_time;
+    }
+
+    /**
      * The deserialization information for the current model
      * @return array<string, callable(ParseNode): void>
     */
@@ -69,12 +92,15 @@ class Organization implements Parsable
         $o = $this;
         return  [
             'created_at' => fn(ParseNode $n) => $o->setCreatedAt($n->getDateTimeValue()),
+            'delete_time' => fn(ParseNode $n) => $o->setDeleteTime($n->getDateTimeValue()),
             'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
             'image_id' => fn(ParseNode $n) => $o->setImageId($n->getStringValue()),
             'internal' => fn(ParseNode $n) => $o->setInternal($n->getBooleanValue()),
             'name' => fn(ParseNode $n) => $o->setName($n->getStringValue()),
             'personal' => fn(ParseNode $n) => $o->setPersonal($n->getBooleanValue()),
+            'purge_time' => fn(ParseNode $n) => $o->setPurgeTime($n->getDateTimeValue()),
             'slug' => fn(ParseNode $n) => $o->setSlug($n->getStringValue()),
+            'state' => fn(ParseNode $n) => $o->setState($n->getEnumValue(OrganizationState::class)),
         ];
     }
 
@@ -119,6 +145,14 @@ class Organization implements Parsable
     }
 
     /**
+     * Gets the purge_time property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
+     * @return DateTime|null
+    */
+    public function getPurgeTime(): ?DateTime {
+        return $this->purge_time;
+    }
+
+    /**
      * Gets the slug property value. The slug property
      * @return string|null
     */
@@ -127,17 +161,28 @@ class Organization implements Parsable
     }
 
     /**
+     * Gets the state property value. The state property
+     * @return OrganizationState|null
+    */
+    public function getState(): ?OrganizationState {
+        return $this->state;
+    }
+
+    /**
      * Serializes information the current object
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeDateTimeValue('created_at', $this->getCreatedAt());
+        $writer->writeDateTimeValue('delete_time', $this->getDeleteTime());
         $writer->writeStringValue('id', $this->getId());
         $writer->writeStringValue('image_id', $this->getImageId());
         $writer->writeBooleanValue('internal', $this->getInternal());
         $writer->writeStringValue('name', $this->getName());
         $writer->writeBooleanValue('personal', $this->getPersonal());
+        $writer->writeDateTimeValue('purge_time', $this->getPurgeTime());
         $writer->writeStringValue('slug', $this->getSlug());
+        $writer->writeEnumValue('state', $this->getState());
     }
 
     /**
@@ -146,6 +191,14 @@ class Organization implements Parsable
     */
     public function setCreatedAt(?DateTime $value): void {
         $this->created_at = $value;
+    }
+
+    /**
+     * Sets the delete_time property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
+     * @param DateTime|null $value Value to set for the delete_time property.
+    */
+    public function setDeleteTime(?DateTime $value): void {
+        $this->delete_time = $value;
     }
 
     /**
@@ -189,11 +242,27 @@ class Organization implements Parsable
     }
 
     /**
+     * Sets the purge_time property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
+     * @param DateTime|null $value Value to set for the purge_time property.
+    */
+    public function setPurgeTime(?DateTime $value): void {
+        $this->purge_time = $value;
+    }
+
+    /**
      * Sets the slug property value. The slug property
      * @param string|null $value Value to set for the slug property.
     */
     public function setSlug(?string $value): void {
         $this->slug = $value;
+    }
+
+    /**
+     * Sets the state property value. The state property
+     * @param OrganizationState|null $value Value to set for the state property.
+    */
+    public function setState(?OrganizationState $value): void {
+        $this->state = $value;
     }
 
 }

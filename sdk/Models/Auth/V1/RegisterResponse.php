@@ -19,11 +19,6 @@ class RegisterResponse implements Parsable
     private ?string $message = null;
     
     /**
-     * @var string|null $user_id The user_id property
-    */
-    private ?string $user_id = null;
-    
-    /**
      * @var string|null $verification_id The verification_id property
     */
     private ?string $verification_id = null;
@@ -54,7 +49,6 @@ class RegisterResponse implements Parsable
         return  [
             'email_verification_sent' => fn(ParseNode $n) => $o->setEmailVerificationSent($n->getBooleanValue()),
             'message' => fn(ParseNode $n) => $o->setMessage($n->getStringValue()),
-            'user_id' => fn(ParseNode $n) => $o->setUserId($n->getStringValue()),
             'verification_id' => fn(ParseNode $n) => $o->setVerificationId($n->getStringValue()),
         ];
     }
@@ -65,14 +59,6 @@ class RegisterResponse implements Parsable
     */
     public function getMessage(): ?string {
         return $this->message;
-    }
-
-    /**
-     * Gets the user_id property value. The user_id property
-     * @return string|null
-    */
-    public function getUserId(): ?string {
-        return $this->user_id;
     }
 
     /**
@@ -90,7 +76,6 @@ class RegisterResponse implements Parsable
     public function serialize(SerializationWriter $writer): void {
         $writer->writeBooleanValue('email_verification_sent', $this->getEmailVerificationSent());
         $writer->writeStringValue('message', $this->getMessage());
-        $writer->writeStringValue('user_id', $this->getUserId());
         $writer->writeStringValue('verification_id', $this->getVerificationId());
     }
 
@@ -108,14 +93,6 @@ class RegisterResponse implements Parsable
     */
     public function setMessage(?string $value): void {
         $this->message = $value;
-    }
-
-    /**
-     * Sets the user_id property value. The user_id property
-     * @param string|null $value Value to set for the user_id property.
-    */
-    public function setUserId(?string $value): void {
-        $this->user_id = $value;
     }
 
     /**

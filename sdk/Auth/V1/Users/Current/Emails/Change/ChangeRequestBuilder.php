@@ -32,7 +32,7 @@ class ChangeRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * InitiateEmailChange
+     * Requests changing the email. The account keeps its address until the new one is verified with VerifyEmailChange.
      * @param InitiateEmailChangeRequest $body The request body
      * @param ChangeRequestBuilderPutRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<VerificationSentResponse|null>
@@ -47,7 +47,7 @@ class ChangeRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * InitiateEmailChange
+     * Requests changing the email. The account keeps its address until the new one is verified with VerifyEmailChange.
      * @param InitiateEmailChangeRequest $body The request body
      * @param ChangeRequestBuilderPutRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation

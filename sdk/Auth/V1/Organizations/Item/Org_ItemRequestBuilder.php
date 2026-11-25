@@ -10,11 +10,12 @@ use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Auth\V1\Organizations\Item\AuditEvents\AuditEventsRequestBuilder;
 use Rixl\Sdk\Auth\V1\Organizations\Item\Avatar\AvatarRequestBuilder;
+use Rixl\Sdk\Auth\V1\Organizations\Item\ConvertToTeam\ConvertToTeamRequestBuilder;
 use Rixl\Sdk\Auth\V1\Organizations\Item\Domain\DomainRequestBuilder;
-use Rixl\Sdk\Auth\V1\Organizations\Item\Invite\InviteRequestBuilder;
+use Rixl\Sdk\Auth\V1\Organizations\Item\Invitations\InvitationsRequestBuilder;
 use Rixl\Sdk\Auth\V1\Organizations\Item\Members\MembersRequestBuilder;
-use Rixl\Sdk\Auth\V1\Organizations\Item\MembershipApplications\MembershipApplicationsRequestBuilder;
 use Rixl\Sdk\Auth\V1\Organizations\Item\Policies\PoliciesRequestBuilder;
+use Rixl\Sdk\Auth\V1\Organizations\Item\TransferOwnership\TransferOwnershipRequestBuilder;
 use Rixl\Sdk\Models\Auth\V1\Organization;
 use Rixl\Sdk\Models\Google\Rpc\Status;
 
@@ -38,6 +39,13 @@ class Org_ItemRequestBuilder extends BaseRequestBuilder
     }
     
     /**
+     * The convertToTeam property
+    */
+    public function convertToTeam(): ConvertToTeamRequestBuilder {
+        return new ConvertToTeamRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
      * The domain property
     */
     public function domain(): DomainRequestBuilder {
@@ -45,10 +53,10 @@ class Org_ItemRequestBuilder extends BaseRequestBuilder
     }
     
     /**
-     * The invite property
+     * The invitations property
     */
-    public function invite(): InviteRequestBuilder {
-        return new InviteRequestBuilder($this->pathParameters, $this->requestAdapter);
+    public function invitations(): InvitationsRequestBuilder {
+        return new InvitationsRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
     
     /**
@@ -59,17 +67,17 @@ class Org_ItemRequestBuilder extends BaseRequestBuilder
     }
     
     /**
-     * The membershipApplications property
-    */
-    public function membershipApplications(): MembershipApplicationsRequestBuilder {
-        return new MembershipApplicationsRequestBuilder($this->pathParameters, $this->requestAdapter);
-    }
-    
-    /**
      * The policies property
     */
     public function policies(): PoliciesRequestBuilder {
         return new PoliciesRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
+     * The transferOwnership property
+    */
+    public function transferOwnership(): TransferOwnershipRequestBuilder {
+        return new TransferOwnershipRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
     
     /**

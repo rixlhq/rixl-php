@@ -20,11 +20,6 @@ class OrgMember implements Parsable
     private ?string $id = null;
     
     /**
-     * @var DateTime|null $invitation_expires_at A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
-    */
-    private ?DateTime $invitation_expires_at = null;
-    
-    /**
      * @var DateTime|null $joined_at A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
     */
     private ?DateTime $joined_at = null;
@@ -77,7 +72,6 @@ class OrgMember implements Parsable
         return  [
             'first_name' => fn(ParseNode $n) => $o->setFirstName($n->getStringValue()),
             'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
-            'invitation_expires_at' => fn(ParseNode $n) => $o->setInvitationExpiresAt($n->getDateTimeValue()),
             'joined_at' => fn(ParseNode $n) => $o->setJoinedAt($n->getDateTimeValue()),
             'last_name' => fn(ParseNode $n) => $o->setLastName($n->getStringValue()),
             'org_id' => fn(ParseNode $n) => $o->setOrgId($n->getStringValue()),
@@ -102,14 +96,6 @@ class OrgMember implements Parsable
     */
     public function getId(): ?string {
         return $this->id;
-    }
-
-    /**
-     * Gets the invitation_expires_at property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
-     * @return DateTime|null
-    */
-    public function getInvitationExpiresAt(): ?DateTime {
-        return $this->invitation_expires_at;
     }
 
     /**
@@ -175,7 +161,6 @@ class OrgMember implements Parsable
     public function serialize(SerializationWriter $writer): void {
         $writer->writeStringValue('first_name', $this->getFirstName());
         $writer->writeStringValue('id', $this->getId());
-        $writer->writeDateTimeValue('invitation_expires_at', $this->getInvitationExpiresAt());
         $writer->writeDateTimeValue('joined_at', $this->getJoinedAt());
         $writer->writeStringValue('last_name', $this->getLastName());
         $writer->writeStringValue('org_id', $this->getOrgId());
@@ -199,14 +184,6 @@ class OrgMember implements Parsable
     */
     public function setId(?string $value): void {
         $this->id = $value;
-    }
-
-    /**
-     * Sets the invitation_expires_at property value. A point in time in RFC 3339 format, with up to nanosecond precision. Output uses UTC (`Z`); input may use an offset from UTC.
-     * @param DateTime|null $value Value to set for the invitation_expires_at property.
-    */
-    public function setInvitationExpiresAt(?DateTime $value): void {
-        $this->invitation_expires_at = $value;
     }
 
     /**

@@ -19,11 +19,6 @@ class EmailStatusResponse implements Parsable
     private ?bool $has_email = null;
     
     /**
-     * @var bool|null $verified The verified property
-    */
-    private ?bool $verified = null;
-    
-    /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object
      * @return EmailStatusResponse
@@ -49,7 +44,6 @@ class EmailStatusResponse implements Parsable
         return  [
             'email' => fn(ParseNode $n) => $o->setEmail($n->getStringValue()),
             'has_email' => fn(ParseNode $n) => $o->setHasEmail($n->getBooleanValue()),
-            'verified' => fn(ParseNode $n) => $o->setVerified($n->getBooleanValue()),
         ];
     }
 
@@ -62,21 +56,12 @@ class EmailStatusResponse implements Parsable
     }
 
     /**
-     * Gets the verified property value. The verified property
-     * @return bool|null
-    */
-    public function getVerified(): ?bool {
-        return $this->verified;
-    }
-
-    /**
      * Serializes information the current object
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeStringValue('email', $this->getEmail());
         $writer->writeBooleanValue('has_email', $this->getHasEmail());
-        $writer->writeBooleanValue('verified', $this->getVerified());
     }
 
     /**
@@ -93,14 +78,6 @@ class EmailStatusResponse implements Parsable
     */
     public function setHasEmail(?bool $value): void {
         $this->has_email = $value;
-    }
-
-    /**
-     * Sets the verified property value. The verified property
-     * @param bool|null $value Value to set for the verified property.
-    */
-    public function setVerified(?bool $value): void {
-        $this->verified = $value;
     }
 
 }

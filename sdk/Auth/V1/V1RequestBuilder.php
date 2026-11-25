@@ -9,7 +9,6 @@ use Rixl\Sdk\Auth\V1\Email\EmailRequestBuilder;
 use Rixl\Sdk\Auth\V1\Invitations\InvitationsRequestBuilder;
 use Rixl\Sdk\Auth\V1\Login\LoginRequestBuilder;
 use Rixl\Sdk\Auth\V1\Logout\LogoutRequestBuilder;
-use Rixl\Sdk\Auth\V1\MembershipApplications\MembershipApplicationsRequestBuilder;
 use Rixl\Sdk\Auth\V1\Notifications\NotificationsRequestBuilder;
 use Rixl\Sdk\Auth\V1\Organizations\OrganizationsRequestBuilder;
 use Rixl\Sdk\Auth\V1\Passkey\PasskeyRequestBuilder;
@@ -61,13 +60,6 @@ class V1RequestBuilder extends BaseRequestBuilder
     */
     public function logout(): LogoutRequestBuilder {
         return new LogoutRequestBuilder($this->pathParameters, $this->requestAdapter);
-    }
-    
-    /**
-     * The membershipApplications property
-    */
-    public function membershipApplications(): MembershipApplicationsRequestBuilder {
-        return new MembershipApplicationsRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
     
     /**

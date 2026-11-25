@@ -9,7 +9,9 @@ use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Auth\V1\Organizations\Item\Org_ItemRequestBuilder;
+use Rixl\Sdk\Models\Auth\V1\CreateOrganizationRequest;
 use Rixl\Sdk\Models\Auth\V1\ListOrganizationsResponse;
+use Rixl\Sdk\Models\Auth\V1\Organization;
 use Rixl\Sdk\Models\Google\Rpc\Status;
 
 /**
@@ -57,6 +59,21 @@ class OrganizationsRequestBuilder extends BaseRequestBuilder
     }
 
     /**
+     * CreateOrganization
+     * @param CreateOrganizationRequest $body The request body
+     * @param OrganizationsRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * @return Promise<Organization|null>
+     * @throws Exception
+    */
+    public function post(CreateOrganizationRequest $body, ?OrganizationsRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
+        $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [Organization::class, 'createFromDiscriminatorValue'], $errorMappings);
+    }
+
+    /**
      * ListOrganizations
      * @param OrganizationsRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
@@ -74,6 +91,26 @@ class OrganizationsRequestBuilder extends BaseRequestBuilder
             $requestInfo->addRequestOptions(...$requestConfiguration->options);
         }
         $requestInfo->tryAddHeader('Accept', "application/json");
+        return $requestInfo;
+    }
+
+    /**
+     * CreateOrganization
+     * @param CreateOrganizationRequest $body The request body
+     * @param OrganizationsRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * @return RequestInformation
+    */
+    public function toPostRequestInformation(CreateOrganizationRequest $body, ?OrganizationsRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
+        $requestInfo = new RequestInformation();
+        $requestInfo->urlTemplate = $this->urlTemplate;
+        $requestInfo->pathParameters = $this->pathParameters;
+        $requestInfo->httpMethod = HttpMethod::POST;
+        if ($requestConfiguration !== null) {
+            $requestInfo->addHeaders($requestConfiguration->headers);
+            $requestInfo->addRequestOptions(...$requestConfiguration->options);
+        }
+        $requestInfo->tryAddHeader('Accept', "application/json");
+        $requestInfo->setContentFromParsable($this->requestAdapter, "application/json", $body);
         return $requestInfo;
     }
 

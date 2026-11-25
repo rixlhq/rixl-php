@@ -10,6 +10,7 @@ use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Auth\V1\Users\Current\Emails\Change\ChangeRequestBuilder;
 use Rixl\Sdk\Auth\V1\Users\Current\Emails\Status\StatusRequestBuilder;
+use Rixl\Sdk\Auth\V1\Users\Current\Emails\Verify\VerifyRequestBuilder;
 use Rixl\Sdk\Models\Auth\V1\AddEmailRequest;
 use Rixl\Sdk\Models\Auth\V1\VerificationSentResponse;
 use Rixl\Sdk\Models\Google\Rpc\Status;
@@ -34,6 +35,13 @@ class EmailsRequestBuilder extends BaseRequestBuilder
     }
     
     /**
+     * The verify property
+    */
+    public function verify(): VerifyRequestBuilder {
+        return new VerifyRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
      * Instantiates a new EmailsRequestBuilder and sets the default values.
      * @param array<string, mixed>|string $pathParametersOrRawUrl Path parameters for the request or a String representing the raw URL.
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
@@ -48,7 +56,7 @@ class EmailsRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * AddEmail
+     * Requests adding an email. Nothing is stored on the account until the address is verified with VerifyEmailChange.
      * @param AddEmailRequest $body The request body
      * @param EmailsRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<VerificationSentResponse|null>
@@ -63,7 +71,7 @@ class EmailsRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * AddEmail
+     * Requests adding an email. Nothing is stored on the account until the address is verified with VerifyEmailChange.
      * @param AddEmailRequest $body The request body
      * @param EmailsRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation

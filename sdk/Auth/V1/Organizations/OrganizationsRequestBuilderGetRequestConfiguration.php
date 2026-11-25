@@ -30,7 +30,7 @@ class OrganizationsRequestBuilderGetRequestConfiguration extends BaseRequestConf
      * Instantiates a new OrganizationsRequestBuilderGetQueryParameters.
      * @param int|null $page_size 
      * @param string|null $page_token 
-     * @param bool|null $show_deleted Includes deleted organizations visible to their owners once lifecycle adds deletion.
+     * @param bool|null $show_deleted Includes deleted organizations visible to their retained active owners.
      * @return OrganizationsRequestBuilderGetQueryParameters
     */
     public static function createQueryParameters(?int $page_size = null, ?string $page_token = null, ?bool $show_deleted = null): OrganizationsRequestBuilderGetQueryParameters {

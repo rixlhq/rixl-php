@@ -65,7 +65,7 @@ class LoginResponse implements Parsable
     private ?string $role = null;
     
     /**
-     * @var string|null $status "ok" | "2fa_required" | "email_not_verified"
+     * @var string|null $status "ok" | "2fa_required"
     */
     private ?string $status = null;
     
@@ -195,7 +195,7 @@ class LoginResponse implements Parsable
     }
 
     /**
-     * Gets the status property value. "ok" | "2fa_required" | "email_not_verified"
+     * Gets the status property value. "ok" | "2fa_required"
      * @return string|null
     */
     public function getStatus(): ?string {
@@ -319,7 +319,7 @@ class LoginResponse implements Parsable
     }
 
     /**
-     * Sets the status property value. "ok" | "2fa_required" | "email_not_verified"
+     * Sets the status property value. "ok" | "2fa_required"
      * @param string|null $value Value to set for the status property.
     */
     public function setStatus(?string $value): void {
