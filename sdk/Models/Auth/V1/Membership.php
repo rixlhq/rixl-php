@@ -25,19 +25,9 @@ class Membership implements Parsable
     private ?string $org_id = null;
     
     /**
-     * @var string|null $organization_first_name The organization_first_name property
+     * @var Organization|null $organization The organization property
     */
-    private ?string $organization_first_name = null;
-    
-    /**
-     * @var string|null $organization_last_name The organization_last_name property
-    */
-    private ?string $organization_last_name = null;
-    
-    /**
-     * @var string|null $organization_username The organization_username property
-    */
-    private ?string $organization_username = null;
+    private ?Organization $organization = null;
     
     /**
      * @var MembershipRole|null $role The role property
@@ -73,9 +63,7 @@ class Membership implements Parsable
             'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
             'joined_at' => fn(ParseNode $n) => $o->setJoinedAt($n->getDateTimeValue()),
             'org_id' => fn(ParseNode $n) => $o->setOrgId($n->getStringValue()),
-            'organization_first_name' => fn(ParseNode $n) => $o->setOrganizationFirstName($n->getStringValue()),
-            'organization_last_name' => fn(ParseNode $n) => $o->setOrganizationLastName($n->getStringValue()),
-            'organization_username' => fn(ParseNode $n) => $o->setOrganizationUsername($n->getStringValue()),
+            'organization' => fn(ParseNode $n) => $o->setOrganization($n->getObjectValue([Organization::class, 'createFromDiscriminatorValue'])),
             'role' => fn(ParseNode $n) => $o->setRole($n->getEnumValue(MembershipRole::class)),
             'state' => fn(ParseNode $n) => $o->setState($n->getEnumValue(MembershipState::class)),
             'user_id' => fn(ParseNode $n) => $o->setUserId($n->getStringValue()),
@@ -99,27 +87,11 @@ class Membership implements Parsable
     }
 
     /**
-     * Gets the organization_first_name property value. The organization_first_name property
-     * @return string|null
+     * Gets the organization property value. The organization property
+     * @return Organization|null
     */
-    public function getOrganizationFirstName(): ?string {
-        return $this->organization_first_name;
-    }
-
-    /**
-     * Gets the organization_last_name property value. The organization_last_name property
-     * @return string|null
-    */
-    public function getOrganizationLastName(): ?string {
-        return $this->organization_last_name;
-    }
-
-    /**
-     * Gets the organization_username property value. The organization_username property
-     * @return string|null
-    */
-    public function getOrganizationUsername(): ?string {
-        return $this->organization_username;
+    public function getOrganization(): ?Organization {
+        return $this->organization;
     }
 
     /**
@@ -161,9 +133,7 @@ class Membership implements Parsable
     public function serialize(SerializationWriter $writer): void {
         $writer->writeStringValue('id', $this->getId());
         $writer->writeDateTimeValue('joined_at', $this->getJoinedAt());
-        $writer->writeStringValue('organization_first_name', $this->getOrganizationFirstName());
-        $writer->writeStringValue('organization_last_name', $this->getOrganizationLastName());
-        $writer->writeStringValue('organization_username', $this->getOrganizationUsername());
+        $writer->writeObjectValue('organization', $this->getOrganization());
         $writer->writeStringValue('org_id', $this->getOrgId());
         $writer->writeEnumValue('role', $this->getRole());
         $writer->writeEnumValue('state', $this->getState());
@@ -187,27 +157,11 @@ class Membership implements Parsable
     }
 
     /**
-     * Sets the organization_first_name property value. The organization_first_name property
-     * @param string|null $value Value to set for the organization_first_name property.
+     * Sets the organization property value. The organization property
+     * @param Organization|null $value Value to set for the organization property.
     */
-    public function setOrganizationFirstName(?string $value): void {
-        $this->organization_first_name = $value;
-    }
-
-    /**
-     * Sets the organization_last_name property value. The organization_last_name property
-     * @param string|null $value Value to set for the organization_last_name property.
-    */
-    public function setOrganizationLastName(?string $value): void {
-        $this->organization_last_name = $value;
-    }
-
-    /**
-     * Sets the organization_username property value. The organization_username property
-     * @param string|null $value Value to set for the organization_username property.
-    */
-    public function setOrganizationUsername(?string $value): void {
-        $this->organization_username = $value;
+    public function setOrganization(?Organization $value): void {
+        $this->organization = $value;
     }
 
     /**

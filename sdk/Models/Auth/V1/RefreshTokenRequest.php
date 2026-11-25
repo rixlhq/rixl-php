@@ -19,6 +19,11 @@ class RefreshTokenRequest implements Parsable
     private ?string $country_code = null;
     
     /**
+     * @var string|null $org_id The org_id property
+    */
+    private ?string $org_id = null;
+    
+    /**
      * @var string|null $origin The origin property
     */
     private ?string $origin = null;
@@ -72,11 +77,20 @@ class RefreshTokenRequest implements Parsable
         return  [
             'code_verifier' => fn(ParseNode $n) => $o->setCodeVerifier($n->getStringValue()),
             'country_code' => fn(ParseNode $n) => $o->setCountryCode($n->getStringValue()),
+            'org_id' => fn(ParseNode $n) => $o->setOrgId($n->getStringValue()),
             'origin' => fn(ParseNode $n) => $o->setOrigin($n->getStringValue()),
             'redirect_uri' => fn(ParseNode $n) => $o->setRedirectUri($n->getStringValue()),
             'refresh_token' => fn(ParseNode $n) => $o->setRefreshToken($n->getStringValue()),
             'token_type' => fn(ParseNode $n) => $o->setTokenType($n->getStringValue()),
         ];
+    }
+
+    /**
+     * Gets the org_id property value. The org_id property
+     * @return string|null
+    */
+    public function getOrgId(): ?string {
+        return $this->org_id;
     }
 
     /**
@@ -118,6 +132,7 @@ class RefreshTokenRequest implements Parsable
     public function serialize(SerializationWriter $writer): void {
         $writer->writeStringValue('code_verifier', $this->getCodeVerifier());
         $writer->writeStringValue('country_code', $this->getCountryCode());
+        $writer->writeStringValue('org_id', $this->getOrgId());
         $writer->writeStringValue('origin', $this->getOrigin());
         $writer->writeStringValue('redirect_uri', $this->getRedirectUri());
         $writer->writeStringValue('refresh_token', $this->getRefreshToken());
@@ -138,6 +153,14 @@ class RefreshTokenRequest implements Parsable
     */
     public function setCountryCode(?string $value): void {
         $this->country_code = $value;
+    }
+
+    /**
+     * Sets the org_id property value. The org_id property
+     * @param string|null $value Value to set for the org_id property.
+    */
+    public function setOrgId(?string $value): void {
+        $this->org_id = $value;
     }
 
     /**

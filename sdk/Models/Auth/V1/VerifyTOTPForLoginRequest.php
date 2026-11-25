@@ -9,14 +9,14 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class VerifyTOTPForLoginRequest implements Parsable 
 {
     /**
+     * @var string|null $challenge_id The challenge_id property
+    */
+    private ?string $challenge_id = null;
+    
+    /**
      * @var string|null $code The code property
     */
     private ?string $code = null;
-    
-    /**
-     * @var string|null $session_id The session_id property
-    */
-    private ?string $session_id = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -25,6 +25,14 @@ class VerifyTOTPForLoginRequest implements Parsable
     */
     public static function createFromDiscriminatorValue(ParseNode $parseNode): VerifyTOTPForLoginRequest {
         return new VerifyTOTPForLoginRequest();
+    }
+
+    /**
+     * Gets the challenge_id property value. The challenge_id property
+     * @return string|null
+    */
+    public function getChallengeId(): ?string {
+        return $this->challenge_id;
     }
 
     /**
@@ -42,17 +50,9 @@ class VerifyTOTPForLoginRequest implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
+            'challenge_id' => fn(ParseNode $n) => $o->setChallengeId($n->getStringValue()),
             'code' => fn(ParseNode $n) => $o->setCode($n->getStringValue()),
-            'session_id' => fn(ParseNode $n) => $o->setSessionId($n->getStringValue()),
         ];
-    }
-
-    /**
-     * Gets the session_id property value. The session_id property
-     * @return string|null
-    */
-    public function getSessionId(): ?string {
-        return $this->session_id;
     }
 
     /**
@@ -60,8 +60,16 @@ class VerifyTOTPForLoginRequest implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
+        $writer->writeStringValue('challenge_id', $this->getChallengeId());
         $writer->writeStringValue('code', $this->getCode());
-        $writer->writeStringValue('session_id', $this->getSessionId());
+    }
+
+    /**
+     * Sets the challenge_id property value. The challenge_id property
+     * @param string|null $value Value to set for the challenge_id property.
+    */
+    public function setChallengeId(?string $value): void {
+        $this->challenge_id = $value;
     }
 
     /**
@@ -70,14 +78,6 @@ class VerifyTOTPForLoginRequest implements Parsable
     */
     public function setCode(?string $value): void {
         $this->code = $value;
-    }
-
-    /**
-     * Sets the session_id property value. The session_id property
-     * @param string|null $value Value to set for the session_id property.
-    */
-    public function setSessionId(?string $value): void {
-        $this->session_id = $value;
     }
 
 }

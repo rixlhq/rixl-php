@@ -20,6 +20,11 @@ class LoginResponse implements Parsable
     private ?array $authentication = null;
     
     /**
+     * @var string|null $challenge_id The challenge_id property
+    */
+    private ?string $challenge_id = null;
+    
+    /**
      * @var string|null $email The email property
     */
     private ?string $email = null;
@@ -28,6 +33,16 @@ class LoginResponse implements Parsable
      * @var string|null $expires_in The expires_in property
     */
     private ?string $expires_in = null;
+    
+    /**
+     * @var string|null $last_active_org_id The last_active_org_id property
+    */
+    private ?string $last_active_org_id = null;
+    
+    /**
+     * @var string|null $org_id The org_id property
+    */
+    private ?string $org_id = null;
     
     /**
      * @var StreamInterface|null $passkey_options passkey_options is the WebAuthn PublicKeyCredentialRequestOptions as JSON, present only when "passkey" is one of the authentication methods.
@@ -45,9 +60,9 @@ class LoginResponse implements Parsable
     private ?string $requires_action = null;
     
     /**
-     * @var string|null $session_id The session_id property
+     * @var string|null $role The role property
     */
-    private ?string $session_id = null;
+    private ?string $role = null;
     
     /**
      * @var string|null $status "ok" | "2fa_required" | "email_not_verified"
@@ -85,6 +100,14 @@ class LoginResponse implements Parsable
     }
 
     /**
+     * Gets the challenge_id property value. The challenge_id property
+     * @return string|null
+    */
+    public function getChallengeId(): ?string {
+        return $this->challenge_id;
+    }
+
+    /**
      * Gets the email property value. The email property
      * @return string|null
     */
@@ -109,15 +132,34 @@ class LoginResponse implements Parsable
         return  [
             'access_token' => fn(ParseNode $n) => $o->setAccessToken($n->getStringValue()),
             'authentication' => fn(ParseNode $n) => $o->setAuthentication($n->getCollectionOfEnumValues(AuthMethod::class)),
+            'challenge_id' => fn(ParseNode $n) => $o->setChallengeId($n->getStringValue()),
             'email' => fn(ParseNode $n) => $o->setEmail($n->getStringValue()),
             'expires_in' => fn(ParseNode $n) => $o->setExpiresIn($n->getStringValue()),
+            'last_active_org_id' => fn(ParseNode $n) => $o->setLastActiveOrgId($n->getStringValue()),
+            'org_id' => fn(ParseNode $n) => $o->setOrgId($n->getStringValue()),
             'passkey_options' => fn(ParseNode $n) => $o->setPasskeyOptions($n->getBinaryContent()),
             'refresh_token' => fn(ParseNode $n) => $o->setRefreshToken($n->getStringValue()),
             'requires_action' => fn(ParseNode $n) => $o->setRequiresAction($n->getStringValue()),
-            'session_id' => fn(ParseNode $n) => $o->setSessionId($n->getStringValue()),
+            'role' => fn(ParseNode $n) => $o->setRole($n->getStringValue()),
             'status' => fn(ParseNode $n) => $o->setStatus($n->getStringValue()),
             'token_type' => fn(ParseNode $n) => $o->setTokenType($n->getStringValue()),
         ];
+    }
+
+    /**
+     * Gets the last_active_org_id property value. The last_active_org_id property
+     * @return string|null
+    */
+    public function getLastActiveOrgId(): ?string {
+        return $this->last_active_org_id;
+    }
+
+    /**
+     * Gets the org_id property value. The org_id property
+     * @return string|null
+    */
+    public function getOrgId(): ?string {
+        return $this->org_id;
     }
 
     /**
@@ -145,11 +187,11 @@ class LoginResponse implements Parsable
     }
 
     /**
-     * Gets the session_id property value. The session_id property
+     * Gets the role property value. The role property
      * @return string|null
     */
-    public function getSessionId(): ?string {
-        return $this->session_id;
+    public function getRole(): ?string {
+        return $this->role;
     }
 
     /**
@@ -175,12 +217,15 @@ class LoginResponse implements Parsable
     public function serialize(SerializationWriter $writer): void {
         $writer->writeStringValue('access_token', $this->getAccessToken());
         $writer->writeCollectionOfEnumValues('authentication', $this->getAuthentication());
+        $writer->writeStringValue('challenge_id', $this->getChallengeId());
         $writer->writeStringValue('email', $this->getEmail());
         $writer->writeStringValue('expires_in', $this->getExpiresIn());
+        $writer->writeStringValue('last_active_org_id', $this->getLastActiveOrgId());
+        $writer->writeStringValue('org_id', $this->getOrgId());
         $writer->writeBinaryContent('passkey_options', $this->getPasskeyOptions());
         $writer->writeStringValue('refresh_token', $this->getRefreshToken());
         $writer->writeStringValue('requires_action', $this->getRequiresAction());
-        $writer->writeStringValue('session_id', $this->getSessionId());
+        $writer->writeStringValue('role', $this->getRole());
         $writer->writeStringValue('status', $this->getStatus());
         $writer->writeStringValue('token_type', $this->getTokenType());
     }
@@ -202,6 +247,14 @@ class LoginResponse implements Parsable
     }
 
     /**
+     * Sets the challenge_id property value. The challenge_id property
+     * @param string|null $value Value to set for the challenge_id property.
+    */
+    public function setChallengeId(?string $value): void {
+        $this->challenge_id = $value;
+    }
+
+    /**
      * Sets the email property value. The email property
      * @param string|null $value Value to set for the email property.
     */
@@ -215,6 +268,22 @@ class LoginResponse implements Parsable
     */
     public function setExpiresIn(?string $value): void {
         $this->expires_in = $value;
+    }
+
+    /**
+     * Sets the last_active_org_id property value. The last_active_org_id property
+     * @param string|null $value Value to set for the last_active_org_id property.
+    */
+    public function setLastActiveOrgId(?string $value): void {
+        $this->last_active_org_id = $value;
+    }
+
+    /**
+     * Sets the org_id property value. The org_id property
+     * @param string|null $value Value to set for the org_id property.
+    */
+    public function setOrgId(?string $value): void {
+        $this->org_id = $value;
     }
 
     /**
@@ -242,11 +311,11 @@ class LoginResponse implements Parsable
     }
 
     /**
-     * Sets the session_id property value. The session_id property
-     * @param string|null $value Value to set for the session_id property.
+     * Sets the role property value. The role property
+     * @param string|null $value Value to set for the role property.
     */
-    public function setSessionId(?string $value): void {
-        $this->session_id = $value;
+    public function setRole(?string $value): void {
+        $this->role = $value;
     }
 
     /**

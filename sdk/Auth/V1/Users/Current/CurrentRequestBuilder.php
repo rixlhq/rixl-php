@@ -9,7 +9,9 @@ use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Auth\V1\Users\Current\Avatar\AvatarRequestBuilder;
+use Rixl\Sdk\Auth\V1\Users\Current\DomainJoinSuggestions\DomainJoinSuggestionsRequestBuilder;
 use Rixl\Sdk\Auth\V1\Users\Current\Emails\EmailsRequestBuilder;
+use Rixl\Sdk\Auth\V1\Users\Current\Memberships\MembershipsRequestBuilder;
 use Rixl\Sdk\Auth\V1\Users\Current\Name\NameRequestBuilder;
 use Rixl\Sdk\Auth\V1\Users\Current\Passkeys\PasskeysRequestBuilder;
 use Rixl\Sdk\Auth\V1\Users\Current\Totp\TotpRequestBuilder;
@@ -30,10 +32,24 @@ class CurrentRequestBuilder extends BaseRequestBuilder
     }
     
     /**
+     * The domainJoinSuggestions property
+    */
+    public function domainJoinSuggestions(): DomainJoinSuggestionsRequestBuilder {
+        return new DomainJoinSuggestionsRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
      * The emails property
     */
     public function emails(): EmailsRequestBuilder {
         return new EmailsRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
+     * The memberships property
+    */
+    public function memberships(): MembershipsRequestBuilder {
+        return new MembershipsRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
     
     /**

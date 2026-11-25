@@ -10,14 +10,14 @@ use Psr\Http\Message\StreamInterface;
 class PasskeyBeginResponse implements Parsable 
 {
     /**
+     * @var string|null $challenge_id The challenge_id property
+    */
+    private ?string $challenge_id = null;
+    
+    /**
      * @var StreamInterface|null $options The options property
     */
     private ?StreamInterface $options = null;
-    
-    /**
-     * @var string|null $session_id The session_id property
-    */
-    private ?string $session_id = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -29,14 +29,22 @@ class PasskeyBeginResponse implements Parsable
     }
 
     /**
+     * Gets the challenge_id property value. The challenge_id property
+     * @return string|null
+    */
+    public function getChallengeId(): ?string {
+        return $this->challenge_id;
+    }
+
+    /**
      * The deserialization information for the current model
      * @return array<string, callable(ParseNode): void>
     */
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
+            'challenge_id' => fn(ParseNode $n) => $o->setChallengeId($n->getStringValue()),
             'options' => fn(ParseNode $n) => $o->setOptions($n->getBinaryContent()),
-            'session_id' => fn(ParseNode $n) => $o->setSessionId($n->getStringValue()),
         ];
     }
 
@@ -49,20 +57,20 @@ class PasskeyBeginResponse implements Parsable
     }
 
     /**
-     * Gets the session_id property value. The session_id property
-     * @return string|null
-    */
-    public function getSessionId(): ?string {
-        return $this->session_id;
-    }
-
-    /**
      * Serializes information the current object
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
+        $writer->writeStringValue('challenge_id', $this->getChallengeId());
         $writer->writeBinaryContent('options', $this->getOptions());
-        $writer->writeStringValue('session_id', $this->getSessionId());
+    }
+
+    /**
+     * Sets the challenge_id property value. The challenge_id property
+     * @param string|null $value Value to set for the challenge_id property.
+    */
+    public function setChallengeId(?string $value): void {
+        $this->challenge_id = $value;
     }
 
     /**
@@ -71,14 +79,6 @@ class PasskeyBeginResponse implements Parsable
     */
     public function setOptions(?StreamInterface $value): void {
         $this->options = $value;
-    }
-
-    /**
-     * Sets the session_id property value. The session_id property
-     * @param string|null $value Value to set for the session_id property.
-    */
-    public function setSessionId(?string $value): void {
-        $this->session_id = $value;
     }
 
 }

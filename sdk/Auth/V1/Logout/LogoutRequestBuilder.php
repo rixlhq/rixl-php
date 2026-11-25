@@ -8,6 +8,7 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
+use Rixl\Sdk\Auth\V1\Logout\All\AllRequestBuilder;
 use Rixl\Sdk\Models\Auth\V1\LogoutRequest;
 use Rixl\Sdk\Models\Google\Protobuf\EscapedEmpty;
 use Rixl\Sdk\Models\Google\Rpc\Status;
@@ -17,6 +18,13 @@ use Rixl\Sdk\Models\Google\Rpc\Status;
 */
 class LogoutRequestBuilder extends BaseRequestBuilder 
 {
+    /**
+     * The all property
+    */
+    public function all(): AllRequestBuilder {
+        return new AllRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
     /**
      * Instantiates a new LogoutRequestBuilder and sets the default values.
      * @param array<string, mixed>|string $pathParametersOrRawUrl Path parameters for the request or a String representing the raw URL.

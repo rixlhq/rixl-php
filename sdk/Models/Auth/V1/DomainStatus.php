@@ -12,14 +12,14 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class DomainStatus implements Parsable 
 {
     /**
-     * @var bool|null $auto_join The auto_join property
-    */
-    private ?bool $auto_join = null;
-    
-    /**
      * @var PendingDomain|null $pending The pending property
     */
     private ?PendingDomain $pending = null;
+    
+    /**
+     * @var bool|null $suggest_join The suggest_join property
+    */
+    private ?bool $suggest_join = null;
     
     /**
      * @var VerifiedDomain|null $verified The verified property
@@ -36,22 +36,14 @@ class DomainStatus implements Parsable
     }
 
     /**
-     * Gets the auto_join property value. The auto_join property
-     * @return bool|null
-    */
-    public function getAutoJoin(): ?bool {
-        return $this->auto_join;
-    }
-
-    /**
      * The deserialization information for the current model
      * @return array<string, callable(ParseNode): void>
     */
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'auto_join' => fn(ParseNode $n) => $o->setAutoJoin($n->getBooleanValue()),
             'pending' => fn(ParseNode $n) => $o->setPending($n->getObjectValue([PendingDomain::class, 'createFromDiscriminatorValue'])),
+            'suggest_join' => fn(ParseNode $n) => $o->setSuggestJoin($n->getBooleanValue()),
             'verified' => fn(ParseNode $n) => $o->setVerified($n->getObjectValue([VerifiedDomain::class, 'createFromDiscriminatorValue'])),
         ];
     }
@@ -62,6 +54,14 @@ class DomainStatus implements Parsable
     */
     public function getPending(): ?PendingDomain {
         return $this->pending;
+    }
+
+    /**
+     * Gets the suggest_join property value. The suggest_join property
+     * @return bool|null
+    */
+    public function getSuggestJoin(): ?bool {
+        return $this->suggest_join;
     }
 
     /**
@@ -77,17 +77,9 @@ class DomainStatus implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeBooleanValue('auto_join', $this->getAutoJoin());
         $writer->writeObjectValue('pending', $this->getPending());
+        $writer->writeBooleanValue('suggest_join', $this->getSuggestJoin());
         $writer->writeObjectValue('verified', $this->getVerified());
-    }
-
-    /**
-     * Sets the auto_join property value. The auto_join property
-     * @param bool|null $value Value to set for the auto_join property.
-    */
-    public function setAutoJoin(?bool $value): void {
-        $this->auto_join = $value;
     }
 
     /**
@@ -96,6 +88,14 @@ class DomainStatus implements Parsable
     */
     public function setPending(?PendingDomain $value): void {
         $this->pending = $value;
+    }
+
+    /**
+     * Sets the suggest_join property value. The suggest_join property
+     * @param bool|null $value Value to set for the suggest_join property.
+    */
+    public function setSuggestJoin(?bool $value): void {
+        $this->suggest_join = $value;
     }
 
     /**

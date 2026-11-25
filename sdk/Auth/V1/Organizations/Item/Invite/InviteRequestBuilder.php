@@ -1,0 +1,97 @@
+<?php
+
+namespace Rixl\Sdk\Auth\V1\Organizations\Item\Invite;
+
+use Exception;
+use Http\Promise\Promise;
+use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
+use Microsoft\Kiota\Abstractions\HttpMethod;
+use Microsoft\Kiota\Abstractions\RequestAdapter;
+use Microsoft\Kiota\Abstractions\RequestInformation;
+use Rixl\Sdk\Auth\V1\Organizations\Item\Invite\Item\WithUser_ItemRequestBuilder;
+use Rixl\Sdk\Auth\V1\Organizations\Item\Invite\Resend\ResendRequestBuilder;
+use Rixl\Sdk\Models\Auth\V1\MembershipApplication;
+use Rixl\Sdk\Models\Google\Rpc\Status;
+
+/**
+ * Builds and executes requests for operations under /auth/v1/organizations/{org_-id}/invite
+*/
+class InviteRequestBuilder extends BaseRequestBuilder 
+{
+    /**
+     * The resend property
+    */
+    public function resend(): ResendRequestBuilder {
+        return new ResendRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
+     * Gets an item from the Rixl/Sdk.auth.v1.organizations.item.invite.item collection
+     * @param string $user_id Unique identifier of the item
+     * @return WithUser_ItemRequestBuilder
+    */
+    public function byUser_id(string $user_id): WithUser_ItemRequestBuilder {
+        $urlTplParams = $this->pathParameters;
+        $urlTplParams['user_id'] = $user_id;
+        return new WithUser_ItemRequestBuilder($urlTplParams, $this->requestAdapter);
+    }
+
+    /**
+     * Instantiates a new InviteRequestBuilder and sets the default values.
+     * @param array<string, mixed>|string $pathParametersOrRawUrl Path parameters for the request or a String representing the raw URL.
+     * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
+    */
+    public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
+        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/organizations/{org_%2Did}/invite');
+        if (is_array($pathParametersOrRawUrl)) {
+            $this->pathParameters = $pathParametersOrRawUrl;
+        } else {
+            $this->pathParameters = ['request-raw-url' => $pathParametersOrRawUrl];
+        }
+    }
+
+    /**
+     * InviteMember
+     * @param InvitePostRequestBody $body The request body
+     * @param InviteRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * @return Promise<MembershipApplication|null>
+     * @throws Exception
+    */
+    public function post(InvitePostRequestBody $body, ?InviteRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
+        $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
+        $errorMappings = [
+                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [MembershipApplication::class, 'createFromDiscriminatorValue'], $errorMappings);
+    }
+
+    /**
+     * InviteMember
+     * @param InvitePostRequestBody $body The request body
+     * @param InviteRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * @return RequestInformation
+    */
+    public function toPostRequestInformation(InvitePostRequestBody $body, ?InviteRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
+        $requestInfo = new RequestInformation();
+        $requestInfo->urlTemplate = $this->urlTemplate;
+        $requestInfo->pathParameters = $this->pathParameters;
+        $requestInfo->httpMethod = HttpMethod::POST;
+        if ($requestConfiguration !== null) {
+            $requestInfo->addHeaders($requestConfiguration->headers);
+            $requestInfo->addRequestOptions(...$requestConfiguration->options);
+        }
+        $requestInfo->tryAddHeader('Accept', "application/json");
+        $requestInfo->setContentFromParsable($this->requestAdapter, "application/json", $body);
+        return $requestInfo;
+    }
+
+    /**
+     * Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
+     * @param string $rawUrl The raw URL to use for the request builder.
+     * @return InviteRequestBuilder
+    */
+    public function withUrl(string $rawUrl): InviteRequestBuilder {
+        return new InviteRequestBuilder($rawUrl, $this->requestAdapter);
+    }
+
+}

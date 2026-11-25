@@ -10,6 +10,11 @@ use Psr\Http\Message\StreamInterface;
 class PasskeyRegisterFinishRequest implements Parsable 
 {
     /**
+     * @var string|null $challenge_id The challenge_id property
+    */
+    private ?string $challenge_id = null;
+    
+    /**
      * @var StreamInterface|null $credential The credential property
     */
     private ?StreamInterface $credential = null;
@@ -18,11 +23,6 @@ class PasskeyRegisterFinishRequest implements Parsable
      * @var string|null $name The name property
     */
     private ?string $name = null;
-    
-    /**
-     * @var string|null $session_id The session_id property
-    */
-    private ?string $session_id = null;
     
     /**
      * @var string|null $user_id The user_id property
@@ -36,6 +36,14 @@ class PasskeyRegisterFinishRequest implements Parsable
     */
     public static function createFromDiscriminatorValue(ParseNode $parseNode): PasskeyRegisterFinishRequest {
         return new PasskeyRegisterFinishRequest();
+    }
+
+    /**
+     * Gets the challenge_id property value. The challenge_id property
+     * @return string|null
+    */
+    public function getChallengeId(): ?string {
+        return $this->challenge_id;
     }
 
     /**
@@ -53,9 +61,9 @@ class PasskeyRegisterFinishRequest implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
+            'challenge_id' => fn(ParseNode $n) => $o->setChallengeId($n->getStringValue()),
             'credential' => fn(ParseNode $n) => $o->setCredential($n->getBinaryContent()),
             'name' => fn(ParseNode $n) => $o->setName($n->getStringValue()),
-            'session_id' => fn(ParseNode $n) => $o->setSessionId($n->getStringValue()),
             'user_id' => fn(ParseNode $n) => $o->setUserId($n->getStringValue()),
         ];
     }
@@ -66,14 +74,6 @@ class PasskeyRegisterFinishRequest implements Parsable
     */
     public function getName(): ?string {
         return $this->name;
-    }
-
-    /**
-     * Gets the session_id property value. The session_id property
-     * @return string|null
-    */
-    public function getSessionId(): ?string {
-        return $this->session_id;
     }
 
     /**
@@ -89,10 +89,18 @@ class PasskeyRegisterFinishRequest implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
+        $writer->writeStringValue('challenge_id', $this->getChallengeId());
         $writer->writeBinaryContent('credential', $this->getCredential());
         $writer->writeStringValue('name', $this->getName());
-        $writer->writeStringValue('session_id', $this->getSessionId());
         $writer->writeStringValue('user_id', $this->getUserId());
+    }
+
+    /**
+     * Sets the challenge_id property value. The challenge_id property
+     * @param string|null $value Value to set for the challenge_id property.
+    */
+    public function setChallengeId(?string $value): void {
+        $this->challenge_id = $value;
     }
 
     /**
@@ -109,14 +117,6 @@ class PasskeyRegisterFinishRequest implements Parsable
     */
     public function setName(?string $value): void {
         $this->name = $value;
-    }
-
-    /**
-     * Sets the session_id property value. The session_id property
-     * @param string|null $value Value to set for the session_id property.
-    */
-    public function setSessionId(?string $value): void {
-        $this->session_id = $value;
     }
 
     /**

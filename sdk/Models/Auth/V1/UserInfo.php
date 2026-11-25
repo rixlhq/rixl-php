@@ -10,11 +10,6 @@ use Microsoft\Kiota\Abstractions\Types\TypeUtils;
 class UserInfo implements Parsable 
 {
     /**
-     * @var string|null $active_org_id The active_org_id property
-    */
-    private ?string $active_org_id = null;
-    
-    /**
      * @var string|null $country_code The country_code property
     */
     private ?string $country_code = null;
@@ -55,6 +50,11 @@ class UserInfo implements Parsable
     private ?string $language_code = null;
     
     /**
+     * @var string|null $last_active_org_id The last_active_org_id property
+    */
+    private ?string $last_active_org_id = null;
+    
+    /**
      * @var string|null $last_name The last_name property
     */
     private ?string $last_name = null;
@@ -81,14 +81,6 @@ class UserInfo implements Parsable
     */
     public static function createFromDiscriminatorValue(ParseNode $parseNode): UserInfo {
         return new UserInfo();
-    }
-
-    /**
-     * Gets the active_org_id property value. The active_org_id property
-     * @return string|null
-    */
-    public function getActiveOrgId(): ?string {
-        return $this->active_org_id;
     }
 
     /**
@@ -122,7 +114,6 @@ class UserInfo implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'active_org_id' => fn(ParseNode $n) => $o->setActiveOrgId($n->getStringValue()),
             'country_code' => fn(ParseNode $n) => $o->setCountryCode($n->getStringValue()),
             'email' => fn(ParseNode $n) => $o->setEmail($n->getStringValue()),
             'email_verified' => fn(ParseNode $n) => $o->setEmailVerified($n->getBooleanValue()),
@@ -131,6 +122,7 @@ class UserInfo implements Parsable
             'image_id' => fn(ParseNode $n) => $o->setImageId($n->getStringValue()),
             'image_url' => fn(ParseNode $n) => $o->setImageUrl($n->getStringValue()),
             'language_code' => fn(ParseNode $n) => $o->setLanguageCode($n->getStringValue()),
+            'last_active_org_id' => fn(ParseNode $n) => $o->setLastActiveOrgId($n->getStringValue()),
             'last_name' => fn(ParseNode $n) => $o->setLastName($n->getStringValue()),
             'permissions' => function (ParseNode $n) {
                 $val = $n->getCollectionOfPrimitiveValues();
@@ -186,6 +178,14 @@ class UserInfo implements Parsable
     }
 
     /**
+     * Gets the last_active_org_id property value. The last_active_org_id property
+     * @return string|null
+    */
+    public function getLastActiveOrgId(): ?string {
+        return $this->last_active_org_id;
+    }
+
+    /**
      * Gets the last_name property value. The last_name property
      * @return string|null
     */
@@ -222,7 +222,6 @@ class UserInfo implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('active_org_id', $this->getActiveOrgId());
         $writer->writeStringValue('country_code', $this->getCountryCode());
         $writer->writeStringValue('email', $this->getEmail());
         $writer->writeBooleanValue('email_verified', $this->getEmailVerified());
@@ -231,18 +230,11 @@ class UserInfo implements Parsable
         $writer->writeStringValue('image_id', $this->getImageId());
         $writer->writeStringValue('image_url', $this->getImageUrl());
         $writer->writeStringValue('language_code', $this->getLanguageCode());
+        $writer->writeStringValue('last_active_org_id', $this->getLastActiveOrgId());
         $writer->writeStringValue('last_name', $this->getLastName());
         $writer->writeCollectionOfPrimitiveValues('permissions', $this->getPermissions());
         $writer->writeCollectionOfObjectValues('policies', $this->getPolicies());
         $writer->writeStringValue('username', $this->getUsername());
-    }
-
-    /**
-     * Sets the active_org_id property value. The active_org_id property
-     * @param string|null $value Value to set for the active_org_id property.
-    */
-    public function setActiveOrgId(?string $value): void {
-        $this->active_org_id = $value;
     }
 
     /**
@@ -307,6 +299,14 @@ class UserInfo implements Parsable
     */
     public function setLanguageCode(?string $value): void {
         $this->language_code = $value;
+    }
+
+    /**
+     * Sets the last_active_org_id property value. The last_active_org_id property
+     * @param string|null $value Value to set for the last_active_org_id property.
+    */
+    public function setLastActiveOrgId(?string $value): void {
+        $this->last_active_org_id = $value;
     }
 
     /**

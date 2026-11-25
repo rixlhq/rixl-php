@@ -10,11 +10,13 @@ use Rixl\Sdk\Auth\V1\Invitations\InvitationsRequestBuilder;
 use Rixl\Sdk\Auth\V1\Login\LoginRequestBuilder;
 use Rixl\Sdk\Auth\V1\Logout\LogoutRequestBuilder;
 use Rixl\Sdk\Auth\V1\MembershipApplications\MembershipApplicationsRequestBuilder;
-use Rixl\Sdk\Auth\V1\Memberships\MembershipsRequestBuilder;
+use Rixl\Sdk\Auth\V1\Notifications\NotificationsRequestBuilder;
+use Rixl\Sdk\Auth\V1\Organizations\OrganizationsRequestBuilder;
 use Rixl\Sdk\Auth\V1\Passkey\PasskeyRequestBuilder;
 use Rixl\Sdk\Auth\V1\Password\PasswordRequestBuilder;
 use Rixl\Sdk\Auth\V1\Providers\ProvidersRequestBuilder;
 use Rixl\Sdk\Auth\V1\Register\RegisterRequestBuilder;
+use Rixl\Sdk\Auth\V1\SignIns\SignInsRequestBuilder;
 use Rixl\Sdk\Auth\V1\Token\TokenRequestBuilder;
 use Rixl\Sdk\Auth\V1\Userinfo\UserinfoRequestBuilder;
 use Rixl\Sdk\Auth\V1\Users\UsersRequestBuilder;
@@ -69,10 +71,17 @@ class V1RequestBuilder extends BaseRequestBuilder
     }
     
     /**
-     * The memberships property
+     * The notifications property
     */
-    public function memberships(): MembershipsRequestBuilder {
-        return new MembershipsRequestBuilder($this->pathParameters, $this->requestAdapter);
+    public function notifications(): NotificationsRequestBuilder {
+        return new NotificationsRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
+     * The organizations property
+    */
+    public function organizations(): OrganizationsRequestBuilder {
+        return new OrganizationsRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
     
     /**
@@ -101,6 +110,13 @@ class V1RequestBuilder extends BaseRequestBuilder
     */
     public function register(): RegisterRequestBuilder {
         return new RegisterRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
+     * The signIns property
+    */
+    public function signIns(): SignInsRequestBuilder {
+        return new SignInsRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
     
     /**

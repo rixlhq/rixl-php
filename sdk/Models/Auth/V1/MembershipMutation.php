@@ -20,9 +20,9 @@ class MembershipMutation implements Parsable
     private ?string $org_id = null;
     
     /**
-     * @var string|null $org_name The org_name property
+     * @var Organization|null $organization The organization property
     */
-    private ?string $org_name = null;
+    private ?Organization $organization = null;
     
     /**
      * @var MembershipRole|null $role The role property
@@ -57,7 +57,7 @@ class MembershipMutation implements Parsable
         return  [
             'joined_at' => fn(ParseNode $n) => $o->setJoinedAt($n->getDateTimeValue()),
             'org_id' => fn(ParseNode $n) => $o->setOrgId($n->getStringValue()),
-            'org_name' => fn(ParseNode $n) => $o->setOrgName($n->getStringValue()),
+            'organization' => fn(ParseNode $n) => $o->setOrganization($n->getObjectValue([Organization::class, 'createFromDiscriminatorValue'])),
             'role' => fn(ParseNode $n) => $o->setRole($n->getEnumValue(MembershipRole::class)),
             'state' => fn(ParseNode $n) => $o->setState($n->getEnumValue(MembershipState::class)),
             'user_id' => fn(ParseNode $n) => $o->setUserId($n->getStringValue()),
@@ -73,19 +73,19 @@ class MembershipMutation implements Parsable
     }
 
     /**
+     * Gets the organization property value. The organization property
+     * @return Organization|null
+    */
+    public function getOrganization(): ?Organization {
+        return $this->organization;
+    }
+
+    /**
      * Gets the org_id property value. The org_id property
      * @return string|null
     */
     public function getOrgId(): ?string {
         return $this->org_id;
-    }
-
-    /**
-     * Gets the org_name property value. The org_name property
-     * @return string|null
-    */
-    public function getOrgName(): ?string {
-        return $this->org_name;
     }
 
     /**
@@ -118,8 +118,8 @@ class MembershipMutation implements Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeDateTimeValue('joined_at', $this->getJoinedAt());
+        $writer->writeObjectValue('organization', $this->getOrganization());
         $writer->writeStringValue('org_id', $this->getOrgId());
-        $writer->writeStringValue('org_name', $this->getOrgName());
         $writer->writeEnumValue('role', $this->getRole());
         $writer->writeEnumValue('state', $this->getState());
         $writer->writeStringValue('user_id', $this->getUserId());
@@ -134,19 +134,19 @@ class MembershipMutation implements Parsable
     }
 
     /**
+     * Sets the organization property value. The organization property
+     * @param Organization|null $value Value to set for the organization property.
+    */
+    public function setOrganization(?Organization $value): void {
+        $this->organization = $value;
+    }
+
+    /**
      * Sets the org_id property value. The org_id property
      * @param string|null $value Value to set for the org_id property.
     */
     public function setOrgId(?string $value): void {
         $this->org_id = $value;
-    }
-
-    /**
-     * Sets the org_name property value. The org_name property
-     * @param string|null $value Value to set for the org_name property.
-    */
-    public function setOrgName(?string $value): void {
-        $this->org_name = $value;
     }
 
     /**
