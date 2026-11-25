@@ -20,6 +20,11 @@ class PreferencesPatchRequestBody implements Parsable
     private ?bool $email_enabled = null;
     
     /**
+     * @var PreferencesPatchRequestBody_user|null $user The user property
+    */
+    private ?PreferencesPatchRequestBody_user $user = null;
+    
+    /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object
      * @return PreferencesPatchRequestBody
@@ -53,7 +58,16 @@ class PreferencesPatchRequestBody implements Parsable
         return  [
             'category' => fn(ParseNode $n) => $o->setCategory($n->getEnumValue(NotificationCategory::class)),
             'email_enabled' => fn(ParseNode $n) => $o->setEmailEnabled($n->getBooleanValue()),
+            'user' => fn(ParseNode $n) => $o->setUser($n->getObjectValue([PreferencesPatchRequestBody_user::class, 'createFromDiscriminatorValue'])),
         ];
+    }
+
+    /**
+     * Gets the user property value. The user property
+     * @return PreferencesPatchRequestBody_user|null
+    */
+    public function getUser(): ?PreferencesPatchRequestBody_user {
+        return $this->user;
     }
 
     /**
@@ -63,6 +77,7 @@ class PreferencesPatchRequestBody implements Parsable
     public function serialize(SerializationWriter $writer): void {
         $writer->writeEnumValue('category', $this->getCategory());
         $writer->writeBooleanValue('email_enabled', $this->getEmailEnabled());
+        $writer->writeObjectValue('user', $this->getUser());
     }
 
     /**
@@ -79,6 +94,14 @@ class PreferencesPatchRequestBody implements Parsable
     */
     public function setEmailEnabled(?bool $value): void {
         $this->email_enabled = $value;
+    }
+
+    /**
+     * Sets the user property value. The user property
+     * @param PreferencesPatchRequestBody_user|null $value Value to set for the user property.
+    */
+    public function setUser(?PreferencesPatchRequestBody_user $value): void {
+        $this->user = $value;
     }
 
 }

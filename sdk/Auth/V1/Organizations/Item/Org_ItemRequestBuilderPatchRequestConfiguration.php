@@ -8,10 +8,10 @@ use Microsoft\Kiota\Abstractions\RequestOption;
 /**
  * Configuration for the request such as headers, query parameters, and middleware options.
 */
-class WithOrg_ItemRequestBuilderPatchRequestConfiguration extends BaseRequestConfiguration 
+class Org_ItemRequestBuilderPatchRequestConfiguration extends BaseRequestConfiguration 
 {
     /**
-     * Instantiates a new WithOrg_ItemRequestBuilderPatchRequestConfiguration and sets the default values.
+     * Instantiates a new Org_ItemRequestBuilderPatchRequestConfiguration and sets the default values.
      * @param array<string, array<string>|string>|null $headers Request headers
      * @param array<RequestOption>|null $options Request options
     */

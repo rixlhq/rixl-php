@@ -12,7 +12,7 @@ use Rixl\Sdk\Models\Auth\V1\ListOrganizationAuditEventsResponse;
 use Rixl\Sdk\Models\Google\Rpc\Status;
 
 /**
- * Builds and executes requests for operations under /auth/v1/organizations/{org_id}/audit-events
+ * Builds and executes requests for operations under /auth/v1/organizations/{org_-id}/audit-events
 */
 class AuditEventsRequestBuilder extends BaseRequestBuilder 
 {
@@ -22,7 +22,7 @@ class AuditEventsRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/organizations/{org_id}/audit-events{?page_size*,page_token*}');
+        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/organizations/{org_%2Did}/audit-events{?page_size*,page_token*}');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {

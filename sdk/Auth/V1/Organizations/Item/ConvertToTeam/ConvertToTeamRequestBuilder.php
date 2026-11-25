@@ -12,7 +12,7 @@ use Rixl\Sdk\Models\Auth\V1\ConvertToTeamOrganizationResponse;
 use Rixl\Sdk\Models\Google\Rpc\Status;
 
 /**
- * Builds and executes requests for operations under /auth/v1/organizations/{org_id}/convert-to-team
+ * Builds and executes requests for operations under /auth/v1/organizations/{org_-id}/convert-to-team
 */
 class ConvertToTeamRequestBuilder extends BaseRequestBuilder 
 {
@@ -22,7 +22,7 @@ class ConvertToTeamRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/organizations/{org_id}/convert-to-team');
+        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/organizations/{org_%2Did}/convert-to-team');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {

@@ -25,6 +25,11 @@ class WithPolicy_PutRequestBody implements Parsable
     private ?array $permissions = null;
     
     /**
+     * @var WithPolicy_PutRequestBody_user|null $user The user property
+    */
+    private ?WithPolicy_PutRequestBody_user $user = null;
+    
+    /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object
      * @return WithPolicy_PutRequestBody
@@ -58,6 +63,7 @@ class WithPolicy_PutRequestBody implements Parsable
                 /** @var array<string>|null $val */
                 $this->setPermissions($val);
             },
+            'user' => fn(ParseNode $n) => $o->setUser($n->getObjectValue([WithPolicy_PutRequestBody_user::class, 'createFromDiscriminatorValue'])),
         ];
     }
 
@@ -78,6 +84,14 @@ class WithPolicy_PutRequestBody implements Parsable
     }
 
     /**
+     * Gets the user property value. The user property
+     * @return WithPolicy_PutRequestBody_user|null
+    */
+    public function getUser(): ?WithPolicy_PutRequestBody_user {
+        return $this->user;
+    }
+
+    /**
      * Serializes information the current object
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
@@ -85,6 +99,7 @@ class WithPolicy_PutRequestBody implements Parsable
         $writer->writeStringValue('description', $this->getDescription());
         $writer->writeStringValue('name', $this->getName());
         $writer->writeCollectionOfPrimitiveValues('permissions', $this->getPermissions());
+        $writer->writeObjectValue('user', $this->getUser());
     }
 
     /**
@@ -109,6 +124,14 @@ class WithPolicy_PutRequestBody implements Parsable
     */
     public function setPermissions(?array $value): void {
         $this->permissions = $value;
+    }
+
+    /**
+     * Sets the user property value. The user property
+     * @param WithPolicy_PutRequestBody_user|null $value Value to set for the user property.
+    */
+    public function setUser(?WithPolicy_PutRequestBody_user $value): void {
+        $this->user = $value;
     }
 
 }

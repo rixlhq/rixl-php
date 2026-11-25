@@ -20,9 +20,9 @@ use Rixl\Sdk\Models\Auth\V1\Organization;
 use Rixl\Sdk\Models\Google\Rpc\Status;
 
 /**
- * Builds and executes requests for operations under /auth/v1/organizations/{org_id}
+ * Builds and executes requests for operations under /auth/v1/organizations/{org_-id}
 */
-class WithOrg_ItemRequestBuilder extends BaseRequestBuilder 
+class Org_ItemRequestBuilder extends BaseRequestBuilder 
 {
     /**
      * The auditEvents property
@@ -81,12 +81,12 @@ class WithOrg_ItemRequestBuilder extends BaseRequestBuilder
     }
     
     /**
-     * Instantiates a new WithOrg_ItemRequestBuilder and sets the default values.
+     * Instantiates a new Org_ItemRequestBuilder and sets the default values.
      * @param array<string, mixed>|string $pathParametersOrRawUrl Path parameters for the request or a String representing the raw URL.
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/organizations/{org_id}');
+        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/organizations/{org_%2Did}');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {
@@ -96,11 +96,11 @@ class WithOrg_ItemRequestBuilder extends BaseRequestBuilder
 
     /**
      * GetOrganization
-     * @param WithOrg_ItemRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * @param Org_ItemRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<Organization|null>
      * @throws Exception
     */
-    public function get(?WithOrg_ItemRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
+    public function get(?Org_ItemRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
         $errorMappings = [
                 'XXX' => [Status::class, 'createFromDiscriminatorValue'],
@@ -110,12 +110,12 @@ class WithOrg_ItemRequestBuilder extends BaseRequestBuilder
 
     /**
      * UpdateOrganization
-     * @param WithOrg_PatchRequestBody $body The request body
-     * @param WithOrg_ItemRequestBuilderPatchRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * @param Org_PatchRequestBody $body The request body
+     * @param Org_ItemRequestBuilderPatchRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<Organization|null>
      * @throws Exception
     */
-    public function patch(WithOrg_PatchRequestBody $body, ?WithOrg_ItemRequestBuilderPatchRequestConfiguration $requestConfiguration = null): Promise {
+    public function patch(Org_PatchRequestBody $body, ?Org_ItemRequestBuilderPatchRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPatchRequestInformation($body, $requestConfiguration);
         $errorMappings = [
                 'XXX' => [Status::class, 'createFromDiscriminatorValue'],
@@ -125,10 +125,10 @@ class WithOrg_ItemRequestBuilder extends BaseRequestBuilder
 
     /**
      * GetOrganization
-     * @param WithOrg_ItemRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * @param Org_ItemRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
-    public function toGetRequestInformation(?WithOrg_ItemRequestBuilderGetRequestConfiguration $requestConfiguration = null): RequestInformation {
+    public function toGetRequestInformation(?Org_ItemRequestBuilderGetRequestConfiguration $requestConfiguration = null): RequestInformation {
         $requestInfo = new RequestInformation();
         $requestInfo->urlTemplate = $this->urlTemplate;
         $requestInfo->pathParameters = $this->pathParameters;
@@ -143,11 +143,11 @@ class WithOrg_ItemRequestBuilder extends BaseRequestBuilder
 
     /**
      * UpdateOrganization
-     * @param WithOrg_PatchRequestBody $body The request body
-     * @param WithOrg_ItemRequestBuilderPatchRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * @param Org_PatchRequestBody $body The request body
+     * @param Org_ItemRequestBuilderPatchRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
-    public function toPatchRequestInformation(WithOrg_PatchRequestBody $body, ?WithOrg_ItemRequestBuilderPatchRequestConfiguration $requestConfiguration = null): RequestInformation {
+    public function toPatchRequestInformation(Org_PatchRequestBody $body, ?Org_ItemRequestBuilderPatchRequestConfiguration $requestConfiguration = null): RequestInformation {
         $requestInfo = new RequestInformation();
         $requestInfo->urlTemplate = $this->urlTemplate;
         $requestInfo->pathParameters = $this->pathParameters;
@@ -164,10 +164,10 @@ class WithOrg_ItemRequestBuilder extends BaseRequestBuilder
     /**
      * Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
      * @param string $rawUrl The raw URL to use for the request builder.
-     * @return WithOrg_ItemRequestBuilder
+     * @return Org_ItemRequestBuilder
     */
-    public function withUrl(string $rawUrl): WithOrg_ItemRequestBuilder {
-        return new WithOrg_ItemRequestBuilder($rawUrl, $this->requestAdapter);
+    public function withUrl(string $rawUrl): Org_ItemRequestBuilder {
+        return new Org_ItemRequestBuilder($rawUrl, $this->requestAdapter);
     }
 
 }
