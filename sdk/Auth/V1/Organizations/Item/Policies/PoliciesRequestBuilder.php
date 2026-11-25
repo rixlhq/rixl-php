@@ -16,7 +16,7 @@ use Rixl\Sdk\Models\Auth\V1\Policy;
 use Rixl\Sdk\Models\Google\Rpc\Status;
 
 /**
- * Builds and executes requests for operations under /auth/v1/organizations/{org_-id}/policies
+ * Builds and executes requests for operations under /auth/v1/organizations/{org_id}/policies
 */
 class PoliciesRequestBuilder extends BaseRequestBuilder 
 {
@@ -51,7 +51,7 @@ class PoliciesRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/organizations/{org_%2Did}/policies{?user_id*}');
+        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/organizations/{org_id}/policies{?user_id*}');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {

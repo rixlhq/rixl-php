@@ -7,7 +7,7 @@ use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
 use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 use Rixl\Sdk\Models\Auth\V1\Organization;
 
-class Org_PatchRequestBody implements Parsable 
+class WithOrg_PatchRequestBody implements Parsable 
 {
     /**
      * @var Organization|null $organization The organization property
@@ -22,10 +22,10 @@ class Org_PatchRequestBody implements Parsable
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object
-     * @return Org_PatchRequestBody
+     * @return WithOrg_PatchRequestBody
     */
-    public static function createFromDiscriminatorValue(ParseNode $parseNode): Org_PatchRequestBody {
-        return new Org_PatchRequestBody();
+    public static function createFromDiscriminatorValue(ParseNode $parseNode): WithOrg_PatchRequestBody {
+        return new WithOrg_PatchRequestBody();
     }
 
     /**

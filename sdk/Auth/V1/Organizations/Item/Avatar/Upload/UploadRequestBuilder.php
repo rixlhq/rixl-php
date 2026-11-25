@@ -12,7 +12,7 @@ use Rixl\Sdk\Models\Auth\V1\CreateAvatarUploadResponse;
 use Rixl\Sdk\Models\Google\Rpc\Status;
 
 /**
- * Builds and executes requests for operations under /auth/v1/organizations/{org_-id}/avatar/upload
+ * Builds and executes requests for operations under /auth/v1/organizations/{org_id}/avatar/upload
 */
 class UploadRequestBuilder extends BaseRequestBuilder 
 {
@@ -22,7 +22,7 @@ class UploadRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/organizations/{org_%2Did}/avatar/upload');
+        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/organizations/{org_id}/avatar/upload');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {

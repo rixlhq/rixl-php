@@ -4,7 +4,7 @@ namespace Rixl\Sdk\Auth\V1\Notifications;
 
 use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
-use Rixl\Sdk\Auth\V1\Notifications\Item\Org_ItemRequestBuilder;
+use Rixl\Sdk\Auth\V1\Notifications\Item\WithOrg_ItemRequestBuilder;
 
 /**
  * Builds and executes requests for operations under /auth/v1/notifications
@@ -13,13 +13,13 @@ class NotificationsRequestBuilder extends BaseRequestBuilder
 {
     /**
      * Gets an item from the Rixl/Sdk.auth.v1.notifications.item collection
-     * @param string $org_Id Unique identifier of the item
-     * @return Org_ItemRequestBuilder
+     * @param string $org_id Unique identifier of the item
+     * @return WithOrg_ItemRequestBuilder
     */
-    public function byOrg_Id(string $org_Id): Org_ItemRequestBuilder {
+    public function byOrg_id(string $org_id): WithOrg_ItemRequestBuilder {
         $urlTplParams = $this->pathParameters;
-        $urlTplParams['org_%2Did'] = $org_Id;
-        return new Org_ItemRequestBuilder($urlTplParams, $this->requestAdapter);
+        $urlTplParams['org_id'] = $org_id;
+        return new WithOrg_ItemRequestBuilder($urlTplParams, $this->requestAdapter);
     }
 
     /**

@@ -13,7 +13,7 @@ use Rixl\Sdk\Models\Google\Protobuf\EscapedEmpty;
 use Rixl\Sdk\Models\Google\Rpc\Status;
 
 /**
- * Builds and executes requests for operations under /auth/v1/organizations/{org_-id}/invitations/{invitation_id}
+ * Builds and executes requests for operations under /auth/v1/organizations/{org_id}/invitations/{invitation_id}
 */
 class WithInvitation_ItemRequestBuilder extends BaseRequestBuilder 
 {
@@ -30,7 +30,7 @@ class WithInvitation_ItemRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/organizations/{org_%2Did}/invitations/{invitation_id}');
+        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/organizations/{org_id}/invitations/{invitation_id}');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {

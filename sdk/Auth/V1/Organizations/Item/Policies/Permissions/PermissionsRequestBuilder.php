@@ -12,7 +12,7 @@ use Rixl\Sdk\Models\Auth\V1\PermissionRegistryResponse;
 use Rixl\Sdk\Models\Google\Rpc\Status;
 
 /**
- * Builds and executes requests for operations under /auth/v1/organizations/{org_-id}/policies/permissions
+ * Builds and executes requests for operations under /auth/v1/organizations/{org_id}/policies/permissions
 */
 class PermissionsRequestBuilder extends BaseRequestBuilder 
 {
@@ -22,7 +22,7 @@ class PermissionsRequestBuilder extends BaseRequestBuilder
      * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
     */
     public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
-        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/organizations/{org_%2Did}/policies/permissions{?limit*,offset*,types*,user%2Euser_id*}');
+        parent::__construct($requestAdapter, [], '{+baseurl}/auth/v1/organizations/{org_id}/policies/permissions{?limit*,offset*,types*}');
         if (is_array($pathParametersOrRawUrl)) {
             $this->pathParameters = $pathParametersOrRawUrl;
         } else {

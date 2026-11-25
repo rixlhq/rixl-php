@@ -20,11 +20,6 @@ class AttachmentsPostRequestBody implements Parsable
     private ?PolicyIdentityType $identity_type = null;
     
     /**
-     * @var AttachmentsPostRequestBody_user|null $user The user property
-    */
-    private ?AttachmentsPostRequestBody_user $user = null;
-    
-    /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object
      * @return AttachmentsPostRequestBody
@@ -42,7 +37,6 @@ class AttachmentsPostRequestBody implements Parsable
         return  [
             'identity_id' => fn(ParseNode $n) => $o->setIdentityId($n->getStringValue()),
             'identity_type' => fn(ParseNode $n) => $o->setIdentityType($n->getEnumValue(PolicyIdentityType::class)),
-            'user' => fn(ParseNode $n) => $o->setUser($n->getObjectValue([AttachmentsPostRequestBody_user::class, 'createFromDiscriminatorValue'])),
         ];
     }
 
@@ -63,21 +57,12 @@ class AttachmentsPostRequestBody implements Parsable
     }
 
     /**
-     * Gets the user property value. The user property
-     * @return AttachmentsPostRequestBody_user|null
-    */
-    public function getUser(): ?AttachmentsPostRequestBody_user {
-        return $this->user;
-    }
-
-    /**
      * Serializes information the current object
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeStringValue('identity_id', $this->getIdentityId());
         $writer->writeEnumValue('identity_type', $this->getIdentityType());
-        $writer->writeObjectValue('user', $this->getUser());
     }
 
     /**
@@ -94,14 +79,6 @@ class AttachmentsPostRequestBody implements Parsable
     */
     public function setIdentityType(?PolicyIdentityType $value): void {
         $this->identity_type = $value;
-    }
-
-    /**
-     * Sets the user property value. The user property
-     * @param AttachmentsPostRequestBody_user|null $value Value to set for the user property.
-    */
-    public function setUser(?AttachmentsPostRequestBody_user $value): void {
-        $this->user = $value;
     }
 
 }
