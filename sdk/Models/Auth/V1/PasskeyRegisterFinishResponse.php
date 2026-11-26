@@ -9,7 +9,7 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class PasskeyRegisterFinishResponse implements Parsable 
 {
     /**
-     * @var string|null $name The name property
+     * @var string|null $name At most 64 UTF-8 bytes.
     */
     private ?string $name = null;
     
@@ -40,7 +40,7 @@ class PasskeyRegisterFinishResponse implements Parsable
     }
 
     /**
-     * Gets the name property value. The name property
+     * Gets the name property value. At most 64 UTF-8 bytes.
      * @return string|null
     */
     public function getName(): ?string {
@@ -65,7 +65,7 @@ class PasskeyRegisterFinishResponse implements Parsable
     }
 
     /**
-     * Sets the name property value. The name property
+     * Sets the name property value. At most 64 UTF-8 bytes.
      * @param string|null $value Value to set for the name property.
     */
     public function setName(?string $value): void {

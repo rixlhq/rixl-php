@@ -19,7 +19,7 @@ class RegisterRequest implements Parsable
     private ?string $email = null;
     
     /**
-     * @var string|null $password The password property
+     * @var string|null $password Must contain at least 8 UTF-8 bytes (not 8 characters).
     */
     private ?string $password = null;
     
@@ -68,7 +68,7 @@ class RegisterRequest implements Parsable
     }
 
     /**
-     * Gets the password property value. The password property
+     * Gets the password property value. Must contain at least 8 UTF-8 bytes (not 8 characters).
      * @return string|null
     */
     public function getPassword(): ?string {
@@ -111,7 +111,7 @@ class RegisterRequest implements Parsable
     }
 
     /**
-     * Sets the password property value. The password property
+     * Sets the password property value. Must contain at least 8 UTF-8 bytes (not 8 characters).
      * @param string|null $value Value to set for the password property.
     */
     public function setPassword(?string $value): void {

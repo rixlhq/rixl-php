@@ -9,7 +9,7 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class UpdateUserAvatarRequest implements Parsable 
 {
     /**
-     * @var string|null $image_id The image_id property
+     * @var string|null $image_id Trimmed before validation. Empty clears the avatar; otherwise must be a valid base62 image ID.
     */
     private ?string $image_id = null;
     
@@ -40,7 +40,7 @@ class UpdateUserAvatarRequest implements Parsable
     }
 
     /**
-     * Gets the image_id property value. The image_id property
+     * Gets the image_id property value. Trimmed before validation. Empty clears the avatar; otherwise must be a valid base62 image ID.
      * @return string|null
     */
     public function getImageId(): ?string {
@@ -65,7 +65,7 @@ class UpdateUserAvatarRequest implements Parsable
     }
 
     /**
-     * Sets the image_id property value. The image_id property
+     * Sets the image_id property value. Trimmed before validation. Empty clears the avatar; otherwise must be a valid base62 image ID.
      * @param string|null $value Value to set for the image_id property.
     */
     public function setImageId(?string $value): void {

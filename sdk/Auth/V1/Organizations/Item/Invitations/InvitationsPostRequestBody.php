@@ -10,7 +10,7 @@ use Rixl\Sdk\Models\Auth\V1\MembershipRole;
 class InvitationsPostRequestBody implements Parsable 
 {
     /**
-     * @var string|null $email The email property
+     * @var string|null $email Trimmed and lowercased before validation as a bare email address. The normalized address must be nonempty and at most 254 UTF-8 bytes, with a local part of at most 64 bytes and a domain containing a dot that is neither leading nor trailing.
     */
     private ?string $email = null;
     
@@ -34,7 +34,7 @@ class InvitationsPostRequestBody implements Parsable
     }
 
     /**
-     * Gets the email property value. The email property
+     * Gets the email property value. Trimmed and lowercased before validation as a bare email address. The normalized address must be nonempty and at most 254 UTF-8 bytes, with a local part of at most 64 bytes and a domain containing a dot that is neither leading nor trailing.
      * @return string|null
     */
     public function getEmail(): ?string {
@@ -81,7 +81,7 @@ class InvitationsPostRequestBody implements Parsable
     }
 
     /**
-     * Sets the email property value. The email property
+     * Sets the email property value. Trimmed and lowercased before validation as a bare email address. The normalized address must be nonempty and at most 254 UTF-8 bytes, with a local part of at most 64 bytes and a domain containing a dot that is neither leading nor trailing.
      * @param string|null $value Value to set for the email property.
     */
     public function setEmail(?string $value): void {

@@ -14,7 +14,7 @@ class UpdateUsernameRequest implements Parsable
     private ?string $user_id = null;
     
     /**
-     * @var string|null $username The username property
+     * @var string|null $username Trimmed and lowercased before validation. The normalized value may contain at most 24 Unicode characters; an empty value is allowed.
     */
     private ?string $username = null;
     
@@ -48,7 +48,7 @@ class UpdateUsernameRequest implements Parsable
     }
 
     /**
-     * Gets the username property value. The username property
+     * Gets the username property value. Trimmed and lowercased before validation. The normalized value may contain at most 24 Unicode characters; an empty value is allowed.
      * @return string|null
     */
     public function getUsername(): ?string {
@@ -73,7 +73,7 @@ class UpdateUsernameRequest implements Parsable
     }
 
     /**
-     * Sets the username property value. The username property
+     * Sets the username property value. Trimmed and lowercased before validation. The normalized value may contain at most 24 Unicode characters; an empty value is allowed.
      * @param string|null $value Value to set for the username property.
     */
     public function setUsername(?string $value): void {

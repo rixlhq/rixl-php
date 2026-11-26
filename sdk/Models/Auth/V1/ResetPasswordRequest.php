@@ -9,7 +9,7 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class ResetPasswordRequest implements Parsable 
 {
     /**
-     * @var string|null $new_password The new_password property
+     * @var string|null $new_password Must contain at least 8 UTF-8 bytes (not 8 characters).
     */
     private ?string $new_password = null;
     
@@ -40,7 +40,7 @@ class ResetPasswordRequest implements Parsable
     }
 
     /**
-     * Gets the new_password property value. The new_password property
+     * Gets the new_password property value. Must contain at least 8 UTF-8 bytes (not 8 characters).
      * @return string|null
     */
     public function getNewPassword(): ?string {
@@ -65,7 +65,7 @@ class ResetPasswordRequest implements Parsable
     }
 
     /**
-     * Sets the new_password property value. The new_password property
+     * Sets the new_password property value. Must contain at least 8 UTF-8 bytes (not 8 characters).
      * @param string|null $value Value to set for the new_password property.
     */
     public function setNewPassword(?string $value): void {
