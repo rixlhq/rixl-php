@@ -70,11 +70,6 @@ class UserInfo implements Parsable
     private ?array $policies = null;
     
     /**
-     * @var string|null $username The username property
-    */
-    private ?string $username = null;
-    
-    /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object
      * @return UserInfo
@@ -133,7 +128,6 @@ class UserInfo implements Parsable
                 $this->setPermissions($val);
             },
             'policies' => fn(ParseNode $n) => $o->setPolicies($n->getCollectionOfObjectValues([Policy::class, 'createFromDiscriminatorValue'])),
-            'username' => fn(ParseNode $n) => $o->setUsername($n->getStringValue()),
         ];
     }
 
@@ -210,14 +204,6 @@ class UserInfo implements Parsable
     }
 
     /**
-     * Gets the username property value. The username property
-     * @return string|null
-    */
-    public function getUsername(): ?string {
-        return $this->username;
-    }
-
-    /**
      * Serializes information the current object
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
@@ -234,7 +220,6 @@ class UserInfo implements Parsable
         $writer->writeStringValue('last_name', $this->getLastName());
         $writer->writeCollectionOfPrimitiveValues('permissions', $this->getPermissions());
         $writer->writeCollectionOfObjectValues('policies', $this->getPolicies());
-        $writer->writeStringValue('username', $this->getUsername());
     }
 
     /**
@@ -331,14 +316,6 @@ class UserInfo implements Parsable
     */
     public function setPolicies(?array $value): void {
         $this->policies = $value;
-    }
-
-    /**
-     * Sets the username property value. The username property
-     * @param string|null $value Value to set for the username property.
-    */
-    public function setUsername(?string $value): void {
-        $this->username = $value;
     }
 
 }

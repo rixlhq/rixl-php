@@ -17,7 +17,6 @@ use Rixl\Sdk\Auth\V1\Users\Current\Memberships\MembershipsRequestBuilder;
 use Rixl\Sdk\Auth\V1\Users\Current\Name\NameRequestBuilder;
 use Rixl\Sdk\Auth\V1\Users\Current\Passkeys\PasskeysRequestBuilder;
 use Rixl\Sdk\Auth\V1\Users\Current\Totp\TotpRequestBuilder;
-use Rixl\Sdk\Auth\V1\Users\Current\Username\UsernameRequestBuilder;
 use Rixl\Sdk\Models\Auth\V1\GetUserResponse;
 use Rixl\Sdk\Models\Error;
 
@@ -87,13 +86,6 @@ class CurrentRequestBuilder extends BaseRequestBuilder
     */
     public function totp(): TotpRequestBuilder {
         return new TotpRequestBuilder($this->pathParameters, $this->requestAdapter);
-    }
-    
-    /**
-     * The username property
-    */
-    public function username(): UsernameRequestBuilder {
-        return new UsernameRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
     
     /**

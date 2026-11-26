@@ -9,14 +9,14 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class UserDeletionPlanEntry implements Parsable 
 {
     /**
+     * @var string|null $affected_name The affected member's full name.
+    */
+    private ?string $affected_name = null;
+    
+    /**
      * @var string|null $affected_user_id Set when another member will lose access to the personal org.
     */
     private ?string $affected_user_id = null;
-    
-    /**
-     * @var string|null $affected_username The affected_username property
-    */
-    private ?string $affected_username = null;
     
     /**
      * @var Kind|null $kind The kind property
@@ -43,19 +43,19 @@ class UserDeletionPlanEntry implements Parsable
     }
 
     /**
+     * Gets the affected_name property value. The affected member's full name.
+     * @return string|null
+    */
+    public function getAffectedName(): ?string {
+        return $this->affected_name;
+    }
+
+    /**
      * Gets the affected_user_id property value. Set when another member will lose access to the personal org.
      * @return string|null
     */
     public function getAffectedUserId(): ?string {
         return $this->affected_user_id;
-    }
-
-    /**
-     * Gets the affected_username property value. The affected_username property
-     * @return string|null
-    */
-    public function getAffectedUsername(): ?string {
-        return $this->affected_username;
     }
 
     /**
@@ -65,8 +65,8 @@ class UserDeletionPlanEntry implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
+            'affected_name' => fn(ParseNode $n) => $o->setAffectedName($n->getStringValue()),
             'affected_user_id' => fn(ParseNode $n) => $o->setAffectedUserId($n->getStringValue()),
-            'affected_username' => fn(ParseNode $n) => $o->setAffectedUsername($n->getStringValue()),
             'kind' => fn(ParseNode $n) => $o->setKind($n->getEnumValue(Kind::class)),
             'org_id' => fn(ParseNode $n) => $o->setOrgId($n->getStringValue()),
             'org_name' => fn(ParseNode $n) => $o->setOrgName($n->getStringValue()),
@@ -102,11 +102,19 @@ class UserDeletionPlanEntry implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('affected_username', $this->getAffectedUsername());
+        $writer->writeStringValue('affected_name', $this->getAffectedName());
         $writer->writeStringValue('affected_user_id', $this->getAffectedUserId());
         $writer->writeEnumValue('kind', $this->getKind());
         $writer->writeStringValue('org_id', $this->getOrgId());
         $writer->writeStringValue('org_name', $this->getOrgName());
+    }
+
+    /**
+     * Sets the affected_name property value. The affected member's full name.
+     * @param string|null $value Value to set for the affected_name property.
+    */
+    public function setAffectedName(?string $value): void {
+        $this->affected_name = $value;
     }
 
     /**
@@ -115,14 +123,6 @@ class UserDeletionPlanEntry implements Parsable
     */
     public function setAffectedUserId(?string $value): void {
         $this->affected_user_id = $value;
-    }
-
-    /**
-     * Sets the affected_username property value. The affected_username property
-     * @param string|null $value Value to set for the affected_username property.
-    */
-    public function setAffectedUsername(?string $value): void {
-        $this->affected_username = $value;
     }
 
     /**
