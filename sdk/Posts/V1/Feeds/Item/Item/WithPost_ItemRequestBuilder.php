@@ -8,7 +8,7 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Google\Rpc\Status;
+use Rixl\Sdk\Models\Error;
 use Rixl\Sdk\Models\Posts\V1\GetPostResponse;
 
 /**
@@ -39,7 +39,7 @@ class WithPost_ItemRequestBuilder extends BaseRequestBuilder
     public function get(?WithPost_ItemRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
         $errorMappings = [
-                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+                'XXX' => [Error::class, 'createFromDiscriminatorValue'],
         ];
         return $this->requestAdapter->sendAsync($requestInfo, [GetPostResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }

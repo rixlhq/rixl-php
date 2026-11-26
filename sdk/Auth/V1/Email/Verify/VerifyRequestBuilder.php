@@ -11,7 +11,7 @@ use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Auth\V1\Email\Verify\Resend\ResendRequestBuilder;
 use Rixl\Sdk\Models\Auth\V1\VerifyEmailRequest;
 use Rixl\Sdk\Models\Auth\V1\VerifyEmailResponse;
-use Rixl\Sdk\Models\Google\Rpc\Status;
+use Rixl\Sdk\Models\Error;
 
 /**
  * Builds and executes requests for operations under /auth/v1/email/verify
@@ -49,7 +49,7 @@ class VerifyRequestBuilder extends BaseRequestBuilder
     public function post(VerifyEmailRequest $body, ?VerifyRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
         $errorMappings = [
-                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+                'XXX' => [Error::class, 'createFromDiscriminatorValue'],
         ];
         return $this->requestAdapter->sendAsync($requestInfo, [VerifyEmailResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }

@@ -8,7 +8,7 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Google\Rpc\Status;
+use Rixl\Sdk\Models\Error;
 use Rixl\Sdk\Models\Images\V1\GetImageResponse;
 
 /**
@@ -39,7 +39,7 @@ class WithImage_ItemRequestBuilder extends BaseRequestBuilder
     public function get(?WithImage_ItemRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
         $errorMappings = [
-                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+                'XXX' => [Error::class, 'createFromDiscriminatorValue'],
         ];
         return $this->requestAdapter->sendAsync($requestInfo, [GetImageResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }

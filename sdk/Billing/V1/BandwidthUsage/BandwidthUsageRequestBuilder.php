@@ -11,7 +11,7 @@ use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Billing\V1\BandwidthUsage\History\HistoryRequestBuilder;
 use Rixl\Sdk\Billing\V1\BandwidthUsage\Refresh\RefreshRequestBuilder;
 use Rixl\Sdk\Models\Billing\V1\BandwidthUsage;
-use Rixl\Sdk\Models\Google\Rpc\Status;
+use Rixl\Sdk\Models\Error;
 
 /**
  * Builds and executes requests for operations under /billing/v1/bandwidth-usage
@@ -55,7 +55,7 @@ class BandwidthUsageRequestBuilder extends BaseRequestBuilder
     public function get(?BandwidthUsageRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
         $errorMappings = [
-                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+                'XXX' => [Error::class, 'createFromDiscriminatorValue'],
         ];
         return $this->requestAdapter->sendAsync($requestInfo, [BandwidthUsage::class, 'createFromDiscriminatorValue'], $errorMappings);
     }

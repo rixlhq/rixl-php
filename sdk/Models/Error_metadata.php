@@ -1,6 +1,6 @@
 <?php
 
-namespace Rixl\Sdk\Models\Google\Protobuf;
+namespace Rixl\Sdk\Models;
 
 use Microsoft\Kiota\Abstractions\Serialization\AdditionalDataHolder;
 use Microsoft\Kiota\Abstractions\Serialization\Parsable;
@@ -8,9 +8,9 @@ use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
 use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 
 /**
- * Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+ * Reason-specific details, such as `invitation_id` on `INVITATION_PENDING` or `max_age_seconds` on `STEP_UP_REQUIRED`. Absent when there is none.
 */
-class Any implements AdditionalDataHolder, Parsable 
+class Error_metadata implements AdditionalDataHolder, Parsable 
 {
     /**
      * @var array<string, mixed>|null $additionalData Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
@@ -18,12 +18,7 @@ class Any implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var string|null $type A URL/resource name that uniquely identifies the type of the serialized message.
-    */
-    private ?string $type = null;
-    
-    /**
-     * Instantiates a new Any and sets the default values.
+     * Instantiates a new Error_metadata and sets the default values.
     */
     public function __construct() {
         $this->setAdditionalData([]);
@@ -32,10 +27,10 @@ class Any implements AdditionalDataHolder, Parsable
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object
-     * @return Any
+     * @return Error_metadata
     */
-    public static function createFromDiscriminatorValue(ParseNode $parseNode): Any {
-        return new Any();
+    public static function createFromDiscriminatorValue(ParseNode $parseNode): Error_metadata {
+        return new Error_metadata();
     }
 
     /**
@@ -53,16 +48,7 @@ class Any implements AdditionalDataHolder, Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            '@type' => fn(ParseNode $n) => $o->setType($n->getStringValue()),
         ];
-    }
-
-    /**
-     * Gets the @type property value. A URL/resource name that uniquely identifies the type of the serialized message.
-     * @return string|null
-    */
-    public function getType(): ?string {
-        return $this->type;
     }
 
     /**
@@ -70,7 +56,6 @@ class Any implements AdditionalDataHolder, Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('@type', $this->getType());
         $writer->writeAdditionalData($this->getAdditionalData());
     }
 
@@ -80,14 +65,6 @@ class Any implements AdditionalDataHolder, Parsable
     */
     public function setAdditionalData(?array $value): void {
         $this->additionalData = $value;
-    }
-
-    /**
-     * Sets the @type property value. A URL/resource name that uniquely identifies the type of the serialized message.
-     * @param string|null $value Value to set for the @type property.
-    */
-    public function setType(?string $value): void {
-        $this->type = $value;
     }
 
 }

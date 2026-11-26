@@ -11,7 +11,7 @@ use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Models\Clientauth\V1\CreateClientCredentialRequest;
 use Rixl\Sdk\Models\Clientauth\V1\CreateClientCredentialResponse;
 use Rixl\Sdk\Models\Clientauth\V1\ListClientCredentialsResponse;
-use Rixl\Sdk\Models\Google\Rpc\Status;
+use Rixl\Sdk\Models\Error;
 use Rixl\Sdk\Platform\Clientauth\V1\Credentials\Item\WithCredential_ItemRequestBuilder;
 
 /**
@@ -53,7 +53,7 @@ class CredentialsRequestBuilder extends BaseRequestBuilder
     public function get(?CredentialsRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
         $errorMappings = [
-                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+                'XXX' => [Error::class, 'createFromDiscriminatorValue'],
         ];
         return $this->requestAdapter->sendAsync($requestInfo, [ListClientCredentialsResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
@@ -68,7 +68,7 @@ class CredentialsRequestBuilder extends BaseRequestBuilder
     public function post(CreateClientCredentialRequest $body, ?CredentialsRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
         $errorMappings = [
-                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+                'XXX' => [Error::class, 'createFromDiscriminatorValue'],
         ];
         return $this->requestAdapter->sendAsync($requestInfo, [CreateClientCredentialResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }

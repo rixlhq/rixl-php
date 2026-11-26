@@ -11,8 +11,8 @@ use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Media\V1\Projects\Item\Videos\Item\AudioTracks\Item\WithTrack_ItemRequestBuilder;
 use Rixl\Sdk\Media\V1\Projects\Item\Videos\Item\AudioTracks\Language\LanguageRequestBuilder;
 use Rixl\Sdk\Media\V1\Projects\Item\Videos\Item\AudioTracks\Upload\UploadRequestBuilder;
+use Rixl\Sdk\Models\Error;
 use Rixl\Sdk\Models\Google\Protobuf\EscapedEmpty;
-use Rixl\Sdk\Models\Google\Rpc\Status;
 
 /**
  * Builds and executes requests for operations under /media/v1/projects/{project_id}/videos/{video_id}/audio-tracks
@@ -67,7 +67,7 @@ class AudioTracksRequestBuilder extends BaseRequestBuilder
     public function delete(?AudioTracksRequestBuilderDeleteRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toDeleteRequestInformation($requestConfiguration);
         $errorMappings = [
-                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+                'XXX' => [Error::class, 'createFromDiscriminatorValue'],
         ];
         return $this->requestAdapter->sendAsync($requestInfo, [EscapedEmpty::class, 'createFromDiscriminatorValue'], $errorMappings);
     }

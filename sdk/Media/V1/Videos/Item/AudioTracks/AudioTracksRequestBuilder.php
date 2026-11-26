@@ -8,7 +8,7 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Google\Rpc\Status;
+use Rixl\Sdk\Models\Error;
 use Rixl\Sdk\Models\Videos\V1\ListAudioTracksResponse;
 
 /**
@@ -39,7 +39,7 @@ class AudioTracksRequestBuilder extends BaseRequestBuilder
     public function get(?AudioTracksRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
         $errorMappings = [
-                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+                'XXX' => [Error::class, 'createFromDiscriminatorValue'],
         ];
         return $this->requestAdapter->sendAsync($requestInfo, [ListAudioTracksResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }

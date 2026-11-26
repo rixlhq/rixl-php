@@ -14,7 +14,7 @@ use Rixl\Sdk\Billing\V1\PaymentMethods\Item\WithPayment_method_ItemRequestBuilde
 use Rixl\Sdk\Models\Billing\V1\ListPaymentMethodsResponse;
 use Rixl\Sdk\Models\Billing\V1\PaymentMethodDetails;
 use Rixl\Sdk\Models\Billing\V1\UpsertPaymentMethodRequest;
-use Rixl\Sdk\Models\Google\Rpc\Status;
+use Rixl\Sdk\Models\Error;
 
 /**
  * Builds and executes requests for operations under /billing/v1/payment-methods
@@ -69,7 +69,7 @@ class PaymentMethodsRequestBuilder extends BaseRequestBuilder
     public function get(?PaymentMethodsRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
         $errorMappings = [
-                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+                'XXX' => [Error::class, 'createFromDiscriminatorValue'],
         ];
         return $this->requestAdapter->sendAsync($requestInfo, [ListPaymentMethodsResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
@@ -84,7 +84,7 @@ class PaymentMethodsRequestBuilder extends BaseRequestBuilder
     public function put(UpsertPaymentMethodRequest $body, ?PaymentMethodsRequestBuilderPutRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPutRequestInformation($body, $requestConfiguration);
         $errorMappings = [
-                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+                'XXX' => [Error::class, 'createFromDiscriminatorValue'],
         ];
         return $this->requestAdapter->sendAsync($requestInfo, [PaymentMethodDetails::class, 'createFromDiscriminatorValue'], $errorMappings);
     }

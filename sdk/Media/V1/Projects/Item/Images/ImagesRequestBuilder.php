@@ -10,7 +10,7 @@ use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Media\V1\Projects\Item\Images\Item\WithImage_ItemRequestBuilder;
 use Rixl\Sdk\Media\V1\Projects\Item\Images\Upload\UploadRequestBuilder;
-use Rixl\Sdk\Models\Google\Rpc\Status;
+use Rixl\Sdk\Models\Error;
 use Rixl\Sdk\Models\Images\V1\ListImagesResponse;
 
 /**
@@ -59,7 +59,7 @@ class ImagesRequestBuilder extends BaseRequestBuilder
     public function get(?ImagesRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
         $errorMappings = [
-                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+                'XXX' => [Error::class, 'createFromDiscriminatorValue'],
         ];
         return $this->requestAdapter->sendAsync($requestInfo, [ListImagesResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }

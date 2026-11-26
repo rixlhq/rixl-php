@@ -11,7 +11,7 @@ use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Auth\V1\Users\Current\Passkeys\Item\PasskeysItemRequestBuilder;
 use Rixl\Sdk\Auth\V1\Users\Current\Passkeys\Register\RegisterRequestBuilder;
 use Rixl\Sdk\Models\Auth\V1\ListPasskeysResponse;
-use Rixl\Sdk\Models\Google\Rpc\Status;
+use Rixl\Sdk\Models\Error;
 
 /**
  * Builds and executes requests for operations under /auth/v1/users/current/passkeys
@@ -59,7 +59,7 @@ class PasskeysRequestBuilder extends BaseRequestBuilder
     public function get(?PasskeysRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
         $errorMappings = [
-                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+                'XXX' => [Error::class, 'createFromDiscriminatorValue'],
         ];
         return $this->requestAdapter->sendAsync($requestInfo, [ListPasskeysResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }

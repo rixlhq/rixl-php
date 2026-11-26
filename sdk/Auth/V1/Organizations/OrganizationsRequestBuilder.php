@@ -12,7 +12,7 @@ use Rixl\Sdk\Auth\V1\Organizations\Item\WithOrg_ItemRequestBuilder;
 use Rixl\Sdk\Models\Auth\V1\CreateOrganizationRequest;
 use Rixl\Sdk\Models\Auth\V1\ListOrganizationsResponse;
 use Rixl\Sdk\Models\Auth\V1\Organization;
-use Rixl\Sdk\Models\Google\Rpc\Status;
+use Rixl\Sdk\Models\Error;
 
 /**
  * Builds and executes requests for operations under /auth/v1/organizations
@@ -53,7 +53,7 @@ class OrganizationsRequestBuilder extends BaseRequestBuilder
     public function get(?OrganizationsRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
         $errorMappings = [
-                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+                'XXX' => [Error::class, 'createFromDiscriminatorValue'],
         ];
         return $this->requestAdapter->sendAsync($requestInfo, [ListOrganizationsResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
@@ -68,7 +68,7 @@ class OrganizationsRequestBuilder extends BaseRequestBuilder
     public function post(CreateOrganizationRequest $body, ?OrganizationsRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
         $errorMappings = [
-                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+                'XXX' => [Error::class, 'createFromDiscriminatorValue'],
         ];
         return $this->requestAdapter->sendAsync($requestInfo, [Organization::class, 'createFromDiscriminatorValue'], $errorMappings);
     }

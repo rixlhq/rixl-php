@@ -10,7 +10,7 @@ use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Models\Analytics\V1\Widget;
 use Rixl\Sdk\Models\Analytics\V1\WidgetInput;
-use Rixl\Sdk\Models\Google\Rpc\Status;
+use Rixl\Sdk\Models\Error;
 
 /**
  * Builds and executes requests for operations under /analytics/v1/dashboards/{dashboard_-id}/widgets
@@ -41,7 +41,7 @@ class WidgetsRequestBuilder extends BaseRequestBuilder
     public function post(WidgetInput $body, ?WidgetsRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
         $errorMappings = [
-                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+                'XXX' => [Error::class, 'createFromDiscriminatorValue'],
         ];
         return $this->requestAdapter->sendAsync($requestInfo, [Widget::class, 'createFromDiscriminatorValue'], $errorMappings);
     }

@@ -8,7 +8,7 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
-use Rixl\Sdk\Models\Google\Rpc\Status;
+use Rixl\Sdk\Models\Error;
 use Rixl\Sdk\Models\Project\V1\Project;
 use Rixl\Sdk\Organizations\Item\Projects\V1\Item\CustomDomain\CustomDomainRequestBuilder;
 use Rixl\Sdk\Organizations\Item\Projects\V1\Item\Move\MoveRequestBuilder;
@@ -71,7 +71,7 @@ class WithProject_ItemRequestBuilder extends BaseRequestBuilder
     public function delete(?WithProject_ItemRequestBuilderDeleteRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toDeleteRequestInformation($requestConfiguration);
         $errorMappings = [
-                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+                'XXX' => [Error::class, 'createFromDiscriminatorValue'],
         ];
         return $this->requestAdapter->sendAsync($requestInfo, [Project::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
@@ -85,7 +85,7 @@ class WithProject_ItemRequestBuilder extends BaseRequestBuilder
     public function get(?WithProject_ItemRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
         $errorMappings = [
-                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+                'XXX' => [Error::class, 'createFromDiscriminatorValue'],
         ];
         return $this->requestAdapter->sendAsync($requestInfo, [Project::class, 'createFromDiscriminatorValue'], $errorMappings);
     }

@@ -13,7 +13,7 @@ use Rixl\Sdk\Auth\V1\Organizations\Item\Policies\Item\WithPolicy_ItemRequestBuil
 use Rixl\Sdk\Auth\V1\Organizations\Item\Policies\Permissions\PermissionsRequestBuilder;
 use Rixl\Sdk\Models\Auth\V1\ListPoliciesResponse;
 use Rixl\Sdk\Models\Auth\V1\Policy;
-use Rixl\Sdk\Models\Google\Rpc\Status;
+use Rixl\Sdk\Models\Error;
 
 /**
  * Builds and executes requests for operations under /auth/v1/organizations/{org_id}/policies
@@ -68,7 +68,7 @@ class PoliciesRequestBuilder extends BaseRequestBuilder
     public function get(?PoliciesRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
         $errorMappings = [
-                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+                'XXX' => [Error::class, 'createFromDiscriminatorValue'],
         ];
         return $this->requestAdapter->sendAsync($requestInfo, [ListPoliciesResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
@@ -83,7 +83,7 @@ class PoliciesRequestBuilder extends BaseRequestBuilder
     public function post(PoliciesPostRequestBody $body, ?PoliciesRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
         $errorMappings = [
-                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+                'XXX' => [Error::class, 'createFromDiscriminatorValue'],
         ];
         return $this->requestAdapter->sendAsync($requestInfo, [Policy::class, 'createFromDiscriminatorValue'], $errorMappings);
     }

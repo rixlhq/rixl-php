@@ -10,8 +10,8 @@ use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Auth\V1\Organizations\Item\Policies\Item\Attachments\AttachmentsRequestBuilder;
 use Rixl\Sdk\Models\Auth\V1\Policy;
+use Rixl\Sdk\Models\Error;
 use Rixl\Sdk\Models\Google\Protobuf\EscapedEmpty;
-use Rixl\Sdk\Models\Google\Rpc\Status;
 
 /**
  * Builds and executes requests for operations under /auth/v1/organizations/{org_id}/policies/{policy_id}
@@ -48,7 +48,7 @@ class WithPolicy_ItemRequestBuilder extends BaseRequestBuilder
     public function delete(?WithPolicy_ItemRequestBuilderDeleteRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toDeleteRequestInformation($requestConfiguration);
         $errorMappings = [
-                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+                'XXX' => [Error::class, 'createFromDiscriminatorValue'],
         ];
         return $this->requestAdapter->sendAsync($requestInfo, [EscapedEmpty::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
@@ -62,7 +62,7 @@ class WithPolicy_ItemRequestBuilder extends BaseRequestBuilder
     public function get(?WithPolicy_ItemRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
         $errorMappings = [
-                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+                'XXX' => [Error::class, 'createFromDiscriminatorValue'],
         ];
         return $this->requestAdapter->sendAsync($requestInfo, [Policy::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
@@ -77,7 +77,7 @@ class WithPolicy_ItemRequestBuilder extends BaseRequestBuilder
     public function put(WithPolicy_PutRequestBody $body, ?WithPolicy_ItemRequestBuilderPutRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPutRequestInformation($body, $requestConfiguration);
         $errorMappings = [
-                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+                'XXX' => [Error::class, 'createFromDiscriminatorValue'],
         ];
         return $this->requestAdapter->sendAsync($requestInfo, [Policy::class, 'createFromDiscriminatorValue'], $errorMappings);
     }

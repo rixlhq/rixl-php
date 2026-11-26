@@ -17,7 +17,7 @@ use Rixl\Sdk\Auth\V1\Organizations\Item\Members\MembersRequestBuilder;
 use Rixl\Sdk\Auth\V1\Organizations\Item\Policies\PoliciesRequestBuilder;
 use Rixl\Sdk\Auth\V1\Organizations\Item\TransferOwnership\TransferOwnershipRequestBuilder;
 use Rixl\Sdk\Models\Auth\V1\Organization;
-use Rixl\Sdk\Models\Google\Rpc\Status;
+use Rixl\Sdk\Models\Error;
 
 /**
  * Builds and executes requests for operations under /auth/v1/organizations/{org_id}
@@ -103,7 +103,7 @@ class WithOrg_ItemRequestBuilder extends BaseRequestBuilder
     public function get(?WithOrg_ItemRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
         $errorMappings = [
-                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+                'XXX' => [Error::class, 'createFromDiscriminatorValue'],
         ];
         return $this->requestAdapter->sendAsync($requestInfo, [Organization::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
@@ -118,7 +118,7 @@ class WithOrg_ItemRequestBuilder extends BaseRequestBuilder
     public function patch(WithOrg_PatchRequestBody $body, ?WithOrg_ItemRequestBuilderPatchRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPatchRequestInformation($body, $requestConfiguration);
         $errorMappings = [
-                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+                'XXX' => [Error::class, 'createFromDiscriminatorValue'],
         ];
         return $this->requestAdapter->sendAsync($requestInfo, [Organization::class, 'createFromDiscriminatorValue'], $errorMappings);
     }

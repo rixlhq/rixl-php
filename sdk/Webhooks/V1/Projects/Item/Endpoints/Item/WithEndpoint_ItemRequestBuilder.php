@@ -8,8 +8,8 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
+use Rixl\Sdk\Models\Error;
 use Rixl\Sdk\Models\Google\Protobuf\EscapedEmpty;
-use Rixl\Sdk\Models\Google\Rpc\Status;
 use Rixl\Sdk\Models\Webhooks\V1\GetEndpointResponse;
 use Rixl\Sdk\Models\Webhooks\V1\UpdateEndpointResponse;
 use Rixl\Sdk\Webhooks\V1\Projects\Item\Endpoints\Item\Attempts\AttemptsRequestBuilder;
@@ -73,7 +73,7 @@ class WithEndpoint_ItemRequestBuilder extends BaseRequestBuilder
     public function delete(?WithEndpoint_ItemRequestBuilderDeleteRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toDeleteRequestInformation($requestConfiguration);
         $errorMappings = [
-                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+                'XXX' => [Error::class, 'createFromDiscriminatorValue'],
         ];
         return $this->requestAdapter->sendAsync($requestInfo, [EscapedEmpty::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
@@ -87,7 +87,7 @@ class WithEndpoint_ItemRequestBuilder extends BaseRequestBuilder
     public function get(?WithEndpoint_ItemRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
         $errorMappings = [
-                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+                'XXX' => [Error::class, 'createFromDiscriminatorValue'],
         ];
         return $this->requestAdapter->sendAsync($requestInfo, [GetEndpointResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
@@ -102,7 +102,7 @@ class WithEndpoint_ItemRequestBuilder extends BaseRequestBuilder
     public function patch(WithEndpoint_PatchRequestBody $body, ?WithEndpoint_ItemRequestBuilderPatchRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPatchRequestInformation($body, $requestConfiguration);
         $errorMappings = [
-                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+                'XXX' => [Error::class, 'createFromDiscriminatorValue'],
         ];
         return $this->requestAdapter->sendAsync($requestInfo, [UpdateEndpointResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }

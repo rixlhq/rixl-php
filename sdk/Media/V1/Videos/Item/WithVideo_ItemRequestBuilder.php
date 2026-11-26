@@ -10,7 +10,7 @@ use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Media\V1\Videos\Item\AudioTracks\AudioTracksRequestBuilder;
 use Rixl\Sdk\Media\V1\Videos\Item\Subtitles\SubtitlesRequestBuilder;
-use Rixl\Sdk\Models\Google\Rpc\Status;
+use Rixl\Sdk\Models\Error;
 use Rixl\Sdk\Models\Videos\V1\GetVideoResponse;
 
 /**
@@ -55,7 +55,7 @@ class WithVideo_ItemRequestBuilder extends BaseRequestBuilder
     public function get(?WithVideo_ItemRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
         $errorMappings = [
-                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+                'XXX' => [Error::class, 'createFromDiscriminatorValue'],
         ];
         return $this->requestAdapter->sendAsync($requestInfo, [GetVideoResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }

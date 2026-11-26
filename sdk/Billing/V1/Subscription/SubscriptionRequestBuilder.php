@@ -15,7 +15,7 @@ use Rixl\Sdk\Billing\V1\Subscription\Upgrade\UpgradeRequestBuilder;
 use Rixl\Sdk\Models\Billing\V1\CreateSubscriptionRequest;
 use Rixl\Sdk\Models\Billing\V1\CreateSubscriptionResponse;
 use Rixl\Sdk\Models\Billing\V1\Subscription;
-use Rixl\Sdk\Models\Google\Rpc\Status;
+use Rixl\Sdk\Models\Error;
 
 /**
  * Builds and executes requests for operations under /billing/v1/subscription
@@ -73,7 +73,7 @@ class SubscriptionRequestBuilder extends BaseRequestBuilder
     public function get(?SubscriptionRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
         $errorMappings = [
-                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+                'XXX' => [Error::class, 'createFromDiscriminatorValue'],
         ];
         return $this->requestAdapter->sendAsync($requestInfo, [Subscription::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
@@ -88,7 +88,7 @@ class SubscriptionRequestBuilder extends BaseRequestBuilder
     public function post(CreateSubscriptionRequest $body, ?SubscriptionRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
         $errorMappings = [
-                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+                'XXX' => [Error::class, 'createFromDiscriminatorValue'],
         ];
         return $this->requestAdapter->sendAsync($requestInfo, [CreateSubscriptionResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }

@@ -10,7 +10,7 @@ use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Auth\V1\Users\Current\DomainJoinSuggestions\Join\JoinRequestBuilder;
 use Rixl\Sdk\Models\Auth\V1\ListDomainJoinSuggestionsResponse;
-use Rixl\Sdk\Models\Google\Rpc\Status;
+use Rixl\Sdk\Models\Error;
 
 /**
  * Builds and executes requests for operations under /auth/v1/users/current/domain-join-suggestions
@@ -47,7 +47,7 @@ class DomainJoinSuggestionsRequestBuilder extends BaseRequestBuilder
     public function get(?DomainJoinSuggestionsRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
         $errorMappings = [
-                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+                'XXX' => [Error::class, 'createFromDiscriminatorValue'],
         ];
         return $this->requestAdapter->sendAsync($requestInfo, [ListDomainJoinSuggestionsResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }

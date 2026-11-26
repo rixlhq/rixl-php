@@ -9,8 +9,8 @@ use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Auth\V1\Organizations\Item\Invitations\Item\Resend\ResendRequestBuilder;
+use Rixl\Sdk\Models\Error;
 use Rixl\Sdk\Models\Google\Protobuf\EscapedEmpty;
-use Rixl\Sdk\Models\Google\Rpc\Status;
 
 /**
  * Builds and executes requests for operations under /auth/v1/organizations/{org_id}/invitations/{invitation_id}
@@ -47,7 +47,7 @@ class WithInvitation_ItemRequestBuilder extends BaseRequestBuilder
     public function delete(?WithInvitation_ItemRequestBuilderDeleteRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toDeleteRequestInformation($requestConfiguration);
         $errorMappings = [
-                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+                'XXX' => [Error::class, 'createFromDiscriminatorValue'],
         ];
         return $this->requestAdapter->sendAsync($requestInfo, [EscapedEmpty::class, 'createFromDiscriminatorValue'], $errorMappings);
     }

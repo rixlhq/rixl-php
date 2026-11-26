@@ -11,8 +11,8 @@ use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Auth\V1\Organizations\Item\Domain\SuggestJoin\SuggestJoinRequestBuilder;
 use Rixl\Sdk\Auth\V1\Organizations\Item\Domain\Verify\VerifyRequestBuilder;
 use Rixl\Sdk\Models\Auth\V1\DomainResponse;
+use Rixl\Sdk\Models\Error;
 use Rixl\Sdk\Models\Google\Protobuf\EscapedEmpty;
-use Rixl\Sdk\Models\Google\Rpc\Status;
 
 /**
  * Builds and executes requests for operations under /auth/v1/organizations/{org_id}/domain
@@ -56,7 +56,7 @@ class DomainRequestBuilder extends BaseRequestBuilder
     public function delete(?DomainRequestBuilderDeleteRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toDeleteRequestInformation($requestConfiguration);
         $errorMappings = [
-                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+                'XXX' => [Error::class, 'createFromDiscriminatorValue'],
         ];
         return $this->requestAdapter->sendAsync($requestInfo, [EscapedEmpty::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
@@ -70,7 +70,7 @@ class DomainRequestBuilder extends BaseRequestBuilder
     public function get(?DomainRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
         $errorMappings = [
-                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+                'XXX' => [Error::class, 'createFromDiscriminatorValue'],
         ];
         return $this->requestAdapter->sendAsync($requestInfo, [DomainResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
@@ -85,7 +85,7 @@ class DomainRequestBuilder extends BaseRequestBuilder
     public function post(DomainPostRequestBody $body, ?DomainRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
         $errorMappings = [
-                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+                'XXX' => [Error::class, 'createFromDiscriminatorValue'],
         ];
         return $this->requestAdapter->sendAsync($requestInfo, [DomainResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }

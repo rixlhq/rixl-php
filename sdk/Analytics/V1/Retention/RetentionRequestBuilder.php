@@ -10,7 +10,7 @@ use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Models\Analytics\V1\GetRetentionRequest;
 use Rixl\Sdk\Models\Analytics\V1\RetentionAnalytics;
-use Rixl\Sdk\Models\Google\Rpc\Status;
+use Rixl\Sdk\Models\Error;
 
 /**
  * Builds and executes requests for operations under /analytics/v1/retention
@@ -41,7 +41,7 @@ class RetentionRequestBuilder extends BaseRequestBuilder
     public function post(GetRetentionRequest $body, ?RetentionRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
         $errorMappings = [
-                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+                'XXX' => [Error::class, 'createFromDiscriminatorValue'],
         ];
         return $this->requestAdapter->sendAsync($requestInfo, [RetentionAnalytics::class, 'createFromDiscriminatorValue'], $errorMappings);
     }

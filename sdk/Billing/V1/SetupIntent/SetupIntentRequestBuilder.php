@@ -10,7 +10,7 @@ use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Models\Billing\V1\CreateSetupIntentRequest;
 use Rixl\Sdk\Models\Billing\V1\SetupIntentResponse;
-use Rixl\Sdk\Models\Google\Rpc\Status;
+use Rixl\Sdk\Models\Error;
 
 /**
  * Builds and executes requests for operations under /billing/v1/setup-intent
@@ -41,7 +41,7 @@ class SetupIntentRequestBuilder extends BaseRequestBuilder
     public function post(CreateSetupIntentRequest $body, ?SetupIntentRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
         $errorMappings = [
-                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+                'XXX' => [Error::class, 'createFromDiscriminatorValue'],
         ];
         return $this->requestAdapter->sendAsync($requestInfo, [SetupIntentResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }

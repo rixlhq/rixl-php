@@ -19,7 +19,7 @@ use Rixl\Sdk\Auth\V1\Users\Current\Passkeys\PasskeysRequestBuilder;
 use Rixl\Sdk\Auth\V1\Users\Current\Totp\TotpRequestBuilder;
 use Rixl\Sdk\Auth\V1\Users\Current\Username\UsernameRequestBuilder;
 use Rixl\Sdk\Models\Auth\V1\GetUserResponse;
-use Rixl\Sdk\Models\Google\Rpc\Status;
+use Rixl\Sdk\Models\Error;
 
 /**
  * Builds and executes requests for operations under /auth/v1/users/current
@@ -119,7 +119,7 @@ class CurrentRequestBuilder extends BaseRequestBuilder
     public function get(?CurrentRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
         $errorMappings = [
-                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+                'XXX' => [Error::class, 'createFromDiscriminatorValue'],
         ];
         return $this->requestAdapter->sendAsync($requestInfo, [GetUserResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }

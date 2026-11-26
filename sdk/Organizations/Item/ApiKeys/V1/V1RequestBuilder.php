@@ -10,7 +10,7 @@ use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use Rixl\Sdk\Models\Apikeys\V1\CreateApiKeyResponse;
 use Rixl\Sdk\Models\Apikeys\V1\ListApiKeysResponse;
-use Rixl\Sdk\Models\Google\Rpc\Status;
+use Rixl\Sdk\Models\Error;
 use Rixl\Sdk\Organizations\Item\ApiKeys\V1\Item\WithKey_ItemRequestBuilder;
 
 /**
@@ -52,7 +52,7 @@ class V1RequestBuilder extends BaseRequestBuilder
     public function get(?V1RequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
         $errorMappings = [
-                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+                'XXX' => [Error::class, 'createFromDiscriminatorValue'],
         ];
         return $this->requestAdapter->sendAsync($requestInfo, [ListApiKeysResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
@@ -67,7 +67,7 @@ class V1RequestBuilder extends BaseRequestBuilder
     public function post(V1PostRequestBody $body, ?V1RequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
         $errorMappings = [
-                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+                'XXX' => [Error::class, 'createFromDiscriminatorValue'],
         ];
         return $this->requestAdapter->sendAsync($requestInfo, [CreateApiKeyResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }

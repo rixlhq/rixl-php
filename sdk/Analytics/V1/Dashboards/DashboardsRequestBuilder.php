@@ -13,7 +13,7 @@ use Rixl\Sdk\Analytics\V1\Dashboards\Widgets\WidgetsRequestBuilder;
 use Rixl\Sdk\Models\Analytics\V1\CreateDashboardRequest;
 use Rixl\Sdk\Models\Analytics\V1\Dashboard;
 use Rixl\Sdk\Models\Analytics\V1\ListDashboardsResponse;
-use Rixl\Sdk\Models\Google\Rpc\Status;
+use Rixl\Sdk\Models\Error;
 
 /**
  * Builds and executes requests for operations under /analytics/v1/dashboards
@@ -61,7 +61,7 @@ class DashboardsRequestBuilder extends BaseRequestBuilder
     public function get(?DashboardsRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
         $errorMappings = [
-                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+                'XXX' => [Error::class, 'createFromDiscriminatorValue'],
         ];
         return $this->requestAdapter->sendAsync($requestInfo, [ListDashboardsResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
@@ -76,7 +76,7 @@ class DashboardsRequestBuilder extends BaseRequestBuilder
     public function post(CreateDashboardRequest $body, ?DashboardsRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
         $errorMappings = [
-                'XXX' => [Status::class, 'createFromDiscriminatorValue'],
+                'XXX' => [Error::class, 'createFromDiscriminatorValue'],
         ];
         return $this->requestAdapter->sendAsync($requestInfo, [Dashboard::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
