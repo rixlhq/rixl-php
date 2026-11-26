@@ -1,5 +1,33 @@
 # Changelog
 
+## [0.7.0](https://github.com/rixlhq/rixl-php/compare/v0.6.0...v0.7.0) (2026-11-26)
+
+
+### Features
+
+* **sdk:** regenerate based on latest OpenAPI spec ([b26578f](https://github.com/rixlhq/rixl-php/commit/b26578f011f6e67a02d1f22755ebea8769db883b))
+* **sdk:** regenerate based on latest OpenAPI spec ([572e585](https://github.com/rixlhq/rixl-php/commit/572e585420885e371b7adfbce70e291bdb73dcba))
+* **sdk:** regenerate based on latest OpenAPI spec ([ae17dfa](https://github.com/rixlhq/rixl-php/commit/ae17dfa3f1c75178d9876a8851ccbbddb9de661f))
+* **sdk:** regenerate based on latest OpenAPI spec ([3e6603a](https://github.com/rixlhq/rixl-php/commit/3e6603abe8290fb4b840c1f853029ef6cfa8a5e6))
+* **sdk:** regenerate based on latest OpenAPI spec ([54233f9](https://github.com/rixlhq/rixl-php/commit/54233f9a7306a8d70e4c5d515d4e6db8866b4a0a))
+* **sdk:** regenerate based on latest OpenAPI spec ([9f577f7](https://github.com/rixlhq/rixl-php/commit/9f577f7cb7a9cd029e9b51fe56c968117cfbdec3))
+* **sdk:** regenerate based on latest OpenAPI spec ([ddb9d1a](https://github.com/rixlhq/rixl-php/commit/ddb9d1abf29f137f06f5388a3aa4c5ff08cb4381))
+* **sdk:** regenerate based on latest OpenAPI spec ([3ff6efe](https://github.com/rixlhq/rixl-php/commit/3ff6efe85d106963b3162ff702ea129ff314fb7c))
+* **sdk:** regenerate based on latest OpenAPI spec ([0842021](https://github.com/rixlhq/rixl-php/commit/084202114d8c25ea5300eab805138dc8119288f6))
+* **sdk:** regenerate based on latest OpenAPI spec ([04cd436](https://github.com/rixlhq/rixl-php/commit/04cd4361846841df35b6ab58ea69066d1fdbe965))
+* **sdk:** regenerate based on latest OpenAPI spec ([ec5c195](https://github.com/rixlhq/rixl-php/commit/ec5c1956b080bb48ca74bbf8c64f3f1c8b7d6aaf))
+* **sdk:** regenerate based on latest OpenAPI spec ([d45af4c](https://github.com/rixlhq/rixl-php/commit/d45af4c98d02038ff8c803ba603dcebe8be61a94))
+* **sdk:** regenerate based on latest OpenAPI spec ([f53d990](https://github.com/rixlhq/rixl-php/commit/f53d990ebe809ef49aa6f5e604256d95f488f405))
+* **sdk:** regenerate based on latest OpenAPI spec ([91957c9](https://github.com/rixlhq/rixl-php/commit/91957c995b4e8d51e3eea9629d9585ac7c1c4b81))
+* **sdk:** regenerate based on latest OpenAPI spec ([126de3b](https://github.com/rixlhq/rixl-php/commit/126de3b5d18488b8f88753bea2ae2629f163e2eb))
+* **sdk:** regenerate based on latest OpenAPI spec ([a8a6027](https://github.com/rixlhq/rixl-php/commit/a8a602771acef1a8cf029dac73afde822dbb147c))
+
+
+### Bug Fixes
+
+* **branding:** canonical company name, domain and address ([a88c0c3](https://github.com/rixlhq/rixl-php/commit/a88c0c399eb1a39560ec78e0593cef9026a54767))
+* **branding:** use canonical company name Rixl Inc., rixl.com and Wilmington DE address ([6ec6fad](https://github.com/rixlhq/rixl-php/commit/6ec6fadc59b8a80ca2d5a1d81154a3a126273d06))
+
 ## [0.6.0](https://github.com/rixlhq/rixl-php/compare/v0.5.0...v0.6.0) (2026-10-29)
 
 
